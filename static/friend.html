@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Backlinq enterprises | Creating innovative solutions, the only way we know how to think">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/pages/friend.css">
+	<title>Friend | Follow the Money</title>
+</head>
+<body>
+    <div class="modal fade postModal" tabindex="-1" role="dialog" aria-labelledby="postModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="d-flex flex-row w-100 h-100">
+                    <div class="img-post">
+                        <img src="assets/img/posts/post1-quality.jpg" class="img-post" alt="">
+                    </div>
+                    <div class="h-100 px-0 py-3 right">
+                        <div class="user-comment-wrapper">
+                            <div class="user-comment p-3">
+                                <div class="comment user-post d-flex">
+                                    <img class="rounded-circle mr-3" src="assets/img/user/user.jpg" alt="">
+                                    <input type="text" class="w-50" placeholder="Add a comment...">
+                                    <!-- <div class="ml-auto h-100 vertical-align d-flex flex-row">
+                                        <a href="#"><i class="far fa-star"></i></a>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="post source-post p-3 w-100">
+                            <div class="w-100 d-flex flex-column">
+                                <div class="user d-flex vertical-align flex-row">
+                                    <img src="assets/img/user/hamzat.jpg" class="rounded-circle mr-3" alt="">
+                                    <div class="d-flex flex-column">
+                                        <div class="d-flex flex-row w-100">
+                                            <h5>Hamzat Lawal</h5>
+                                            <i class="far ml-1 fa-check-circle color-red fa-sm"></i>
+                                            
+                                        </div>
+                                        <span>8:15 PM, yesterday</span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="mt-3">Had the honour to be welcomed yesterday & meeting for the ﬁrst time  <span class="color-red">@UKinNigeria</span> High Commissioner <span class="color-red">@CatrionaLaing1</span>
+                                        during <span class="color-red">#QBP19</span> She is an amazing personality and a true friend of Nigeria and her people. Looking forward to exploring 
+                                        collaborations centered on innovation #SDGs
+                                    </p>
+                                    <div class="d-flex flex-row actions mt-3">
+                                        <a href="#">
+                                            <div class="d-flex flex-row vertical-align">
+                                                <i class="far fa-heart"></i>
+                                                <span class="ml-1">2.1k</span>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="d-flex flex-row vertical-align ml-3">
+                                                <i class="far fa-comment"></i>
+                                                <span class="ml-1">201</span>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="d-flex flex-row vertical-align ml-3">
+                                                <i class="fas fa-retweet"></i>
+                                                <span class="ml-1">1.2k</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comments p-0 mt-4">
+                            <h6 class="heading px-3">All Comments</h6>
+                            <div class="post w-100 p-3">
+                                <div class="w-100 d-flex flex-column">
+                                    <div class="user d-flex vertical-align flex-row">
+                                        <img src="assets/img/user/nasir.jpg" class="rounded-circle mr-2" alt="">
+                                        <div class="d-flex flex-column">
+                                            <div class="d-flex flex-row w-100">
+                                                <h5 class="mb-1">Nasir Bukar Ibrahim</h5>
+                                            </div>
+                                            <span>8:15 PM, yesterday</span>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <p class="mt-2 mb-2">Hamzy, it was amazing! Every single word of your brilliant speech was fulﬁlled of inspiration
+                                        </p>
+                                        <div class="d-flex flex-row actions mt-1">
+                                            <a href="#">
+                                                <div class="d-flex flex-row vertical-align">
+                                                    <i class="far fa-heart"></i>
+                                                    <span class="ml-1">2.1k</span>
+                                                </div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="d-flex flex-row vertical-align ml-3">
+                                                    <i class="far fa-comment"></i>
+                                                    <span class="ml-1">201</span>
+                                                </div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="d-flex flex-row vertical-align ml-3">
+                                                    <i class="fas fa-retweet"></i>
+                                                    <span class="ml-1">1.2k</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post w-100 p-3">
+                                <div class="w-100 d-flex flex-column">
+                                    <div class="user d-flex vertical-align flex-row">
+                                        <img src="assets/img/user/yhasmeen.jpg" class="rounded-circle mr-2" alt="">
+                                        <div class="d-flex flex-column">
+                                            <div class="d-flex flex-row w-100">
+                                                <h5 class="mb-1">Yhasmeen Buba</h5>
+                                            </div>
+                                            <span>8:30 AM</span>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <p class="mt-2 mb-2">It’s really nice to see you on this conf. IMHO, was the only interesting speaker at all
+                                        </p>
+                                        <div class="d-flex flex-row actions mt-1">
+                                            <a href="#">
+                                                <div class="d-flex flex-row vertical-align">
+                                                    <i class="far fa-heart"></i>
+                                                    <span class="ml-1">2.1k</span>
+                                                </div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="d-flex flex-row vertical-align ml-3">
+                                                    <i class="far fa-comment"></i>
+                                                    <span class="ml-1">201</span>
+                                                </div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="d-flex flex-row vertical-align ml-3">
+                                                    <i class="fas fa-retweet"></i>
+                                                    <span class="ml-1">1.2k</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<main>
+		<div class="container-fluid p-0 h-100">
+            <div class="row m-0 w-100 h-100">
+                <div class="sidebar py-4 px-5">
+                    <img src="assets/img/logo-red.png" class="logo" alt="">
+                    <p class="font-weight-bold user pt-4">Hi Adedoyin</p>
+                    <ul class="mt-2">
+                        <li>
+                            <a href="#" class="">
+                                <i class="far fa-newspaper mr-2 text-center"></i>
+                                <span>Feed</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="messages.html" class="">
+                                <i class="fas fa-inbox mr-2 text-center"></i>
+                                <span>Messages</span>
+                                <div class="amount ml-auto">
+                                    <span>8</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="active">
+                                <i class="fas fa-user mr-2 text-center"></i>
+                                <span>Friends</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="">
+                                <i class="fas fa-user-friends mr-2 text-center"></i>
+                                <span>Communities</span>
+                                <div class="amount ml-auto">
+                                    <span>1</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="">
+                                <i class="far fa-calendar mr-2 text-center"></i>
+                                <span>Events</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="">
+                                <i class="fas fa-cog mr-2 text-center"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <p class="font-medium heading pt-3">Playlist</p>
+                    <ul class="">
+                        <li>
+                            <a href="#" class="">
+                                <i class="fas fa-podcast mr-2 text-center"></i>
+                                <span>Podcast</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="">
+                                <i class="fas fa-satellite-dish mr-2 text-center"></i>
+                                <span>Radio</span>
+                            </a>
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main" id="main">
+            <nav class="pt-4">
+                <ul class="d-flex vertical-align">
+                    <div class="right d-flex ml-auto vertical-align">
+                        <a href="#">
+                            <div class="notifications mr-3" id="notifications-toggle">
+                                <i class="far fa-bell"></i>
+                                <div class="amount">2</div>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <img class="user" src="assets/img/user/user.jpg" alt="">
+                        </a>
+                        <div class="notification-popup flex-column p-3" id="notifications-popup">
+                            <h6 class="font-semiBold heading m-0">Notifications</h6>
+                            <ul class="p-0 pt-2 w-100 d-flex flex-column">
+                                <li>
+                                    <a href="#" class="m-0">
+                                        <div class="d-flex flex-row">
+                                            <div class="user d-flex vertical-align">
+                                                <img src="assets/img/user/nasir.jpg" alt="">
+                                            </div>
+                                            <div class="d-flex flex-column ml-3">
+                                                <h6 class="notification-text m-0">Your friend <span class="tagged">Nasir Smith</span> liked your post "Seven rules of a good IT company"</h6>
+                                                <span class="time pt-1">1 hour ago</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="m-0">
+                                        <div class="d-flex flex-row">
+                                            <div class="user d-flex vertical-align">
+                                                <img src="assets/img/user/nwabuisi.jpg" alt="">
+                                            </div>
+                                            <div class="d-flex flex-column ml-3">
+                                                <h6 class="notification-text m-0">Your friend <span class="tagged">Nwabuisi Atiku</span> posted a new video "Hunting badgers"</h6>
+                                                <span class="time pt-1">2 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="m-0">
+                                        <div class="d-flex flex-row">
+                                            <div class="user d-flex vertical-align">
+                                                <img src="assets/img/user/yhasmeen.jpg" alt="">
+                                            </div>
+                                            <div class="d-flex flex-column ml-3">
+                                                <h6 class="notification-text m-0">It's <span class="tagged">Yhasmeen Kareem</span>'s' birthday today"</h6>
+                                                <span class="time pt-1">4 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="m-0">
+                                        <div class="d-flex flex-row">
+                                            <div class="user d-flex vertical-align">
+                                                <img src="assets/img/user/hanan.jpg" alt="">
+                                            </div>
+                                            <div class="d-flex flex-column ml-3">
+                                                <h6 class="notification-text m-0"> <span class="tagged">Haman Cho</span>added a new photo</h6>
+                                                <span class="time pt-1">5 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="m-0">
+                                        <div class="d-flex flex-row">
+                                            <div class="user d-flex vertical-align">
+                                                <img src="assets/img/user/hanan.jpg" alt="">
+                                            </div>
+                                            <div class="d-flex flex-column ml-3">
+                                                <h6 class="notification-text m-0"> <span class="tagged">Haman Cho</span>added a new photo</h6>
+                                                <span class="time pt-1">5 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                    
+                </ul>
+                <hr class="w-100">
+                
+            </nav>
+            <div class="w-100 d-flex px-3 pb-2 vertical-align profile d-flex flex-row">
+                <img src="assets/img/user/hamzat.jpg" alt="">
+                <div class="flex-column d-flex pt-1">
+                    <div class="d-flex flex-row ml-3 vertical-align">
+                        <h6 class="name m-0">Hamzat Lawal</h6>
+                        <i class="far ml-2 fa-check-circle color-red fa-sm"></i>                        
+                    </div>
+                    <div class="description w-50 ml-3 mt-2">
+                        <p>Activist | Leading a Movement of Grassroots Campaigners in Rural Communities <span class="color-red">@4lowthemoney</span> | 
+                            Founder/CEO <span class="color-red">@Connected_dev</span> | Board Member <span class="color-red">@AYICC #SDGs</span>
+                        </p>
+                    </div>  
+                </div>
+                <div class="d-flex flex-row ml-auto options">
+                    <button><i class="far fa-comment-alt"></i></button>
+                    <button class="ml-4"><i class=" fas fa-ellipsis-v"></i></button>
+                </div>
+            </div>
+            <nav class="pt-2">
+                <ul class="d-flex py-2 vertical-align">
+                    <li>
+                        <a href="#" class="active">Timeline</a>
+                        <a href="#">Friends</a>
+                        <a href="#">Photo</a>
+                        <a href="#">More</a>
+                    </li>                 
+                </ul>
+                <hr class="w-100">
+                
+            </nav>
+            <div class="container-fluid content p-0">
+                <div class="row h-100 px-0 py-1 m-0 w-100">
+                    <div class="col-12">
+                        <div class="main-layout">
+                            <div class="images pb-2 w-100 d-flex flex-row">
+                                <div class="col-2 pl-0">
+                                    <img src="assets/img/image1.jpg" class="w-100" alt="">
+                                </div>
+                                <div class="col-2 pl-0">
+                                    <img src="assets/img/image2.jpg" class="w-100" alt="">
+                                </div>
+                                <div class="col-2 pl-0">
+                                    <img src="assets/img/image3.jpg" class="w-100" alt="">
+                                </div>
+                                <div class="col-2 pl-0">
+                                    <img src="assets/img/image4.jpg" class="w-100" alt="">
+                                </div>
+                                <div class="col-2 pl-0">
+                                    <img src="assets/img/image5.jpg" class="w-100" alt="">
+                                </div>
+                                <div class="col-2 pl-0">
+                                    <img src="assets/img/image6.jpg" class="w-100" alt="">
+                                </div>
+                                <div class="col-2 pl-0">
+                                    <img src="assets/img/image1.jpg" class="w-100" alt="">
+                                </div>
+                            </div>
+                            <div class="row m-0 mt-4 w-100 friends">
+                                <div class="col-8 pl-0 h-100">
+                                    <div class="middle-layout">
+                                        <div class="card vertical-align user-post w-100 d-flex flex-row p-3">
+                                            <img class="rounded-circle mr-3" src="assets/img/user/user.jpg" alt="">
+                                            <input type="text" class="w-50" placeholder="Text something to Hamzat">
+                                            <div class="ml-auto h-100 vertical-align d-flex flex-row">
+                                                <i class="far fa-image"></i>
+                                                <i class="far fa-user ml-3"></i>
+                                                <i class="far fa-smile ml-3"></i>                                                
+                                            </div>
+                                        </div>
+                                        <div class="posts mt-3">
+                                            <h6 class="color-grey font-semiBold my-4">Publications</h6>
+                                            <div class="card p-3 post w-100">
+                                                <div class="w-100 d-flex flex-column">
+                                                    <div class="user d-flex vertical-align flex-row">
+                                                        <img src="assets/img/user/hamzat.jpg" class="rounded-circle mr-3" alt="">
+                                                        <div class="d-flex flex-column">
+                                                            <div class="d-flex flex-row w-100">
+                                                                <h5>Hamzat Lawal</h5>
+                                                                <i class="far ml-1 fa-check-circle color-red fa-sm"></i>
+                                                                
+                                                            </div>
+                                                            <span>8:15pm, yesterday</span>
+                                                        </div>
+                                                        <button onclick="showPostPopup(this)" class="ml-auto d-flex" id="post-popup-toggler"><i class="fas fa-ellipsis-h color-grey"></i></button>
+                                                        <div class="card p-3 post-popup" id="post-popup">
+                                                            <button class="">View More</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p class="mt-4">Had the honour to be welcomed yesterday & meeting for the ﬁrst time  <span class="color-red">@UKinNigeria</span> High Commissioner <span class="color-red">@CatrionaLaing1</span>
+                                                            during <span class="color-red">#QBP19</span> She is an amazing personality and a true friend of Nigeria and her people. Looking forward to exploring 
+                                                            collaborations centered on innovation #SDGs
+                                                        </p>
+                                                        <img src="assets/img/posts/post1.jpg" alt="">
+                                                        <div class="d-flex flex-row actions mt-3">
+                                                            <a href="#">
+                                                                <div class="d-flex flex-row vertical-align">
+                                                                    <i class="far fa-heart"></i>
+                                                                    <span class="ml-1">2.1k</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#">
+                                                                <div class="d-flex flex-row vertical-align ml-3">
+                                                                    <i class="far fa-comment"></i>
+                                                                    <span class="ml-1">201</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#">
+                                                                <div class="d-flex flex-row vertical-align ml-3">
+                                                                    <i class="fas fa-retweet"></i>
+                                                                    <span class="ml-1">1.2k</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                            <div class="card p-3 mt-3 post w-100">
+                                                <div class="w-100 d-flex flex-column">
+                                                    <div class="user d-flex vertical-align flex-row">
+                                                        <img src="assets/img/user/hamzat.jpg" class="rounded-circle mr-3" alt="">
+                                                        <div class="d-flex flex-column">
+                                                            <div class="d-flex flex-row">
+                                                                <h5>Hamzat Lawal</h5>
+                                                                <i class="far ml-1 fa-check-circle color-red fa-sm"></i>
+                                                            </div>
+                                                            <span>2:35pm, Jan 5</span>
+                                                        </div>
+                                                        <button class="ml-auto d-flex" id="post-popup-toggler" onclick="showPostPopup(this)"><i class="fas fa-ellipsis-h color-grey"></i></button>
+                                                        <div class="card p-3 post-popup" id="post-popup">
+                                                            <button class="" data-toggle="modal" data-target=".postModal">View More</button>                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p class="mt-3">Starship test vehicle under assembly will look similar to this illustration when ﬁnished. Operational Starships would obv have windows, etc.
+                                                            </p>
+                                                        <div class="d-flex flex-row actions mt-3">
+                                                            <a href="#">
+                                                                <div class="d-flex flex-row vertical-align">
+                                                                    <i class="far fa-heart"></i>
+                                                                    <span class="ml-1">2.1k</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#">
+                                                                <div class="d-flex flex-row vertical-align ml-3">
+                                                                    <i class="far fa-comment"></i>
+                                                                    <span class="ml-1">201</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#">
+                                                                <div class="d-flex flex-row vertical-align ml-3">
+                                                                    <i class="fas fa-retweet"></i>
+                                                                    <span class="ml-1">1.2k</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                        
+                                </div>
+                                <div class="col-4 pr-1">
+                                    <div class="card py-3 px-0">
+                                        <div class="row m-0 profile-details w-100">
+                                            <div class="col-3 text-center">
+                                                <h6 class="color-red">739k <span class="small">likes</span></h6>
+                                            </div>
+                                            <div class="col-3 text-center">
+                                                <h6 class="color-red">254k <span class="small">followers</span></h6>
+                                            </div>
+                                            <div class="col-3 text-center">
+                                                <h6 class="color-red">193 <span class="small">friends</span></h6>
+                                            </div>
+                                            <div class="col-3 text-center">
+                                                <h6 class="color-red">203 <span class="small">posts</span></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card sideTab mt-4 p-3" id="sideTab">
+                                        <div class="mt-3 friend-requests">
+                                            <div class="d-flex flex-column">
+                                                <div class="flex-row d-flex">
+                                                    <h6>Friend Requests</h6>
+                                                    <span class="subheading-filter color-red ml-auto">All</span>
+                                                </div>
+                                                <div class="requests mt-1">
+                                                    <div class="d-flex flex-row vertical-align">
+                                                        <img src="assets/img/user/nasir.jpg" alt="">
+                                                        <div class="d-flex flex-column ml-2">
+                                                            <h5 class="color-grey m-0 font-medium small">Nasir Bukar Ibrahim</h5>
+                                                            <p class="smaller mt-1 m-0 color-grey font-medium">Abuja</p>
+                                                        </div>
+                                                        <div class="d-flex ml-auto flex-row">
+                                                            <i class="far fa-comment-alt"></i>
+                                                            <i class="fas fa-ellipsis-v ml-3"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row mt-3 vertical-align">
+                                                        <img src="assets/img/user/nwabuisi.jpg" alt="">
+                                                        <div class="d-flex flex-column ml-2">
+                                                            <h5 class="color-grey m-0 font-medium small">Nwabuisi Gospel</h5>
+                                                            <p class="smaller mt-1 m-0 color-grey font-medium">Kano</p>
+                                                        </div>
+                                                        <div class="d-flex ml-auto flex-row">
+                                                            <i class="far fa-comment-alt"></i>
+                                                            <i class="fas fa-ellipsis-v ml-3"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row mt-3 vertical-align">
+                                                        <img src="assets/img/user/yhasmeen.jpg" alt="">
+                                                        <div class="d-flex flex-column ml-2">
+                                                            <h5 class="color-grey m-0 font-medium small">Yhasmeen Buba</h5>
+                                                            <p class="smaller mt-1 m-0 color-grey font-medium">Zaria</p>
+                                                        </div>
+                                                        <div class="d-flex ml-auto flex-row">
+                                                            <i class="far fa-comment-alt"></i>
+                                                            <i class="fas fa-ellipsis-v ml-3"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row mt-3 vertical-align">
+                                                        <img src="assets/img/user/hamzat.jpg" alt="">
+                                                        <div class="d-flex flex-column ml-2">
+                                                            <h5 class="color-grey m-0 font-medium small">Hamzat Lawal</h5>
+                                                            <p class="smaller mt-1 m-0 color-grey font-medium">Abuja</p>
+                                                        </div>
+                                                        <div class="d-flex ml-auto flex-row">
+                                                            <i class="far fa-comment-alt"></i>
+                                                            <i class="fas fa-ellipsis-v ml-3"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-row mt-5 d-flex">
+                                                    <h6>Favorite Playlists</h6>
+                                                    <span class="subheading-filter color-red ml-auto">All</span>
+                                                </div>
+                                                <div class="playlists mt-1">
+                                                    <ul class="p-0 d-flex flex-column">
+                                                        <li>
+                                                            <div class="d-flex flex-row vertical-align">
+                                                                <img src="assets/img/playlists/playlist1.jpg" alt="">
+                                                                <div class="d-flex flex-column ml-2">
+                                                                    <h5 class="color-grey m-0 font-medium small">Battle Cry</h5>
+                                                                    <p class="smaller mt-1 m-0 color-grey font-medium">Linkin Park</p>
+                                                                </div>
+                                                                <div class="d-flex ml-auto options vertical-align flex-row">
+                                                                    <span class="duration">3:51</span>
+                                                                    <button><i class="fas fa-play ml-3"></i></button>
+                                                                    <button><i class="fas fa-plus ml-3"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="d-flex flex-row vertical-align">
+                                                                <img src="assets/img/playlists/playlist1.jpg" alt="">
+                                                                <div class="d-flex flex-column ml-2">
+                                                                    <h5 class="color-grey m-0 font-medium small">Space Oddity</h5>
+                                                                    <p class="smaller mt-1 m-0 color-grey font-medium">David Bo</p>
+                                                                </div>
+                                                                <div class="d-flex ml-auto options vertical-align flex-row">
+                                                                    <span class="duration">3:51</span>
+                                                                    <button><i class="fas fa-play ml-3"></i></button>
+                                                                    <button><i class="fas fa-check ml-3"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="d-flex flex-row vertical-align">
+                                                                <img src="assets/img/playlists/playlist1.jpg" alt="">
+                                                                <div class="d-flex flex-column ml-2">
+                                                                    <h5 class="color-grey m-0 font-medium small">Animus Vox Cry</h5>
+                                                                    <p class="smaller mt-1 m-0 color-grey font-medium">Glit Mob</p>
+                                                                </div>
+                                                                <div class="d-flex ml-auto options vertical-align flex-row">
+                                                                    <span class="duration">3:51</span>
+                                                                    <button><i class="fas fa-play ml-3"></i></button>
+                                                                    <button><i class="fas fa-plus ml-3"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="d-flex flex-row vertical-align">
+                                                                <img src="assets/img/playlists/playlist1.jpg" alt="">
+                                                                <div class="d-flex flex-column ml-2">
+                                                                    <h5 class="color-grey m-0 font-medium small">Firefly</h5>
+                                                                    <p class="smaller mt-1 m-0 color-grey font-medium">Ghe Sun</p>
+                                                                </div>
+                                                                <div class="d-flex ml-auto options vertical-align flex-row">
+                                                                    <span class="duration">3:51</span>
+                                                                    <button><i class="fas fa-play ml-3"></i></button>
+                                                                    <button><i class="fas fa-plus ml-3"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>                                                
+                                                </div>   
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer p-3 bg-red d-flex flex-row vertical-align">
+            <div class="container-fluid p-0">
+                <div class="row m-0 w-100 flex-row vertical-align">
+                    <div class="col-4 h-100">
+                        <div class="mr-auto flex-column h-100">
+                            <h5 class="title">Mukthar Podcast</h5>
+                            <h5 class="status">Live</h5>
+                        </div>
+                    </div>
+                    <div class="col-4 d-flex h-100">
+                        <div class="mx-auto flex-column h-100 pos-relative ">
+                            <div class="d-flex flex-row controls player">
+                                <i class="fas fa-step-backward"></i>
+                                <i class="fas active fa-pause mx-4"></i>
+                                <i class="fas active fa-step-forward"></i>
+                            </div>
+                            <div class="progressbar mt-3">
+                                <div class="loaded"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 d-flex h-100">
+                        <div class="ml-auto flex-column h-100">
+                            <div class="d-flex flex-row controls">
+                                <i class="fas fa-music" id="playlist-toggle"></i>
+                                <i class="fas  fa-volume-up ml-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="playlist bg-red p-3" id="playlist-popup">
+            <h6 class="font-semiBold heading">Playlist</h6>
+            <nav>
+                <ul class="d-flex flex-row mt-3">
+                    <li>
+                        <a href="#" class="active">Recent Playlist</a>
+                    </li>
+                    <li>
+                        <a href="#" class=" mx-4">Radio</a>
+                    </li>
+                    <li>
+                        <a href="#" class="">Playlists</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="search px-3 py-2">
+                <i class="fas fa-search"></i>
+                <input type="text" class="w-50 ml-2" placeholder="What's on your mind?">
+            </div>
+            <div class="recent-playlists">
+                <ul class="p-0 mr-1">
+                    <li class="active">
+                        <div class="d-flex flex-row vertical-align p-2">
+                            <img src="assets/img/playlists/playlist1.jpg" alt="">
+                            <a href="#"><div class="d-flex ml-2 flex-column">
+                                <h6 class="title">Reimagine Schools</h6>
+                                <span class="artist pt-1">Dr Greg Golns</span>
+                            </a>
+                            </div>
+                            <div class="d-flex flex-row ml-auto vertical-align">
+                                <span class="duration">3:11</span>
+                                <i class="fas fa-pause mx-4"></i>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="d-flex flex-row vertical-align p-2">
+                            <img src="assets/img/playlists/playlist1.jpg" alt="">
+                            <a href="#"><div class="d-flex ml-2 flex-column">
+                                <h6 class="title">Island in the sun</h6>
+                                <span class="artist pt-1">Kevwe</span>
+                            </a>
+                            </div>
+                            <div class="d-flex flex-row ml-auto vertical-align">
+                                <span class="duration">3:20</span>
+                                <i class="fas fa-pause mx-4"></i>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex flex-row vertical-align p-2">
+                            <img src="assets/img/playlists/playlist1.jpg" alt="">
+                            <a href="#"><div class="d-flex ml-2 flex-column">
+                                <h6 class="title">Nico and the Niners</h6>
+                                <span class="artist pt-1">Mukthar</span>
+                            </a>
+                            </div>
+                            <div class="d-flex flex-row ml-auto vertical-align">
+                                <span class="duration">3:37</span>
+                                <i class="fas fa-pause mx-4"></i>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex flex-row vertical-align p-2">
+                            <img src="assets/img/playlists/playlist1.jpg" alt="">
+                            <a href="#"><div class="d-flex ml-2 flex-column">
+                                <h6 class="title">Wake</h6>
+                                <span class="artist pt-1">Innocent Eteng</span>
+                            </a>
+                            </div>
+                            <div class="d-flex flex-row ml-auto vertical-align">
+                                <span class="duration">4:20</span>
+                                <i class="fas fa-pause mx-4"></i>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex flex-row vertical-align p-2">
+                            <img src="assets/img/playlists/playlist1.jpg" alt="">
+                            <a href="#"><div class="d-flex ml-2 flex-column">
+                                <h6 class="title">Battle Cry</h6>
+                                <span class="artist pt-1">Connected Students</span>
+                            </a>
+                            </div>
+                            <div class="d-flex flex-row ml-auto vertical-align">
+                                <span class="duration">3:11</span>
+                                <i class="fas fa-pause mx-4"></i>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex flex-row vertical-align p-2">
+                            <img src="assets/img/playlists/playlist1.jpg" alt="">
+                            <a href="#"><div class="d-flex ml-2 flex-column">
+                                <h6 class="title">Thousand Years</h6>
+                                <span class="artist pt-1">Moyi Abioye</span>
+                            </a>
+                            </div>
+                            <div class="d-flex flex-row ml-auto vertical-align">
+                                <span class="duration">3:11</span>
+                                <i class="fas fa-pause mx-4"></i>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/scrollSticky.js"></script>
+    <script src="assets/js/posts.js"></script>
+	<script src="https://kit.fontawesome.com/cdbc3ca26f.js"></script>
+    <script src="assets/js/main.js"></script>
+	
+	
+</body>
+</html>

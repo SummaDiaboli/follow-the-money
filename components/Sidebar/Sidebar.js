@@ -37,9 +37,9 @@ const Sidebar = ({ children }) => {
      */
     const [username, setUsername] = useState('Salim')
     const [messagesCount, setMessagesCount] = useState(8)
-    const [friendsCount, setFriendsCount] = useState(10)
+    const [friendsCount, setFriendsCount] = useState("1k")
     const [communitiesCount, setCommunitiesCount] = useState(1)
-    const [eventsCount, setEventsCount] = useState(90)
+    const [eventsCount, setEventsCount] = useState(9)
 
     useEffect(() => {
         changeNav(window.location.pathname)

@@ -30,8 +30,8 @@ const Messages = () => {
 
                         <MessageDisplay />
 
-                        <div className="col-4 pr-1">
-                            <div className="card sideTab p-3" style={{ height: "59%" }}>
+                        <div className="col-4 pr-1"  style={{ height: "100%" }}>
+                            <div className="card sideTab p-3">
 
                                 <div className="d-flex w-100 search pb-3 px-1 flex-row vertical-align">
                                     <i className="fas fa-search"></i>

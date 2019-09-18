@@ -1,0 +1,28 @@
+{
+  "name": "follow-the-money",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.22",
+    "@fortawesome/free-solid-svg-icons": "^5.10.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "@zeit/next-css": "^1.0.1",
+    "apollo-server-micro": "^2.9.3",
+    "bootstrap": "^4.3.1",
+    "bootstrap-css-only": "^4.3.1",
+    "font-awesome": "^4.7.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "9.0.5",
+    "next-compose-plugins": "^2.2.0",
+    "next-images": "^1.2.0",
+    "pg": "^7.12.1",
+    "react": "16.9.0",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-dom": "16.9.0"
+  }
+}

@@ -1,0 +1,762 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #fff;
+    color: #000;
+    overflow-y: hidden;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.font-segoe {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.bg-red {
+    background: #D10000;
+}
+
+.color-red {
+    color: #D10000 !important;
+}
+
+.color-black {
+    color: #000 !important;
+}
+
+.color-grey {
+    color: #454545;
+}
+
+.smaller {
+    font-size: 70%;
+}
+
+.pos-relative {
+    position: relative;
+}
+
+.pos-absolute {
+    position: absolute;
+}
+
+.vertical-align {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.window {
+    height: 100vh;
+    width: 100%;
+    background: url("../img/home-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.window .overlay {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.window .content {
+    position: relative;
+    z-index: 2;
+}
+
+.window .logo-brand {
+    width: 64px;
+    position: relative;
+    top: 2rem;
+    left: 3rem;
+}
+
+.window .content .caption {
+    width: 40%;
+    position: absolute;
+    left: 10rem;
+    top: 50%;
+}
+
+.window .content .caption h1 {
+    font-size: 3.5rem;
+}
+
+.window .content .form-container {
+    position: absolute;
+    right: 0px;
+    top: 30px;
+}
+
+.window .content .form {
+    background: #EEEEEE;
+    height: 90%;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semiBold {
+    font-weight: 600;
+}
+
+.font-extraBold {
+    font-weight: 800;
+}
+
+.nav-pills .nav-link {
+    border-radius: 0rem;
+}
+
+.nav-link {
+    padding: .7rem 3rem;
+    font-weight: 500;
+    color: #000;
+    font-size: 0.9rem;
+}
+
+.nav-link:hover {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #D10000;
+}
+
+input {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+textarea {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.form-control {
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 1.5rem 1.5rem !important;
+    font-size: 0.8rem;
+    border: none !important;
+    background: #fff !important;
+}
+
+::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.37) !important;
+    font-family: "Montserrat", sans-serif;
+}
+
+::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.37) !important;
+    font-family: "Montserrat", sans-serif;
+}
+
+:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.37) !important;
+    font-family: "Montserrat", sans-serif;
+}
+
+:-moz-placeholder {
+    color: rgba(0, 0, 0, 0.37) !important;
+    font-family: "Montserrat", sans-serif;
+}
+
+form .options {
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0, 0.37) !important;
+}
+
+form .options a {
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.window .content .form {
+    overflow: auto;
+}
+
+.window .content .form hr {
+    border-top: 2px solid rgba(0, 0, 0, .1);
+}
+
+.btn {
+    padding: 0.8rem 2.3rem;
+    font-size: 0.8rem;
+    border-radius: 12px;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100%;
+    position: fixed;
+    background: #f1f1f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #454545;
+}
+
+.sidebar .logo {
+    width: 40px;
+}
+
+.sidebar .user {
+    font-size: 0.9rem;
+}
+
+.sidebar ul {
+    padding: 0rem;
+}
+
+.sidebar ul li {
+    list-style-type: none;
+    margin: 1rem 0rem;
+    font-size: 0.85rem;
+}
+
+.sidebar .heading {
+    font-size: 0.85rem;
+}
+
+.sidebar ul li a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none !important;
+    color: #454545;
+    display: flex;
+    align-items: center;
+    transition: 0.3s all ease;
+    -webkit-transition: 0.3s all ease;
+    -moz-transition: 0.3s all ease;
+    -ms-transition: 0.3s all ease;
+}
+
+.sidebar ul li a:hover {
+    opacity: 0.7;
+}
+
+.sidebar ul li a .amount {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    flex-flow: column;
+    border-radius: 50%;
+    background: #D10000;
+    color: #fff;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.sidebar ul li a i {
+    width: 20px;
+}
+
+.sidebar ul li a.active {
+    color: #D10000 !important;
+    opacity: 1 !important;
+    font-weight: 600;
+}
+
+
+.main {
+    position: fixed;
+    width: calc(100% - 20%);
+    height: calc(100% - 10%);
+    top: 0px;
+    left: 20%;
+    background: #F6F6F8;
+    overflow: none;
+    padding: 2rem 1rem;
+}
+
+.main nav ul {
+    margin: 0rem;
+    padding: 0rem;
+    position: relative;
+    z-index: 3;
+}
+
+.main nav ul li {
+    list-style-type: none;
+}
+
+.main nav ul li a {
+    text-transform: none !important;
+    text-decoration: none !important;
+    color: #000;
+    transition: 0.3s all ease;
+    -webkit-transition: 0.3s all ease;
+    -moz-transition: 0.3s all ease;
+    -ms-transition: 0.3s all ease;
+    font-weight: 500;
+    margin: 0rem 1rem;
+    padding-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.main nav ul.vertical-align {
+    align-items: center;
+    flex-flow: row;
+}
+
+.main nav ul .vertical-align {
+    align-items: center;
+    flex-flow: row;
+}
+
+.main nav ul .notifications {
+    position: relative;
+}
+
+.main nav ul .notifications i {
+    font-size: 1.4em;
+    position: relative;
+    top: 2px;
+    color: #000;
+}
+
+.main nav ul .right {
+    position: relative;
+}
+
+.sideTab {
+    height: 90%;
+    overflow-y: auto;
+}
+
+.sideTab::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+.sideTab::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.sideTab::-moz-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+.sideTab::-moz-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.middle-layout {
+    height: 90%;
+    overflow: auto;
+}
+
+.middle-layout::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+.middle-layout::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.middle-layout::-moz-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+.middle-layout::-moz-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.notification-popup {
+    background: #f1f1f5;
+    position: absolute;
+    left: -350px;
+    height: 350px;
+    width: 340px;
+    border-radius: 0.35rem;
+    z-index: 5;
+    top: -6px;
+    overflow-y: auto;
+    display: none;
+    opacity: 0;
+}
+
+.notification-popup .heading {
+    font-size: 0.8rem;
+}
+
+.notification-popup .tagged {
+    font-weight: 600;
+}
+
+.notification-popup ul li {
+    margin: 0.7rem 0rem;
+}
+
+.notification-popup::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+.notification-popup::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.notification-popup ul li a .user {
+    position: relative;
+}
+
+.notification-popup ul li a .user img {
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+}
+
+.notification-popup ul li a .notification-text {
+    font-size: 0.75rem;
+}
+
+.notification-popup ul li a .time {
+    font-size: 0.7rem;
+}
+
+.main nav ul .notifications .amount {
+    width: 15px;
+    height: 15px;
+    background: #D10000;
+    color: #fff;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.5rem;
+    font-weight: 600;
+    position: absolute;
+    right: -7px;
+    top: -1px;
+}
+
+.main nav ul .notifications.active .amount {
+    display: none;
+}
+
+.main nav ul li a.active {
+    border-bottom: 2px solid #D10000;
+}
+
+.main nav ul .user {
+    width: 36px;
+    border-radius: 50%;
+}
+
+.main nav hr {
+    border-top: 2px solid #EBEBEB;
+    position: relative;
+    top: -9px;
+    z-index: 1;
+}
+
+.main nav ul li a:hover {
+    opacity: 0.7;
+}
+
+.card {
+    border-radius: 0.35rem;
+    border: none;
+}
+
+.user-post {
+    position: relative;
+}
+
+.user-post img {
+    width: 36px;
+}
+
+.user-post input {
+    font-size: 0.8rem;
+    color: #000;
+}
+
+.user-post i {
+    font-size: 1.1em;
+    color: #D2D7DF;
+}
+
+.user-post .border {
+    height: 30px;
+    border: 1px solid #EBEBEB;
+}
+
+.user-post ::-webkit-input-placeholder {
+    color: #5F5F5F !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.user-post ::-moz-placeholder {
+    color: #5F5F5F !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.user-post :-ms-input-placeholder {
+    color: #5F5F5F !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.user-post :-moz-placeholder {
+    color: #5F5F5F !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.post .user img {
+    width: 48px;
+}
+
+.post .user h5 {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.post .user span {
+    font-size: 0.7rem;
+}
+
+.post .content p {
+    font-size: 0.8rem;
+}
+
+.post .content img {
+    height: 150px;
+}
+
+.post .actions a {
+    color: #d6d6d6;
+    font-weight: 500;
+}
+
+.post .actions i {
+    font-size: 1em;
+}
+
+
+.sideTab h6 {
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #454545;
+}
+
+.sideTab .subheading-filter {
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.footer {
+    color: #fff;
+    height: 10%;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    z-index: 3;
+}
+
+.footer .title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0rem;
+}
+
+.footer .status {
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin: 0rem;
+}
+
+.footer .controls i {
+    cursor: pointer;
+    font-size: 1.1em;
+    opacity: 0.59;
+}
+
+.footer .controls i.active {
+    opacity: 1;
+}
+
+footer .playlist {
+    color: #fff;
+    position: absolute;
+    bottom: -90%;
+    right: 4rem;
+    border-top-left-radius: 0.35rem;
+    border-top-right-radius: 0.35rem;
+    width: 30%;
+}
+
+footer .playlist .heading {
+    font-size: 0.8rem;
+}
+
+footer .playlist nav ul {
+    padding: 0rem;
+}
+
+footer .playlist nav ul li {
+    list-style-type: none;
+}
+
+footer .playlist nav ul li a {
+    font-size: 0.7rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+footer .playlist nav ul li a.active {
+    background: #fff;
+    color: #000;
+    padding: 0.5rem 0.7rem;
+    border-radius: 20px;
+}
+
+footer .playlist .search {
+    border: 1px solid #fff;
+    border-radius: 30px;
+}
+
+footer .playlist .search input {
+    background: #D10000;
+    color: #fff;
+    border: none !important;
+    font-size: 0.8rem;
+}
+
+footer .playlist .recent-playlists {
+    height: 320px;
+    overflow: auto;
+}
+
+footer .playlist .recent-playlists img {
+    width: 40px;
+    border-radius: 5px;
+}
+
+footer .playlist .recent-playlists a {
+    color: #fff
+}
+
+footer .playlist .recent-playlists .title {
+    color: #fff !important;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0rem;
+}
+
+footer .playlist .recent-playlists .artist {
+    color: #fff !important;
+    font-size: 0.6rem;
+}
+
+footer .playlist .recent-playlists .duration {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+footer .playlist .recent-playlists li {
+    margin: 0.5rem 0rem;
+}
+
+footer .playlist .recent-playlists li.active {
+    background: #B10000;
+    padding: 0.5rem;
+    border-radius: 0.35rem;
+}
+
+footer .playlist .recent-playlists i {
+    cursor: pointer;
+}
+
+footer .playlist .recent-playlists::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+footer .playlist .recent-playlists::-webkit-scrollbar-thumb {
+    background-color: #B10000;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+footer .playlist .search ::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+footer .playlist .search ::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+footer .playlist .search :-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+footer .playlist .search :-moz-placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+footer .progressbar {
+    width: 450px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    position: relative;
+    margin: auto;
+    left: -0px;
+    border-radius: 5px;
+}
+
+footer .loaded {
+    width: 100px;
+    height: 3px;
+    background: #fff;
+}
+
+footer .player {
+    justify-content: center;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {}

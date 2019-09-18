@@ -1,0 +1,26 @@
+.vertical-align{
+    display: flex;
+    flex-flow: column;
+    /* justify-content: start;
+    align-items: start; */
+}
+
+/* .radio{
+
+} */
+
+.radio span{
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #454545;
+}
+
+.friend-requests .requests img{
+    width: 48px;
+    border-radius: 50%;
+}
+
+.friend-requests .requests i{
+    font-size: 1em;
+    color: #d6d6d6;
+}

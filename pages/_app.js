@@ -12,6 +12,8 @@ require('../static/assets/css/pages/Feed.css')
 require('../static/assets/css/style.css')
 require('../static/assets/css/bootstrap.min.css')
 require('../static/assets/css/pages/Messages.css')
+require('../static/assets/css/pages/friends.css')
+require('../static/assets/css/pages/friend.css')
 
 class MyApp extends App {
     state = {

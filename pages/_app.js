@@ -54,7 +54,13 @@ class MyApp extends App {
                 <Sidebar >
                     <Component {...pageProps} />
                     {
-                        path == '/login' || path == '/sign-up' || path == null ? null : <Player />
+                        path == '/login' ||
+                            path == '/sign-up' ||
+                            path == '/analytics' ||
+                            path == '/user-analytics' ||
+                            path == null
+                            ? null
+                            : <Player />
                     }
                 </Sidebar>
 

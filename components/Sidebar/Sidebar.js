@@ -18,14 +18,12 @@ const Sidebar = ({ children }) => {
                 return setNavState('friends')
             case '/communities':
                 return setNavState('communities')
+            case '/playlists':
+                return setNavState('playlists')
             case '/events':
                 return setNavState('events')
             case '/settings':
                 return setNavState('settings')
-            case '/podcasts':
-                return setNavState('podcasts')
-            case '/radio':
-                return setNavState('radio')
         }
     }
 
@@ -112,6 +110,15 @@ const Sidebar = ({ children }) => {
                         </li>
 
                         <li>
+                            <Link href="/playlists">
+                                <a className={navState == 'playlists' ? "active" : ""}>
+                                    <i class="fas fa-list-alt mr-2 text-center"></i>
+                                    <span>Playlists</span>
+                                </a>
+                            </Link>
+                        </li>
+
+                        <li>
                             <Link href="/events">
                                 <a className={navState == 'events' ? "active" : ""}>
                                     <i className="far fa-calendar mr-2 text-center"></i>
@@ -132,28 +139,6 @@ const Sidebar = ({ children }) => {
                                 <a className={navState == 'settings' ? "active" : ""}>
                                     <i className="fas fa-cog mr-2 text-center"></i>
                                     <span>Settings</span>
-                                </a>
-                            </Link>
-                        </li>
-                    </ul>
-
-                    <p className="font-medium heading pt-3">Playlist</p>
-
-                    <ul className="">
-                        <li>
-                            <Link href="/podcasts">
-                                <a className={navState == 'podcasts' ? "active" : ""}>
-                                    <i className="fas fa-podcast mr-2 text-center"></i>
-                                    <span>Podcast</span>
-                                </a>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link href="/radio">
-                                <a className={navState == 'radio' ? "active" : ""}>
-                                    <i className="fas fa-satellite-dish mr-2 text-center"></i>
-                                    <span>Radio</span>
                                 </a>
                             </Link>
                         </li>

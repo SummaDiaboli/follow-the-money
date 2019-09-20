@@ -30,7 +30,7 @@ const Messages = () => {
 
                         <MessageDisplay />
 
-                        <div className="col-4 pr-1" style={{ height: "100%" }}>
+                        <div className="col-4 pr-0" style={{ height: "100%" }}>
                             <div className="card sideTab p-3">
 
                                 <div className="d-flex w-100 search pb-3 px-1 flex-row vertical-align">
@@ -347,7 +347,7 @@ const Messages = () => {
 
             .content{
                 position: relative;
-                top: -2rem;
+                top: calc(-2rem + 2px);
                 height: 100%;
             }
             `}</style>

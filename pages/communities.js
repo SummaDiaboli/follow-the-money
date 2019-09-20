@@ -1,6 +1,7 @@
 import React from 'react'
 
 const CommunitiesPage = () => {
+
     return (
         <div>
             Communities

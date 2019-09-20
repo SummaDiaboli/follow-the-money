@@ -2,6 +2,57 @@ import React from 'react'
 import Link from 'next/link'
 
 const Login = () => {
+    const testpostuser = () => {
+        fetch('api/users', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "username": "salim",
+                "email": "salimabdu008@gmail.com",
+                "name": '{"firstName": "Salim"}',
+                "password": "myfather",
+                "role": 'user'
+            })
+        }).then((res) => {
+            res.status === 200 ? console.log("works") : console.log("doesn't work")
+        }).catch(() => {
+            console.log("Something went seriously wrong")
+        })
+    }
+
+    const testget = () => {
+        fetch('api/users')
+    }
+
+    const testgetspecificuser = () => {
+        fetch('api/users/6')
+    }
+
+    const testdeletespecificuser = (id) => {
+        fetch(`api/users/${id}`, {
+            method: "delete"
+        })
+    }
+
+    const testupdatespecificuser = (id) => {
+        fetch(`api/users/${id}`, {
+            method: "PUT",
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "username": "Salim",
+                "email": "salimhussaini008@gmail.com",
+                "name": '{"firstName": "Salim", "lastName": "Hussaini"}',
+                "password": "password",
+                "role": "admin"
+            })
+        })
+    }
     return (
         <main>
             <div className="container-fluid p-0 window">
@@ -24,7 +75,7 @@ const Login = () => {
                             <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 <li className="nav-item">
                                     {/* <Link href="/login"> */}
-                                    <a href="#pills-signup" className="nav-link active" id="pills-login-tab" data-toggle="pill" role="tab" aria-controls="pills-login" aria-selected="true">
+                                    <a href="#pills-login" className="nav-link active" id="pills-login-tab" data-toggle="pill" role="tab" aria-controls="pills-login" aria-selected="true">
                                         Log In
                                     </a>
                                     {/* </Link> */}
@@ -121,12 +172,12 @@ const Login = () => {
                                     ...
                                 </div>
                             </div>
-
                         </div>
 
                     </div>
 
                 </div>
+
             </div>
 
             <style jsx>{`

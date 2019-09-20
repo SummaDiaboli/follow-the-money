@@ -6,7 +6,7 @@ import FriendTile from './FriendTile'
 const Friends = () => {
     return (
         <main>
-            <div class="main">
+            <div class="main" style={{ overflow: "hidden" }}>
                 <nav>
                     <ul class="d-flex vertical-align">
                         <li>

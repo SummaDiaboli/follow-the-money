@@ -91,7 +91,7 @@ button{
 }
 
 .sideTab{
-    height: 100%;
+    height: 90%;
     position: relative;
     transition: 0.2s top ease;
     -webkit-transition: 0.2s top ease;

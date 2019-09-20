@@ -23,19 +23,19 @@ const Login = () => {
 
                             <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 <li className="nav-item">
-                                    <Link href="/login">
-                                        <a className="nav-link active" id="pills-login-tab" data-toggle="pill" role="tab" aria-controls="pills-login" aria-selected="true">
-                                            Log In
-                                        </a>
-                                    </Link>
+                                    {/* <Link href="/login"> */}
+                                    <a href="#pills-signup" className="nav-link active" id="pills-login-tab" data-toggle="pill" role="tab" aria-controls="pills-login" aria-selected="true">
+                                        Log In
+                                    </a>
+                                    {/* </Link> */}
                                 </li>
 
                                 <li className="nav-item">
-                                    <Link href="/sign-up">
-                                        <a className="nav-link" id="pills-signup-tab" data-toggle="pill" role="tab" aria-controls="pills-signup" aria-selected="false">
-                                            Sign Up
-                                        </a>
-                                    </Link>
+                                    {/* <Link href="/sign-up"> */}
+                                    <a href="#pills-signup" className="nav-link" id="pills-signup-tab" data-toggle="pill" role="tab" aria-controls="pills-signup" aria-selected="false">
+                                        Sign Up
+                                    </a>
+                                    {/* </Link> */}
                                 </li>
                             </ul>
 

@@ -3,7 +3,6 @@ import fetch from 'isomorphic-unfetch'
 import Head from 'next/head'
 import { Feed } from '../components/Feed'
 
-
 require('../static/assets/css/pages/Feed.css')
 
 const FeedPage = () => {

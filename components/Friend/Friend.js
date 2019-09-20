@@ -4,198 +4,15 @@ import AboutFriend from './AboutFriend'
 import { TimelineCarousel } from './TimelineCarousel'
 import { DirectMessage } from '.'
 import FriendPosts from './FriendPosts/FriendPosts'
+import InfoCard from './InfoCard'
+import { SideTab } from './SideTab'
 
 const Friend = () => {
+
+
     return (
         <>
-            <main style={{ paddingTop: "0px" }}>
-                <div className="main" id="main" style={{ paddingTop: "0px" }}>
-                    <nav className="pt-3">
-                        <ul className="d-flex vertical-align">
-                            <NotificationIcon />
-                        </ul>
-                        <hr className="w-100" />
-                    </nav>
-
-                    <AboutFriend
-                        userImage="static/assets/img/user/hamzat.jpg"
-                        username="Hamzat Lawal"
-                        description="Activist | Leading a Movement of Grassroots Campaigners in Rural Communities @4lowthemoney |Founder/CEO@Connected_dev | Board Member @AYICC #SDGs"
-                    />
-
-                    <nav className="pt-2">
-                        <ul className="d-flex py-2 vertical-align">
-                            <li>
-                                <a href="#" className="active">Timeline</a>
-                                <a href="#">Friends</a>
-                                <a href="#">Photo</a>
-                                <a href="#">More</a>
-                            </li>
-                        </ul>
-                        <hr className="w-100" />
-                    </nav>
-
-                    <div className="container-fluid content p-0">
-                        <div className="row h-100 px-0 py-1 m-0 w-100">
-                            <div className="col-12">
-                                <div className="main-layout">
-                                    <TimelineCarousel />
-
-                                    <div className="row m-0 mt-4 w-100 friends">
-                                        <div className="col-8 pl-0 h-100">
-                                            <div className="middle-layout">
-                                                <DirectMessage userImage="static/assets/img/user/user.jpg" userFname="Hamzat" />
-                                                <FriendPosts />
-                                            </div>
-                                        </div>
-                                        <div className="col-4 pr-1">
-                                            <div className="card py-3 px-0">
-                                                <div className="row m-0 profile-details w-100">
-                                                    <div className="col-3 text-center">
-                                                        <h6 className="color-red">739k <span className="small">likes</span></h6>
-                                                    </div>
-                                                    <div className="col-3 text-center">
-                                                        <h6 className="color-red">254k <span className="small">followers</span></h6>
-                                                    </div>
-                                                    <div className="col-3 text-center">
-                                                        <h6 className="color-red">193 <span className="small">friends</span></h6>
-                                                    </div>
-                                                    <div className="col-3 text-center">
-                                                        <h6 className="color-red">203 <span className="small">posts</span></h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="card sideTab mt-4 p-3" id="sideTab">
-                                                <div className="mt-3 friend-requests">
-                                                    <div className="d-flex flex-column">
-                                                        <div className="flex-row d-flex">
-                                                            <h6>Friend Requests</h6>
-                                                            <span className="subheading-filter color-red ml-auto">All</span>
-                                                        </div>
-                                                        <div className="requests mt-1">
-                                                            <div className="d-flex flex-row vertical-align">
-                                                                <img src="static/assets/img/user/nasir.jpg" alt="" />
-                                                                <div className="d-flex flex-column ml-2">
-                                                                    <h5 className="color-grey m-0 font-medium small">Nasir Bukar Ibrahim</h5>
-                                                                    <p className="smaller mt-1 m-0 color-grey font-medium">Abuja</p>
-                                                                </div>
-                                                                <div className="d-flex ml-auto flex-row">
-                                                                    <i className="far fa-comment-alt"></i>
-                                                                    <i className="fas fa-ellipsis-v ml-3"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div className="d-flex flex-row mt-3 vertical-align">
-                                                                <img src="static/assets/img/user/nwabuisi.jpg" alt="" />
-                                                                <div className="d-flex flex-column ml-2">
-                                                                    <h5 className="color-grey m-0 font-medium small">Nwabuisi Gospel</h5>
-                                                                    <p className="smaller mt-1 m-0 color-grey font-medium">Kano</p>
-                                                                </div>
-                                                                <div className="d-flex ml-auto flex-row">
-                                                                    <i className="far fa-comment-alt"></i>
-                                                                    <i className="fas fa-ellipsis-v ml-3"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div className="d-flex flex-row mt-3 vertical-align">
-                                                                <img src="static/assets/img/user/yhasmeen.jpg" alt="" />
-                                                                <div className="d-flex flex-column ml-2">
-                                                                    <h5 className="color-grey m-0 font-medium small">Yhasmeen Buba</h5>
-                                                                    <p className="smaller mt-1 m-0 color-grey font-medium">Zaria</p>
-                                                                </div>
-                                                                <div className="d-flex ml-auto flex-row">
-                                                                    <i className="far fa-comment-alt"></i>
-                                                                    <i className="fas fa-ellipsis-v ml-3"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div className="d-flex flex-row mt-3 vertical-align">
-                                                                <img src="static/assets/img/user/hamzat.jpg" alt="" />
-                                                                <div className="d-flex flex-column ml-2">
-                                                                    <h5 className="color-grey m-0 font-medium small">Hamzat Lawal</h5>
-                                                                    <p className="smaller mt-1 m-0 color-grey font-medium">Abuja</p>
-                                                                </div>
-                                                                <div className="d-flex ml-auto flex-row">
-                                                                    <i className="far fa-comment-alt"></i>
-                                                                    <i className="fas fa-ellipsis-v ml-3"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="flex-row mt-5 d-flex">
-                                                            <h6>Favorite Playlists</h6>
-                                                            <span className="subheading-filter color-red ml-auto">All</span>
-                                                        </div>
-                                                        <div className="playlists mt-1">
-                                                            <ul className="p-0 d-flex flex-column">
-                                                                <li>
-                                                                    <div className="d-flex flex-row vertical-align">
-                                                                        <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
-                                                                        <div className="d-flex flex-column ml-2">
-                                                                            <h5 className="color-grey m-0 font-medium small">Battle Cry</h5>
-                                                                            <p className="smaller mt-1 m-0 color-grey font-medium">Linkin Park</p>
-                                                                        </div>
-                                                                        <div className="d-flex ml-auto options vertical-align flex-row">
-                                                                            <span className="duration">3:51</span>
-                                                                            <button><i className="fas fa-play ml-3"></i></button>
-                                                                            <button><i className="fas fa-plus ml-3"></i></button>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <div className="d-flex flex-row vertical-align">
-                                                                        <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
-                                                                        <div className="d-flex flex-column ml-2">
-                                                                            <h5 className="color-grey m-0 font-medium small">Space Oddity</h5>
-                                                                            <p className="smaller mt-1 m-0 color-grey font-medium">David Bo</p>
-                                                                        </div>
-                                                                        <div className="d-flex ml-auto options vertical-align flex-row">
-                                                                            <span className="duration">3:51</span>
-                                                                            <button><i className="fas fa-play ml-3"></i></button>
-                                                                            <button><i className="fas fa-check ml-3"></i></button>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <div className="d-flex flex-row vertical-align">
-                                                                        <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
-                                                                        <div className="d-flex flex-column ml-2">
-                                                                            <h5 className="color-grey m-0 font-medium small">Animus Vox Cry</h5>
-                                                                            <p className="smaller mt-1 m-0 color-grey font-medium">Glit Mob</p>
-                                                                        </div>
-                                                                        <div className="d-flex ml-auto options vertical-align flex-row">
-                                                                            <span className="duration">3:51</span>
-                                                                            <button><i className="fas fa-play ml-3"></i></button>
-                                                                            <button><i className="fas fa-plus ml-3"></i></button>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <div className="d-flex flex-row vertical-align">
-                                                                        <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
-                                                                        <div className="d-flex flex-column ml-2">
-                                                                            <h5 className="color-grey m-0 font-medium small">Firefly</h5>
-                                                                            <p className="smaller mt-1 m-0 color-grey font-medium">Ghe Sun</p>
-                                                                        </div>
-                                                                        <div className="d-flex ml-auto options vertical-align flex-row">
-                                                                            <span className="duration">3:51</span>
-                                                                            <button><i className="fas fa-play ml-3"></i></button>
-                                                                            <button><i className="fas fa-plus ml-3"></i></button>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-
-
-            <div className="modal fade postModal" tabindex="-1" role="dialog" aria-labelledby="postModal" aria-hidden="true">
+            <div className="modal fade postModal" tabIndex="-1" role="dialog" aria-labelledby="postModal" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="d-flex flex-row w-100 h-100">
@@ -335,6 +152,67 @@ const Friend = () => {
                     </div>
                 </div>
             </div>
+
+            <main style={{ paddingTop: "0px" }}>
+                <div className="main" id="main" style={{ paddingTop: "0px" }}>
+                    <nav className="pt-3">
+                        <ul className="d-flex vertical-align">
+                            <NotificationIcon />
+                        </ul>
+                        <hr className="w-100" />
+                    </nav>
+
+                    <AboutFriend
+                        userImage="static/assets/img/user/hamzat.jpg"
+                        username="Hamzat Lawal"
+                        description="Activist | Leading a Movement of Grassroots Campaigners in Rural Communities @4lowthemoney |Founder/CEO@Connected_dev | Board Member @AYICC #SDGs"
+                    />
+
+                    <nav className="pt-2">
+                        <ul className="d-flex py-2 vertical-align">
+                            <li>
+                                <a href="#" className="active">Timeline</a>
+                                <a href="#">Friends</a>
+                                <a href="#">Photo</a>
+                                <a href="#">More</a>
+                            </li>
+                        </ul>
+                        <hr className="w-100" />
+                    </nav>
+
+                    <div className="container-fluid content p-0">
+                        <div className="row h-100 px-0 py-1 m-0 w-100">
+                            <div className="col-12">
+                                <div className="main-layout">
+                                    <TimelineCarousel />
+
+                                    <div className="row m-0 mt-4 w-100 friends">
+                                        <div className="col-8 pl-0 h-100">
+                                            <div className="middle-layout">
+                                                <DirectMessage userImage="static/assets/img/user/user.jpg" userFname="Hamzat" />
+                                                <FriendPosts />
+                                            </div>
+                                        </div>
+                                        <div className="col-4 pr-1">
+                                            <InfoCard
+                                                likes="739k"
+                                                followers="254k"
+                                                friends="193"
+                                                posts="203"
+                                            />
+
+                                            <SideTab />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+
+
 
             <style jsx>{`
             .main{
@@ -485,7 +363,8 @@ const Friend = () => {
             .post-popup button{
                 color: #fff;
             }
-            `}</style>
+            `}
+            </style>
         </>
     )
 }

@@ -1,6 +1,52 @@
-import React from 'react'
+import React, { useState, createRef } from 'react'
 
 const Post = ({ userImage, username, timeCreated, postText, postImage, likes, comments, shares }) => {
+    const [isVisible, setIsVisible] = useState(false)
+
+    const reference = createRef()
+
+    const showPostPopup = () => {
+        // let popup = el.parentElement.querySelector("#post-popup");
+        // let popup = document.getElementById("post-popup")
+        let popup = reference.current
+        // console.log(reference.current)
+
+        if (isVisible) {
+            popup.animate([
+                { opacity: 1 },
+                { opacity: 0 }
+            ], {
+                duration: 200,
+                iterations: 1,
+                easing: 'linear',
+                fill: 'forwards'
+            });
+
+            setTimeout(function () {
+                popup.style.opacity = 0;
+            }, 200);
+
+            setIsVisible(false)
+        } else {
+            popup.animate([
+                { opacity: 0 },
+                { opacity: 1 }
+            ], {
+                duration: 200,
+                iterations: 1,
+                easing: 'linear',
+                fill: 'forwards'
+            });
+
+            setTimeout(function () {
+                popup.style.opacity = 1;
+            }, 200);
+            setIsVisible(true)
+        }
+    }
+
+
+
     return (
         <div className="card p-3 post w-100 mt-3">
             <div className="w-100 d-flex flex-column">
@@ -14,9 +60,16 @@ const Post = ({ userImage, username, timeCreated, postText, postImage, likes, co
                         </div>
                         <span>{timeCreated}</span>
                     </div>
-                    <button onclick="showPostPopup(this)" className="ml-auto d-flex" id="post-popup-toggler"><i className="fas fa-ellipsis-h color-grey"></i></button>
-                    <div className="card p-3 post-popup" id="post-popup">
-                        <button className="">View More</button>
+                    <button onClick={showPostPopup} className="ml-auto d-flex" id="post-popup-toggler">
+                        <i className="fas fa-ellipsis-h color-grey"></i>
+                    </button>
+                    <div
+                        ref={reference}
+                        className="card p-3 post-popup"
+                        id="post-popup"
+                        style={{ visibility: { isVisible } }}
+                    >
+                        <button class="" data-toggle="modal" data-target=".postModal">View More</button>
                     </div>
                 </div>
                 <div className="content">

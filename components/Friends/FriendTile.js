@@ -3,16 +3,16 @@ import Link from 'next/link'
 
 const FriendTile = ({ userImage, username, userLocation }) => {
     return (
-        <div class="col-4">
-            <div class="card p-0 d-flex vertical-align flex-row">
+        <div className="col-4">
+            <div className="card p-0 d-flex vertical-align flex-row">
                 <img src={userImage} alt="" style={{width: "100px"}}/>
-                <div class="d-flex flex-column ml-3">
-                    <h6 class="name">{username}</h6>
-                    <span class="location">{userLocation}</span>
+                <div className="d-flex flex-column ml-3">
+                    <h6 className="name">{username}</h6>
+                    <span className="location">{userLocation}</span>
                 </div>
-                <button class="options d-flex ml-auto">
+                <button className="options d-flex ml-auto">
                     <Link href="/friend">
-                        <i class="fas fa-ellipsis-v "></i>
+                        <i className="fas fa-ellipsis-v "></i>
                     </Link>
                 </button>
             </div>

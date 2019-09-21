@@ -6,7 +6,7 @@ const FriendPage = () => {
     return (
         <>
             <Head>
-                <link rel="stylesheet" href="static/assets/css/bootstrap.min.css" />
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
                 <link rel="stylesheet" type="text/css" href="static/assets/css/style.css" />
                 <link rel="stylesheet" type="text/css" href="static/assets/css/pages/friend.css" />
                 <title>Friend | Follow the Money</title>

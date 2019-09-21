@@ -12,7 +12,7 @@ const Friend = () => {
 
     return (
         <>
-            <div className="modal fade postModal" tabIndex="-1" role="dialog" aria-labelledby="postModal" aria-hidden="true">
+            <div className="modal fade postModal" tabIndex="-1" role="dialog" aria-labelledby="postModal" /* aria-hidden="true" */>
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="d-flex flex-row w-100 h-100">

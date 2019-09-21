@@ -2,9 +2,9 @@ import React from 'react'
 
 const Searchbar = () => {
     return (
-        <div class="search pl-0 pt-2 mb-1">
-            <input type="text" class="" placeholder="Search Friends" />
-            <button><i class="fas fa-search ml-auto"></i>  </button>
+        <div className="search pl-0 pt-2 mb-1">
+            <input type="text" className="" placeholder="Search Friends" />
+            <button><i className="fas fa-search ml-auto"></i>  </button>
         </div>
     )
 }

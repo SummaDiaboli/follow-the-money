@@ -6,7 +6,6 @@ import { NotificationIcon } from '../User'
 import PlayingNowTracks from './PlayingNowTracks'
 
 const Playlists = () => {
-
     return (
         <div className="main" style={{ overflow: "hidden" }}>
             <nav>
@@ -54,24 +53,28 @@ const Playlists = () => {
                             <div className="playlists mt-3">
                                 <ul className="p-0 d-flex flex-column">
                                     <PlayingNowTracks
+                                        id="1"
                                         imageSrc="static/assets/img/playlists/playlist1.jpg"
                                         trackName="Battle Cry"
                                         duration="3:15"
                                         guest="Linkin Park" />
 
                                     <PlayingNowTracks
+                                        id="2"
                                         imageSrc="static/assets/img/playlists/playlist1.jpg"
                                         trackName="Reimagine Schools"
                                         duration="4:49"
                                         guest="Dr. Greg Colns" />
 
                                     <PlayingNowTracks
+                                        id="3"
                                         imageSrc="static/assets/img/playlists/playlist1.jpg"
                                         trackName="Space Oddity"
                                         duration="3:48"
                                         guest="David Bo" />
 
                                     <PlayingNowTracks
+                                        id="4"
                                         imageSrc="static/assets/img/playlists/playlist1.jpg"
                                         trackName="Animus Vox Cry"
                                         duration="4:19"
@@ -92,12 +95,14 @@ const Playlists = () => {
                                         </div>
                                     </li> */}
                                     <PlayingNowTracks
+                                        id="5"
                                         imageSrc="static/assets/img/playlists/playlist1.jpg"
                                         trackName="Firefly"
                                         duration="3:18"
                                         guest="Ghe Sun" />
 
                                     <PlayingNowTracks
+                                        id="6"
                                         imageSrc="static/assets/img/playlists/playlist1.jpg"
                                         trackName="Skydance"
                                         duration="4:12"

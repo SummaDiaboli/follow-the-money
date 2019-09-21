@@ -10,6 +10,18 @@ const getMessages = (req, res) => {
     })
 }
 
+const getMessageById = (req, res) => {
+    // const {id} = res.query
+    const { id } = req.params
+
+    pool.query('SELECT * FROM messages WHERE id = $1', [id], (error, result) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).send(`Message received with id: ${id}`)
+    })
+}
+
 const createMessage = (req, res) => {
     const { receiver, message, read, sender } = req.body
 
@@ -40,6 +52,7 @@ const deleteMessage = (req, res) => {
 
 module.exports = {
     getMessages,
+    getMessageById,
     createMessage,
     deleteMessage
 }

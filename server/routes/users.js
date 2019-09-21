@@ -35,7 +35,7 @@ const createUser = (req, res) => {
                 // throw error
                 // console.log(error)
             }
-            res.status(201).send(`User added with ID: ${result}`)
+            res.status(201).send(`User added: ${result}`)
         })
 }
 

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const PlayingNowTracks = ({imageSrc, trackName, guest}) => {
+const PlayingNowTracks = ({imageSrc, trackName, duration, guest}) => {
 
     return (
         <li>
@@ -11,7 +11,7 @@ const PlayingNowTracks = ({imageSrc, trackName, guest}) => {
                     <p className="smaller mt-1 m-0 font-medium">{guest}</p>
                 </div>
                 <div className="d-flex ml-auto options vertical-align flex-row">
-                    <span className="duration">3:51</span>
+                    <span className="duration">{duration}</span>
                     <button><i className="fas fa-play ml-3"></i></button>
                     <button><i className="fas fa-plus ml-3"></i></button>
                 </div>

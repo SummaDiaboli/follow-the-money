@@ -1,8 +1,12 @@
 import React from 'react'
 import Spotlight from './Spotlight'
+import Playlist from './Playlist'
+
 import { NotificationIcon } from '../User'
+import PlayingNowTracks from './PlayingNowTracks'
 
 const Playlists = () => {
+    
     return (
         <div className="main" style={{ overflow: "hidden" }}>
             <nav>
@@ -22,44 +26,24 @@ const Playlists = () => {
                 <div className="row px-0 h-100 py-1 m-0 w-100">
                     <div className="col-8 h-100">
                         <div className="middle-layout">
-                            <div className="search pl-0 pt-2 mb-1">
+                            <div className="search pl-0 pt-2">
                                 <input type="text" className="" placeholder="Search Playlists" />
                                 <button><i className="fas fa-search ml-auto"></i>  </button>
                             </div>
                             <div className="row m-0 mt-3 w-100 playlists">
-
-                                <div className="col-4">
-                                    <div className="wrapper">
-                                        <div className="overlay"></div>
-                                        <div className="over-overlay">
-                                            <h6 className="mt-auto d-flex">Daily Playlist</h6>
-                                            <span>60 tracks for you</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div className="wrapper">
-                                        <div className="overlay"></div>
-                                        <div className="over-overlay">
-                                            <h6 className="mt-auto d-flex">Radio</h6>
-                                            <span>Information on the go</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div className="wrapper">
-                                        <div className="overlay"></div>
-                                        <div className="over-overlay h-100">
-                                            <h6 className="mt-auto d-flex">My playlists</h6>
-                                            <span>859 tracks in 7 playlist</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                <Playlist name="Daily Playlist" tracks="60" />
+                                <Playlist name="Monthly Playlist" tracks="10" />
+                                <Playlist name="My Playlist" tracks="859" />
+                                <Playlist name="Daily Playlist" tracks="60" />
+                                <Playlist name="Monthly Playlist" tracks="10" />
+                                <Playlist name="My Playlist" tracks="859" />
                             </div>
                             <div className="row m-0 w-100 playlists spotlights mt-4">
                                 <h6 className="d-block w-100 pl-3">Spotlights</h6>
-                                <Spotlight date="Yesterday" title="Reimagine Schools" guest="Dr. Greg Colns"/>
-                                <Spotlight date="2 days ago" title="Mania" guest="Kevwe"/>
+                                <Spotlight date="Yesterday" title="Reimagine Schools" guest="Dr. Greg Colns" />
+                                <Spotlight date="2 days ago" title="Mania" guest="Kevwe" />
+                                <Spotlight date="Yesterday" title="Reimagine Schools" guest="Dr. Greg Colns" />
+                                <Spotlight date="2 days ago" title="Mania" guest="Kevwe" />
                             </div>
                         </div>
                     </div>
@@ -70,21 +54,17 @@ const Playlists = () => {
                             </div>
                             <div className="playlists mt-3">
                                 <ul className="p-0 d-flex flex-column">
-                                    <li>
-                                        <div className="d-flex flex-row vertical-align">
-                                            <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
-                                            <div className="d-flex flex-column ml-2">
-                                                <h5 className="m-0 font-medium small">Battle Cry</h5>
-                                                <p className="smaller mt-1 m-0 font-medium">Linkin Park</p>
-                                            </div>
-                                            <div className="d-flex ml-auto options vertical-align flex-row">
-                                                <span className="duration">3:51</span>
-                                                <button><i className="fas fa-play ml-3"></i></button>
-                                                <button><i className="fas fa-plus ml-3"></i></button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li className="active">
+                                    <PlayingNowTracks
+                                        imageSrc="static/assets/img/playlists/playlist1.jpg"
+                                        trackName="Battle Cry"
+                                        guest="Linkin Park" />
+
+                                    <PlayingNowTracks
+                                        imageSrc="static/assets/img/playlists/playlist1.jpg"
+                                        trackName="Battle Cry"
+                                        guest="Linkin Park" />
+
+                                    {/* <li className="active">
                                         <div className="d-flex flex-row vertical-align">
                                             <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
                                             <div className="d-flex flex-column ml-2">
@@ -97,7 +77,7 @@ const Playlists = () => {
                                                 <button><i className="fas fa-plus ml-3"></i></button>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li> */}
                                     <li>
                                         <div className="d-flex flex-row vertical-align">
                                             <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
@@ -118,6 +98,20 @@ const Playlists = () => {
                                             <div className="d-flex flex-column ml-2">
                                                 <h5 className="m-0 font-medium small">Animus Vox Cry</h5>
                                                 <p className="smaller mt-1 m-0 font-medium">Glit Mob</p>
+                                            </div>
+                                            <div className="d-flex ml-auto options vertical-align flex-row">
+                                                <span className="duration">3:51</span>
+                                                <button><i className="fas fa-play ml-3"></i></button>
+                                                <button><i className="fas fa-plus ml-3"></i></button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className="d-flex flex-row vertical-align">
+                                            <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
+                                            <div className="d-flex flex-column ml-2">
+                                                <h5 className="m-0 font-medium small">Firefly</h5>
+                                                <p className="smaller mt-1 m-0 font-medium">Ghe Sun</p>
                                             </div>
                                             <div className="d-flex ml-auto options vertical-align flex-row">
                                                 <span className="duration">3:51</span>

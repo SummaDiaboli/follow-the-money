@@ -19,7 +19,7 @@ const AnalyticsPage = () => {
                 <script src="static/assets/js/main.js"></script>
                 <script src="static/assets/js/detect.js"></script>
                 <script src="static/assets/js/analytics.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/react-popper/1.3.4/index.umd.min.js"></script>
+                {/* <script src="https://cdnjs.cloudflare.com/ajax/libs/react-popper/1.3.4/index.umd.min.js"></script> */}
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
                 <title>Analytics | Follow the Money</title>
@@ -33,7 +33,7 @@ const AnalyticsPage = () => {
             <script src="static/assets/js/main.js"></script>
             <script src="static/assets/js/detect.js"></script>
             <script src="static/assets/js/analytics.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/react-popper/1.3.4/index.umd.min.js"></script>
+            {/* <script src="https://cdnjs.cloudflare.com/ajax/libs/react-popper/1.3.4/index.umd.min.js"></script> */}
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         </>
     )

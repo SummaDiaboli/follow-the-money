@@ -2,7 +2,7 @@ import React from 'react'
 
 const Spotlight = ({ date, title, guest }) => {
     return (
-        <div className="col-6 mt-2">
+        <div className="col-6 mt-2 mb-4">
             <div className="wrapper">
                 <div className="overlay"></div>
                 <div className="over-overlay">

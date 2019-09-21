@@ -6,11 +6,11 @@ import FriendTile from './FriendTile'
 const Friends = () => {
     return (
         <main>
-            <div class="main" style={{ overflow: "hidden" }}>
+            <div className="main" style={{ overflow: "hidden" }}>
                 <nav>
-                    <ul class="d-flex vertical-align">
+                    <ul className="d-flex vertical-align">
                         <li>
-                            <a href="#" class="active">All Friends</a>
+                            <a href="#" className="active">All Friends</a>
                             <a href="#">Communities</a>
                             <a href="#">Following</a>
                             <a href="#">Nearby</a>
@@ -18,15 +18,15 @@ const Friends = () => {
                         </li>
                         <NotificationIcon />
                     </ul>
-                    <hr class="w-100" />
+                    <hr className="w-100" />
                 </nav>
 
-                <div class="container-fluid content p-0 h-100">
-                    <div class="row h-100 px-0 py-1 m-0 w-100">
-                        <div class="col-12 h-100">
-                            <div class="main-layout">
+                <div className="container-fluid content p-0 h-100">
+                    <div className="row h-100 px-0 py-1 m-0 w-100">
+                        <div className="col-12 h-100">
+                            <div className="main-layout">
                                 <Searchbar />
-                                <div class="row m-0 mt-4 w-100 friends">
+                                <div className="row m-0 mt-4 w-100 friends">
                                     <FriendTile
                                         userImage="static/assets/img/user/hamzat.jpg"
                                         username="Hamzat Lawal"

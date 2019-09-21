@@ -112,7 +112,7 @@ const Sidebar = ({ children }) => {
                         <li>
                             <Link href="/playlists">
                                 <a className={navState == 'playlists' ? "active" : ""}>
-                                    <i class="fas fa-list-alt mr-2 text-center"></i>
+                                    <i className="fas fa-list-alt mr-2 text-center"></i>
                                     <span>Playlists</span>
                                 </a>
                             </Link>

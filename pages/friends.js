@@ -6,9 +6,9 @@ const FriendsPage = () => {
     return (
         <div>
             <Head>
-                <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-                <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-                <link rel="stylesheet" type="text/css" href="assets/css/pages/friends.css" />
+                <link rel="stylesheet" href="static/assets/css/bootstrap.min.css" />
+                <link rel="stylesheet" type="text/css" href="static/assets/css/style.css" />
+                <link rel="stylesheet" type="text/css" href="static/assets/css/pages/friends.css" />
                 <title>Friends | Follow the Money</title>
             </Head>
 

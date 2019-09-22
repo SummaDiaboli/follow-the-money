@@ -3,7 +3,8 @@ import App from 'next/app'
 import Head from 'next/head'
 import { Sidebar } from '../components/Sidebar'
 import Player from '../components/Player/Player'
-// import Router from 'next/router'
+import Cookies from 'js-cookie'
+import Authenticate from '../components/Authentication/Auth'
 
 // import '../components/Feed/Feed.css'
 // import '../components/Messages/Messages.css'
@@ -21,9 +22,13 @@ class MyApp extends App {
     }
 
     componentDidMount() {
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
         this.setState({
-            path: window.location.pathname
+            isSafari,
+            path: window.location.pathname,
+            authUser: Cookies.getJSON('userData')
         })
+        // console.log(this.state.authUser)
     }
 
     componentWillUnmount() {
@@ -39,7 +44,7 @@ class MyApp extends App {
 
     render() {
         const { Component, pageProps } = this.props
-        const { path } = this.state
+        const { path, isSafari, authUser } = this.state
         return (
             <div>
                 <Head>
@@ -51,18 +56,26 @@ class MyApp extends App {
                     <title>Follow The Money</title>
                 </Head>
 
-                <Sidebar >
-                    <Component {...pageProps} />
-                    {
-                        path == '/login' ||
-                            path == '/sign-up' ||
-                            path == '/analytics' ||
-                            path == '/user-analytics' ||
-                            path == null
-                            ? null
-                            : <Player />
-                    }
-                </Sidebar>
+                {
+                    isSafari == true
+                        ? <div class="browser-message vertical-align" id="browser-message">
+                            <h3>Please use either Chrome or safari to use this application.</h3>
+                        </div>
+                        : <Authenticate userData={authUser}>
+                            <Sidebar authUser={authUser}>
+                                <Component {...pageProps} />
+                                {
+                                    path == '/login' ||
+                                        path == '/sign-up' ||
+                                        path == '/analytics' ||
+                                        path == '/user-analytics' ||
+                                        path == null
+                                        ? null
+                                        : <Player />
+                                }
+                            </Sidebar>
+                        </Authenticate>
+                }
 
 
                 <script src="https://kit.fontawesome.com/cdbc3ca26f.js"></script>

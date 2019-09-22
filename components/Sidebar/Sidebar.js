@@ -1,12 +1,17 @@
-import React, { useState, useReducer, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Sidebar.css'
 import Link from 'next/link'
+import fetch from 'isomorphic-unfetch'
+import Cookies from 'js-cookie'
+// import nextCookie from 'next-cookies'
 
-const Sidebar = ({ children }) => {
+const Sidebar = ({ children, authUser }) => {
     /**
      * Setting active nav item
      */
     const [navState, setNavState] = useState('feed')
+
+    // const [userData, setUserData] = useState(localStorage.getItem('userData'))
 
     const changeNav = (pathname) => {
         switch (pathname) {
@@ -29,19 +34,28 @@ const Sidebar = ({ children }) => {
 
     // const [state, dispatch] = useReducer(changeNav, navState)
 
+    // Fetch data from
+    const [value, setValue] = useState(Cookies.getJSON('userData'))
 
     /**
      * Number of notifications
      */
-    const [username, setUsername] = useState('Salim')
+    const [username, setUsername] = useState(authUser.username)
     const [messagesCount, setMessagesCount] = useState(8)
     const [friendsCount, setFriendsCount] = useState("1k")
     const [communitiesCount, setCommunitiesCount] = useState(1)
     const [eventsCount, setEventsCount] = useState(9)
 
+
     useEffect(() => {
         changeNav(window.location.pathname)
-    })
+        // setValue(localStorage.getItem('userData'))
+        return () => {
+            setUsername(value != null || value != undefined ? value.username : '')
+            // setValue(Cookies.getJSON('userData'))
+            // console.log(value)
+        }
+    }, [changeNav], [username])
 
     return (
         <main>
@@ -148,6 +162,13 @@ const Sidebar = ({ children }) => {
             {children}
         </main>
     )
+}
+
+const fetchData = async () => {
+    const userData = localStorage.getItem('userData')
+    console.log(userData)
+    const res = await fetch(`/api/users?username=${username}&password=${password}`)
+    return console.log(res)
 }
 
 export default Sidebar

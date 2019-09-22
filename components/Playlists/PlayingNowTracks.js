@@ -9,8 +9,17 @@ const PlayingNowTracks = ({id, imageSrc, trackName, duration, guest}) => {
         
         if (document.getElementsByClassName("now-playing-player").item(trackReference.current.id-1).classList.contains("active")) {
             document.getElementsByClassName("now-playing-player").item(trackReference.current.id-1).classList.remove("active")
+            if (document.getElementsByClassName("now-playing-player-state").item(trackReference.current.id-1).classList.contains("fa-pause")) {
+                document.getElementsByClassName("now-playing-player-state").item(trackReference.current.id-1).classList.remove("fa-pause")
+                document.getElementsByClassName("now-playing-player-state").item(trackReference.current.id-1).classList.add("fa-play")
+            }
         } else {
             document.getElementsByClassName("now-playing-player").item(trackReference.current.id-1).classList.add("active")
+            // console.log(document.getElementsByClassName("now-playing-player-state-play").item(trackReference.current.id-1).classList.contains("fa-play"))
+            if (document.getElementsByClassName("now-playing-player-state").item(trackReference.current.id-1).classList.contains("fa-play")) {
+                document.getElementsByClassName("now-playing-player-state").item(trackReference.current.id-1).classList.remove("fa-play")
+                document.getElementsByClassName("now-playing-player-state").item(trackReference.current.id-1).classList.add("fa-pause")
+            }
         }
     }
 
@@ -24,7 +33,7 @@ const PlayingNowTracks = ({id, imageSrc, trackName, duration, guest}) => {
                 </div>
                 <div className="d-flex ml-auto options vertical-align flex-row">
                     <span className="duration">{duration}</span>
-                    <button><i id={id} className="fas fa-play ml-3" onClick={highlightTrack} ref={trackReference}></i></button>
+                    <button><i id={id} className="now-playing-player-state fas fa-play ml-3" onClick={highlightTrack} ref={trackReference}></i></button>
                     <button><i className="fas fa-plus ml-3"></i></button>
                 </div>
             </div>

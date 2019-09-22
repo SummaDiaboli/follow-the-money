@@ -8,7 +8,7 @@ const Authenticate = ({ userData, children }) => {
 
     useEffect(() => {
         setauth(Cookies.getJSON('userData'))
-    }, [auth])
+    }, [])
 
     if (auth) {
         return (

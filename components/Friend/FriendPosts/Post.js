@@ -69,7 +69,14 @@ const Post = ({ userImage, username, timeCreated, postText, postImage, likes, co
                         id="post-popup"
                         style={{ visibility: { isVisible } }}
                     >
-                        <button className="" data-toggle="modal" data-target=".postModal">View More</button>
+                        <button
+                            className=""
+                            data-toggle="modal"
+                            data-target=".postModal"
+                            style={{ padding: 0, marginLeft: "left", color: "black" }}
+                        >
+                            View More
+                        </button>
                     </div>
                 </div>
                 <div className="content">

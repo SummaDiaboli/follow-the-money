@@ -912,7 +912,7 @@ footer .progressbar {
 }
 
 footer .loaded {
-    width: 100px;
+    width: 0px;
     height: 3px;
     background: #fff;
 }

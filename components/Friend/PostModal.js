@@ -73,7 +73,7 @@ const PostModal = () => {
                                                 <span>8:15 PM, yesterday</span>
                                             </div>
                                         </div>
-                                        <div className="content">
+                                        <div className="content" style={{ marginTop: "3%" }}>
                                             <p className="mt-2 mb-2">Hamzy, it was amazing! Every single word of your brilliant speech was fulﬁlled of inspiration
                                                 </p>
                                             <div className="d-flex flex-row actions mt-1">
@@ -110,7 +110,7 @@ const PostModal = () => {
                                                 <span>8:30 AM</span>
                                             </div>
                                         </div>
-                                        <div className="content">
+                                        <div className="content" style={{ marginTop: "3%" }}>
                                             <p className="mt-2 mb-2">It’s really nice to see you on this conf. IMHO, was the only interesting speaker at all
                                                 </p>
                                             <div className="d-flex flex-row actions mt-1">

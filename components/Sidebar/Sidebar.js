@@ -3,6 +3,7 @@ import './Sidebar.css'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 import Cookies from 'js-cookie'
+import Router from 'next/router'
 // import nextCookie from 'next-cookies'
 
 const Sidebar = ({ children, authUser }) => {
@@ -10,8 +11,6 @@ const Sidebar = ({ children, authUser }) => {
      * Setting active nav item
      */
     const [navState, setNavState] = useState('feed')
-
-    // const [userData, setUserData] = useState(localStorage.getItem('userData'))
 
     const changeNav = (pathname) => {
         switch (pathname) {
@@ -41,10 +40,15 @@ const Sidebar = ({ children, authUser }) => {
      * Number of notifications
      */
     const [username, setUsername] = useState(authUser.username)
-    const [messagesCount, setMessagesCount] = useState(8)
-    const [friendsCount, setFriendsCount] = useState("1k")
-    const [communitiesCount, setCommunitiesCount] = useState(1)
-    const [eventsCount, setEventsCount] = useState(9)
+    const [messagesCount, setMessagesCount] = useState(9)
+    const [friendsCount, setFriendsCount] = useState(0)
+    const [communitiesCount, setCommunitiesCount] = useState(0)
+    const [eventsCount, setEventsCount] = useState(0)
+
+    const signOut = () => {
+        Cookies.remove('userData')
+        Router.reload()
+    }
 
 
     useEffect(() => {
@@ -157,6 +161,12 @@ const Sidebar = ({ children, authUser }) => {
                             </Link>
                         </li>
                     </ul>
+                    <a href="#" className="signout" onClick={signOut}>
+                        <div className="d-flex vertical-align flex-row py-2 px-3">
+                            <i className="fas fa-sign-out-alt" />
+                            <span className="ml-2">Signout</span>
+                        </div>
+                    </a>
                 </div>
             </div>
             {children}

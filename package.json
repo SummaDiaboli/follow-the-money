@@ -6,13 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ]
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.22",

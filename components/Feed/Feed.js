@@ -8,7 +8,7 @@ import { SideTab } from './SideTab'
 
 const Feed = () => {
     return (
-        <div className="main">
+        <div className="main" style={{ overflow: "hidden" }}>
             <nav>
                 <ul className="d-flex vertical-align"
                     style={{ display: "flex" }}>

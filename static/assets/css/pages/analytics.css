@@ -1,0 +1,21 @@
+.sidebar{
+    background: #363636;
+    color: #fff;
+}
+
+.sidebar ul li a{
+    color: #fff;
+}
+
+.user-rankings tr th:nth-child(1){
+    text-align: center;
+}
+
+canvas{
+    height: 300px;
+}
+
+.main{
+    height: 100%;
+    overflow-y: auto;
+}

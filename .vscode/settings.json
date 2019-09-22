@@ -1,0 +1,15 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": false,
+            "connectionTimeout": 30,
+            "database": "follow_the_money",
+            "dialect": "PostgreSQL",
+            "name": "Follow the money",
+            "password": "admin",
+            "port": 5432,
+            "server": "localhost",
+            "username": "admin"
+        }
+    ]
+}

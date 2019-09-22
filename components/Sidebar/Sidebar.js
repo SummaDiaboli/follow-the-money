@@ -1,12 +1,17 @@
-import React, { useState, useReducer, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Sidebar.css'
 import Link from 'next/link'
+import fetch from 'isomorphic-unfetch'
+import Cookies from 'js-cookie'
+// import nextCookie from 'next-cookies'
 
-const Sidebar = ({ children }) => {
+const Sidebar = ({ children, authUser }) => {
     /**
      * Setting active nav item
      */
     const [navState, setNavState] = useState('feed')
+
+    // const [userData, setUserData] = useState(localStorage.getItem('userData'))
 
     const changeNav = (pathname) => {
         switch (pathname) {
@@ -18,32 +23,39 @@ const Sidebar = ({ children }) => {
                 return setNavState('friends')
             case '/communities':
                 return setNavState('communities')
+            case '/playlists':
+                return setNavState('playlists')
             case '/events':
                 return setNavState('events')
             case '/settings':
                 return setNavState('settings')
-            case '/podcasts':
-                return setNavState('podcasts')
-            case '/radio':
-                return setNavState('radio')
         }
     }
 
     // const [state, dispatch] = useReducer(changeNav, navState)
 
+    // Fetch data from
+    const [value, setValue] = useState(Cookies.getJSON('userData'))
 
     /**
      * Number of notifications
      */
-    const [username, setUsername] = useState('Salim')
+    const [username, setUsername] = useState(authUser.username)
     const [messagesCount, setMessagesCount] = useState(8)
-    const [friendsCount, setFriendsCount] = useState(10)
+    const [friendsCount, setFriendsCount] = useState("1k")
     const [communitiesCount, setCommunitiesCount] = useState(1)
-    const [eventsCount, setEventsCount] = useState(90)
+    const [eventsCount, setEventsCount] = useState(9)
+
 
     useEffect(() => {
         changeNav(window.location.pathname)
-    })
+        // setValue(localStorage.getItem('userData'))
+        return () => {
+            setUsername(value != null || value != undefined ? value.username : '')
+            // setValue(Cookies.getJSON('userData'))
+            // console.log(value)
+        }
+    }, [changeNav], [username])
 
     return (
         <main>
@@ -112,6 +124,15 @@ const Sidebar = ({ children }) => {
                         </li>
 
                         <li>
+                            <Link href="/playlists">
+                                <a className={navState == 'playlists' ? "active" : ""}>
+                                    <i className="fas fa-list-alt mr-2 text-center"></i>
+                                    <span>Playlists</span>
+                                </a>
+                            </Link>
+                        </li>
+
+                        <li>
                             <Link href="/events">
                                 <a className={navState == 'events' ? "active" : ""}>
                                     <i className="far fa-calendar mr-2 text-center"></i>
@@ -136,33 +157,18 @@ const Sidebar = ({ children }) => {
                             </Link>
                         </li>
                     </ul>
-
-                    <p className="font-medium heading pt-3">Playlist</p>
-
-                    <ul className="">
-                        <li>
-                            <Link href="/podcasts">
-                                <a className={navState == 'podcasts' ? "active" : ""}>
-                                    <i className="fas fa-podcast mr-2 text-center"></i>
-                                    <span>Podcast</span>
-                                </a>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link href="/radio">
-                                <a className={navState == 'radio' ? "active" : ""}>
-                                    <i className="fas fa-satellite-dish mr-2 text-center"></i>
-                                    <span>Radio</span>
-                                </a>
-                            </Link>
-                        </li>
-                    </ul>
                 </div>
             </div>
             {children}
         </main>
     )
+}
+
+const fetchData = async () => {
+    const userData = localStorage.getItem('userData')
+    console.log(userData)
+    const res = await fetch(`/api/users?username=${username}&password=${password}`)
+    return console.log(res)
 }
 
 export default Sidebar

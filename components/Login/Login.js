@@ -1,14 +1,91 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import Router from 'next/router'
+import Cookies from 'js-cookie'
 
 const Login = () => {
+    const [firstName, setfirstName] = useState('')
+    const [lastName, setlastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('')
+
+    const onChangeFName = e => {
+        setfirstName(e.target.value)
+    }
+
+    const onChangeLName = e => {
+        setlastName(e.target.value)
+    }
+
+    const onChangeEmail = e => {
+        setEmail(e.target.value)
+    }
+
+    const onChangePassword = e => {
+        setPassword(e.target.value)
+    }
+
+    const onChangeUsername = e => {
+        setUsername(e.target.value)
+    }
+
+    const signInUser = () => {
+        fetch(`/api/users?username=${username}&password=${password}`, {
+            method: 'get'
+        }).then((res) => {
+            res.status === 200
+                ? Router.push('/')
+                    .then(() => {
+                        res.json().then(data => {
+                            // localStorage.setItem('userData', JSON.stringify(data[0]))
+                            Cookies.set('userData', data[0], { expires: 7 })
+                        })
+                    })
+                    .then(() => {
+                        Router.reload()
+                    })
+                : console.log("Couldn't sign in")
+        })
+    }
+
+    const signUpUser = () => {
+        fetch('api/users', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "username": username,
+                "email": JSON.stringify({
+                    "email": email
+                }),
+                "name": JSON.stringify({ "firstName": firstName, "lastName": lastName }),
+                "password": password,
+                "address": JSON.stringify({ "address": "street" }),
+                "role": 'user'
+            })
+        }).then(res => {
+            res.status === 201
+                ? Router.push('/')
+                    .then(() => {
+                        Cookies.set('userData', { username }, { expires: 7 })
+                    })
+                    .then(() => {
+                        Router.reload()
+                    })
+                : console.log("Couldn't sign up")
+        })
+    }
+
     return (
         <main>
             <div className="container-fluid p-0 window">
                 <div className="overlay"></div>
 
                 <div className="content h-100">
-                    <img src="assets/img/logo.png" className="logo-brand" alt="" />
+                    <img src="static/assets/img/logo.png" className="logo-brand" alt="" />
 
                     <div className="caption">
                         <h1 className="text-white font-weight-bold">Welcome</h1>
@@ -23,19 +100,19 @@ const Login = () => {
 
                             <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 <li className="nav-item">
-                                    <Link href="/login">
-                                        <a className="nav-link active" id="pills-login-tab" data-toggle="pill" role="tab" aria-controls="pills-login" aria-selected="true">
-                                            Log In
-                                        </a>
-                                    </Link>
+                                    {/* <Link href="/login"> */}
+                                    <a href="#pills-login" className="nav-link active" id="pills-login-tab" data-toggle="pill" role="tab" aria-controls="pills-login" aria-selected="true">
+                                        Log In
+                                    </a>
+                                    {/* </Link> */}
                                 </li>
 
                                 <li className="nav-item">
-                                    <Link href="/sign-up">
-                                        <a className="nav-link" id="pills-signup-tab" data-toggle="pill" role="tab" aria-controls="pills-signup" aria-selected="false">
-                                            Sign Up
-                                        </a>
-                                    </Link>
+                                    {/* <Link href="/sign-up"> */}
+                                    <a href="#pills-signup" className="nav-link" id="pills-signup-tab" data-toggle="pill" role="tab" aria-controls="pills-signup" aria-selected="false">
+                                        Sign Up
+                                    </a>
+                                    {/* </Link> */}
                                 </li>
                             </ul>
 
@@ -45,11 +122,13 @@ const Login = () => {
 
                                         <div className="form-group">
                                             <input
-                                                type="email"
+                                                type="text"
                                                 className="form-control"
-                                                id="email"
-                                                aria-describedby="email"
-                                                placeholder="Email"
+                                                id="username-login"
+                                                aria-describedby="username"
+                                                placeholder="Username"
+                                                value={username}
+                                                onChange={onChangeUsername}
                                             />
                                         </div>
 
@@ -57,9 +136,11 @@ const Login = () => {
                                             <input
                                                 type="password"
                                                 className="form-control"
-                                                id="password"
+                                                id="password-login"
                                                 aria-describedby="email"
                                                 placeholder="Password"
+                                                value={password}
+                                                onChange={onChangePassword}
                                             />
                                         </div>
 
@@ -82,10 +163,11 @@ const Login = () => {
                                         <div className="d-block text-center">
                                             {/* <Link href="/"> */}
                                             <a
-                                                href="/"
+                                                href="#"
                                                 className="btn bg-red mx-auto text-white mt-5 font-semiBold"
                                                 role="button"
                                                 style={{ backgroundColor: "#D10000" }}
+                                                onClick={signInUser}
                                             >
                                                 Continue
                                             </a>
@@ -118,15 +200,89 @@ const Login = () => {
                                 </div>
 
                                 <div className="tab-pane fade" id="pills-signup" role="tabpanel" aria-labelledby="pills-signup-tab">
-                                    ...
+                                    <form action="" className="px-3 py-4">
+                                        <div className="form-group">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="firstName"
+                                                aria-describedby="firstName"
+                                                placeholder="First Name"
+                                                value={firstName}
+                                                onChange={onChangeFName}
+                                            />
+                                        </div>
+
+                                        <div className="form-group">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="lastName"
+                                                aria-describedby="lastName"
+                                                placeholder="Last Name"
+                                                value={lastName}
+                                                onChange={onChangeLName}
+                                            />
+                                        </div>
+
+                                        <div className="form-group">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="username-signup"
+                                                aria-describedby="username"
+                                                placeholder="Username"
+                                                value={username}
+                                                onChange={onChangeUsername}
+                                            />
+                                        </div>
+
+                                        <div className="form-group">
+                                            <input
+                                                type="email"
+                                                className="form-control"
+                                                id="email-signup"
+                                                aria-describedby="email"
+                                                placeholder="Email"
+                                                value={email}
+                                                onChange={onChangeEmail}
+                                            />
+                                        </div>
+
+                                        <div className="form-group">
+                                            <input
+                                                type="password"
+                                                className="form-control"
+                                                id="password-signup"
+                                                aria-describedby="password"
+                                                placeholder="Password"
+                                                value={password}
+                                                onChange={onChangePassword}
+                                            />
+                                        </div>
+
+                                        <div className="d-block text-center">
+                                            {/* <Link href="/"> */}
+                                            <a
+                                                href="#"
+                                                className="btn bg-red mx-auto text-white mt-3 font-semiBold"
+                                                role="button"
+                                                style={{ backgroundColor: "#D10000" }}
+                                                onClick={signUpUser}
+                                            >
+                                                Sign Up
+                                            </a>
+                                            {/* </Link> */}
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-
                         </div>
 
                     </div>
 
                 </div>
+
             </div>
 
             <style jsx>{`

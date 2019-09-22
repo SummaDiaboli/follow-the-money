@@ -60,6 +60,7 @@
     padding-bottom: .5rem;
     position: relative;
     z-index: 2;
+    border-radius: 0rem;
 }
 
 .sideTab .nav-link:nth-child(1){
@@ -140,6 +141,6 @@
 
 .content{
     position: relative;
-    top: -2rem;
+    top: calc(-2rem + 5px);
     height: 100%;
 }

@@ -51,7 +51,7 @@ const NotificationPopup = () => {
                                 <img src={require("../../static/assets/img/user/hanan.jpg")} alt="" />
                             </div>
                             <div className="d-flex flex-column ml-3">
-                                <h6 className="notification-text m-0"> <span className="tagged">Haman Cho</span>added a new photo</h6>
+                                <h6 className="notification-text m-0"> <span className="tagged">Haman Cho </span>added a new photo</h6>
                                 <span className="time pt-1">5 hours ago</span>
                             </div>
                         </div>
@@ -64,7 +64,7 @@ const NotificationPopup = () => {
                                 <img src={require("../../static/assets/img/user/hanan.jpg")} alt="" />
                             </div>
                             <div className="d-flex flex-column ml-3">
-                                <h6 className="notification-text m-0"> <span className="tagged">Haman Cho</span>added a new photo</h6>
+                                <h6 className="notification-text m-0"> <span className="tagged">Haman Cho </span>added a new photo</h6>
                                 <span className="time pt-1">5 hours ago</span>
                             </div>
                         </div>

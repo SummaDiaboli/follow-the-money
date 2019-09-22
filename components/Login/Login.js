@@ -31,52 +31,64 @@ const Login = () => {
     }
 
     const signInUser = () => {
-        fetch(`/api/users?username=${username}&password=${password}`, {
-            method: 'get'
-        }).then((res) => {
-            res.status === 200
-                ? Router.push('/')
-                    .then(() => {
-                        res.json().then(data => {
-                            // localStorage.setItem('userData', JSON.stringify(data[0]))
-                            Cookies.set('userData', data[0], { expires: 7 })
+        if (username != '' && password != '') {
+            fetch(`/api/users?username=${username}&password=${password}`, {
+                method: 'get'
+            }).then((res) => {
+                res.status === 200
+                    ? Router.push('/')
+                        .then(() => {
+                            res.json().then(data => {
+                                // localStorage.setItem('userData', JSON.stringify(data[0]))
+                                Cookies.set('userData', data[0], { expires: 7 })
+                            })
                         })
-                    })
-                    .then(() => {
-                        Router.reload()
-                    })
-                : console.log("Couldn't sign in")
-        })
+                        .then(() => {
+                            Router.reload()
+                        })
+                    : alert("User does not exist in the database")
+            })
+        } else {
+            alert("Please fill in both the username and password fields")
+        }
     }
 
     const signUpUser = () => {
-        fetch('api/users', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "username": username,
-                "email": JSON.stringify({
-                    "email": email
-                }),
-                "name": JSON.stringify({ "firstName": firstName, "lastName": lastName }),
-                "password": password,
-                "address": JSON.stringify({ "address": "street" }),
-                "role": 'user'
+        if (username != '' &&
+            email != '' &&
+            firstName != '' &&
+            lastName != '' &&
+            password != '') {
+            fetch('api/users', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "username": username,
+                    "email": JSON.stringify({
+                        "email": email
+                    }),
+                    "name": JSON.stringify({ "firstName": firstName, "lastName": lastName }),
+                    "password": password,
+                    "address": JSON.stringify({ "address": "street" }),
+                    "role": 'user'
+                })
+            }).then(res => {
+                res.status === 201
+                    ? Router.push('/')
+                        .then(() => {
+                            Cookies.set('userData', { username }, { expires: 7 })
+                        })
+                        .then(() => {
+                            Router.reload()
+                        })
+                    : alert("Could not sign you up.")
             })
-        }).then(res => {
-            res.status === 201
-                ? Router.push('/')
-                    .then(() => {
-                        Cookies.set('userData', { username }, { expires: 7 })
-                    })
-                    .then(() => {
-                        Router.reload()
-                    })
-                : console.log("Couldn't sign up")
-        })
+        } else {
+            alert("Please fill in all available fields")
+        }
     }
 
     return (

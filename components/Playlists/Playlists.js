@@ -6,7 +6,6 @@ import { NotificationIcon } from '../User'
 import PlayingNowTracks from './PlayingNowTracks'
 
 const Playlists = () => {
-    
     return (
         <div className="main" style={{ overflow: "hidden" }}>
             <nav>
@@ -17,7 +16,6 @@ const Playlists = () => {
                         <a href="#">FTM Radio</a>
                     </li>
                     <NotificationIcon />
-
                 </ul>
                 <hr className="w-100" />
             </nav>
@@ -55,14 +53,32 @@ const Playlists = () => {
                             <div className="playlists mt-3">
                                 <ul className="p-0 d-flex flex-column">
                                     <PlayingNowTracks
+                                        id="1"
                                         imageSrc="static/assets/img/playlists/playlist1.jpg"
                                         trackName="Battle Cry"
+                                        duration="3:15"
                                         guest="Linkin Park" />
 
                                     <PlayingNowTracks
+                                        id="2"
                                         imageSrc="static/assets/img/playlists/playlist1.jpg"
-                                        trackName="Battle Cry"
-                                        guest="Linkin Park" />
+                                        trackName="Reimagine Schools"
+                                        duration="4:49"
+                                        guest="Dr. Greg Colns" />
+
+                                    <PlayingNowTracks
+                                        id="3"
+                                        imageSrc="static/assets/img/playlists/playlist1.jpg"
+                                        trackName="Space Oddity"
+                                        duration="3:48"
+                                        guest="David Bo" />
+
+                                    <PlayingNowTracks
+                                        id="4"
+                                        imageSrc="static/assets/img/playlists/playlist1.jpg"
+                                        trackName="Animus Vox Cry"
+                                        duration="4:19"
+                                        guest="Dr. Greg Colns" />
 
                                     {/* <li className="active">
                                         <div className="d-flex flex-row vertical-align">
@@ -78,62 +94,19 @@ const Playlists = () => {
                                             </div>
                                         </div>
                                     </li> */}
-                                    <li>
-                                        <div className="d-flex flex-row vertical-align">
-                                            <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
-                                            <div className="d-flex flex-column ml-2">
-                                                <h5 className="m-0 font-medium small">Space Oddity</h5>
-                                                <p className="smaller mt-1 m-0 font-medium">David Bo</p>
-                                            </div>
-                                            <div className="d-flex ml-auto options vertical-align flex-row">
-                                                <span className="duration">3:51</span>
-                                                <button><i className="fas fa-play ml-3"></i></button>
-                                                <button><i className="fas fa-check ml-3"></i></button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="d-flex flex-row vertical-align">
-                                            <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
-                                            <div className="d-flex flex-column ml-2">
-                                                <h5 className="m-0 font-medium small">Animus Vox Cry</h5>
-                                                <p className="smaller mt-1 m-0 font-medium">Glit Mob</p>
-                                            </div>
-                                            <div className="d-flex ml-auto options vertical-align flex-row">
-                                                <span className="duration">3:51</span>
-                                                <button><i className="fas fa-play ml-3"></i></button>
-                                                <button><i className="fas fa-plus ml-3"></i></button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="d-flex flex-row vertical-align">
-                                            <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
-                                            <div className="d-flex flex-column ml-2">
-                                                <h5 className="m-0 font-medium small">Firefly</h5>
-                                                <p className="smaller mt-1 m-0 font-medium">Ghe Sun</p>
-                                            </div>
-                                            <div className="d-flex ml-auto options vertical-align flex-row">
-                                                <span className="duration">3:51</span>
-                                                <button><i className="fas fa-play ml-3"></i></button>
-                                                <button><i className="fas fa-plus ml-3"></i></button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="d-flex flex-row vertical-align">
-                                            <img src="static/assets/img/playlists/playlist1.jpg" alt="" />
-                                            <div className="d-flex flex-column ml-2">
-                                                <h5 className="m-0 font-medium small">Firefly</h5>
-                                                <p className="smaller mt-1 m-0 font-medium">Ghe Sun</p>
-                                            </div>
-                                            <div className="d-flex ml-auto options vertical-align flex-row">
-                                                <span className="duration">3:51</span>
-                                                <button><i className="fas fa-play ml-3"></i></button>
-                                                <button><i className="fas fa-plus ml-3"></i></button>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    <PlayingNowTracks
+                                        id="5"
+                                        imageSrc="static/assets/img/playlists/playlist1.jpg"
+                                        trackName="Firefly"
+                                        duration="3:18"
+                                        guest="Ghe Sun" />
+
+                                    <PlayingNowTracks
+                                        id="6"
+                                        imageSrc="static/assets/img/playlists/playlist1.jpg"
+                                        trackName="Skydance"
+                                        duration="4:12"
+                                        guest="Vue Jay" />
                                 </ul>
                             </div>
                         </div>

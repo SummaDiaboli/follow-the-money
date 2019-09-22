@@ -7,7 +7,7 @@ const SideTab = () => {
     return (
         <div className="col-4 h-100 pr-0">
             <div className="card sideTab p-3" style={{ height: "90%" }}>
-                <LiveRadio audioSource={null}/>
+                <LiveRadio audioSource="https://backlinq.ng/ftm/ideas-radio-show.ogg"/>
 
                 <UpcomingEvents />
 

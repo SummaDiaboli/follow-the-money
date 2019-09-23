@@ -12,15 +12,15 @@
 
 * [Testing](#testing)
 
+* [Plans For The Future](#plans-for-the-future)
+
 
 ## Installation
 
-* Clone the repository and then run
-```
-npm install
-```
+* Clone the repository and then run `npm install`.
 
 * Make sure you have PostgreSQL installed on the device and set up using the SQL schema in the project root.
+* Run `npm run dev` in the command line to start the local server.
 
 ## Technology Used
 - **Next.js**: This is the main technology the web app is built around. Next.js is a Server Side Rendering solution for         React. The Next.js API Routes are used to handle API related activities in the project. More information can be found on    [their website](https://nextjs.org/).
@@ -40,8 +40,63 @@ npm install
 
 ### Components
 
-- **Analytics**: Contains components dealing with the analytics route
+- **Analytics**: Contains components dealing with the analytics route.
+- **Authentication**: Contains the component that checks if the user is authenticated then proceeds to navigate to the login page or index page depending on that.
+- **Communities**: *In Progress*.
+- **Feed**: Contains components for the Feed page. This includes posts, friend requests, and radio controls in the sidebar.
+- **Friend**: Contains components related to the page for a specific friend.
+- **Friends**: Contains components related to the friends page, which contains all the user's friends.
+- **Login**: Contains components related to login and sign-up.
+- **Messages**: Contains components for the messages page.
+- **Player**: Contains components for the audio player component at the bottom of the page.
+- **Playlists**: Contains components for the playlist page.
+- **Searchbar**: Contains components for the searchbar.
+- **Sidebar**: Contains components for the persistent sidebar on the left of the page.
+- **User**: Contains components for the user and notification icons.
 
+### Database
+
+`queries.js` contains the configurations for the PostgreSQL database.
+
+### Pages
+
+Because the project is using Next.js, the page routes are put in the pages folder and are automatically added to routing. The folder contains:
+
+- *api/*: This folder and its subfolders contain the Next.js API Routes.
+- *_app.js*: This is a custom \_app.js file because of the need to include the persistent sidebar and audio player.
+- *analytics.js*: The analytics page route.
+- *communities.js*: The communities page route.
+- *events.js*: The events page route.
+- *feed.js*: The feed page route.
+- *friend.js*: The specific friend page route.
+- *friends.js*: The friends page route.
+- *index.js*: The initial page route, defaults to feed.
+- *login.js*: The login page route.
+- *messages.js*: The messages page route.
+- *playlists.js*: The playlists page route.
+- *podcasts.js*: The podcasts page route.
+- *radio.js*: The radio page route.
+- *settings.js*: The settings page route.
+- *user-analytics.js*: The user-analytics page route.
+
+### Server
+
+This folder contains a node server used primarily for testing. It contains:
+
+- **routes**: Contains the API functions that are used in the server.
+  * *friend-request.js*: Contains CRUD functions for friend requests.
+  * *messages.js*: Contains CRUD functions for messages.
+  * *notifications.js*: Contains CRUD functions for notifications.
+  * *podcast.js*: Contains CRUD functions for podcasts.
+  * *posts.js*: Contains CRUD functions for posts.
+  * *users.js*: Contains CRUD functions for users.
+- **tests**: Contains tests for the API functions. Supertest in combination with Jest is used for testing.
+  * *friend-request.test.js*: Contains tests for friend requests.
+  * *messages.test.js*: Contains tests for messages.
+  * *notifications.test.js*: Contains tests for notifications.
+  * *podcasts.test.js*: Contains tests for podcasts.
+  * *posts.test.js*: Contains tests for posts.
+  * *users.test.js*: Contains tests for users
 
 ## Working Routes
 
@@ -66,7 +121,7 @@ API Routes are a certain way to structure folder and files in the pages folder i
 
 ## Testing
 
-The API, under the server folder in tests, are tested using Express.js, Jest, Supertest and PostgreSQL, with the functions under the routes folder. Below are the API that have been tested:
+The RESTful API, under the server folder in tests, are tested using Express.js, Jest, Supertest and PostgreSQL, with the functions under the routes folder. Below are the API that have been tested:
 
 - users
 - posts
@@ -75,4 +130,6 @@ The API, under the server folder in tests, are tested using Express.js, Jest, Su
 - messages
 - friend-requests
 
-At the point of writing this documentation all tests are passing all **25 tests** are passing.
+At the point of writing this documentation all tests are passing all **25 tests** are passing, with CRUD capabilities.
+
+## Plans For The Future

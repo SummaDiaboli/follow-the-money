@@ -37,6 +37,7 @@
 - [Server](#server)
 - [Static](#static)
 - [Next Configuration](#next-config)
+- [PostgreSQL Schema](#postgresql-schema)
 
 ### Components
 
@@ -117,6 +118,10 @@ This folder contains folders that are not meant to change in production, usually
 
 `next.config.js` is the file that contains custom Next.js configurations and plugins. At the point of writing this documentation, it contains plugins that allow the use of CSS and images in the project.
 
+### PostgreSQL Schema
+
+`follow-the-money.sql` contains the sql schema that can be queried using a tool like [pgAdmin](https://www.pgadmin.org/) to create the same database that was used for testing and implementation. All tests should pass if schema is queried properly.
+
 
 ## Working Page Routes
 
@@ -159,3 +164,5 @@ At the point of writing this documentation all tests are passing all **25 tests*
 - Next.js might be scrapped out in favour of using purely React.js for the frontend and Node.js for the backend. `server.js` in the server folder can be used for the backend given it is already working and only needs to be slightly modified.
 - Some pages need to be turned into proper components.
 - Duplicate components to be removed.
+- Using a Hosting Service to host the PostgreSQL database, a good service would be [Heroku](https://heroku.com)
+- Using a Hosting Service to serve the web app.

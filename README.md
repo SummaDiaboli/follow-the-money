@@ -141,7 +141,7 @@ API Routes are a certain way to structure folder and files in the pages folder i
 
 ## Testing
 
-The RESTful API, under the server folder in tests, are tested using Express.js, Jest, Supertest and PostgreSQL, with the functions under the routes folder. Below are the API that have been tested:
+The RESTful API, under the server folder in tests, are tested using Express.js, [Jest](https://jestjs.io/), [Supertest](https://www.npmjs.com/package/supertest) and PostgreSQL, with the functions under the routes folder. Below are the API that have been tested:
 
 - *users*
 - *posts*

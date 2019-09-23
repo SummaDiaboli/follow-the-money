@@ -164,3 +164,5 @@ At the point of writing this documentation all tests are passing all **25 tests*
 - Next.js might be scrapped out in favour of using purely React.js for the frontend and Node.js for the backend. `server.js` in the server folder can be used for the backend given it is already working and only needs to be slightly modified.
 - Some pages need to be turned into proper components.
 - Duplicate components to be removed.
+- Using a Hosting Service to host the PostgreSQL database, a good service would be [Heroku](heroku.com)
+- Using a Hosting Service to serve the web app.

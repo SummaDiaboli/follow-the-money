@@ -3,10 +3,6 @@ import React, { useEffect, useState } from 'react'
 const PlayerControls = ({ reference }) => {
     const [audioState, setAudioState] = useState('fa-play')
 
-    useEffect(() => {
-        console.log(reference)
-    })
-
     const toggle = () => {
         if (reference.current.paused === true) {
             reference.current.play()

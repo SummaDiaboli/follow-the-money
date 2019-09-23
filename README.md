@@ -6,7 +6,7 @@
 
 * [Project Folder Structure](#project-folder-structure)
 
-* [Working Routes](#working-routes)
+* [Working Page Routes](#working-page-routes)
 
 * [API Routes](#api-routes)
 
@@ -18,9 +18,9 @@
 ## Installation
 
 * Clone the repository and then run `npm install`.
-
 * Make sure you have PostgreSQL installed on the device and set up using the SQL schema in the project root.
 * Run `npm run dev` in the command line to start the local server.
+* Enjoy!
 
 ## Technology Used
 - **Next.js**: This is the main technology the web app is built around. Next.js is a Server Side Rendering solution for         React. The Next.js API Routes are used to handle API related activities in the project. More information can be found on    [their website](https://nextjs.org/).
@@ -40,19 +40,19 @@
 
 ### Components
 
-- **Analytics**: Contains components dealing with the analytics route.
-- **Authentication**: Contains the component that checks if the user is authenticated then proceeds to navigate to the login page or index page depending on that.
-- **Communities**: *In Progress*.
-- **Feed**: Contains components for the Feed page. This includes posts, friend requests, and radio controls in the sidebar.
-- **Friend**: Contains components related to the page for a specific friend.
-- **Friends**: Contains components related to the friends page, which contains all the user's friends.
-- **Login**: Contains components related to login and sign-up.
-- **Messages**: Contains components for the messages page.
-- **Player**: Contains components for the audio player component at the bottom of the page.
-- **Playlists**: Contains components for the playlist page.
-- **Searchbar**: Contains components for the searchbar.
-- **Sidebar**: Contains components for the persistent sidebar on the left of the page.
-- **User**: Contains components for the user and notification icons.
+- **Analytics/**: Contains components dealing with the analytics route.
+- **Authentication/**: Contains the component that checks if the user is authenticated then proceeds to navigate to the login page or index page depending on that.
+- **Communities/**: *In Progress*.
+- **Feed/**: Contains components for the Feed page. This includes posts, friend requests, and radio controls in the sidebar.
+- **Friend/**: Contains components related to the page for a specific friend.
+- **Friends/**: Contains components related to the friends page, which contains all the user's friends.
+- **Login/**: Contains components related to login and sign-up.
+- **Messages/**: Contains components for the messages page.
+- **Player/**: Contains components for the audio player component at the bottom of the page.
+- **Playlists/**: Contains components for the playlist page.
+- **Searchbar/**: Contains components for the searchbar.
+- **Sidebar/**: Contains components for the persistent sidebar on the left of the page.
+- **User/**: Contains components for the user and notification icons.
 
 ### Database
 
@@ -83,22 +83,42 @@ Because the project is using Next.js, the page routes are put in the pages folde
 
 This folder contains a node server used primarily for testing. It contains:
 
-- **routes**: Contains the API functions that are used in the server.
+- **routes/**: Contains the API functions that are used in the server.
   * *friend-request.js*: Contains CRUD functions for friend requests.
   * *messages.js*: Contains CRUD functions for messages.
   * *notifications.js*: Contains CRUD functions for notifications.
   * *podcast.js*: Contains CRUD functions for podcasts.
   * *posts.js*: Contains CRUD functions for posts.
   * *users.js*: Contains CRUD functions for users.
-- **tests**: Contains tests for the API functions. Supertest in combination with Jest is used for testing.
+- **tests/**: Contains tests for the API functions. Supertest in combination with Jest is used for testing.
   * *friend-request.test.js*: Contains tests for friend requests.
   * *messages.test.js*: Contains tests for messages.
   * *notifications.test.js*: Contains tests for notifications.
   * *podcasts.test.js*: Contains tests for podcasts.
   * *posts.test.js*: Contains tests for posts.
-  * *users.test.js*: Contains tests for users
+  * *users.test.js*: Contains tests for users.
+- **server.js**: Contains the express server used mainly for the purpose of testing the API functions. There is the possibility of using this as a replacement to Next.js if ever the project moves to using pure React.js.
 
-## Working Routes
+### Static
+
+This folder contains folders that are not meant to change in production, usually images, videos and general CSS files. It contains:
+
+- **favicon.ico**: This is the website icon.
+- **assets/**: This folder contains CSS, Javascript files and images used in the project.
+  - **css/**:
+    * *pages/*: Contains page specific CSS files.
+    * *bootstrap.min.css*: Bootstrap CSS file.
+    * *style.css*: Main general CSS file.
+  - **img/**: Contains images.
+  - **js/**: Contains Javascript files.
+    * *bootstrap.js*: Bootstrap Javascript file
+    
+### Next Configuration
+
+`next.config.js` is the file that contains custom Next.js configurations and plugins. At the point of writing this documentation, it contains plugins that allow the use of CSS and images in the project.
+
+
+## Working Page Routes
 
 The pages are rendered but contain static data since they are still incomplete.
 
@@ -123,13 +143,19 @@ API Routes are a certain way to structure folder and files in the pages folder i
 
 The RESTful API, under the server folder in tests, are tested using Express.js, Jest, Supertest and PostgreSQL, with the functions under the routes folder. Below are the API that have been tested:
 
-- users
-- posts
-- podcasts
-- notifications
-- messages
-- friend-requests
+- *users*
+- *posts*
+- *podcasts*
+- *notifications*
+- *messages*
+- *friend-requests*
 
 At the point of writing this documentation all tests are passing all **25 tests** are passing, with CRUD capabilities.
 
 ## Plans For The Future
+
+- While a good number of routes are working, most of them do not serve dynamic content. The goal is to have all pages serve completely dynamic content.
+- There are still some API left to be created and some existing ones have yet to be implemented.
+- Next.js might be scrapped out in favour of using purely React.js for the frontend and Node.js for the backend. `server.js` in the server folder can be used for the backend given it is already working and only needs to be slightly modified.
+- Some pages need to be turned into proper components.
+- Duplicate components to be removed.

@@ -59,7 +59,7 @@ class MyApp extends App {
                 {
                     isSafari == true
                         ? <div class="browser-message vertical-align" id="browser-message">
-                            <h3>Please use either Chrome or safari to use this application.</h3>
+                            <h3>Please use either Chrome or Firefox to use this application.</h3>
                         </div>
                         : <Authenticate userData={authUser}>
                             <Sidebar authUser={authUser}>

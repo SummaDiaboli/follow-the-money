@@ -2,7 +2,7 @@
 
 * [Installation](#installation)
 
-* [Technology Used](#technology-used)
+* [Technology Stack](#technology-stack)
 
 * [Project Folder Structure](#project-folder-structure)
 
@@ -22,7 +22,7 @@
 * Run `npm run dev` in the command line to start the local server.
 * Enjoy!
 
-## Technology Used
+## Technology Stack
 - **Next.js**: This is the main technology the web app is built around. Next.js is a Server Side Rendering solution for         React. The Next.js API Routes are used to handle API related activities in the project. More information can be found on    [their website](https://nextjs.org/).
 - **React**: The project is built using the javascript React library. There is an abundant use of functional components and       React Hooks in the project. More information can be found on [their website](https://reactjs.org/).
 - **PostgreSQL**: The database used in the project is PostgreSQL because the features require a relational database and Postgre   is a tried and tested database. More information can be found on [their website](https://www.postgresql.org)

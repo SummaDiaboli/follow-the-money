@@ -3,12 +3,18 @@
  */
 
 const Pool = require('pg').Pool
+const url = require('url')
+
+const params = url.parse(process.env.DATABASE_URL)
+const auth = params.auth.split(':')
+
 const pool = new Pool({
-    user: 'admin',
-    host: 'localhost',
-    database: 'follow_the_money',
-    password: 'admin',
-    port: 5432
+    user: auth[0],
+    password: auth[1],
+    host: params.hostname,
+    port: params.port,
+    database: params.pathname.split('/')[1],
+    ssl: true
 })
 
 module.exports = pool

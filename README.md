@@ -37,6 +37,7 @@
 - [Server](#server)
 - [Static](#static)
 - [Next Configuration](#next-config)
+- [PostgreSQL Schema](#postgresql-schema)
 
 ### Components
 
@@ -116,6 +117,10 @@ This folder contains folders that are not meant to change in production, usually
 ### Next Configuration
 
 `next.config.js` is the file that contains custom Next.js configurations and plugins. At the point of writing this documentation, it contains plugins that allow the use of CSS and images in the project.
+
+### PostgreSQL Schema
+
+`follow-the-money.sql` contains the sql schema that can be queried using a tool like [pgAdmin](https://www.pgadmin.org/) to create the same database that was used for testing and implementation. All tests should pass if schema is queried properly.
 
 
 ## Working Page Routes

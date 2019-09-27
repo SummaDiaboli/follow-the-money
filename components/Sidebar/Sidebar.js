@@ -39,7 +39,7 @@ const Sidebar = ({ children, authUser }) => {
     /**
      * Number of notifications
      */
-    const [username, setUsername] = useState(authUser.username)
+    const [username, setUsername] = useState(authUser ? authUser.username : "")
     const [messagesCount, setMessagesCount] = useState(9)
     const [friendsCount, setFriendsCount] = useState(0)
     const [communitiesCount, setCommunitiesCount] = useState(0)

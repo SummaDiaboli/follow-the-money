@@ -61,7 +61,8 @@ class MyApp extends App {
                         ? <div class="browser-message vertical-align" id="browser-message">
                             <h3>Please use either Chrome or Firefox to use this application.</h3>
                         </div>
-                        : <Authenticate userData={authUser}>
+                        :  
+                        //<Authenticate userData={authUser}>
                             <Sidebar authUser={authUser}>
                                 <Component {...pageProps} />
                                 {
@@ -74,7 +75,7 @@ class MyApp extends App {
                                         : <Player />
                                 }
                             </Sidebar>
-                        </Authenticate>
+                        //</Authenticate>
                 }
 
 

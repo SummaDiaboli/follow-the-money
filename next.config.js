@@ -11,9 +11,9 @@ const withPlugins = require('next-compose-plugins')
 const withPurgeCss = require('next-purgecss')
 
 
-if (process.env.NODE_ENV === 'development') {
-    module.exports = {}
-} else {
+//if (process.env.NODE_ENV === 'development') {
+//    module.exports = {}
+//} else {
     module.exports =
         withPlugins([
             [withCSS],
@@ -21,6 +21,6 @@ if (process.env.NODE_ENV === 'development') {
             [withPurgeCss]
         ])
 
-}
+//}
 
 

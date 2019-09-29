@@ -10,23 +10,29 @@ const Sidebar = ({ children, authUser }) => {
     /**
      * Setting active nav item
      */
-    const [navState, setNavState] = useState('feed')
+    const [navState, setNavState] = useState('')
 
     const changeNav = (pathname) => {
-        switch (pathname) {
-            case '/feed':
+        /**
+         * Do not mess with this!!!
+         * This switch statement uses RegEx to
+         * determine whether or not the pathname
+         * contains whetever is being tested against
+         */
+        switch (true) {
+            case /\/feed/.test(pathname):
                 return setNavState('feed')
-            case '/messages':
+            case /\/messages/.test(pathname):
                 return setNavState('messages')
-            case '/friends':
+            case /\/friends/.test(pathname):
                 return setNavState('friends')
-            case '/communities':
+            case /\/communities/.test(pathname):
                 return setNavState('communities')
-            case '/playlists':
+            case /\/playlists/.test(pathname):
                 return setNavState('playlists')
-            case '/events':
+            case /\/events/.test(pathname):
                 return setNavState('events')
-            case '/settings':
+            case /\/settings/.test(pathname):
                 return setNavState('settings')
         }
     }
@@ -50,9 +56,9 @@ const Sidebar = ({ children, authUser }) => {
         Router.reload()
     }
 
-
     useEffect(() => {
         changeNav(window.location.pathname)
+        console.log(RegExp(/^\/communities/).test(window.location.pathname))
         // setValue(localStorage.getItem('userData'))
         return () => {
             setUsername(value != null || value != undefined ? value.username : '')

@@ -1,3 +1,5 @@
 import Communities from './Communities'
+import CommunitiesList from './CommunitiesList'
+import CommunitiesCard from './CommunitiesCard'
 
-export default Communities
+export { Communities, CommunitiesList, CommunitiesCard }

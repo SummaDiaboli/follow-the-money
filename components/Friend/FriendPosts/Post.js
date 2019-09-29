@@ -56,7 +56,6 @@ const Post = ({ userImage, username, timeCreated, postText, postImage, likes, co
                         <div className="d-flex flex-row w-100">
                             <h5>{username}</h5>
                             <i className="far ml-1 fa-check-circle color-red fa-sm"></i>
-
                         </div>
                         <span>{timeCreated}</span>
                     </div>

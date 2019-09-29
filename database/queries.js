@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
     const params = url.parse(process.env.DATABASE_URL)
     const auth = params.auth.split(':')
 
-    let pool = new Pool({
+    pool = new Pool({
         user: auth[0],
         password: auth[1],
         host: params.hostname,
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
         ssl: true
     })
 } else {
-    let pool = new Pool({
+    pool = new Pool({
         user: "admin",
         password: "admin",
         host: "localhost",

@@ -36,7 +36,13 @@ const Community = () => {
             </main>
 
             <style jsx>{`
+                .main{
+                    background: #F6F6F8;
+                }
 
+                .card{
+                    border: none!important;
+                }
             `}
             </style>
         </>

@@ -20,7 +20,7 @@ const Sidebar = ({ children, authUser }) => {
          * contains whetever is being tested against
          */
         switch (true) {
-            case /\//.test(pathname):
+            case /\/$/.test(pathname):
                 return setNavState('feed')
             case /\/feed/.test(pathname):
                 return setNavState('feed')

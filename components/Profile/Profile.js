@@ -1,10 +1,10 @@
 
 import React from 'react'
 import { NotificationIcon } from '../User'
-import AboutFriend from './AboutFriend'
+import AboutProfile from './AboutProfile'
 import { TimelineCarousel } from './TimelineCarousel'
 import { DirectMessage } from '.'
-import FriendPosts from './FriendPosts/FriendPosts'
+import ProfilePosts from './ProfilePosts/ProfilePosts'
 import InfoCard from './InfoCard'
 import { SideTab } from './SideTab'
 import PostModal from './PostModal'
@@ -25,8 +25,8 @@ const Friend = () => {
                         <hr className="w-100" />
                     </nav>
 
-                    <AboutFriend
-                        userImage="static/assets/img/user/hamzat.jpg"
+                    <AboutProfile
+                        userImage="../static/assets/img/user/hamzat.jpg"
                         username="Hamzat Lawal"
                         description="Activist | Leading a Movement of Grassroots Campaigners in Rural Communities @4lowthemoney |Founder/CEO@Connected_dev | Board Member @AYICC #SDGs"
                     />
@@ -53,7 +53,7 @@ const Friend = () => {
                                         <div className="col-8 pl-0 h-100">
                                             <div className="middle-layout">
                                                 <DirectMessage userImage="static/assets/img/user/user.jpg" userFname="Hamzat" />
-                                                <FriendPosts />
+                                                <ProfilePosts />
                                             </div>
                                         </div>
                                         <div className="col-4 pr-1">

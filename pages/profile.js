@@ -1,5 +1,5 @@
 import React from 'react'
-import { Friend } from '../components/Friend'
+import { Profile } from '../components/Profile'
 import Head from 'next/head'
 
 const FriendPage = () => {
@@ -9,10 +9,10 @@ const FriendPage = () => {
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
                 <link rel="stylesheet" type="text/css" href="static/assets/css/style.css" />
                 <link rel="stylesheet" type="text/css" href="static/assets/css/pages/friend.css" />
-                <title>Friend | Follow the Money</title>
+                <title>Profile | Follow the Money</title>
             </Head>
 
-            <Friend />
+        <Profile />
         </>
     )
 }

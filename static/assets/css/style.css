@@ -921,6 +921,14 @@ footer .player {
     justify-content: center;
 }
 
+a.username{
+    color: #000!important;
+}
+
+a.username:hover{
+    text-decoration: underline!important;
+}
+
 /* .sideTab.p-3{
     padding-right: calc(1rem + 3px)!important;
 } */

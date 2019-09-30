@@ -31,26 +31,31 @@ const Friends = () => {
                                         userImage="static/assets/img/user/hamzat.jpg"
                                         username="Hamzat Lawal"
                                         userLocation="Abuja"
+                                        userID="3774"
                                     />
                                     <FriendTile
                                         userImage="static/assets/img/user/yhasmeen.jpg"
                                         username="Yhasmeen Buba"
                                         userLocation="Lagos"
+                                        userID="3244"
                                     />
                                     <FriendTile
                                         userImage="static/assets/img/user/nasir.jpg"
                                         username="Nasir Bukar Ibrahim"
                                         userLocation="Kenya"
+                                        userID="2374"
                                     />
                                     <FriendTile
                                         userImage="static/assets/img/user/hanan.jpg"
                                         username="Christa Pinmi"
                                         userLocation="Abuja"
+                                        userID="3475"
                                     />
                                     <FriendTile
                                         userImage="static/assets/img/user/nwabuisi.jpg"
                                         username="Nwabuisi Gospel"
                                         userLocation="Kano"
+                                        userID="1353"
                                     />
                                 </div>
                             </div>

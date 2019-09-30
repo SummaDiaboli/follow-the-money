@@ -14,22 +14,22 @@ const SideTab = () => {
 
                     <div className="requests mt-1">
                         <FriendRequest
-                            userImage="static/assets/img/user/nasir.jpg"
+                            userImage="../static/assets/img/user/nasir.jpg"
                             username="Nasir Ibrahim"
                             userLocation="Abuja"
                         />
                         <FriendRequest
-                            userImage="static/assets/img/user/nwabuisi.jpg"
+                            userImage="../static/assets/img/user/nwabuisi.jpg"
                             username="Nwabuisi Gospel"
                             userLocation="Kano"
                         />
                         <FriendRequest
-                            userImage="static/assets/img/user/yhasmeen.jpg"
+                            userImage="../static/assets/img/user/yhasmeen.jpg"
                             username="Yhasmeen Buba"
                             userLocation="Zaria"
                         />
                         <FriendRequest
-                            userImage="static/assets/img/user/hamzat.jpg"
+                            userImage="../static/assets/img/user/hamzat.jpg"
                             username="Hamzat Lawal"
                             userLocation="Abuja"
                         />
@@ -41,25 +41,25 @@ const SideTab = () => {
                     <div className="playlists mt-1">
                         <ul className="p-0 d-flex flex-column">
                             <PlaylistItem
-                                image="static/assets/img/playlists/playlist1.jpg"
+                                image="../static/assets/img/playlists/playlist1.jpg"
                                 title="Battle Cry"
                                 artist="Linkin Park"
                                 duration="3:51"
                             />
                             <PlaylistItem
-                                image="static/assets/img/playlists/playlist1.jpg"
+                                image="../static/assets/img/playlists/playlist1.jpg"
                                 title="Space Oddity"
                                 artist="David Bo"
                                 duration="2:30"
                             />
                             <PlaylistItem
-                                image="static/assets/img/playlists/playlist1.jpg"
+                                image="../static/assets/img/playlists/playlist1.jpg"
                                 title="Animus Vox Cry"
                                 artist="Glit Mob"
                                 duration="4:20"
                             />
                             <PlaylistItem
-                                image="static/assets/img/playlists/playlist1.jpg"
+                                image="../static/assets/img/playlists/playlist1.jpg"
                                 title="Firefly"
                                 artist="Ghe Sun"
                                 duration="3:15"

@@ -1,7 +1,8 @@
 import React from 'react'
 import UserComment from './UserComment'
+import Link from 'next/link'
 
-const Post = ({ userPhoto, username, time, text, image, likes, comments, shares }) => {
+const Post = ({ userPhoto, username, userID, time, text, image, likes, comments, shares }) => {
     return (
         <div className="card p-3 mt-3 post w-100">
             <div className="w-100 d-flex flex-column">
@@ -9,7 +10,7 @@ const Post = ({ userPhoto, username, time, text, image, likes, comments, shares 
                     <img src={userPhoto} className="rounded-circle mr-3" alt="" />
                     <div className="d-flex flex-column">
                         <div className="d-flex flex-row" style={{alignContent: "start", justifyContent: "start"}}>
-                            <h5>{username}</h5>
+                            <Link href="/profile/[id]" as={`/profile/${userID}`}><a className="username" href=""><h5>{username}</h5></a></Link>
                             <i className="far ml-1 fa-check-circle color-red fa-sm"></i>
                         </div>
                         <span>{time}</span>

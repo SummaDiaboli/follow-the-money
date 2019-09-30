@@ -39,6 +39,7 @@ const UserPost = () => {
                 res.status === 201
                     ? console.log("Post created successfully")
                     : console.log("Post could not be created")
+                setPostText('')
             }).catch(error => {
                 console.log("Error occurred", error)
             })

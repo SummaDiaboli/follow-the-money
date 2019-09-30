@@ -3,7 +3,7 @@ const pool = require('../../database/queries')
 
 export default (req, res) => {
     const {
-        query: { username, password },
+        // query: { username, password },
         method
     } = req
 

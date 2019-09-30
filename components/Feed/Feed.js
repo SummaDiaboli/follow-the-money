@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import { UserPost, Post } from './Posts'
 import { NotificationIcon } from '../User'
-import fetch from 'isomorphic-unfetch'
-
 require('../../static/assets/css/pages/Feed.css')
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { SideTab } from './SideTab'

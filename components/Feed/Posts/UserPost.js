@@ -4,6 +4,7 @@ const UserPost = () => {
     const [userPhoto, setuserPhoto] = useState(require("../../../static/assets/img/user/user.jpg"))
 
     return (
+        <>
         <div>
             <div className="card vertical-align user-post w-100 d-flex flex-row p-3">
                 <img className="rounded-circle mr-3" src={userPhoto} alt="" />
@@ -22,7 +23,8 @@ const UserPost = () => {
                     <i className="fas fa-video color-red"></i>
                 </div>
             </div>
-        </div>
+       </div>
+        </>
     )
 }
 

@@ -71,7 +71,7 @@ const Sidebar = ({ children, authUser }) => {
         <main>
             <div className="container-fluid p-0 h-100">
                 <div className="sidebar py-4 px-5">
-                    <img src="static/assets/img/logo-red.png" className="logo" alt="logo" />
+                    <img src="../static/assets/img/logo-red.png" className="logo" alt="logo" />
 
                     <p className="font-weight-bold user pt-4">Hi {username}</p>
 

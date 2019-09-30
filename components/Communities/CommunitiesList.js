@@ -1,36 +1,37 @@
 import React, {useState} from 'react'
 import {CommunitiesCard } from './index'
 import Communities from './Communities'
+import Link from 'next/link'
 
 const CommunitiesList = () => {
     const [communities, setCommunities] = useState([
         {
-            name: 'r/Madlads',
+            name: 'Madlads',
             desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
             members: 21636
         },
         {
-            name: 'r/Askreddit',
+            name: 'Askreddit',
             desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
             members: 21636
         },
         {
-            name: 'r/ProgrammerHumor',
+            name: 'ProgrammerHumor',
             desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
             members: 21636
         },
         {
-            name: 'r/Holup',
+            name: 'Holup',
             desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
             members: 21636
         },
         {
-            name: 'r/CursedComments',
+            name: 'CursedComments',
             desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
             members: 21636
         },
         {
-            name: 'r/BlessedComments',
+            name: 'BlessedComments',
             desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
             members: 21636
         }
@@ -42,9 +43,11 @@ const CommunitiesList = () => {
                 <div className="row m-o w-100">
                     {communities.map((community) => (
                         <div className="col-3">
-                            <a href="#">
-                                <CommunitiesCard community={community}/>
-                            </a>
+                            <Link href="/communities/[id]" as={`/communities/${community.name}`}>
+                                <a>
+                                    <CommunitiesCard community={community}/>
+                                </a>
+                            </Link>
                         </div>
                     ))}
                 </div>

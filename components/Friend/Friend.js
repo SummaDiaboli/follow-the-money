@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { NotificationIcon } from '../User'
 import AboutFriend from './AboutFriend'
@@ -35,7 +36,7 @@ const Friend = () => {
                             <li>
                                 <a href="#" className="active">Timeline</a>
                                 <a href="#">Friends</a>
-                                <a href="#">Photo</a>
+                                <a href="#">Photos</a>
                                 <a href="#">More</a>
                             </li>
                         </ul>
@@ -212,7 +213,7 @@ const Friend = () => {
             }
 
             .post-popup{
-                position: absolute;
+                position: absolute!important;
                 right: 0px;
                 background: #8a8a8a;
                 color: white;

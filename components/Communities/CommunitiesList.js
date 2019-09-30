@@ -36,13 +36,13 @@ const CommunitiesList = () => {
             members: 21636
         }
     ])
-    
+
     return (
         <>
             <div className="communities mt-3">
                 <div className="row m-o w-100">
-                    {communities.map((community) => (
-                        <div className="col-3">
+                    {communities.map((community, index) => (
+                        <div key={index} className="col-3">
                             <Link href="/communities/[id]" as={`/communities/${community.name}`}>
                                 <a>
                                     <CommunitiesCard community={community}/>
@@ -63,7 +63,7 @@ const CommunitiesList = () => {
                     font-weight: 500;
                     font-family: 'Montserrat';
                 }
-                
+
                 .col-3:nth-child(n+5){
                     margin-top: 1.5rem;
                 }

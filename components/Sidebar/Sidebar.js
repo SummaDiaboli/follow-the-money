@@ -20,6 +20,8 @@ const Sidebar = ({ children, authUser }) => {
          * contains whetever is being tested against
          */
         switch (true) {
+            case /\//.test(pathname):
+                return setNavState('feed')
             case /\/feed/.test(pathname):
                 return setNavState('feed')
             case /\/messages/.test(pathname):
@@ -58,7 +60,6 @@ const Sidebar = ({ children, authUser }) => {
 
     useEffect(() => {
         changeNav(window.location.pathname)
-        console.log(RegExp(/^\/communities/).test(window.location.pathname))
         // setValue(localStorage.getItem('userData'))
         return () => {
             setUsername(value != null || value != undefined ? value.username : '')

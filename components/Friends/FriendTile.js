@@ -11,7 +11,7 @@ const FriendTile = ({ userImage, username, userLocation, userID }) => {
                     <span className="location">{userLocation}</span>
                 </div>
                 <button className="options d-flex ml-auto">
-                    <Link href="/profile/[id]" as={`/profile/${userID}`}>
+                    <Link href="/users/[id]" as={`/users/${userID}`}>
                         <i className="fas fa-ellipsis-v "></i>
                     </Link>
                 </button>

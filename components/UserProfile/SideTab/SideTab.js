@@ -1,5 +1,5 @@
 import React from 'react'
-import { FriendRequest, PlaylistItem } from '.'
+import { FriendRequest, PlaylistItem } from '../SideTab'
 
 const SideTab = () => {
     return (

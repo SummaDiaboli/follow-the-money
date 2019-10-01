@@ -9,7 +9,7 @@ import InfoCard from './InfoCard'
 import { SideTab } from './SideTab'
 import PostModal from './PostModal'
 
-const Friend = () => {
+const UserProfile = () => {
 
 
     return (
@@ -233,4 +233,4 @@ const Friend = () => {
     )
 }
 
-export default Friend
+export default UserProfile

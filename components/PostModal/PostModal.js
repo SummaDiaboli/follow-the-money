@@ -1,4 +1,5 @@
 import React from 'react'
+import { ImagePost, UserComment } from '.'
 
 const PostModal = () => {
     return (
@@ -7,22 +8,14 @@ const PostModal = () => {
                 <div className="modal-content">
                     <div className="d-flex flex-row w-100 h-100">
                         <div className="img-post">
-                            <img src="static/assets/img/posts/post1-quality.jpg" className="img-post" alt="" />
+                            <ImagePost imageUrl="../static/assets/img/posts/post1-quality.jpg" />
                         </div>
-                        <div className="h-100 px-0 py-3 right">
-                            <div className="user-comment-wrapper">
-                                <div className="user-comment p-3">
-                                    <div className="comment user-post d-flex">
-                                        <img className="rounded-circle mr-3" src="static/assets/img/user/user.jpg" alt="" />
-                                        <input type="text" className="w-50" placeholder="Add a comment..." />
-                                    </div>
-                                </div>
-                            </div>
 
+                        <div className="h-100 px-0 py-3 right">
                             <div className="post source-post p-3 w-100">
                                 <div className="w-100 d-flex flex-column">
                                     <div className="user d-flex vertical-align flex-row">
-                                        <img src="static/assets/img/user/hamzat.jpg" className="rounded-circle mr-3" alt="" />
+                                        <img src="../static/assets/img/user/hamzat.jpg" className="rounded-circle mr-3" alt="" />
                                         <div className="d-flex flex-column">
                                             <div className="d-flex flex-row w-100">
                                                 <h5>Hamzat Lawal</h5>
@@ -62,10 +55,12 @@ const PostModal = () => {
                             </div>
                             <div className="comments p-0 mt-4">
                                 <h6 className="heading px-3">All Comments</h6>
+                                <UserComment userImage="../static/assets/img/user/user.jpg" />
+
                                 <div className="post w-100 p-3">
                                     <div className="w-100 d-flex flex-column">
                                         <div className="user d-flex vertical-align flex-row">
-                                            <img src="static/assets/img/user/nasir.jpg" className="rounded-circle mr-2" alt="" />
+                                            <img src="../static/assets/img/user/nasir.jpg" className="rounded-circle mr-2" alt="" />
                                             <div className="d-flex flex-column">
                                                 <div className="d-flex flex-row w-100">
                                                     <h5 className="mb-1">Nasir Bukar Ibrahim</h5>
@@ -102,7 +97,7 @@ const PostModal = () => {
                                 <div className="post w-100 p-3">
                                     <div className="w-100 d-flex flex-column">
                                         <div className="user d-flex vertical-align flex-row">
-                                            <img src="static/assets/img/user/yhasmeen.jpg" className="rounded-circle mr-2" alt="" />
+                                            <img src="../static/assets/img/user/yhasmeen.jpg" className="rounded-circle mr-2" alt="" />
                                             <div className="d-flex flex-column">
                                                 <div className="d-flex flex-row w-100">
                                                     <h5 className="mb-1">Yhasmeen Buba</h5>

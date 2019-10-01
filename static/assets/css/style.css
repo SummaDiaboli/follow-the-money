@@ -122,22 +122,10 @@
     background-color: transparent;
 }
 
-.postModal .modal-content .user-comment-wrapper {
-    bottom: 0px;
-    left: 0px;
-    z-index: 3;
-    width: 100%;
-    background-color:#fff;
-    position: absolute;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-}
-
 .postModal .modal-content .user-comment {
     width: 100%;
     background-color:#fff;
-    position: fixed;
+    position: relative;
 }
 
 .postModal .modal-content .right::-moz-scrollbar-thumb {

@@ -66,10 +66,10 @@ class MyApp extends App {
                         :
                         //<Authenticate userData={authUser}>
                         isLoading
-                            ? <div class="container h-100">
-                                <div class="row h-100 justify-content-center align-items-center">
-                                    <div class="spinner-grow text-danger" role="status" style={{ marginTop: "25%" }}>
-                                        <span class="sr-only">Loading...</span>
+                            ? <div className="container h-100">
+                                <div className="row h-100 justify-content-center align-items-center">
+                                    <div className="spinner-grow text-danger" role="status" style={{ marginTop: "25%" }}>
+                                        <span className="sr-only">Loading...</span>
                                     </div>
                                 </div>
                             </div>

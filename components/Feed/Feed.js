@@ -14,7 +14,7 @@ const Feed = () => {
             const res = await fetch('api/posts')
             const json = await res.json()
             setPosts(json)
-        }, 5000)
+        }, 10000)
     }
 
     useEffect(() => {
@@ -52,14 +52,14 @@ const Feed = () => {
                             <div className="posts ">
                                 {
                                     posts.length == 0
-                                        ? <div class="text-center" style={{ marginTop: "5%" }}>
-                                            <div class="spinner-border" role="status" style={{ color: "#D00000" }}>
-                                                <span class="sr-only">Loading...</span>
+                                        ? <div className="text-center" style={{ marginTop: "5%" }}>
+                                            <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
+                                                <span className="sr-only">Loading...</span>
                                             </div>
                                         </div>
                                         : posts.map((post, index) => (
                                             <Post
-                                                userID={post.id}
+                                                userID={post.username}
                                                 key={index}
                                                 userPhoto={require("../../static/assets/img/user/user.jpg")}
                                                 text={post.content.text}

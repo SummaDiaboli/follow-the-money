@@ -30,6 +30,10 @@ const CommunityPosts = () => {
                 .card .post:nth-child(n+1){
                     margin-top: 1.5rem;
                 }
+
+                .card{
+                    border: none!important;
+                }
             `}
             </style>
         </>

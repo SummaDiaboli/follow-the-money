@@ -32,8 +32,8 @@ const Sidebar = ({ children, authUser }) => {
                 return setNavState('communities')
             case /\/playlists/.test(pathname):
                 return setNavState('playlists')
-            case /\/events/.test(pathname):
-                return setNavState('events')
+            // case /\/events/.test(pathname):
+            //     return setNavState('events')
             case /\/settings/.test(pathname):
                 return setNavState('settings')
         }
@@ -143,7 +143,7 @@ const Sidebar = ({ children, authUser }) => {
                             </Link>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <Link href="/events">
                                 <a className={navState == 'events' ? "active" : ""}>
                                     <i className="far fa-calendar mr-2 text-center"></i>
@@ -157,7 +157,7 @@ const Sidebar = ({ children, authUser }) => {
                                     }
                                 </a>
                             </Link>
-                        </li>
+                        </li> */}
 
                         <li>
                             <Link href="/settings">

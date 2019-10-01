@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { NotificationIcon } from '../User'
 import AboutProfile from './AboutProfile'
@@ -7,11 +6,9 @@ import { DirectMessage } from '.'
 import ProfilePosts from './ProfilePosts/ProfilePosts'
 import InfoCard from './InfoCard'
 import { SideTab } from './SideTab'
-import PostModal from './PostModal'
+import { PostModal } from '../PostModal'
 
 const UserProfile = () => {
-
-
     return (
         <>
             <PostModal />

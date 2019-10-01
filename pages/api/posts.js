@@ -26,7 +26,8 @@ const getPosts = (req, res) => {
         if (error) {
             throw error
         }
-        res.status(200).send(`Posts are: ${results.rows}`)
+        res.status(200).send(results.rows)
+
     })
 }
 

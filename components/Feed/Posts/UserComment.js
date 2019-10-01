@@ -6,7 +6,9 @@ const UserComment = () => {
     return (
         <div className="comment user-post d-flex pl-1 pt-0">
             <img className="rounded-circle mr-3" src={userPhoto} alt="" />
+
             <input type="text" className="w-50" placeholder="Add a comment..." />
+
             <div className="ml-auto h-100 vertical-align d-flex flex-row">
                 <a href="#">
                     <i className="far fa-star"></i>

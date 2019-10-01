@@ -1,11 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UserPost, Post } from './Posts'
 import { NotificationIcon } from '../User'
 require('../../static/assets/css/pages/Feed.css')
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { SideTab } from './SideTab'
+import moment from 'moment-timezone'
 
 const Feed = () => {
+    const [posts, setPosts] = useState([])
+
+    const getPosts = async () => {
+        setInterval(async () => {
+            const res = await fetch('api/posts')
+            const json = await res.json()
+            setPosts(json)
+        }, 10000)
+    }
+
+    useEffect(() => {
+        getPosts()
+        // console.log("Posts", posts)
+    }, [posts])
+
     return (
         <div className="main" style={{ overflow: "hidden" }}>
             <nav>
@@ -34,7 +50,25 @@ const Feed = () => {
                             <UserPost />
 
                             <div className="posts ">
-                                <Post
+                                {
+                                    posts.length == 0
+                                        ? <div className="text-center" style={{ marginTop: "5%" }}>
+                                            <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
+                                                <span className="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                        : posts.map((post, index) => (
+                                            <Post
+                                                userID={post.username}
+                                                key={index}
+                                                userPhoto={require("../../static/assets/img/user/user.jpg")}
+                                                text={post.content.text}
+                                                username={post.username}
+                                                time={moment(post.post_date).format('MMMM Do YYYY') /* + " " + post.post_date + post.post_time */}
+                                            />
+                                        ))
+                                }
+                                {/* <Post
                                     userPhoto={require("../../static/assets/img/user/hamzat.jpg")}
                                     username="Hamzat Lawal"
                                     userID="3774"
@@ -65,7 +99,7 @@ const Feed = () => {
                                     time="6:09pm"
                                     text="He says he's a bad guy and that he belongs on World Star HipHop"
                                     image={require("../../static/assets/img/playlists/playlist1.jpg")}
-                                />
+                                /> */}
                             </div>
                         </div>
                     </div>

@@ -35,13 +35,13 @@ const getPosts = (req, res) => {
  * Create a new position
  */
 const createPost = (req, res) => {
-    const { title, has_photo, has_audio, has_video, content, has_embedded_usernames, username } = req.body
+    const { title, has_photo, has_audio, has_video, content, has_embedded_usernames, username, type } = req.body
 
     pool.query(
         'INSERT INTO posts \
-        (title, has_photo, has_audio, has_video, content, has_embedded_usernames, username, post_date, post_time) \
-        VALUES ($1, $2, $3, $4, $5, $6, $7, current_date, current_time)',
-        [title, has_photo, has_audio, has_video, content, has_embedded_usernames, username],
+        (title, has_photo, has_audio, has_video, content, has_embedded_usernames, username, post_date, post_time, type) \
+        VALUES ($1, $2, $3, $4, $5, $6, $7, current_date, current_time, $8)',
+        [title, has_photo, has_audio, has_video, content, has_embedded_usernames, username, type],
         (error, result) => {
             if (error) {
                 throw error

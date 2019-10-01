@@ -30,6 +30,7 @@ const UserPost = () => {
                     "has_photo": hasPhoto,
                     "has_audio": hasAudio,
                     "has_video": hasVideo,
+                    "type": "user_post",
                     "has_embedded_usernames": hasEmbeddedUsernames,
                     "content": {
                         "text": postText

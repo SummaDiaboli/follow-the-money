@@ -46,8 +46,6 @@ const Post = ({ userImage, username, userID, timeCreated, postText, postImage, l
         }
     }
 
-
-
     return (
         <div className="card p-3 post w-100 mt-3">
             <div className="w-100 d-flex flex-column">
@@ -55,7 +53,11 @@ const Post = ({ userImage, username, userID, timeCreated, postText, postImage, l
                     <img src={userImage} className="rounded-circle mr-3" alt="" />
                     <div className="d-flex flex-column">
                         <div className="d-flex flex-row w-100">
-                        <Link href="/profile/[id]" as={`/profile/${userID}`}><a className="username" href=""><h5>{username}</h5></a></Link>
+                            <Link href="/profile/[id]" as={`/profile/${userID}`}>
+                                <a className="username" href="">
+                                    <h5>{username}</h5>
+                                </a>
+                            </Link>
                             <i className="far ml-1 fa-check-circle color-red fa-sm"></i>
                         </div>
                         <span>{timeCreated}</span>

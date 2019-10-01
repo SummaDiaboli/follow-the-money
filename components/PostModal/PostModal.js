@@ -3,7 +3,7 @@ import { ImagePost, UserComment } from '.'
 
 const PostModal = () => {
     return (
-        <div className="modal fade postModal" tabIndex="-1" role="dialog" aria-labelledby="postModal" /* aria-hidden="true" */>
+        <div className="modal fade postModal" role="dialog" aria-labelledby="postModal" /* aria-hidden="true" */>
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="d-flex flex-row w-100 h-100">
@@ -55,7 +55,7 @@ const PostModal = () => {
                             </div>
                             <div className="comments p-0 mt-4">
                                 <h6 className="heading px-3">All Comments</h6>
-                                <UserComment userImage="../static/assets/img/user/user.jpg" />
+                            <UserComment userImage="../static/assets/img/user/user.jpg" />
 
                                 <div className="post w-100 p-3">
                                     <div className="w-100 d-flex flex-column">

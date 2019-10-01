@@ -8,15 +8,20 @@ const Post = ({ userPhoto, username, userID, time, text, image, likes, comments,
             <div className="w-100 d-flex flex-column">
                 <div className="user d-flex flex-row mb-4">
                     <img src={userPhoto} className="rounded-circle mr-3" alt="" />
+
                     <div className="d-flex flex-column">
-                        <div className="d-flex flex-row" style={{ alignContent: "start", justifyContent: "start" }}>
+                        <div className="d-flex flex-row"
+                            style={{ alignContent: "start", justifyContent: "start" }}
+                        >
                             <Link href="/users/[id]" as={`/users/${userID}`}>
                                 <a className="username" href="">
                                     <h5>{username}</h5>
                                 </a>
                             </Link>
+
                             <i className="far ml-1 fa-check-circle color-red fa-sm"></i>
                         </div>
+
                         <span>{time}</span>
                     </div>
                 </div>

@@ -1,22 +1,29 @@
 import React from 'react'
 import Link from 'next/link'
 
-const FriendTile = ({ userImage, username, userLocation, userID }) => {
+const FriendTile = ({ userImage, userName, name, userLocation, userID }) => {
     return (
-        <div className="col-4">
-            <div className="card p-0 d-flex vertical-align flex-row">
-                <img src={userImage} alt="" style={{width: "100px"}}/>
-                <div className="d-flex flex-column ml-3">
-                    <h6 className="name">{username}</h6>
-                    <span className="location">{userLocation}</span>
-                </div>
-                <button className="options d-flex ml-auto">
-                    <Link href="/users/[id]" as={`/users/${userID}`}>
-                        <i className="fas fa-ellipsis-v "></i>
-                    </Link>
-                </button>
+        <>
+            <div className="col-4">
+                <Link href="/users/[id]" as={`/users/${userName}`}>
+                    <a>
+                        <div className="card p-0 d-flex vertical-align flex-row">
+                            <img src={userImage} alt="" style={{width: "100px"}}/>
+                            <div className="d-flex flex-column ml-3">
+                                <h6 className="name">{name}</h6>
+                                <span className="location">{userLocation}</span>
+                            </div>
+                        </div>
+                    </a>
+                </Link>            
             </div>
-        </div>
+
+            <style jsx>{`
+                a:hover .card{
+                    background: #eaeaea;
+                }
+            `}</style>
+        </>
     )
 }
 

@@ -56,63 +56,80 @@ const Messages = () => {
                                         <ul className="p-0">
                                             <MessageTile
                                                 userPhoto="static/assets/img/user/nasir.jpg"
-                                                username="Nasir Bukar Ibrahim"
+                                                name="Nasir Bukar Ibrahim"
+                                                userName="nasir"
                                                 message="Doyin, are you here? Our partners from CODE are waiting for your presentation on the quantum spectrumetron in the space time of a quantum tunnel"
                                                 timeSent="19:21"
                                                 unreadCount="8"
                                             />
                                             <MessageTile
                                                 userPhoto="static/assets/img/user/nwabuisi.jpg"
-                                                username="Nwabuisi Ibrahim"
+                                                name="Nwabuisi Ibrahim"
+                                                userName="nwabuisi"
                                                 message="Hey! What you think bout our presentation?"
                                                 timeSent="6:09"
                                             />
                                             <MessageTile
                                                 userPhoto="static/assets/img/user/yhasmeen.jpg"
-                                                username="Yhasmeen Buba"
+                                                name="Yhasmeen Buba"
+                                                userName="yhasmeen"
                                                 message="You: Nice shot :)"
                                                 timeSent="4:20"
                                                 unreadCount="1"
                                             />
                                             <MessageTile
                                                 userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
+                                                name="Hamzat Lawal"
+                                                userName="hamzat"
                                                 message="Thanks a lot, bro"
                                                 timeSent="22:01"
                                             />
                                             <MessageTile
                                                 userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
+                                                name="Hamzat Lawal"
+                                                userName="hamzat"
                                                 message="Thanks a lot, bro"
                                                 timeSent="22:01"
-                                            /><MessageTile
+                                            />
+                                            <MessageTile
                                                 userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
+                                                name="Hamzat Lawal"
+                                                userName="hamzat"
                                                 message="Thanks a lot, bro"
                                                 timeSent="22:01"
-                                            /><MessageTile
+                                            />
+                                            <MessageTile
                                                 userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
+                                                name="Hamzat Lawal"
+                                                userName="hamzat"
                                                 message="Thanks a lot, bro"
                                                 timeSent="22:01"
-                                            /><MessageTile
+                                            />
+                                            <MessageTile
                                                 userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
+                                                name="Hamzat Lawal"
+                                                userName="hamzat"
                                                 message="Thanks a lot, bro"
                                                 timeSent="22:01"
-                                            /><MessageTile
+                                            />
+                                            <MessageTile
                                                 userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
+                                                name="Hamzat Lawal"
+                                                userName="hamzat"
                                                 message="Thanks a lot, bro"
                                                 timeSent="22:01"
-                                            /><MessageTile
+                                            />
+                                            <MessageTile
                                                 userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
+                                                name="Hamzat Lawal"
+                                                userName="hamzat"
                                                 message="Thanks a lot, bro"
                                                 timeSent="22:01"
-                                            /><MessageTile
+                                            />
+                                            <MessageTile
                                                 userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
+                                                name="Hamzat Lawal"
+                                                userName="hamzat"
                                                 message="Thanks a lot, bro"
                                                 timeSent="22:01"
                                             />

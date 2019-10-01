@@ -24,26 +24,30 @@ const SideTab = () => {
 
                             <FriendRequest
                                 userPhoto={require("../../../static/assets/img/user/nasir.jpg")}
-                                username="Nasir Bukar Ibrahim"
+                                name="Nasir Bukar Ibrahim"
                                 userLocation="Abuja"
+                                userName="nasir"
                             />
 
                             <FriendRequest
                                 userPhoto={require("../../../static/assets/img/user/nwabuisi.jpg")}
-                                username="Nwabuisi Gospel"
+                                name="Nwabuisi Gospel"
                                 userLocation="Kano"
+                                userName="nwabuisi"
                             />
 
                             <FriendRequest
                                 userPhoto={require("../../../static/assets/img/user/yhasmeen.jpg")}
-                                username="Yhasmeen Buba"
+                                name="Yhasmeen Buba"
                                 userLocation
+                                userName="yhasmeen"
                             />
 
                             <FriendRequest
                                 userPhoto={require("../../../static/assets/img/user/hamzat.jpg")}
-                                username="Hamzat Lawal"
+                                name="Hamzat Lawal"
                                 userLocation="Abuja"
+                                userName="hamzat"
                             />
 
                         </div>

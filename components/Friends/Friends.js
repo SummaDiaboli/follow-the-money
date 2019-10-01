@@ -29,33 +29,33 @@ const Friends = () => {
                                 <div className="row m-0 mt-4 w-100 friends">
                                     <FriendTile
                                         userImage="static/assets/img/user/hamzat.jpg"
-                                        username="Hamzat Lawal"
+                                        name="Hamzat Lawal"
+                                        userName="hamzat"
                                         userLocation="Abuja"
-                                        userID="3774"
                                     />
                                     <FriendTile
                                         userImage="static/assets/img/user/yhasmeen.jpg"
-                                        username="Yhasmeen Buba"
+                                        name="Yhasmeen Buba"
+                                        userName="yhasmeen"
                                         userLocation="Lagos"
-                                        userID="3244"
                                     />
                                     <FriendTile
                                         userImage="static/assets/img/user/nasir.jpg"
-                                        username="Nasir Bukar Ibrahim"
+                                        name="Nasir Bukar Ibrahim"
+                                        userName="nasir"
                                         userLocation="Kenya"
-                                        userID="2374"
                                     />
                                     <FriendTile
                                         userImage="static/assets/img/user/hanan.jpg"
-                                        username="Christa Pinmi"
+                                        name="Christa Pinmi"
+                                        userName="christa"
                                         userLocation="Abuja"
-                                        userID="3475"
                                     />
                                     <FriendTile
                                         userImage="static/assets/img/user/nwabuisi.jpg"
-                                        username="Nwabuisi Gospel"
+                                        name="Nwabuisi Gospel"
+                                        userName="nwabuisi"
                                         userLocation="Kano"
-                                        userID="1353"
                                     />
                                 </div>
                             </div>

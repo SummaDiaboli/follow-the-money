@@ -59,11 +59,11 @@ const Feed = () => {
                                         </div>
                                         : posts.map((post, index) => (
                                             <Post
-                                                userID={post.username}
+                                                userName={post.username}
                                                 key={index}
                                                 userPhoto={require("../../static/assets/img/user/user.jpg")}
                                                 text={post.content.text}
-                                                username={post.username}
+                                                name={post.username}
                                                 time={moment(post.post_date).format('MMMM Do YYYY') /* + " " + post.post_date + post.post_time */}
                                             />
                                         ))

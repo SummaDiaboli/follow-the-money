@@ -2,7 +2,7 @@ import React from 'react'
 import UserComment from './UserComment'
 import Link from 'next/link'
 
-const Post = ({ userPhoto, username, userID, time, text, image, likes, comments, shares }) => {
+const Post = ({ userPhoto, userName, name, time, text, image, likes, comments, shares }) => {
     return (
         <div className="card p-3 mt-3 post w-100">
             <div className="w-100 d-flex flex-column">
@@ -13,9 +13,9 @@ const Post = ({ userPhoto, username, userID, time, text, image, likes, comments,
                         <div className="d-flex flex-row"
                             style={{ alignContent: "start", justifyContent: "start" }}
                         >
-                            <Link href="/users/[id]" as={`/users/${userID}`}>
+                            <Link href="/users/[id]" as={`/users/${userName}`}>
                                 <a className="username" href="">
-                                    <h5>{username}</h5>
+                                    <h5 className="small font-medium m-0">{name}</h5>
                                 </a>
                             </Link>
 
@@ -56,7 +56,7 @@ const Post = ({ userPhoto, username, userID, time, text, image, likes, comments,
                     </div>
                 </div>
 
-                <UserComment />
+                {/* <UserComment /> */}
             </div>
 
         </div>

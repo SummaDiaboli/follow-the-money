@@ -81,6 +81,7 @@ const Friend = () => {
             .main{
                 /* padding-top: 0px; */
                 overflow-y: auto;
+                background: #F6F6F8;
             }
 
             .profile img{

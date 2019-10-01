@@ -14,7 +14,7 @@ const InfoCard = ({ likes, followers, friends, posts }) => {
                     <h6 className="color-red">{friends} <span className="small">friends</span></h6>
                 </div>
                 <div className="col-3 text-center">
-                    <h6 className="color-red">{posts} <span className="small">posts</span></h6>
+                    <h6 className="color-red">{posts}<br></br><span className="small">posts</span></h6>
                 </div>
             </div>
         </div>

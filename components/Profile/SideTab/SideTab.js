@@ -16,22 +16,26 @@ const SideTab = () => {
                         <FriendRequest
                             userImage="../static/assets/img/user/nasir.jpg"
                             username="Nasir Ibrahim"
+                            userID="2939"
                             userLocation="Abuja"
                         />
                         <FriendRequest
                             userImage="../static/assets/img/user/nwabuisi.jpg"
                             username="Nwabuisi Gospel"
                             userLocation="Kano"
+                            userID="2933"
                         />
                         <FriendRequest
                             userImage="../static/assets/img/user/yhasmeen.jpg"
                             username="Yhasmeen Buba"
                             userLocation="Zaria"
+                            userID="2239"
                         />
                         <FriendRequest
                             userImage="../static/assets/img/user/hamzat.jpg"
                             username="Hamzat Lawal"
                             userLocation="Abuja"
+                            userID="3224"
                         />
                     </div>
                     <div className="flex-row mt-5 d-flex">

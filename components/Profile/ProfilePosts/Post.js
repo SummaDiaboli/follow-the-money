@@ -1,6 +1,7 @@
 import React, { useState, createRef } from 'react'
+import Link from 'next/link'
 
-const Post = ({ userImage, username, timeCreated, postText, postImage, likes, comments, shares }) => {
+const Post = ({ userImage, username, userID, timeCreated, postText, postImage, likes, comments, shares }) => {
     const [isVisible, setIsVisible] = useState(false)
 
     const reference = createRef()
@@ -54,7 +55,7 @@ const Post = ({ userImage, username, timeCreated, postText, postImage, likes, co
                     <img src={userImage} className="rounded-circle mr-3" alt="" />
                     <div className="d-flex flex-column">
                         <div className="d-flex flex-row w-100">
-                            <h5>{username}</h5>
+                        <Link href="/profile/[id]" as={`/profile/${userID}`}><a className="username" href=""><h5>{username}</h5></a></Link>
                             <i className="far ml-1 fa-check-circle color-red fa-sm"></i>
                         </div>
                         <span>{timeCreated}</span>

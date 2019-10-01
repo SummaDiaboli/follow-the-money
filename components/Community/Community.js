@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {useRouter} from 'next/router'
 import ImageHeader from './ImageHeader'
 import { MiddleLayout } from './MiddleLayout/MiddleLayout'
+import { SideTab } from './SideTab/SideTab'
 
 const Community = () => {
     const router = useRouter()
@@ -26,7 +27,11 @@ const Community = () => {
                             </div>
                             <div className="col-12 p-0">
                                  <div className="row m-0 w-100 px-4 py-2">
+                                    <div className="col-12 pt-3 p-0">
+                                        <h6 className="color-grey font-semiBold my-1">Posts</h6>
+                                    </div>
                                     <MiddleLayout />
+                                    <SideTab />
                                  </div>
                             </div>
                             

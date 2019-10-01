@@ -4,8 +4,7 @@ import Post from './Post'
 const CommunityPosts = () => {
     return (
         <>
-            <div className="posts mt-3">
-                <h6 className="color-grey font-semiBold my-4">Posts</h6>
+            <div className="posts mt-3">                
                 <Post
                     userImage="../static/assets/img/user/hamzat.jpg"
                     username="Hamzat Lawal"

@@ -1,9 +1,44 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { NotificationIcon } from '../User'
 import { Searchbar } from '../Searchbar'
 import FriendTile from './FriendTile'
 
 const Friends = () => {
+    const [friends, setFriends] = useState(
+        [
+            {
+                userImage:"static/assets/img/user/hamzat.jpg",
+                name:"Hamzat Lawal",
+                userName:"hamzat",
+                userLocation:"Abuja"   
+            },
+            {
+                userImage:"static/assets/img/user/yhasmeen.jpg",
+                name:"Yhasmeen Buba",
+                userName:"yhasmeen",
+                userLocation:"Lagos"   
+            },
+            {
+                userImage:"static/assets/img/user/nasir.jpg",
+                name:"Nasir Ibrahim",
+                userName:"nasir",
+                userLocation:"Abuja"   
+            },
+            {
+                userImage:"static/assets/img/user/hanan.jpg",
+                name:"Christa Pinmi",
+                userName:"christa",
+                userLocation:"Port Harcourt"   
+            },
+            {
+                userImage:"static/assets/img/user/nwabuisi.jpg",
+                name:"Nwabuisi Gospel",
+                userName:"nwabuisi",
+                userLocation:"Adamawa"   
+            },
+        ]
+    )
+
     return (
         <main>
             <div className="main" style={{ overflow: "hidden" }}>
@@ -27,36 +62,14 @@ const Friends = () => {
                             <div className="main-layout">
                                 <Searchbar />
                                 <div className="row m-0 mt-4 w-100 friends">
-                                    <FriendTile
-                                        userImage="static/assets/img/user/hamzat.jpg"
-                                        name="Hamzat Lawal"
-                                        userName="hamzat"
-                                        userLocation="Abuja"
-                                    />
-                                    <FriendTile
-                                        userImage="static/assets/img/user/yhasmeen.jpg"
-                                        name="Yhasmeen Buba"
-                                        userName="yhasmeen"
-                                        userLocation="Lagos"
-                                    />
-                                    <FriendTile
-                                        userImage="static/assets/img/user/nasir.jpg"
-                                        name="Nasir Bukar Ibrahim"
-                                        userName="nasir"
-                                        userLocation="Kenya"
-                                    />
-                                    <FriendTile
-                                        userImage="static/assets/img/user/hanan.jpg"
-                                        name="Christa Pinmi"
-                                        userName="christa"
-                                        userLocation="Abuja"
-                                    />
-                                    <FriendTile
-                                        userImage="static/assets/img/user/nwabuisi.jpg"
-                                        name="Nwabuisi Gospel"
-                                        userName="nwabuisi"
-                                        userLocation="Kano"
-                                    />
+                                    {friends.map((friend) => (
+                                        <FriendTile
+                                            userImage={friend.userImage}
+                                            name={friend.name}
+                                            userName={friend.userName}
+                                            userLocation={friend.userLocation}
+                                        />
+                                    ))}
                                 </div>
                             </div>
                         </div>

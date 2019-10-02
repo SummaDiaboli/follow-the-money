@@ -49,7 +49,7 @@ const UserProfile = () => {
                                     <div className="row m-0 mt-4 w-100 friends">
                                         <div className="col-8 pl-0 h-100">
                                             <div className="middle-layout">
-                                                <DirectMessage userImage="static/assets/img/user/user.jpg" userFname="Hamzat" />
+                                                <DirectMessage userImage="../static/assets/img/user/user.jpg" userFname="Hamzat" />
                                                 <ProfilePosts />
                                             </div>
                                         </div>

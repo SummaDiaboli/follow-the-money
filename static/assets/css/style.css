@@ -414,16 +414,16 @@ form .options a {
 }
 
 .sidebar .signout div{
-    margin-top: 9rem!important;
-    background: rgba(0, 0, 0, 0.1);
+    margin-top: 11rem!important;
+    background: #D10000;
     border-radius: 30px;
     font-size: 0.9rem;
-    color: #454545!important;
+    color: #fff!important;
     width: 60%;
 }
 
 .sidebar .signout:hover div{
-    background: rgba(0, 0, 0, 0.2);
+    opacity: 0.7;
 }
 
 .main {

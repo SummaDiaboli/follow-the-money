@@ -15,27 +15,27 @@ const SideTab = () => {
                     <div className="requests mt-1">
                         <FriendRequest
                             userImage="../static/assets/img/user/nasir.jpg"
-                            username="Nasir Ibrahim"
-                            userID="2939"
+                            name="Nasir Ibrahim"
+                            userName="2939"
                             userLocation="Abuja"
                         />
                         <FriendRequest
                             userImage="../static/assets/img/user/nwabuisi.jpg"
-                            username="Nwabuisi Gospel"
+                            name="Nwabuisi Gospel"
                             userLocation="Kano"
-                            userID="2933"
+                            userName="nwabuisi"
                         />
                         <FriendRequest
                             userImage="../static/assets/img/user/yhasmeen.jpg"
-                            username="Yhasmeen Buba"
+                            name="Yhasmeen Buba"
                             userLocation="Zaria"
-                            userID="2239"
+                            userName="yhasmeen"
                         />
                         <FriendRequest
                             userImage="../static/assets/img/user/hamzat.jpg"
-                            username="Hamzat Lawal"
+                            name="Hamzat Lawal"
                             userLocation="Abuja"
-                            userID="3224"
+                            userName="hamzat"
                         />
                     </div>
                     <div className="flex-row mt-5 d-flex">

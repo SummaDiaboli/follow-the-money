@@ -74,6 +74,7 @@ class MyApp extends App {
                                 </div>
                             </div>
                             :
+                        <Authenticate userData={authUser}>
                             <Sidebar authUser={authUser}>
                                 <Component {...pageProps} />
                                 {
@@ -86,7 +87,7 @@ class MyApp extends App {
                                         : <Player />
                                 }
                             </Sidebar>
-                    //</Authenticate>
+                    </Authenticate>
                 }
 
 

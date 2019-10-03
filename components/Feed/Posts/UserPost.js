@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
+import Cookies from 'js-cookie'
 
 const UserPost = () => {
+    const [value, setValue] = useState(Cookies.getJSON('userData'))
+
     const [userPhoto, setuserPhoto] = useState(require("../../../static/assets/img/user/user.jpg"))
     const [postText, setPostText] = useState('')
     const [hasPhoto, setHasPhoto] = useState(false)
@@ -11,6 +14,15 @@ const UserPost = () => {
     const [username, setUsername] = useState('test')
     const [postTitle, setPostTitle] = useState('test')
 
+    const [sendPostActive, setSendPostActive] = useState(false)
+
+    useLayoutEffect(() => {
+        if (postText != '') {
+            setSendPostActive(true)
+        } else {
+            setSendPostActive(false)
+        }
+    }, [postText])
 
     const onChangeText = e => {
         setPostText(e.target.value)
@@ -65,7 +77,7 @@ const UserPost = () => {
                         <button><i className="far fa-smile ml-3"></i></button>
                         <div className="border mx-3"></div>
                         <button onClick={submitPost}>
-                            <i className="fas fa-paper-plane color-red" />
+                            <i className={`fas fa-paper-plane ${sendPostActive ? "color-red" : "color-grey"}`} />
                         </button>
                     </div>
                 </div>

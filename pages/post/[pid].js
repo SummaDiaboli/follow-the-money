@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { Post } from '../../components/Post'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
 
-const Post = ({ query }) => {
-    useEffect(() => {
-        console.log(query.pid)
-    }, [])
+const PostPage = () => {
+    const router = useRouter()
+    const { pid } = router.query
+
     return (
-        <div className="main" style={{ overflow: "hidden" }}>
-            {query.pid}
-        </div>
+        <>
+            <Head>
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+                <link rel="stylesheet" type="text/css" href="static/assets/css/style.css" />
+                <link rel="stylesheet" type="text/css" href="static/assets/css/pages/feed.css" />
+                <title>{pid}</title>
+            </Head>
+
+            <Post />
+        </>
     )
 }
 
-Post.getInitialProps = ({ req, query }) => {
-    // return { pathname: query }
-    console.log(query)
-    return { query }
-}
-
-export default Post
+export default PostPage

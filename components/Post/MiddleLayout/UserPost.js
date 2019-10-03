@@ -1,7 +1,7 @@
 import React, { useState, createRef } from 'react'
 import Link from 'next/link'
 
-const Post = ({ userImage, userName, name, timeCreated, postText, postImage, likes, comments, shares }) => {
+const UserPost = ({ userImage, userName, name, timeCreated, postText, postImage, likes, comments, shares }) => {
     const [isVisible, setIsVisible] = useState(false)
 
     const reference = createRef()
@@ -110,4 +110,4 @@ const Post = ({ userImage, userName, name, timeCreated, postText, postImage, lik
     )
 }
 
-export default Post
+export default UserPost

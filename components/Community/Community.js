@@ -23,7 +23,7 @@ const Community = () => {
                     <div className="container-fluid p-0">
                         <div className="row m-0 w-100">
                             <div className="col-12 p-0">
-                                <ImageHeader community={community}/>
+                                <ImageHeader community={community} communityId={id}/>
                             </div>
                             <div className="col-12 p-0">
                                  <div className="row m-0 w-100 px-4 py-2">

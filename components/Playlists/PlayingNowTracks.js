@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PlayingNowTracks = ({id, imageSrc, trackName, duration, guest}) => {
+const PlayingNowTracks = ({id, imageSrc, trackName, duration, artist}) => {
     const trackReference = React.createRef()
 
     let highlightTrack = () => {
@@ -29,7 +29,7 @@ const PlayingNowTracks = ({id, imageSrc, trackName, duration, guest}) => {
                 <img src={imageSrc} alt="" />
                 <div className="d-flex flex-column ml-2">
                     <h5 className="m-0 font-medium small">{trackName}</h5>
-                    <p className="smaller mt-1 m-0 font-medium">{guest}</p>
+                    <p className="smaller mt-1 m-0 font-medium">{artist}</p>
                 </div>
                 <div className="d-flex ml-auto options vertical-align flex-row">
                     <span className="duration">{duration}</span>

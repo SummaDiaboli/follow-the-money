@@ -3,7 +3,7 @@ import {CommunitiesCard } from './index'
 import Communities from './Communities'
 import Link from 'next/link'
 
-const CommunitiesList = () => {
+const CommunitiesList = (searchValue) => {
     const [communities, setCommunities] = useState([
         {
             name: 'Madlads',
@@ -37,18 +37,33 @@ const CommunitiesList = () => {
         }
     ])
 
+    // console.log(searchValue.searchValue)
+    // console.log('blessedcomments'.includes(searchValue.searchValue))
     return (
         <>
             <div className="communities mt-3">
                 <div className="row m-o w-100">
                     {communities.map((community, index) => (
+                        searchValue.searchValue == '' ?
                         <div key={index} className="col-3">
                             <Link href="/communities/[id]" as={`/communities/${community.name}`}>
                                 <a>
                                     <CommunitiesCard community={community}/>
                                 </a>
                             </Link>
-                        </div>
+                        </div> :
+                        (
+                            community.name.toLowerCase().includes(searchValue.searchValue) ?
+                            <div key={index} className="col-3">
+                                <Link href="/communities/[id]" as={`/communities/${community.name}`}>
+                                    <a>
+                                        <CommunitiesCard community={community}/>
+                                    </a>
+                                </Link>
+                            </div>
+                            :
+                            ''
+                        )
                     ))}
                 </div>
             </div>

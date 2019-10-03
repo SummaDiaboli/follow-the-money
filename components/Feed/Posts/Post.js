@@ -35,24 +35,24 @@ const Post = ({ userPhoto, userName, name, time, text, image, likes, comments, s
                     }
 
                     <div className="d-flex flex-row actions mt-3">
-                        <a href="#">
+                        <button className="m-0">
                             <div className="d-flex flex-row vertical-align">
                                 <i className="far fa-heart"></i>
                                 <span className="ml-1">{likes}</span>
                             </div>
-                        </a>
-                        <a href="#">
+                        </button>
+                        <button className="m-0">
                             <div className="d-flex flex-row vertical-align ml-3">
                                 <i className="far fa-comment"></i>
                                 <span className="ml-1">{comments}</span>
                             </div>
-                        </a>
-                        <a href="#">
+                        </button>
+                        <button className="m-0">
                             <div className="d-flex flex-row vertical-align ml-3">
                                 <i className="fas fa-retweet"></i>
                                 <span className="ml-1">{shares}</span>
                             </div>
-                        </a>
+                        </button>
                     </div>
                 </div>
 

@@ -85,24 +85,24 @@ const Post = ({ userImage, userName, name, timeCreated, postText, postImage, lik
                         postImage && <img src={postImage} alt="" />
                     }
                     <div className="d-flex flex-row actions mt-3">
-                        <a href="#">
+                        <button className="m-0">
                             <div className="d-flex flex-row vertical-align">
                                 <i className="far fa-heart"></i>
                                 <span className="ml-1">{likes}</span>
                             </div>
-                        </a>
-                        <a href="#">
-                            <div className="d-flex flex-row vertical-align ml-3">
+                        </button>
+                        <button className="m-0">
+                            <div className="d-flex flex-row vertical-align ml-4">
                                 <i className="far fa-comment"></i>
                                 <span className="ml-1">{comments}</span>
                             </div>
-                        </a>
-                        <a href="#">
-                            <div className="d-flex flex-row vertical-align ml-3">
+                        </button>
+                        <button className="m-0">
+                            <div className="d-flex flex-row vertical-align ml-4">
                                 <i className="fas fa-retweet"></i>
                                 <span className="ml-1">{shares}</span>
                             </div>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>

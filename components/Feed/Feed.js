@@ -7,7 +7,7 @@ import { SideTab } from './SideTab'
 import moment from 'moment-timezone'
 
 const Feed = () => {
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState(null)
 
 
     useEffect(() => {
@@ -68,23 +68,25 @@ const Feed = () => {
 
                             <div className="posts ">
                                 {
-                                    posts.length == 0
+                                    posts === null
                                         ? <div className="text-center" style={{ marginTop: "5%" }}>
                                             <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
                                                 <span className="sr-only">Loading...</span>
                                             </div>
                                         </div>
-                                        : posts.map((post, index) => (
-                                            <Post
-                                                userName={post.username}
-                                                key={index}
-                                                pid={index + 1}
-                                                userPhoto={require("../../static/assets/img/user/user.jpg")}
-                                                text={post.content.text}
-                                                name={post.username}
-                                                time={moment(post.post_date).format('MMMM Do YYYY') /* + " " + post.post_date + post.post_time */}
-                                            />
-                                        ))
+                                        : posts.length == 0
+                                            ? <></>
+                                            : posts.map((post, index) => (
+                                                <Post
+                                                    userName={post.username}
+                                                    key={index}
+                                                    pid={post.id}
+                                                    userPhoto={require("../../static/assets/img/user/user.jpg")}
+                                                    text={post.content.text}
+                                                    name={post.username}
+                                                    time={moment(post.post_date).format('MMMM Do YYYY') /* + " " + post.post_date + post.post_time */}
+                                                />
+                                            ))
                                 }
                             </div>
                         </div>

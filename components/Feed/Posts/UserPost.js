@@ -3,7 +3,8 @@ import fetch from 'isomorphic-unfetch'
 import Cookies from 'js-cookie'
 
 const UserPost = () => {
-    const [value, setValue] = useState(Cookies.getJSON('userData'))
+    const user = Cookies.getJSON('userData')
+    const username = user.username
 
     const [userPhoto, setuserPhoto] = useState(require("../../../static/assets/img/user/user.jpg"))
     const [postText, setPostText] = useState('')
@@ -11,7 +12,6 @@ const UserPost = () => {
     const [hasAudio, setHasAudio] = useState(false)
     const [hasVideo, setHasVideo] = useState(false)
     const [hasEmbeddedUsernames, setHasEmbeddedUsernames] = useState(false)
-    const [username, setUsername] = useState('test')
     const [postTitle, setPostTitle] = useState('test')
 
     const [sendPostActive, setSendPostActive] = useState(false)
@@ -50,8 +50,8 @@ const UserPost = () => {
                 })
             }).then(res => {
                 res.status === 201
-                    ? console.log("Post created successfully")
-                    : console.log("Post could not be created")
+                    ? "Post created successfully"
+                    : "Post could not be created"
                 setPostText('')
             }).catch(error => {
                 console.log("Error occurred", error)

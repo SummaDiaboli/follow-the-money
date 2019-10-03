@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 const SideTab = () => {
     const [communityName, setCommunityName] = useState('Madlads')
     const [communityMembers, setCommunityMembers] = useState(249)
-    const [userStatus, setUserStatus] = useState(true)
+    const [userStatus, setUserStatus] = useState(false)
 
-    const handleJoin = () =>{
+    const handleJoin = () => {
         setUserStatus(!userStatus)
     }
 
-    const hoverChange = e =>{
+    const hoverChange = e => {
         switch (userStatus) {
             case true:
                 e.target.innerHTML = 'Leave'
@@ -31,15 +31,15 @@ const SideTab = () => {
                 <div className="card p-3 mt-4 sidetab">
                     <span className="heading smaller">COMMUNITY DETAILS</span>
                     <span className="description">
-                        Phosfluorescently re-engineer high standards in models and holistic testing procedures. 
-                        Rapidiously build team driven interfaces via future-proof synergy. 
+                        Phosfluorescently re-engineer high standards in models and holistic testing procedures.
+                        Rapidiously build team driven interfaces via future-proof synergy.
                         Compellingly matrix resource-leveling metrics before alternative.
                     </span>
                     <div className="d-flex pt-4 flex-row vertical-align w-100">
                         <button
-                            className={"d-flex " + (userStatus ? 'joined' : '')} 
-                            onMouseOver={hoverChange} 
-                            onMouseLeave={mouseOut} 
+                            className={"d-flex " + (userStatus ? 'joined' : '')}
+                            onMouseOver={hoverChange}
+                            onMouseLeave={mouseOut}
                             onClick={handleJoin}
                         >
                             {
@@ -61,7 +61,7 @@ const SideTab = () => {
                 .members{
                     font-size: 0.85rem;
                 }
-                
+
                 button{
                     font-size: 0.8rem;
                     padding: 0.5rem 1.2rem;

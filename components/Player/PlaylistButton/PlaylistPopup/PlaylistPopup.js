@@ -26,37 +26,37 @@ const PlaylistPopup = () => {
                 <ul className="p-0 mr-1">
                     <PlaylistTile
                         isActive
-                        image="static/assets/img/playlists/playlist1.jpg"
+                        image="../../../../static/assets/img/playlists/playlist1.jpg"
                         title="Reimagine Schools"
                         artistName="Dr Greg Golns"
                         duration="3:11"
                     />
                     <PlaylistTile
-                        image="static/assets/img/playlists/playlist1.jpg"
+                        image="../../../../static/assets/img/playlists/playlist1.jpg"
                         title="Island in the sun"
                         artistName="Kevwe"
                         duration="3:20"
                     />
                     <PlaylistTile
-                        image="static/assets/img/playlists/playlist1.jpg"
+                        image="../../../../static/assets/img/playlists/playlist1.jpg"
                         title="Nico and the Niners"
                         artistName="Mukthar"
                         duration="3:37"
                     />
                     <PlaylistTile
-                        image="static/assets/img/playlists/playlist1.jpg"
+                        image="../../../../static/assets/img/playlists/playlist1.jpg"
                         title="Wake"
                         artistName="Innocent Eteng"
                         duration="4:20"
                     />
                     <PlaylistTile
-                        image="static/assets/img/playlists/playlist1.jpg"
+                        image="../../../../static/assets/img/playlists/playlist1.jpg"
                         title="Battle Cry"
                         artistName="Connected Students"
                         duration="3:11"
                     />
                     <PlaylistTile
-                        image="static/assets/img/playlists/playlist1.jpg"
+                        image="../../../../static/assets/img/playlists/playlist1.jpg"
                         title="Thousand Years"
                         artistName="Moyi Abioye"
                         duration="3:11"

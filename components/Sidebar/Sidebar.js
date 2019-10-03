@@ -159,14 +159,14 @@ const Sidebar = ({ children, authUser }) => {
                             </Link>
                         </li> */}
 
-                        <li>
+                        {/* <li>
                             <Link href="/settings">
                                 <a className={navState == 'settings' ? "active" : ""}>
                                     <i className="fas fa-cog mr-2 text-center"></i>
                                     <span>Settings</span>
                                 </a>
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                     <a href="#" className="signout" onClick={signOut}>
                         <div className="d-flex vertical-align flex-row py-2 px-3">
@@ -181,11 +181,11 @@ const Sidebar = ({ children, authUser }) => {
     )
 }
 
-const fetchData = async () => {
+/* const fetchData = async () => {
     const userData = localStorage.getItem('userData')
     console.log(userData)
     const res = await fetch(`/api/users?username=${username}&password=${password}`)
     return console.log(res)
 }
-
+ */
 export default Sidebar

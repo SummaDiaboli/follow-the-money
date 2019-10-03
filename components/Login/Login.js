@@ -107,7 +107,7 @@ const Login = () => {
             lastName != '' &&
             password.length >= 8
         ) {
-            fetch('api/users', {
+            fetch('/api/users', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
@@ -124,15 +124,13 @@ const Login = () => {
                     "role": 'user'
                 })
             }).then(res => {
-                res.status === 201
-                    ? Router.push('/')
-                        .then(() => {
-                            Cookies.set('userData', { username }, { expires: 7 })
-                        })
-                        .then(() => {
-                            Router.reload()
-                        })
-                    : setUserExists(false)
+                if (res.status === 201) {
+                    Cookies.set('userData', { username }, { expires: 7 })
+                    Router.reload()
+                    Router.push('/')
+                } else {
+                    setUserExists(false)
+                }
             })
         }
         setIsLoading(false)

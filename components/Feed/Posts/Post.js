@@ -16,7 +16,7 @@ const Post = ({
 }) => {
     return (
         <Link href="/post/[pid]" as={`/post/${pid}`}>
-            <a href="">
+            <a>
                 <div className="card p-3 mt-3 post w-100">
                     <div className="w-100 d-flex flex-column">
                         <div className="user d-flex flex-row mb-4">
@@ -38,7 +38,7 @@ const Post = ({
                                         href="/users/[id]"
                                         as={`/users/${userName}`}
                                     >
-                                        <a className="username" href="">
+                                        <a className="username">
                                             <h5 className="small font-medium m-0">
                                                 {name}
                                             </h5>

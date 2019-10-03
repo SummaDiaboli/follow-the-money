@@ -10,10 +10,10 @@ const PostPage = () => {
     return (
         <>
             <Head>
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+                {/* <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
                 <link rel="stylesheet" type="text/css" href="static/assets/css/style.css" />
-                <link rel="stylesheet" type="text/css" href="static/assets/css/pages/feed.css" />
-                <title>{pid}</title>
+                <link rel="stylesheet" type="text/css" href="static/assets/css/pages/feed.css" /> */}
+                <title>Post | Follow The Money</title>
             </Head>
 
             <Post />

@@ -68,38 +68,6 @@ const Feed = () => {
                                             />
                                         ))
                                 }
-                                {/* <Post
-                                    userPhoto={require("../../static/assets/img/user/hamzat.jpg")}
-                                    username="Hamzat Lawal"
-                                    userID="3774"
-                                    time="8:15pm, yesterday"
-                                    text="Had the honour to be welcomed yesterday &amp; meeting for the ﬁrst time  @UKinNigeria High Commissioner @CatrionaLaing1 during #QBP19 She is an amazing personality and a true friend of Nigeria and her people. Looking forward to exploring collaborations centered on innovation #SDGs"
-                                    image={require("../../static/assets/img/posts/post1.jpg")}
-                                    likes="2.1k"
-                                    comments="201"
-                                    shares="1.2k"
-                                />
-
-                                <Post
-                                    userPhoto={require("../../static/assets/img/user/hanan.jpg")}
-                                    username="Hanan Dilong"
-                                    userID="2174"
-                                    time="8:15pm, yesterday"
-                                    text="Hello there. It’s my second serial social entrepreneurship course."
-                                    image={null}
-                                    likes="2.1k"
-                                    comments="420"
-                                    shares="96k"
-                                />
-
-                                <Post
-                                    userPhoto={require("../../static/assets/img/user/nwabuisi.jpg")}
-                                    username="Momoyioluwa Abioye"
-                                    userID="3324"
-                                    time="6:09pm"
-                                    text="He says he's a bad guy and that he belongs on World Star HipHop"
-                                    image={require("../../static/assets/img/playlists/playlist1.jpg")}
-                                /> */}
                             </div>
                         </div>
                     </div>

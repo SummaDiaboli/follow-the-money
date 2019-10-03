@@ -1,10 +1,10 @@
 import React from 'react'
 
-const ImageHeader = ({community}) => {
+const ImageHeader = ({community, communityId}) => {
     return (
         <>
             <div className="col-12 d-flex">
-                <h3 className="d-flex text-white mt-auto pl-2">{community.name}</h3>
+                <h3 className="d-flex text-white mt-auto pl-2">{communityId}</h3>
             </div>
 
             <style jsx>{`

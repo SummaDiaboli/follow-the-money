@@ -6,7 +6,7 @@ import MessageDisplay from './MessageDisplay'
 require('../../static/assets/css/pages/Messages.css')
 
 const Messages = () => {
-    const [messages, setMessages] = useState([
+    const permanentMessages = [
         {
             userPhoto:"static/assets/img/user/nasir.jpg",
             name:"Nasir Bukar Ibrahim",
@@ -64,7 +64,10 @@ const Messages = () => {
             message:"Hey! What you think bout our presentation?",
             timeSent:"08:11"
         } 
-    ])
+    ]
+
+    const [messages, setMessages] = useState(permanentMessages)
+    
 
     useEffect(() => {
         const truncate = (id) => {

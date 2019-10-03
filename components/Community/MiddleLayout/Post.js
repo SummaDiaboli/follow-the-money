@@ -71,8 +71,6 @@ const Post = ({ userImage, username, timeCreated, postText, postImage, likes, co
                         >
                             <button
                                 className=""
-                                data-toggle="modal"
-                                data-target=".postModal"
                                 style={{ padding: 0, marginLeft: "left", color: "black" }}
                             >
                                 View More

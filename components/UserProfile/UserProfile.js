@@ -6,13 +6,10 @@ import { DirectMessage } from '.'
 import ProfilePosts from './ProfilePosts/ProfilePosts'
 import InfoCard from './InfoCard'
 import { SideTab } from './SideTab'
-import { PostModal } from '../PostModal'
 
 const UserProfile = () => {
     return (
         <>
-            <PostModal />
-
             <main style={{ paddingTop: "0px" }}>
                 <div className="main" id="main" style={{ paddingTop: "0px" }}>
                     <nav className="pt-3">

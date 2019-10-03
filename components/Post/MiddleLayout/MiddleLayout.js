@@ -127,6 +127,8 @@ const MiddleLayout = () => {
                             <h6 className="mb-4">Comments</h6>
                             {commentPosts.map((commentPost, index) =>(
                                 <CommentPost
+                                    key = {index}
+                                    pid = {index+1}
                                     userImage={commentPost.userImage}
                                     userName={commentPost.userName}
                                     timeCreated={commentPost.timeCreated}

@@ -10,7 +10,8 @@ const CommentPost = ({
     postImage,
     likes,
     comments,
-    shares
+    shares,
+    pid
 }) => {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -52,79 +53,89 @@ const CommentPost = ({
 
     return (
         <>
-            <div className="post pt-3 w-100 mt-3">
-                <div className="w-100 d-flex flex-column">
-                    <div className="user d-flex vertical-align flex-row">
-                        <img
-                            src={userImage}
-                            className="rounded-circle mr-3"
-                            alt=""
-                        />
-                        <div className="d-flex flex-column">
-                            <div className="d-flex flex-row w-100">
-                                <Link
-                                    href="/users/[id]"
-                                    as={`/users/${userName}`}
+            <Link href="/post/[pid]" as={`/post/${pid}`}>
+                <a href="">
+                    <div className="post pt-3 w-100">
+                        <div className="w-100 d-flex flex-column">
+                            <div className="user d-flex vertical-align flex-row">
+                                <img
+                                    src={userImage}
+                                    className="rounded-circle mr-3"
+                                    alt=""
+                                />
+                                <div className="d-flex flex-column">
+                                    <div className="d-flex flex-row w-100">
+                                        <Link
+                                            href="/users/[id]"
+                                            as={`/users/${userName}`}
+                                        >
+                                            <a className="username" href="">
+                                                <h5>{name}</h5>
+                                            </a>
+                                        </Link>
+                                        <i className="far ml-1 fa-check-circle color-red fa-sm"></i>
+                                    </div>
+                                    <span>{timeCreated}</span>
+                                </div>
+                                <button
+                                    onClick={showPostPopup}
+                                    className="ml-auto d-flex"
+                                    id="post-popup-toggler"
                                 >
-                                    <a className="username" href="">
-                                        <h5>{name}</h5>
-                                    </a>
-                                </Link>
-                                <i className="far ml-1 fa-check-circle color-red fa-sm"></i>
+                                    <i className="fas fa-ellipsis-h color-grey"></i>
+                                </button>
+                                <div
+                                    ref={reference}
+                                    className="card p-3 post-popup"
+                                    id="post-popup"
+                                    style={{ visibility: { isVisible } }}
+                                >
+                                    <button
+                                        className=""
+                                        style={{
+                                            padding: 0,
+                                            marginLeft: "left",
+                                            color: "black"
+                                        }}
+                                    >
+                                        View More
+                                    </button>
+                                </div>
                             </div>
-                            <span>{timeCreated}</span>
-                        </div>
-                        <button
-                            onClick={showPostPopup}
-                            className="ml-auto d-flex"
-                            id="post-popup-toggler"
-                        >
-                            <i className="fas fa-ellipsis-h color-grey"></i>
-                        </button>
-                        <div
-                            ref={reference}
-                            className="card p-3 post-popup"
-                            id="post-popup"
-                            style={{ visibility: { isVisible } }}
-                        >
-                            <button
-                                className=""
-                                style={{
-                                    padding: 0,
-                                    marginLeft: "left",
-                                    color: "black"
-                                }}
-                            >
-                                View More
-                            </button>
-                        </div>
-                    </div>
-                    <div className="content">
-                        <p className="mt-4">{postText}</p>
-                        {postImage && <img src={postImage} alt="" />}
-                        <div className="d-flex flex-row actions mt-3">
-                            <button className="m-0">
-                                <div className="d-flex flex-row vertical-align">
-                                    <i className="far fa-heart"></i>
-                                    <span className="ml-1">{likes}</span>
+                            <div className="content">
+                                <p className="mt-4">{postText}</p>
+                                {postImage && <img src={postImage} alt="" />}
+                                <div className="d-flex flex-row actions mt-3">
+                                    <button className="m-0">
+                                        <div className="d-flex flex-row vertical-align">
+                                            <i className="far fa-heart"></i>
+                                            <span className="ml-1">
+                                                {likes}
+                                            </span>
+                                        </div>
+                                    </button>
+                                    <button className="m-0">
+                                        <div className="d-flex flex-row vertical-align ml-3">
+                                            <i className="far fa-comment"></i>
+                                            <span className="ml-1">
+                                                {comments}
+                                            </span>
+                                        </div>
+                                    </button>
+                                    <button className="m-0">
+                                        <div className="d-flex flex-row vertical-align ml-3">
+                                            <i className="fas fa-retweet"></i>
+                                            <span className="ml-1">
+                                                {shares}
+                                            </span>
+                                        </div>
+                                    </button>
                                 </div>
-                            </button>
-                            <button className="m-0">
-                                <div className="d-flex flex-row vertical-align ml-3">
-                                    <i className="far fa-comment"></i>
-                                    <span className="ml-1">{comments}</span>
-                                </div>
-                            </button>
-                            <button className="m-0">
-                                <div className="d-flex flex-row vertical-align ml-3">
-                                    <i className="fas fa-retweet"></i>
-                                    <span className="ml-1">{shares}</span>
-                                </div>
-                            </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </a>
+            </Link>
 
             <style jsx>{`
                 .post:before {

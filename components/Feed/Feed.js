@@ -78,6 +78,7 @@ const Feed = () => {
                                             <Post
                                                 userName={post.username}
                                                 key={index}
+                                                pid={index + 1}
                                                 userPhoto={require("../../static/assets/img/user/user.jpg")}
                                                 text={post.content.text}
                                                 name={post.username}

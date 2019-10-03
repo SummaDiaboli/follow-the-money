@@ -695,10 +695,12 @@ form .options a {
 
 .post .user span {
     font-size: 0.7rem;
+    color: #000;
 }
 
 .post .content p {
     font-size: 0.8rem;
+    color: #000;
 }
 
 .post .content img {
@@ -713,6 +715,10 @@ form .options a {
 .post .actions i {
     font-size: 1em;
 }
+
+/* a:hover .post{
+    background: #eeeeee
+} */
 
 
 .sideTab h6 {

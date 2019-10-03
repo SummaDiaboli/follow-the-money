@@ -47,7 +47,8 @@ const UserPost = ({ userImage, userName, name, timeCreated, postText, postImage,
     }
 
     return (
-        <div className="card p-3 post w-100 mt-3">
+        <>
+        <div className="post w-100 mt-3">
             <div className="w-100 d-flex flex-column">
                 <div className="user d-flex vertical-align flex-row">
                     <img src={userImage} className="rounded-circle mr-3" alt="" />
@@ -82,31 +83,41 @@ const UserPost = ({ userImage, userName, name, timeCreated, postText, postImage,
                 <div className="content">
                     <p className="mt-4">{postText}</p>
                     {
-                        postImage && <img src={postImage} alt="" />
+                        postImage && <img src={postImage} className="mt-2" alt="" />
                     }
                     <div className="d-flex flex-row actions mt-3">
-                        <a href="#">
+                        <button className="m-0">
                             <div className="d-flex flex-row vertical-align">
                                 <i className="far fa-heart"></i>
                                 <span className="ml-1">{likes}</span>
+                                <span className="pl-1">Likes</span>
                             </div>
-                        </a>
-                        <a href="#">
-                            <div className="d-flex flex-row vertical-align ml-3">
-                                <i className="far fa-comment"></i>
-                                <span className="ml-1">{comments}</span>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="d-flex flex-row vertical-align ml-3">
+                        </button>
+                        <button className="m-0">
+                            <div className="d-flex flex-row vertical-align ml-4">
                                 <i className="fas fa-retweet"></i>
                                 <span className="ml-1">{shares}</span>
+                                <span className="pl-1">Shares</span>
                             </div>
-                        </a>
+                        </button>
+                        <button className="m-0">
+                            <div className="d-flex flex-row vertical-align ml-4">
+                                <span className="ml-1">{comments}</span>
+                                <span className="pl-1">Comments</span>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <style jsx>{`
+            .post .content img {
+                height: auto;
+                width: 100%;
+            }
+        `}</style>
+        </>
     )
 }
 

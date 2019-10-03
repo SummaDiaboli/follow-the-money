@@ -9,16 +9,33 @@ import moment from 'moment-timezone'
 const Feed = () => {
     const [posts, setPosts] = useState([])
 
-    const getPosts = async () => {
-        setInterval(async () => {
-            const res = await fetch('api/posts')
-            const json = await res.json()
-            setPosts(json)
-        }, 10000)
-    }
 
     useEffect(() => {
+        const abortController = new window.AbortController()
+        const signal = abortController.signal
+
+        const getPosts = () => {
+            setInterval(() => {
+                fetch('api/posts', { signal })
+                    .then(res => {
+                        res.json().then((posts) => setPosts(posts))
+                    })
+                    .catch(err => {
+                        if (err.name === 'AbortError') {
+                            return 'Promise Aborted'
+                        } else {
+                            return 'Promise Rejected'
+                        }
+                    })
+                // const json = await res.json()
+                // setPosts(json)
+            }, 8000)
+        }
         getPosts()
+        // console.table(posts)
+        return () => {
+            abortController.abort()
+        }
         // console.log("Posts", posts)
     }, [posts])
 

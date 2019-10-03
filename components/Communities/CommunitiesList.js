@@ -38,7 +38,6 @@ const CommunitiesList = (searchValue) => {
     ])
 
     // console.log(searchValue.searchValue)
-    // console.log('blessedcomments'.includes(searchValue.searchValue))
     return (
         <>
             <div className="communities mt-3">
@@ -53,7 +52,7 @@ const CommunitiesList = (searchValue) => {
                             </Link>
                         </div> :
                         (
-                            community.name.toLowerCase().includes(searchValue.searchValue) ?
+                            community.name.toLowerCase().includes(searchValue.searchValue.toLowerCase()) ?
                             <div key={index} className="col-3">
                                 <Link href="/communities/[id]" as={`/communities/${community.name}`}>
                                     <a>

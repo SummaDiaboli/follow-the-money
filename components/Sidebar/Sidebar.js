@@ -10,23 +10,31 @@ const Sidebar = ({ children, authUser }) => {
     /**
      * Setting active nav item
      */
-    const [navState, setNavState] = useState('feed')
+    const [navState, setNavState] = useState('')
 
     const changeNav = (pathname) => {
-        switch (pathname) {
-            case '/feed':
+        /**
+         * Do not mess with this!!!
+         * This switch statement uses RegEx to
+         * determine whether or not the pathname
+         * contains whetever is being tested against
+         */
+        switch (true) {
+            case /\/$/.test(pathname):
                 return setNavState('feed')
-            case '/messages':
+            case /\/feed/.test(pathname):
+                return setNavState('feed')
+            case /\/messages/.test(pathname):
                 return setNavState('messages')
-            case '/friends':
+            case /\/friends/.test(pathname):
                 return setNavState('friends')
-            case '/communities':
+            case /\/communities/.test(pathname):
                 return setNavState('communities')
-            case '/playlists':
+            case /\/playlists/.test(pathname):
                 return setNavState('playlists')
-            case '/events':
-                return setNavState('events')
-            case '/settings':
+            // case /\/events/.test(pathname):
+            //     return setNavState('events')
+            case /\/settings/.test(pathname):
                 return setNavState('settings')
         }
     }
@@ -39,7 +47,7 @@ const Sidebar = ({ children, authUser }) => {
     /**
      * Number of notifications
      */
-    const [username, setUsername] = useState(authUser.username)
+    const [username, setUsername] = useState(authUser ? authUser.username : "")
     const [messagesCount, setMessagesCount] = useState(9)
     const [friendsCount, setFriendsCount] = useState(0)
     const [communitiesCount, setCommunitiesCount] = useState(0)
@@ -49,7 +57,6 @@ const Sidebar = ({ children, authUser }) => {
         Cookies.remove('userData')
         Router.reload()
     }
-
 
     useEffect(() => {
         changeNav(window.location.pathname)
@@ -65,7 +72,7 @@ const Sidebar = ({ children, authUser }) => {
         <main>
             <div className="container-fluid p-0 h-100">
                 <div className="sidebar py-4 px-5">
-                    <img src="static/assets/img/logo-red.png" className="logo" alt="logo" />
+                    <img src="../static/assets/img/logo-red.png" className="logo" alt="logo" />
 
                     <p className="font-weight-bold user pt-4">Hi {username}</p>
 
@@ -136,7 +143,7 @@ const Sidebar = ({ children, authUser }) => {
                             </Link>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <Link href="/events">
                                 <a className={navState == 'events' ? "active" : ""}>
                                     <i className="far fa-calendar mr-2 text-center"></i>
@@ -150,16 +157,16 @@ const Sidebar = ({ children, authUser }) => {
                                     }
                                 </a>
                             </Link>
-                        </li>
+                        </li> */}
 
-                        <li>
+                        {/* <li>
                             <Link href="/settings">
                                 <a className={navState == 'settings' ? "active" : ""}>
                                     <i className="fas fa-cog mr-2 text-center"></i>
                                     <span>Settings</span>
                                 </a>
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                     <a href="#" className="signout" onClick={signOut}>
                         <div className="d-flex vertical-align flex-row py-2 px-3">
@@ -174,11 +181,11 @@ const Sidebar = ({ children, authUser }) => {
     )
 }
 
-const fetchData = async () => {
+/* const fetchData = async () => {
     const userData = localStorage.getItem('userData')
     console.log(userData)
     const res = await fetch(`/api/users?username=${username}&password=${password}`)
     return console.log(res)
 }
-
+ */
 export default Sidebar

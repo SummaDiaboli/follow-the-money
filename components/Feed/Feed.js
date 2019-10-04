@@ -1,12 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UserPost, Post } from './Posts'
 import { NotificationIcon } from '../User'
-
 require('../../static/assets/css/pages/Feed.css')
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { SideTab } from './SideTab'
+import moment from 'moment-timezone'
 
 const Feed = () => {
+    const [posts, setPosts] = useState(null)
+
+
+    useEffect(() => {
+        const abortController = new window.AbortController()
+        const signal = abortController.signal
+
+        const getPosts = () => {
+            setInterval(() => {
+                fetch('api/posts', { signal })
+                    .then(res => {
+                        res.json().then((posts) => setPosts(posts))
+                    })
+                    .catch(err => {
+                        if (err.name === 'AbortError') {
+                            return 'Promise Aborted'
+                        } else {
+                            return 'Promise Rejected'
+                        }
+                    })
+                // const json = await res.json()
+                // setPosts(json)
+            }, 8000)
+        }
+        getPosts()
+        // console.table(posts)
+        return () => {
+            abortController.abort()
+        }
+        // console.log("Posts", posts)
+    }, [posts])
+
     return (
         <div className="main" style={{ overflow: "hidden" }}>
             <nav>
@@ -35,35 +67,27 @@ const Feed = () => {
                             <UserPost />
 
                             <div className="posts ">
-                                <Post
-                                    userPhoto={require("../../static/assets/img/user/hamzat.jpg")}
-                                    username="Hamzat Lawal"
-                                    time="8:15pm, yesterday"
-                                    text="Had the honour to be welcomed yesterday &amp; meeting for the ﬁrst time  @UKinNigeria High Commissioner @CatrionaLaing1 during #QBP19 She is an amazing personality and a true friend of Nigeria and her people. Looking forward to exploring collaborations centered on innovation #SDGs"
-                                    image={require("../../static/assets/img/posts/post1.jpg")}
-                                    likes="2.1k"
-                                    comments="201"
-                                    shares="1.2k"
-                                />
-
-                                <Post
-                                    userPhoto={require("../../static/assets/img/user/hanan.jpg")}
-                                    username="Hanan Dilong"
-                                    time="8:15pm, yesterday"
-                                    text="Hello there. It’s my second serial social entrepreneurship course."
-                                    image={null}
-                                    likes="2.1k"
-                                    comments="420"
-                                    shares="96k"
-                                />
-
-                                <Post
-                                    userPhoto={require("../../static/assets/img/user/nwabuisi.jpg")}
-                                    username="Momoyioluwa Abioye"
-                                    time="6:09pm"
-                                    text="He says he's a bad guy and that he belongs on World Star HipHop"
-                                    image={require("../../static/assets/img/playlists/playlist1.jpg")}
-                                />
+                                {
+                                    posts === null
+                                        ? <div className="text-center" style={{ marginTop: "5%" }}>
+                                            <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
+                                                <span className="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                        : posts.length == 0
+                                            ? <></>
+                                            : posts.map((post, index) => (
+                                                <Post
+                                                    userName={post.username}
+                                                    key={index}
+                                                    pid={post.id}
+                                                    userPhoto={require("../../static/assets/img/user/user.jpg")}
+                                                    text={post.content.text}
+                                                    name={post.username}
+                                                    time={moment(post.post_date).format('MMMM Do YYYY') /* + " " + post.post_date + post.post_time */}
+                                                />
+                                            ))
+                                }
                             </div>
                         </div>
                     </div>

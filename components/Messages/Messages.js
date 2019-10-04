@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NotificationIcon } from '../User'
 import MessageTile from './MessageTile'
 import MessageDisplay from './MessageDisplay'
@@ -6,6 +6,69 @@ import MessageDisplay from './MessageDisplay'
 require('../../static/assets/css/pages/Messages.css')
 
 const Messages = () => {
+    const permanentMessages = [
+        {
+            userPhoto:"static/assets/img/user/nasir.jpg",
+            name:"Nasir Bukar Ibrahim",
+            userName:"nasir",
+            message:"Doyin, are you here? Our partners from CODE are waiting for your presentation on the quantum spectrumetron in the space time of a quantum tunnel",
+            timeSent:"19:21",
+            unreadCount:"8"
+        },
+        {
+            userPhoto:"static/assets/img/user/nwabuisi.jpg",
+            name:"Nwabuisi Gospel",
+            userName:"nwabuisi",
+            message:"Hey! What you think bout our presentation?",
+            timeSent:"08:11"
+        },
+        {
+            userPhoto:"static/assets/img/user/nwabuisi.jpg",
+            name:"Nwabuisi Gospel",
+            userName:"nwabuisi",
+            message:"Hey! What you think bout our presentation?",
+            timeSent:"08:11"
+        },
+        {
+            userPhoto:"static/assets/img/user/nwabuisi.jpg",
+            name:"Nwabuisi Gospel",
+            userName:"nwabuisi",
+            message:"Hey! What you think bout our presentation?",
+            timeSent:"08:11"
+        },
+        {
+            userPhoto:"static/assets/img/user/nwabuisi.jpg",
+            name:"Nwabuisi Gospel",
+            userName:"nwabuisi",
+            message:"Hey! What you think bout our presentation?",
+            timeSent:"08:11"
+        },
+        {
+            userPhoto:"static/assets/img/user/nwabuisi.jpg",
+            name:"Nwabuisi Gospel",
+            userName:"nwabuisi",
+            message:"Hey! What you think bout our presentation?",
+            timeSent:"08:11"
+        },
+        {
+            userPhoto:"static/assets/img/user/nwabuisi.jpg",
+            name:"Nwabuisi Gospel",
+            userName:"nwabuisi",
+            message:"Hey! What you think bout our presentation?",
+            timeSent:"08:11"
+        },
+        {
+            userPhoto:"static/assets/img/user/nwabuisi.jpg",
+            name:"Nwabuisi Gospel",
+            userName:"nwabuisi",
+            message:"Hey! What you think bout our presentation?",
+            timeSent:"08:11"
+        } 
+    ]
+
+    const [messages, setMessages] = useState(permanentMessages)
+    
+
     useEffect(() => {
         const truncate = (id) => {
             let string = document.getElementById(id).innerHTML;
@@ -54,92 +117,36 @@ const Messages = () => {
 
                                     <div className="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
                                         <ul className="p-0">
-                                            <MessageTile
-                                                userPhoto="static/assets/img/user/nasir.jpg"
-                                                username="Nasir Bukar Ibrahim"
-                                                message="Doyin, are you here? Our partners from CODE are waiting for your presentation on the quantum spectrumetron in the space time of a quantum tunnel"
-                                                timeSent="19:21"
-                                                unreadCount="8"
-                                            />
-                                            <MessageTile
-                                                userPhoto="static/assets/img/user/nwabuisi.jpg"
-                                                username="Nwabuisi Ibrahim"
-                                                message="Hey! What you think bout our presentation?"
-                                                timeSent="6:09"
-                                            />
-                                            <MessageTile
-                                                userPhoto="static/assets/img/user/yhasmeen.jpg"
-                                                username="Yhasmeen Buba"
-                                                message="You: Nice shot :)"
-                                                timeSent="4:20"
-                                                unreadCount="1"
-                                            />
-                                            <MessageTile
-                                                userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
-                                                message="Thanks a lot, bro"
-                                                timeSent="22:01"
-                                            />
-                                            <MessageTile
-                                                userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
-                                                message="Thanks a lot, bro"
-                                                timeSent="22:01"
-                                            /><MessageTile
-                                                userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
-                                                message="Thanks a lot, bro"
-                                                timeSent="22:01"
-                                            /><MessageTile
-                                                userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
-                                                message="Thanks a lot, bro"
-                                                timeSent="22:01"
-                                            /><MessageTile
-                                                userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
-                                                message="Thanks a lot, bro"
-                                                timeSent="22:01"
-                                            /><MessageTile
-                                                userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
-                                                message="Thanks a lot, bro"
-                                                timeSent="22:01"
-                                            /><MessageTile
-                                                userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
-                                                message="Thanks a lot, bro"
-                                                timeSent="22:01"
-                                            /><MessageTile
-                                                userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
-                                                message="Thanks a lot, bro"
-                                                timeSent="22:01"
-                                            />
+                                            {messages.map((message, index) =>( 
+                                                <MessageTile
+                                                    key={index}
+                                                    userPhoto={message.userPhoto}
+                                                    name={message.name}
+                                                    userName={message.userName}
+                                                    message={message.message}
+                                                    timeSent={message.timeSent}
+                                                    unreadCount={message.unreadCount}
+                                                />))
+                                            }                                            
                                         </ul>
                                     </div>
 
                                     <div className="tab-pane fade" id="pills-unread" role="tabpanel" aria-labelledby="pills-unread-tab">
                                         <ul className="p-0">
-                                            <MessageTile
-                                                userPhoto="static/assets/img/user/nwabuisi.jpg"
-                                                username="Nwabuisi Ibrahim"
-                                                message="Hey! What you think bout our presentation?"
-                                                timeSent="6:09"
-                                                unreadCount="420"
-                                            />
-                                            <MessageTile
-                                                userPhoto="static/assets/img/user/yhasmeen.jpg"
-                                                username="Yhasmeen Buba"
-                                                message="You: Nice shot"
-                                                timeSent="23:59"
-                                            />
-                                            <MessageTile
-                                                userPhoto="static/assets/img/user/hamzat.jpg"
-                                                username="Hamzat Lawal"
-                                                message="Thank you a lot"
-                                                timeSent="19:08"
-                                            />
+                                            {messages.map((message, index) =>(
+                                                message.unreadCount ? 
+                                                <MessageTile
+                                                    key={index}
+                                                    userPhoto={message.userPhoto}
+                                                    name={message.name}
+                                                    userName={message.userName}
+                                                    message={message.message}
+                                                    timeSent={message.timeSent}
+                                                    unreadCount={message.unreadCount}
+                                                /> :
+                                                ''
+                                                ))
+                                            }
                                         </ul>
                                     </div>
 

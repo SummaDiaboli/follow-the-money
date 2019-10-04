@@ -1,14 +1,17 @@
+// import pool from '../../database/queries.js'
 const pool = require('../../database/queries')
 
 export default (req, res) => {
     const {
-        query: { username, password },
+        // query: { username, password },
         method
     } = req
 
+    // console.log(req.query)
+
     switch (method) {
         case 'GET':
-            getUser(req, res, username, password)
+            getUser(req, res)
             break
 
         case 'POST':
@@ -17,7 +20,7 @@ export default (req, res) => {
 
         default:
             res.setHeader('Allow', ['GET', 'POST'])
-            res.status(405).end(`Method ${method} Not Allowed`)
+            res.status(405).send(`Method ${method} Not Allowed`)
     }
 }
 
@@ -38,7 +41,8 @@ export default (req, res) => {
 /**
  * Check if user is in PostgreSQL database
  */
-const getUser = (request, response, username, password) => {
+const getUser = (request, response) => {
+    const { username, password } = request.query
     pool.query('SELECT * FROM users WHERE username = $1 AND password = $2',
         [username, password],
         (error, result) => {
@@ -54,6 +58,8 @@ const getUser = (request, response, username, password) => {
             }
         })
 }
+
+
 
 /**
  * Create new users

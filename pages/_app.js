@@ -18,13 +18,15 @@ require('../static/assets/css/pages/friend.css')
 
 class MyApp extends App {
     state = {
-        path: null
+        path: null,
+        isLoading: true
     }
 
     componentDidMount() {
         const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
         this.setState({
             isSafari,
+            isLoading: false,
             path: window.location.pathname,
             authUser: Cookies.getJSON('userData')
         })
@@ -44,7 +46,7 @@ class MyApp extends App {
 
     render() {
         const { Component, pageProps } = this.props
-        const { path, isSafari, authUser } = this.state
+        const { path, isSafari, authUser, isLoading } = this.state
         return (
             <div>
                 <Head>
@@ -61,7 +63,18 @@ class MyApp extends App {
                         ? <div class="browser-message vertical-align" id="browser-message">
                             <h3>Please use either Chrome or Firefox to use this application.</h3>
                         </div>
-                        : <Authenticate userData={authUser}>
+                        :
+                        //<Authenticate userData={authUser}>
+                        isLoading
+                            ? <div className="container h-100">
+                                <div className="row h-100 justify-content-center align-items-center">
+                                    <div className="spinner-grow text-danger" role="status" style={{ marginTop: "25%" }}>
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            :
+                        <Authenticate userData={authUser}>
                             <Sidebar authUser={authUser}>
                                 <Component {...pageProps} />
                                 {
@@ -74,7 +87,7 @@ class MyApp extends App {
                                         : <Player />
                                 }
                             </Sidebar>
-                        </Authenticate>
+                    </Authenticate>
                 }
 
 

@@ -1,12 +1,17 @@
 import React from 'react'
+import Link from 'next/link'
 
-const MessageTile = ({ userPhoto, username, message, timeSent, unreadCount }) => {
+const MessageTile = ({ userPhoto, userName, name, message, timeSent, unreadCount }) => {
     return (
         <li className="message">
             <div className="d-flex flex-row">
                 <img src={userPhoto} alt="" />
                 <div className="d-flex flex-column ml-2">
-                    <h6 className="user m-0">{username} </h6>
+                    <Link href="/users/[id]" as={`/users/${userName}`}>
+                        <a className="username" href="">
+                            <h5 className="small font-medium m-0">{name}</h5>
+                        </a>
+                    </Link>
                     <span className="pt-1 message-content" id="truncate-text">
                         {message}
                     </span>

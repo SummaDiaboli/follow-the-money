@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import Communities from '../components/Communities'
+import { Communities } from '../components/Communities'
 
 const CommunitiesPage = () => {
 

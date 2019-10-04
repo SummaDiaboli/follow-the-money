@@ -10,33 +10,55 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [username, setUsername] = useState('')
 
+    const [firstNameEmpty, setFirstNameEmpty] = useState(false)
+    const [lastNameEmpty, setLastNameEmpty] = useState(false)
+    const [emailEmpty, setEmailEmpty] = useState(false)
+    const [usernameEmpty, setUsernameEmpty] = useState(false)
+    const [passwordEmpty, setPasswordEmpty] = useState(false)
+    const [passwordWeak, setPasswordWeak] = useState(false)
+
+    const [correctLoginInfo, setCorrectLoginInfo] = useState(true)
+    const [userExists, setUserExists] = useState(true)
+    const [fieldsFilled, setFieldsFilled] = useState(true)
+
+    const [isLoading, setIsLoading] = useState(false)
+
     const onChangeFName = e => {
+        setFirstNameEmpty(false)
         setfirstName(e.target.value)
     }
 
     const onChangeLName = e => {
+        setLastNameEmpty(false)
         setlastName(e.target.value)
     }
 
     const onChangeEmail = e => {
+        setEmailEmpty(false)
         setEmail(e.target.value)
     }
 
     const onChangePassword = e => {
+        setPasswordEmpty(false)
+        setPasswordWeak(false)
         setPassword(e.target.value)
     }
 
     const onChangeUsername = e => {
+        setUsernameEmpty(false)
         setUsername(e.target.value)
     }
 
     const signInUser = () => {
+        setCorrectLoginInfo(true)
+        setFieldsFilled(true)
+        setIsLoading(true)
         if (username != '' && password != '') {
             fetch(`/api/users?username=${username}&password=${password}`, {
                 method: 'get'
             }).then((res) => {
-                res.status === 200
-                    ? Router.push('/')
+                if (res.status === 200) {
+                    Router.push('/')
                         .then(() => {
                             res.json().then(data => {
                                 // localStorage.setItem('userData', JSON.stringify(data[0]))
@@ -46,20 +68,46 @@ const Login = () => {
                         .then(() => {
                             Router.reload()
                         })
-                    : alert("User does not exist in the database")
+                } else {
+                    setCorrectLoginInfo(false)
+                    setIsLoading(false)
+                }
             })
         } else {
-            alert("Please fill in both the username and password fields")
+            // alert("Please fill the username and password fields")
+            setFieldsFilled(false)
+            setIsLoading(false)
         }
     }
 
     const signUpUser = () => {
-        if (username != '' &&
+        setIsLoading(true)
+        if (username == '') {
+            setUsernameEmpty(true)
+        }
+        if (email == '') {
+            setEmailEmpty(true)
+        }
+        if (firstName == '') {
+            setFirstNameEmpty(true)
+        }
+        if (lastName == '') {
+            setLastNameEmpty(true)
+        }
+        if (password == '') {
+            setPasswordEmpty(true)
+        }
+        if (password.length < 8) {
+            setPasswordWeak(true)
+        }
+        if (
+            username != '' &&
             email != '' &&
             firstName != '' &&
             lastName != '' &&
-            password != '') {
-            fetch('api/users', {
+            password.length >= 8
+        ) {
+            fetch('/api/users', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
@@ -76,19 +124,19 @@ const Login = () => {
                     "role": 'user'
                 })
             }).then(res => {
-                res.status === 201
-                    ? Router.push('/')
-                        .then(() => {
-                            Cookies.set('userData', { username }, { expires: 7 })
-                        })
-                        .then(() => {
-                            Router.reload()
-                        })
-                    : alert("Could not sign you up.")
+                if (res.status === 201) {
+                    Cookies.set('userData', { username }, { expires: 7 })
+                    Router.reload()
+                    Router.push('/')
+                } else {
+                    setUserExists(false)
+                }
             })
-        } else {
-            alert("Please fill in all available fields")
         }
+        setIsLoading(false)
+        /* else {
+            alert("Please fill in all available fields")
+        } */
     }
 
     return (
@@ -129,7 +177,26 @@ const Login = () => {
                             </ul>
 
                             <div className="tab-content" id="pills-tabContent">
+
                                 <div className="tab-pane fade show active pt-0 mx-auto" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
+                                    <div className="d-block text-center">
+                                        <small
+                                            hidden={correctLoginInfo}
+                                            className="form-text text-danger"
+                                            style={{ marginTop: "2%", marginBottom: "0%" }}
+                                        >
+                                            Invalid username or password
+                                        </small>
+
+                                        <small
+                                            hidden={fieldsFilled}
+                                            className="form-text text-danger"
+                                            style={{ marginTop: "2%", marginBottom: "0%" }}
+                                        >
+                                            Please fill the username and password fields
+                                        </small>
+                                    </div>
+
                                     <form action="" className="px-3 py-4">
 
                                         <div className="form-group">
@@ -170,18 +237,26 @@ const Login = () => {
                                                     Remember Me
                                                 </label>
                                             </div>
+
+
                                         </div>
 
                                         <div className="d-block text-center">
                                             {/* <Link href="/"> */}
                                             <a
                                                 href="#"
-                                                className="btn bg-red mx-auto text-white mt-5 font-semiBold"
+                                                className="btn bg-red mx-auto text-white mt-4 font-semiBold"
                                                 role="button"
                                                 style={{ backgroundColor: "#D10000" }}
                                                 onClick={signInUser}
                                             >
-                                                Continue
+                                                {
+                                                    isLoading
+                                                        ? <div className="spinner-border spinner-border-sm" role="status">
+                                                            <span className="sr-only">Loading...</span>
+                                                        </div>
+                                                        : <> Continue </>
+                                                }
                                             </a>
                                             {/* </Link> */}
                                         </div>
@@ -213,6 +288,17 @@ const Login = () => {
 
                                 <div className="tab-pane fade" id="pills-signup" role="tabpanel" aria-labelledby="pills-signup-tab">
                                     <form action="" className="px-3 py-4">
+
+                                        <div className="d-block text-center">
+                                            <small
+                                                hidden={userExists}
+                                                className="form-text text-danger"
+                                            // style={{ marginTop: "2%", marginBottom: "0%" }}
+                                            >
+                                                User already exists
+                                            </small>
+                                        </div>
+
                                         <div className="form-group">
                                             <input
                                                 type="text"
@@ -223,6 +309,12 @@ const Login = () => {
                                                 value={firstName}
                                                 onChange={onChangeFName}
                                             />
+                                            <small
+                                                hidden={!firstNameEmpty}
+                                                className="form-text text-danger"
+                                            >
+                                                This field cannot be empty
+                                            </small>
                                         </div>
 
                                         <div className="form-group">
@@ -235,6 +327,12 @@ const Login = () => {
                                                 value={lastName}
                                                 onChange={onChangeLName}
                                             />
+                                            <small
+                                                hidden={!lastNameEmpty}
+                                                className="form-text text-danger"
+                                            >
+                                                This field cannot be empty
+                                            </small>
                                         </div>
 
                                         <div className="form-group">
@@ -247,6 +345,12 @@ const Login = () => {
                                                 value={username}
                                                 onChange={onChangeUsername}
                                             />
+                                            <small
+                                                hidden={!usernameEmpty}
+                                                className="form-text text-danger"
+                                            >
+                                                This field cannot be empty
+                                            </small>
                                         </div>
 
                                         <div className="form-group">
@@ -259,6 +363,12 @@ const Login = () => {
                                                 value={email}
                                                 onChange={onChangeEmail}
                                             />
+                                            <small
+                                                hidden={!emailEmpty}
+                                                className="form-text text-danger"
+                                            >
+                                                This field cannot be empty
+                                            </small>
                                         </div>
 
                                         <div className="form-group">
@@ -271,6 +381,18 @@ const Login = () => {
                                                 value={password}
                                                 onChange={onChangePassword}
                                             />
+                                            <small
+                                                hidden={!passwordEmpty}
+                                                className="form-text text-danger"
+                                            >
+                                                This field cannot be empty
+                                            </small>
+                                            <small
+                                                hidden={!passwordWeak}
+                                                className="form-text text-danger"
+                                            >
+                                                Must have 8 or more characters
+                                            </small>
                                         </div>
 
                                         <div className="d-block text-center">
@@ -282,7 +404,13 @@ const Login = () => {
                                                 style={{ backgroundColor: "#D10000" }}
                                                 onClick={signUpUser}
                                             >
-                                                Sign Up
+                                                {
+                                                    isLoading
+                                                        ? <div className="spinner-border spinner-border-sm" role="status">
+                                                            <span className="sr-only">Loading...</span>
+                                                        </div>
+                                                        : <> Sign Up </>
+                                                }
                                             </a>
                                             {/* </Link> */}
                                         </div>

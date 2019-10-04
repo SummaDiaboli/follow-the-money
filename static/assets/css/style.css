@@ -122,22 +122,10 @@
     background-color: transparent;
 }
 
-.postModal .modal-content .user-comment-wrapper {
-    bottom: 0px;
-    left: 0px;
-    z-index: 3;
-    width: 100%;
-    background-color:#fff;
-    position: absolute;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-}
-
 .postModal .modal-content .user-comment {
     width: 100%;
     background-color:#fff;
-    position: fixed;
+    position: relative;
 }
 
 .postModal .modal-content .right::-moz-scrollbar-thumb {
@@ -322,11 +310,6 @@ textarea {
     font-family: "Montserrat", sans-serif;
 }
 
-:-moz-placeholder {
-    color: rgba(0, 0, 0, 0.37) !important;
-    font-family: "Montserrat", sans-serif;
-}
-
 form .options {
     font-size: 0.7rem;
     color: rgba(0, 0, 0, 0.37) !important;
@@ -426,16 +409,16 @@ form .options a {
 }
 
 .sidebar .signout div{
-    margin-top: 9rem!important;
-    background: rgba(0, 0, 0, 0.1);
+    margin-top: 14rem!important;
+    background: #D10000;
     border-radius: 30px;
     font-size: 0.9rem;
-    color: #454545!important;
+    color: #fff!important;
     width: 60%;
 }
 
 .sidebar .signout:hover div{
-    background: rgba(0, 0, 0, 0.2);
+    opacity: 0.7;
 }
 
 .main {
@@ -712,24 +695,30 @@ form .options a {
 
 .post .user span {
     font-size: 0.7rem;
+    color: #000;
 }
 
 .post .content p {
     font-size: 0.8rem;
+    color: #000;
 }
 
 .post .content img {
     height: 150px;
 }
 
-.post .actions a {
-    color: #d6d6d6;
+.post .actions button {
+    color: #a3a3a3;
     font-weight: 500;
 }
 
 .post .actions i {
     font-size: 1em;
 }
+
+/* a:hover .post{
+    background: #eeeeee
+} */
 
 
 .sideTab h6 {
@@ -919,6 +908,14 @@ footer .loaded {
 
 footer .player {
     justify-content: center;
+}
+
+a.username{
+    color: #000!important;
+}
+
+a.username:hover{
+    text-decoration: underline!important;
 }
 
 /* .sideTab.p-3{

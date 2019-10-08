@@ -10,7 +10,7 @@ const NewComment: React.FC<Params> = ({ postId }) => {
     const [sendPostActive, setSendPostActive] = useState(false)
     const [postText, setPostText] = useState('')
     const user = Cookies.getJSON('userData')
-    const username = user.username
+    const username: string = user.username
 
     const onChangeText = e => {
         setPostText(e.target.value)

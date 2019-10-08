@@ -1,6 +1,8 @@
+import { Request, Response } from "express"
+
 const pool = require('../../../database/queries')
 
-export default (req, res) => {
+export default (req: Request, res: Response) => {
     const {
         query: { id },
         method
@@ -29,7 +31,7 @@ export default (req, res) => {
  * Retrieves the data of a specific user
  */
 
-const getUserById = (request, response, id) => {
+const getUserById = (request: Request, response: Response, id: string) => {
     pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
         if (error) {
             throw error
@@ -43,8 +45,16 @@ const getUserById = (request, response, id) => {
 /**
  * Updates the data of a specific existing user
  */
-const updateUser = (request, response, id) => {
-    const { username, email, name, password, role } = request.body
+type User = {
+    username: string,
+    email: JSON,
+    name: JSON,
+    password: string,
+    role: string
+}
+
+const updateUser = (request: Request, response: Response, id: string) => {
+    const { username, email, name, password, role }: User = request.body
 
     console.log(request.body)
     pool.query(
@@ -62,7 +72,7 @@ const updateUser = (request, response, id) => {
 /**
  * Delete a specific user
  */
-const deleteUser = (request, response, id) => {
+const deleteUser = (request: Request, response: Response, id: string) => {
     pool.query('DELETE FROM users WHERE id = $1', [id], (error, result) => {
         if (error) {
             throw error

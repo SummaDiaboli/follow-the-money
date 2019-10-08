@@ -11,8 +11,8 @@ const Feed = () => {
 
 
     useEffect(() => {
-        const abortController = new window.AbortController()
-        const signal = abortController.signal
+        const abortController: AbortController = new window.AbortController()
+        const signal: AbortSignal = abortController.signal
 
         const getPosts = () => {
             setInterval(() => {

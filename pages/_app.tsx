@@ -25,7 +25,7 @@ class MyApp extends App {
     }
 
     componentDidMount() {
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+        const isSafari: boolean = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
         this.setState({
             isSafari,
             isLoading: false,
@@ -95,9 +95,7 @@ class MyApp extends App {
 
                 <script src="https://kit.fontawesome.com/cdbc3ca26f.js"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                {/* <script src="https://cdnjs.cloudflare.com/ajax/libs/react-popper/1.3.4/index.umd.min.js"></script> */}
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-                {/* <script src="static/assets/js/main.js"></script> */}
             </div>
         )
     }

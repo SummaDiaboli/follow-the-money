@@ -46,18 +46,18 @@ const Communities = () => {
                     font-weight: 500;
                     width: 300px;
                 }
-                
+
                 .search{
                     position: relative;
                 }
-                
+
                 .search button{
                     padding: 0rem;
                     background: transparent!important;
                     outline: none!important;
                     border: none!important;
                 }
-                
+
                 .search i:after{
                     content: '';
                     position: absolute;
@@ -67,7 +67,7 @@ const Communities = () => {
                     background: rgba(69, 69, 69, .4);
                     height: 1px;
                 }
-                
+
                 .search input::-webkit-input-placeholder {
                     color: rgba(69, 69, 69, .4)!important;
                     font-size: 0.8rem;

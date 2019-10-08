@@ -10,7 +10,7 @@ const MiddleLayout = () => {
     const [post, setPost]: any = useState([])
     const [comments, setComments] = useState(null)
 
-    const getPost = (pid) => {
+    const getPost = (pid: string) => {
         if (pid !== undefined) {
             fetch(`/api/posts/${pid}`, {
                 method: 'get'
@@ -24,7 +24,7 @@ const MiddleLayout = () => {
         }
     }
 
-    const getComments = (pid) => {
+    const getComments = (pid: string) => {
         if (pid !== undefined) {
             fetch(`/api/comments/${pid}`, {
                 method: 'get'

@@ -12,7 +12,17 @@ type Params = {
     comments?: number,
     shares?: number
 }
-const UserPost: React.FC<Params> = ({ userImage, userName, name, timeCreated, postText, postImage, likes, comments, shares }) => {
+const UserPost: React.FC<Params> = ({
+    userImage,
+    userName,
+    name,
+    timeCreated,
+    postText,
+    postImage,
+    likes,
+    comments,
+    shares
+}) => {
     /*  const [isVisible, setIsVisible] = useState(false)
 
      const reference = createRef()

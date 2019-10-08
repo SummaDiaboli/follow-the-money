@@ -17,7 +17,7 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
      */
     const [navState, setNavState] = useState('')
 
-    const changeNav = (pathname) => {
+    const changeNav = (pathname: string) => {
         /**
          * Do not mess with this!!!
          * This switch statement uses RegEx to

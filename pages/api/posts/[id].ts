@@ -1,6 +1,8 @@
+import { Request, Response } from "express"
+
 const pool = require('../../../database/queries')
 
-export default (req, res) => {
+export default (req: Request, res: Response) => {
     const { query: { id }, method } = req
 
     switch (method) {
@@ -22,7 +24,7 @@ export default (req, res) => {
     }
 }
 
-const getPostById = (req, res, id) => {
+const getPostById = (req: Request, res: Response, id: string) => {
     pool.query('SELECT * FROM posts WHERE id=$1', [id], (error, result) => {
         if (error) {
             throw error
@@ -31,8 +33,18 @@ const getPostById = (req, res, id) => {
     })
 }
 
-const updatePost = (req, res, id) => {
-    const { title, has_photo, has_audio, has_video, content, has_embedded_usernames, username } = req.body
+type PostBody = {
+    title: string,
+    has_photo: boolean,
+    has_audio: boolean,
+    has_video: boolean,
+    content: JSON,
+    has_embedded_usernames: boolean,
+    username: string
+}
+
+const updatePost = (req: Request, res: Response, id: string) => {
+    const { title, has_photo, has_audio, has_video, content, has_embedded_usernames, username }: PostBody = req.body
     // const { id } = req.query
     // const { id } = req.params
 
@@ -47,7 +59,7 @@ const updatePost = (req, res, id) => {
         })
 }
 
-const deletePost = (req, res, id) => {
+const deletePost = (req: Request, res: Response, id: string) => {
     // const { id } = req.query
     // const { id } = req.params
 

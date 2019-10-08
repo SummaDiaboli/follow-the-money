@@ -1,6 +1,8 @@
+import { Request, Response } from "express"
+
 const pool = require('../../database/queries')
 
-export default (req, res) => {
+export default (req: Request, res: Response) => {
     const {
         method
     } = req
@@ -16,8 +18,14 @@ export default (req, res) => {
     }
 }
 
-const createComment = (req, res) => {
-    const { post_id, comment, username } = req.body
+type Comment = {
+    post_id: number,
+    comment: string,
+    username: string
+}
+
+const createComment = (req: Request, res: Response) => {
+    const { post_id, comment, username }: Comment = req.body
 
     pool.query(
         'INSERT INTO posts_comments (comment_date, comment_time, comment, post_id, username) \

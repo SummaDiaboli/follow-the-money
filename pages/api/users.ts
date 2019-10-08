@@ -1,7 +1,9 @@
+import { Request, Response } from "express"
+
 // import pool from '../../database/queries.js'
 const pool = require('../../database/queries')
 
-export default (req, res) => {
+export default (req: Request, res: Response) => {
     const {
         // query: { username, password },
         method
@@ -41,7 +43,7 @@ export default (req, res) => {
 /**
  * Check if user is in PostgreSQL database
  */
-const getUser = (request, response) => {
+const getUser = (request: Request, response: Response) => {
     const { username, password } = request.query
     pool.query('SELECT * FROM users WHERE username = $1 AND password = $2',
         [username, password],
@@ -64,9 +66,17 @@ const getUser = (request, response) => {
 /**
  * Create new users
  */
-const createUser = (request, response) => {
+type User = {
+    username: string,
+    email: JSON,
+    name: JSON,
+    password: string,
+    role: string,
+    address: JSON
+}
+const createUser = (request: Request, response: Response) => {
     // const { query: { username, email, name, password, role } } = request
-    const { username, email, name, password, role, address } = request.body
+    const { username, email, name, password, role, address }: User = request.body
 
     pool.query(
         'INSERT INTO users (username, email, name, password, role, address, register_date, register_time) \

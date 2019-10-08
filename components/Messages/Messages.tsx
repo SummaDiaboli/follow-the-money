@@ -5,68 +5,77 @@ import MessageDisplay from './MessageDisplay'
 
 require('../../static/assets/css/pages/Messages.css')
 
+type Message = ({
+    userPhoto: string;
+    name: string;
+    userName: string;
+    message: string;
+    timeSent: string;
+    unreadCount?: string;
+})[]
+
 const Messages = () => {
-    const permanentMessages = [
+    const permanentMessages: Message = [
         {
-            userPhoto:"static/assets/img/user/nasir.jpg",
-            name:"Nasir Bukar Ibrahim",
-            userName:"nasir",
-            message:"Doyin, are you here? Our partners from CODE are waiting for your presentation on the quantum spectrumetron in the space time of a quantum tunnel",
-            timeSent:"19:21",
-            unreadCount:"8"
+            userPhoto: "static/assets/img/user/nasir.jpg",
+            name: "Nasir Bukar Ibrahim",
+            userName: "nasir",
+            message: "Doyin, are you here? Our partners from CODE are waiting for your presentation on the quantum spectrumetron in the space time of a quantum tunnel",
+            timeSent: "19:21",
+            unreadCount: "8"
         },
         {
-            userPhoto:"static/assets/img/user/nwabuisi.jpg",
-            name:"Nwabuisi Gospel",
-            userName:"nwabuisi",
-            message:"Hey! What you think bout our presentation?",
-            timeSent:"08:11"
+            userPhoto: "static/assets/img/user/nwabuisi.jpg",
+            name: "Nwabuisi Gospel",
+            userName: "nwabuisi",
+            message: "Hey! What you think bout our presentation?",
+            timeSent: "08:11"
         },
         {
-            userPhoto:"static/assets/img/user/nwabuisi.jpg",
-            name:"Nwabuisi Gospel",
-            userName:"nwabuisi",
-            message:"Hey! What you think bout our presentation?",
-            timeSent:"08:11"
+            userPhoto: "static/assets/img/user/nwabuisi.jpg",
+            name: "Nwabuisi Gospel",
+            userName: "nwabuisi",
+            message: "Hey! What you think bout our presentation?",
+            timeSent: "08:11"
         },
         {
-            userPhoto:"static/assets/img/user/nwabuisi.jpg",
-            name:"Nwabuisi Gospel",
-            userName:"nwabuisi",
-            message:"Hey! What you think bout our presentation?",
-            timeSent:"08:11"
+            userPhoto: "static/assets/img/user/nwabuisi.jpg",
+            name: "Nwabuisi Gospel",
+            userName: "nwabuisi",
+            message: "Hey! What you think bout our presentation?",
+            timeSent: "08:11"
         },
         {
-            userPhoto:"static/assets/img/user/nwabuisi.jpg",
-            name:"Nwabuisi Gospel",
-            userName:"nwabuisi",
-            message:"Hey! What you think bout our presentation?",
-            timeSent:"08:11"
+            userPhoto: "static/assets/img/user/nwabuisi.jpg",
+            name: "Nwabuisi Gospel",
+            userName: "nwabuisi",
+            message: "Hey! What you think bout our presentation?",
+            timeSent: "08:11"
         },
         {
-            userPhoto:"static/assets/img/user/nwabuisi.jpg",
-            name:"Nwabuisi Gospel",
-            userName:"nwabuisi",
-            message:"Hey! What you think bout our presentation?",
-            timeSent:"08:11"
+            userPhoto: "static/assets/img/user/nwabuisi.jpg",
+            name: "Nwabuisi Gospel",
+            userName: "nwabuisi",
+            message: "Hey! What you think bout our presentation?",
+            timeSent: "08:11"
         },
         {
-            userPhoto:"static/assets/img/user/nwabuisi.jpg",
-            name:"Nwabuisi Gospel",
-            userName:"nwabuisi",
-            message:"Hey! What you think bout our presentation?",
-            timeSent:"08:11"
+            userPhoto: "static/assets/img/user/nwabuisi.jpg",
+            name: "Nwabuisi Gospel",
+            userName: "nwabuisi",
+            message: "Hey! What you think bout our presentation?",
+            timeSent: "08:11"
         },
         {
-            userPhoto:"static/assets/img/user/nwabuisi.jpg",
-            name:"Nwabuisi Gospel",
-            userName:"nwabuisi",
-            message:"Hey! What you think bout our presentation?",
-            timeSent:"08:11"
+            userPhoto: "static/assets/img/user/nwabuisi.jpg",
+            name: "Nwabuisi Gospel",
+            userName: "nwabuisi",
+            message: "Hey! What you think bout our presentation?",
+            timeSent: "08:11"
         }
     ]
 
-    const [messages, setMessages] = useState(permanentMessages)
+    const [messages, setMessages]: any = useState(permanentMessages)
 
 
     useEffect(() => {
@@ -117,7 +126,7 @@ const Messages = () => {
 
                                     <div className="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
                                         <ul className="p-0">
-                                            {messages.map((message, index) =>(
+                                            {messages.map((message, index) => (
                                                 <MessageTile
                                                     key={index}
                                                     userPhoto={message.userPhoto}
@@ -133,19 +142,19 @@ const Messages = () => {
 
                                     <div className="tab-pane fade" id="pills-unread" role="tabpanel" aria-labelledby="pills-unread-tab">
                                         <ul className="p-0">
-                                            {messages.map((message, index) =>(
+                                            {messages.map((message, index) => (
                                                 message.unreadCount ?
-                                                <MessageTile
-                                                    key={index}
-                                                    userPhoto={message.userPhoto}
-                                                    name={message.name}
-                                                    userName={message.userName}
-                                                    message={message.message}
-                                                    timeSent={message.timeSent}
-                                                    unreadCount={message.unreadCount}
-                                                /> :
-                                                ''
-                                                ))
+                                                    <MessageTile
+                                                        key={index}
+                                                        userPhoto={message.userPhoto}
+                                                        name={message.name}
+                                                        userName={message.userName}
+                                                        message={message.message}
+                                                        timeSent={message.timeSent}
+                                                        unreadCount={message.unreadCount}
+                                                    /> :
+                                                    ''
+                                            ))
                                             }
                                         </ul>
                                     </div>

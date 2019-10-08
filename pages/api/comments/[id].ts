@@ -1,6 +1,8 @@
+import { Response, Request } from "express"
+
 const pool = require('../../../database/queries')
 
-export default (req, res) => {
+export default (req: Request, res: Response) => {
     const { query: { id }, method } = req
 
     switch (method) {
@@ -22,7 +24,7 @@ export default (req, res) => {
     }
 }
 
-const getCommentsForPost = (req, res, id) => {
+const getCommentsForPost = (req: Request, res: Response, id: string) => {
     pool.query('SELECT * FROM posts_comments WHERE post_id=$1',
         [id],
         (error, results) => {
@@ -33,6 +35,6 @@ const getCommentsForPost = (req, res, id) => {
         })
 }
 
-const updateComment = (req, res, id) => { }
+const updateComment = (req: Request, res: Response, id: string) => { }
 
-const deleteComment = (req, res, id) => { }
+const deleteComment = (req: Request, res: Response, id: string) => { }

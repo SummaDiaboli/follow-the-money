@@ -7,7 +7,7 @@ type Params = {
 const CommunitiesCard: React.FC<Params> = ({ community }) => {
     const reference: any = createRef()
 
-    const truncate = (id) => {
+    const truncate = (id: string) => {
         let string = document.getElementById(id).innerHTML;
         var maxLength = 80;
         var result = string.substring(0, maxLength) + '...';

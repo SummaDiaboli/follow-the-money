@@ -1,6 +1,8 @@
+import { Request, Response } from "express"
+
 const pool = require('../../database/queries')
 
-export default (req, res) => {
+export default (req: Request, res: Response) => {
     const { method } = req
 
     switch (method) {
@@ -21,7 +23,7 @@ export default (req, res) => {
 /**
  * Get all posts from the database
  */
-const getPosts = (req, res) => {
+const getPosts = (req: Request, res: Response) => {
     pool.query('SELECT * FROM posts ORDER BY id DESC', (error, results) => {
         if (error) {
             throw error
@@ -34,8 +36,18 @@ const getPosts = (req, res) => {
 /**
  * Create a new position
  */
-const createPost = (req, res) => {
-    const { title, has_photo, has_audio, has_video, content, has_embedded_usernames, username, type } = req.body
+type Post = {
+    title: string,
+    has_photo: boolean,
+    has_audio: boolean,
+    has_video: boolean,
+    content: JSON,
+    has_embedded_usernames: boolean,
+    username: string,
+    type: string
+}
+const createPost = (req: Request, res: Response) => {
+    const { title, has_photo, has_audio, has_video, content, has_embedded_usernames, username, type }: Post = req.body
 
     pool.query(
         'INSERT INTO posts \

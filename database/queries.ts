@@ -1,9 +1,11 @@
 /**
  * Handles all requests to the PostgreSQL database
  */
+import pg from 'pg'
+import url from 'url'
 
-const Pool = require('pg').Pool
-const url = require('url')
+const Pool = pg.Pool
+// const url = require('url')
 
 // const params = url.parse(process.env.DATABASE_URL)
 // const auth = params.auth.split(':')
@@ -11,8 +13,8 @@ const url = require('url')
 let pool
 
 if (process.env.NODE_ENV === 'production') {
-    const params = url.parse(process.env.DATABASE_URL)
-    const auth = params.auth.split(':')
+    const params: any = url.parse(process.env.DATABASE_URL)
+    const auth: any = params.auth.split(':')
 
     pool = new Pool({
         user: auth[0],

@@ -34,7 +34,6 @@ const Community = () => {
                                     <SideTab />
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

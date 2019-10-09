@@ -1,6 +1,6 @@
 import React, { useState, createRef } from 'react'
 
-type Params = {
+interface Params {
     userImage: string,
     username: string,
     timeCreated: Date | string,

@@ -2,7 +2,7 @@ import React from "react";
 import UserComment from "./UserComment";
 import Link from "next/link";
 
-type Params = {
+interface Params {
     userPhoto: string,
     pid: number,
     userName: string,

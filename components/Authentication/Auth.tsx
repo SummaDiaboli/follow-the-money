@@ -3,7 +3,7 @@ import Login from '../Login/Login'
 
 import Cookies from 'js-cookie'
 
-type Params = {
+interface Params {
     userData: any,
     children: any
 }

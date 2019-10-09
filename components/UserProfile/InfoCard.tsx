@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Params = {
+interface Params {
     likes: number | string,
     followers: number | string,
     friends: number | string,

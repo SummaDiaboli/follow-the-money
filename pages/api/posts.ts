@@ -36,7 +36,7 @@ const getPosts = (req: Request, res: Response) => {
 /**
  * Create a new position
  */
-type Post = {
+interface Post {
     title: string,
     has_photo: boolean,
     has_audio: boolean,

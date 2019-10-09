@@ -1,6 +1,6 @@
 import React, { useEffect, createRef } from 'react'
 
-type Params = {
+interface Params {
     community: any
 }
 

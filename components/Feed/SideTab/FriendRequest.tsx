@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-type Params = {
+interface Params {
     userPhoto: string,
     name: string,
     userLocation: string,

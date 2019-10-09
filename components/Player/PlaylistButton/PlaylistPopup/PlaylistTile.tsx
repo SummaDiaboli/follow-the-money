@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Params = {
+interface Params {
     isActive?: boolean,
     image: string,
     title: string,

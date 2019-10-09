@@ -4,8 +4,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 const PostPage = () => {
-    const router = useRouter()
-    const { pid } = router.query
+    // const router = useRouter()
+    // const { pid } = router.query
 
     return (
         <>

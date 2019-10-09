@@ -6,7 +6,7 @@ import Cookies from 'js-cookie'
 import Router from 'next/router'
 // import nextCookie from 'next-cookies'
 
-type Params = {
+interface Params {
     children: any,
     authUser: any
 }

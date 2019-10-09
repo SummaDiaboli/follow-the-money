@@ -35,6 +35,23 @@ const getCommentsForPost = (req: Request, res: Response, id: string) => {
         })
 }
 
-const updateComment = (req: Request, res: Response, id: string) => { }
+const updateComment = (req: Request, res: Response, id: string) => {
+    const { comment } = req.body
+    pool.query('UPDATE post_comments SET comment = $1 WHERE id = $2',
+        [comment, id],
+        (error, result) => {
+            if (error) {
+                throw error
+            }
+            res.status(200).send(`Comment modified with id ${id}`)
+        })
+}
 
-const deleteComment = (req: Request, res: Response, id: string) => { }
+const deleteComment = (req: Request, res: Response, id: string) => {
+    pool.query('DELETE FROM post_comments WHERE id=$1', [id], (error, result) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).send(`Comment deleted with the id: ${id}`)
+    })
+}

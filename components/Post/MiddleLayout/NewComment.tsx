@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
 import Cookies from 'js-cookie'
 
-type Params = {
+interface Params {
     postId: number
 }
 

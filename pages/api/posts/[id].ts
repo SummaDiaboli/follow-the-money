@@ -33,7 +33,7 @@ const getPostById = (req: Request, res: Response, id: string) => {
     })
 }
 
-type PostBody = {
+interface Post {
     title: string,
     has_photo: boolean,
     has_audio: boolean,
@@ -44,7 +44,7 @@ type PostBody = {
 }
 
 const updatePost = (req: Request, res: Response, id: string) => {
-    const { title, has_photo, has_audio, has_video, content, has_embedded_usernames, username }: PostBody = req.body
+    const { title, has_photo, has_audio, has_video, content, has_embedded_usernames, username }: Post = req.body
     // const { id } = req.query
     // const { id } = req.params
 

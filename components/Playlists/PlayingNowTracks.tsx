@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Params = {
+interface Params {
     id: number,
     imageSrc: string,
     trackName: string,

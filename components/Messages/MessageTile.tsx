@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-type MessageTile = {
+interface Params {
     userPhoto: string,
     userName: string,
     name: string,
@@ -10,7 +10,7 @@ type MessageTile = {
     unreadCount: number
 }
 
-const MessageTile = ({ userPhoto, userName, name, message, timeSent, unreadCount }) => {
+const MessageTile: React.FC<Params> = ({ userPhoto, userName, name, message, timeSent, unreadCount }) => {
     return (
         <li className="message">
             <div className="d-flex flex-row">

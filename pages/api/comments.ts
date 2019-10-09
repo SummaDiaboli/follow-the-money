@@ -18,7 +18,7 @@ export default (req: Request, res: Response) => {
     }
 }
 
-type Comment = {
+interface Comment {
     post_id: number,
     comment: string,
     username: string

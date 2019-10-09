@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CommunitiesCard } from './index'
-import Communities from './Communities'
 import Link from 'next/link'
 
-type Params = {
+interface Params {
     searchValue: string
 }
 
@@ -41,7 +40,34 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
         }
     ])
 
-    // console.log(searchValue.searchValue)
+    useEffect(() => {
+        const abortController: AbortController = new window.AbortController()
+        const signal: AbortSignal = abortController.signal
+
+        const getCommunities = () => {
+            setInterval(() => {
+                fetch('/api/communities', { signal })
+                    .then(res => {
+                        res.json().then(communities => setCommunities(communities))
+                    })
+                    .catch(err => {
+                        if (err.name === 'AbortError') {
+                            return "Promise Aborted"
+                        } else {
+                            return "Promise Rejected"
+                        }
+                    })
+            }, 8000)
+        }
+
+        getCommunities()
+
+        return () => {
+            abortController.abort()
+        };
+
+    }, [communities])
+
     return (
         <>
             <div className="communities mt-3">

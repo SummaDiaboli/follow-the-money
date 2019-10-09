@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Params = {
+interface Params {
     date: string | Date,
     title: string,
     guest: string

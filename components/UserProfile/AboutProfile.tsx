@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Params = {
+interface Params {
     userImage: string,
     username: string,
     description: string,

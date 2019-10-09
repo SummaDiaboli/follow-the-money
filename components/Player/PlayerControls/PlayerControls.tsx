@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-type Params = {
+interface Params {
     reference: React.RefObject<any>
 }
 

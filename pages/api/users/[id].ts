@@ -55,11 +55,9 @@ type User = {
 
 const updateUser = (request: Request, response: Response, id: string) => {
     const { username, email, name, password, role }: User = request.body
-
-    console.log(request.body)
     pool.query(
-        'UPDATE users SET username = $1, email = $2, name = $3, password = $4, role = $5',
-        [username, email, name, password, role],
+        'UPDATE users SET username = $1, email = $2, name = $3, password = $4, role = $5 WHERE id = $6',
+        [username, email, name, password, role, id],
         (error, result) => {
             if (error) {
                 throw error

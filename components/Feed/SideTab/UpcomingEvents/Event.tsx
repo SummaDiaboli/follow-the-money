@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Params = {
+interface Params {
     image: string,
     eventName: string,
     eventDate: string

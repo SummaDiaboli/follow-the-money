@@ -1,7 +1,7 @@
 import React /* { useState, createRef } */ from 'react'
 import Link from 'next/link'
 
-type Params = {
+interface Params {
     userImage: string,
     userName: string,
     name?: string,

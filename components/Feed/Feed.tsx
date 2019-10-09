@@ -9,7 +9,6 @@ import moment from 'moment-timezone'
 const Feed = () => {
     const [posts, setPosts] = useState(null)
 
-
     useEffect(() => {
         const abortController: AbortController = new window.AbortController()
         const signal: AbortSignal = abortController.signal

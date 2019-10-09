@@ -66,7 +66,7 @@ const getUser = (request: Request, response: Response) => {
 /**
  * Create new users
  */
-type User = {
+interface User {
     username: string,
     email: JSON,
     name: JSON,

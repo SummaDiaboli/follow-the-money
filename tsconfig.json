@@ -24,6 +24,6 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "database/queries.ts", "server/server.js"
+    "**/*.tsx", "database/queries.ts", "server/server.js", "utils/cookies.js"
   ]
 }

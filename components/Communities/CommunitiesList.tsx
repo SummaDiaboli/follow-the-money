@@ -7,38 +7,7 @@ interface Params {
 }
 
 const CommunitiesList: React.FC<Params> = (searchValue) => {
-    const [communities, setCommunities] = useState([
-        {
-            name: 'Madlads',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        },
-        {
-            name: 'Askreddit',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        },
-        {
-            name: 'ProgrammerHumor',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        },
-        {
-            name: 'Holup',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        },
-        {
-            name: 'CursedComments',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        },
-        {
-            name: 'BlessedComments',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        }
-    ])
+    const [communities, setCommunities] = useState(null)
 
     useEffect(() => {
         const abortController: AbortController = new window.AbortController()
@@ -57,7 +26,7 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
                             return "Promise Rejected"
                         }
                     })
-            }, 8000)
+            }, 5000)
         }
 
         getCommunities()
@@ -72,28 +41,29 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
         <>
             <div className="communities mt-3">
                 <div className="row m-o w-100">
-                    {communities.map((community, index) => (
-                        searchValue.searchValue == '' ?
-                            <div key={index} className="col-3">
-                                <Link href="/communities/[id]" as={`/communities/${community.name}`}>
-                                    <a>
-                                        <CommunitiesCard community={community} />
-                                    </a>
-                                </Link>
-                            </div> :
-                            (
-                                community.name.toLowerCase().includes(searchValue.searchValue.toLowerCase()) ?
-                                    <div key={index} className="col-3">
-                                        <Link href="/communities/[id]" as={`/communities/${community.name}`}>
-                                            <a>
-                                                <CommunitiesCard community={community} />
-                                            </a>
-                                        </Link>
-                                    </div>
-                                    :
-                                    ''
-                            )
-                    ))}
+                    {communities
+                        && communities.map((community, index) => (
+                            searchValue.searchValue == '' ?
+                                <div key={index} className="col-3">
+                                    <Link href="/communities/[id]" as={`/communities/${community.name}`}>
+                                        <a>
+                                            <CommunitiesCard community={community} />
+                                        </a>
+                                    </Link>
+                                </div> :
+                                (
+                                    community.name.toLowerCase().includes(searchValue.searchValue.toLowerCase()) ?
+                                        <div key={index} className="col-3">
+                                            <Link href="/communities/[id]" as={`/communities/${community.name}`}>
+                                                <a>
+                                                    <CommunitiesCard community={community} />
+                                                </a>
+                                            </Link>
+                                        </div>
+                                        :
+                                        ''
+                                )
+                        ))}
                 </div>
             </div>
 

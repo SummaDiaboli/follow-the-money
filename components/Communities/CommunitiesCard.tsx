@@ -33,7 +33,7 @@ const CommunitiesCard: React.FC<Params> = ({ community }) => {
                 }
 
                 .card{
-                    border:none;
+                    background: #F6F6F8;
                 }
 
                 .card h5{

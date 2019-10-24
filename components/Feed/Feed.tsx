@@ -7,7 +7,7 @@ import { SideTab } from './SideTab'
 import moment from 'moment-timezone'
 
 const Feed = () => {
-    const cachedFeedPosts = JSON.parse(localStorage.getItem("feedPosts"))
+    const cachedFeedPosts = JSON.parse(sessionStorage.getItem("feedPosts"))
     const [posts, setPosts] = useState(cachedFeedPosts != null ? cachedFeedPosts : [])
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const Feed = () => {
                     .then(res => {
                         res.json()
                             .then(posts => {
-                                localStorage.setItem("feedPosts", JSON.stringify(posts))
+                                sessionStorage.setItem("feedPosts", JSON.stringify(posts))
                                 setPosts([...posts])
                             })
                     })

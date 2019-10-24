@@ -10,7 +10,7 @@ const MiddleLayout = () => {
     let id = url.split('/')[2]
 
     // const [postId, setPostId] = useState()
-    let cachedFeedComments = JSON.parse(localStorage.getItem(`cachedFeedComments${id}`))
+    let cachedFeedComments = JSON.parse(sessionStorage.getItem(`cachedFeedComments${id}`))
     const [post, setPost]: any = useState([])
     const [comments, setComments] = useState(cachedFeedComments != null ? cachedFeedComments : [])
 
@@ -35,7 +35,7 @@ const MiddleLayout = () => {
             }).then(res => {
                 res.status === 200
                     ? res.json().then(data => {
-                        localStorage.setItem(`cachedFeedComments${id}`, JSON.stringify(data))
+                        sessionStorage.setItem(`cachedFeedComments${id}`, JSON.stringify(data))
                         setComments([...data])
                     })
                     : console.log("Something went wrong fetching comments")

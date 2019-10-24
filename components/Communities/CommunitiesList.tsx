@@ -7,7 +7,7 @@ interface Params {
 }
 
 const CommunitiesList: React.FC<Params> = (searchValue) => {
-    const cachedCommunities = JSON.parse(localStorage.getItem("communities"))
+    const cachedCommunities = JSON.parse(sessionStorage.getItem("communities"))
     const [communities, setCommunities] = useState(cachedCommunities != null ? cachedCommunities : [])
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
                     .then(res => {
                         res.json()
                             .then(communities => {
-                                localStorage.setItem("communities", JSON.stringify(communities))
+                                sessionStorage.setItem("communities", JSON.stringify(communities))
                                 setCommunities([...communities])
                             })
                     })

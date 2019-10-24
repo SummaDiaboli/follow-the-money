@@ -7,7 +7,8 @@ interface Params {
 }
 
 const CommunitiesList: React.FC<Params> = (searchValue) => {
-    const [communities, setCommunities] = useState(null)
+    const cachedCommunities = JSON.parse(localStorage.getItem("communities"))
+    const [communities, setCommunities] = useState(cachedCommunities != null ? cachedCommunities : [])
 
     useEffect(() => {
         const abortController: AbortController = new window.AbortController()
@@ -17,7 +18,11 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
             setInterval(() => {
                 fetch('/api/communities', { signal })
                     .then(res => {
-                        res.json().then(communities => setCommunities(communities))
+                        res.json()
+                            .then(communities => {
+                                localStorage.setItem("communities", JSON.stringify(communities))
+                                setCommunities([...communities])
+                            })
                     })
                     .catch(err => {
                         if (err.name === 'AbortError') {
@@ -41,27 +46,31 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
         <>
             <div className="communities mt-3">
                 <div className="row m-o w-100">
-                    {communities
-                        && communities.map((community, index) => (
-                            searchValue.searchValue == '' ?
-                                <div key={index} className="col-3">
+                    {communities === []
+                        ? <div className="text-center" style={{ marginTop: "5%" }}>
+                            <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                        : communities.map((community, index) => (
+                            searchValue.searchValue == ''
+                                ? <div key={index} className="col-3">
                                     <Link href="/communities/[id]" as={`/communities/${community.name}`}>
                                         <a>
                                             <CommunitiesCard community={community} />
                                         </a>
                                     </Link>
-                                </div> :
-                                (
-                                    community.name.toLowerCase().includes(searchValue.searchValue.toLowerCase()) ?
-                                        <div key={index} className="col-3">
+                                </div>
+                                : (
+                                    community.name.toLowerCase().includes(searchValue.searchValue.toLowerCase())
+                                        ? <div key={index} className="col-3">
                                             <Link href="/communities/[id]" as={`/communities/${community.name}`}>
                                                 <a>
                                                     <CommunitiesCard community={community} />
                                                 </a>
                                             </Link>
                                         </div>
-                                        :
-                                        ''
+                                        : ''
                                 )
                         ))}
                 </div>

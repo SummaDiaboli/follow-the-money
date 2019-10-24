@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { NotificationIcon } from '../User'
-import {CommunitiesList} from '.'
+import { CommunitiesList, NewCommunityButton } from '.'
 
 const Communities = () => {
     const [searchValue, setSearchValue] = useState("")
@@ -9,7 +9,7 @@ const Communities = () => {
         setSearchValue(event.target.value)
     }
 
-    return(
+    return (
         <>
             <main>
                 <div className="main">
@@ -20,10 +20,11 @@ const Communities = () => {
                         <hr className="w-100" />
                     </nav>
                     <div className="search pl-0 pt-0 mb-4">
-                        <input type="text" className="" placeholder="Search Communities" value={searchValue} onChange={handleChange}/>
+                        <input type="text" className="" placeholder="Search Communities" value={searchValue} onChange={handleChange} />
                         <button><i className="fas fa-search ml-auto"></i>  </button>
                     </div>
-                    <CommunitiesList searchValue={searchValue}/>
+                    <NewCommunityButton />
+                    <CommunitiesList searchValue={searchValue} />
                 </div>
             </main>
             <style jsx>{`

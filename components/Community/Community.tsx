@@ -1,20 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ImageHeader from './ImageHeader'
 import { MiddleLayout } from './MiddleLayout/MiddleLayout'
 import { SideTab } from './SideTab/SideTab'
+import fetch from 'isomorphic-unfetch'
 
 const Community = () => {
     const router = useRouter()
     const { id } = router.query
-    const [community, setCommunity] = useState(
+    /* const [community, setCommunity] = useState(
         {
             name: 'Madlads',
             desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
             members: 21636,
             headerImg: '../static/assets/img/communityImage.jpg'
         }
-    )
+    ) */
+
+    const getCommunityPosts = (id, signal) => {
+        fetch(`/api/communities/${id}`, { signal })
+    }
 
     return (
         <>

@@ -7,7 +7,8 @@ import { SideTab } from './SideTab'
 import moment from 'moment-timezone'
 
 const Feed = () => {
-    const [posts, setPosts] = useState(null)
+    const cachedFeedPosts = JSON.parse(localStorage.getItem("feedPosts"))
+    const [posts, setPosts] = useState(cachedFeedPosts != null ? cachedFeedPosts : [])
 
     useEffect(() => {
         const abortController: AbortController = new window.AbortController()
@@ -17,7 +18,11 @@ const Feed = () => {
             setInterval(() => {
                 fetch('api/posts', { signal })
                     .then(res => {
-                        res.json().then((posts) => setPosts(posts))
+                        res.json()
+                            .then(posts => {
+                                localStorage.setItem("feedPosts", JSON.stringify(posts))
+                                setPosts([...posts])
+                            })
                     })
                     .catch(err => {
                         if (err.name === 'AbortError') {
@@ -67,7 +72,7 @@ const Feed = () => {
 
                             <div className="posts ">
                                 {
-                                    posts === null
+                                    posts === []
                                         ? <div className="text-center" style={{ marginTop: "5%" }}>
                                             <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
                                                 <span className="sr-only">Loading...</span>

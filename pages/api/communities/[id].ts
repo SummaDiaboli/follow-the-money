@@ -34,3 +34,17 @@ const getCommunityPosts = (req: Request, res: Response, id: String) => {
                 : res.status(200).json(results.rows)
         })
 }
+
+const createCommunityPost = (req: Request, res: Response) => {
+    const {
+        title,
+        has_photo,
+        has_audio,
+        has_video,
+        content,
+        has_embedded_usernames,
+        username
+    } = req.body
+
+    pool.query()
+}

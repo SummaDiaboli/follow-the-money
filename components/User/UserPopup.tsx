@@ -15,19 +15,21 @@ const UserPopup = () => {
                     <li>
                         <a href="#">
                             <div className="d-flex flex-row vertical-align">
-                                <i className="fas fa-cog mr-2"></i>
-                                <span>Settings</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div className="d-flex flex-row vertical-align">
                                 <i className="fas fa-user mr-2"></i>
                                 <span>Profile</span>
                             </div>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="#">
+                            <div className="d-flex flex-row vertical-align">
+                                <i className="fas fa-cog mr-2"></i>
+                                <span>Settings</span>
+                            </div>
+                        </a>
+                    </li>
+
                     <li>
                         <button className="m-0 w-100 text-left" onClick={signOut}>
                             <div className="d-flex flex-row vertical-align">

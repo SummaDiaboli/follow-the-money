@@ -37,15 +37,14 @@ const NotificationIcon = () => {
 
     return (
         <div className="right d-flex ml-auto vertical-align">
-            <a href="#">
+            <button className="m-0">
                 <div className="notifications mr-3" id="notifications-toggle" onClick={fadeNotifications}>
                     <i className="far fa-bell"></i>
                     <div className="amount">2</div>
                 </div>
-            </a>
+            </button>
 
-            <UserIcon />
-
+            <UserIcon />            
             <NotificationPopup />
         </div>
     )

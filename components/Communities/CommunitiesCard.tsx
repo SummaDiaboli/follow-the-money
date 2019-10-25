@@ -8,8 +8,8 @@ const CommunitiesCard: React.FC<Params> = ({ community }) => {
     const reference: any = createRef()
 
     const truncate = (input) => {
-        return input.length > 30
-            ? `${input.substring(0, 30)}...`
+        return input.length > 80
+            ? `${input.substring(0, 80)}...`
             : input
     }
 

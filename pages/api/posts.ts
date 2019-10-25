@@ -47,18 +47,30 @@ interface Post {
     type: string
 }
 const createPost = (req: Request, res: Response) => {
-    const { title, has_photo, has_audio, has_video, content, has_embedded_usernames, username, type }: Post = req.body
+    const {
+        title,
+        has_photo,
+        has_audio,
+        has_video,
+        content,
+        has_embedded_usernames,
+        username,
+        type
+    }: Post = req.body
 
     pool.query(
         'INSERT INTO posts \
         (title, has_photo, has_audio, has_video, content, has_embedded_usernames, username, post_date, post_time, type) \
-        VALUES ($1, $2, $3, $4, $5, $6, $7, current_date, current_time, $8)',
+        VALUES ($1, $2, $3, $4, $5, $6, $7, current_date, current_time, $8)\
+        RETURNING id',
         [title, has_photo, has_audio, has_video, content, has_embedded_usernames, username, type],
         (error, result) => {
             if (error) {
                 throw error
+            } else {
+                // console.log(result)
+                res.status(201).json(result.rows[0])
             }
-            res.status(201).send(`Post created with Id: ${result}`)
         }
     )
 }

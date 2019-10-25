@@ -1,8 +1,67 @@
-import React, { useState } from "react";
-// import { Modal } from "../Modal/index";
+import React, { useState, useEffect } from "react";
+import fetch from 'isomorphic-unfetch'
+import Cookies from 'js-cookie'
+import Router from 'next/router'
 
 const NewCommunityButton = () => {
+    const user = Cookies.getJSON('userData')
+    const username = user.username
     const [modalOpen, setModalOpen] = useState(false);
+    const [communityName, setCommunityName] = useState('')
+    const [communityDescription, setCommunityDescription] = useState('')
+    const [communityExists, setCommunityExists] = useState(false)
+    let communitiesList = JSON.parse(sessionStorage.getItem('communities'))
+
+    useEffect(() => {
+        communitiesList = JSON.parse(sessionStorage.getItem('communities'))
+    })
+
+    const onChangeCommunityName = e => {
+        setCommunityName(e.target.value)
+    }
+
+    const onChangeCommunityDescription = e => {
+        setCommunityDescription(e.target.value)
+    }
+
+    const submitCommunity = e => {
+        e.preventDefault()
+        setCommunityExists(false)
+        let exists = false
+        communitiesList.map(community => {
+            if (communityName === community.name) {
+                exists = true
+            }
+        })
+        if (!exists) {
+            fetch('api/communities', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "name": communityName,
+                    "description": communityDescription,
+                    "username": username
+                })
+            }).then(res => {
+                if (res.status === 201) {
+                    setCommunityName('')
+                    setCommunityDescription('')
+                    Router.push("/communities/[id]", `/communities/${communityName}`)
+                    // toggleModal()
+                } else {
+                    setCommunityExists(true)
+                    return "Commmunity could not be created"
+                }
+            }).catch(error => {
+                console.log(`Error: ${error}`)
+            })
+        } else {
+            setCommunityExists(true)
+        }
+    }
 
     const toggleModal = () => {
         setModalOpen(!modalOpen);
@@ -32,19 +91,29 @@ const NewCommunityButton = () => {
                                     id="name"
                                     aria-describedby="name"
                                     placeholder="Community Name"
+                                    value={communityName}
+                                    onChange={onChangeCommunityName}
                                 />
+                                <small
+                                    hidden={!communityExists}
+                                    className="form-text text-danger"
+                                >
+                                    This community already exists
+                                </small>
                             </div>
                             <div className="form-group">
                                 <textarea
                                     rows={5}
                                     className="form-control"
                                     placeholder="Community Description"
-                                ></textarea>
+                                    value={communityDescription}
+                                    onChange={onChangeCommunityDescription}
+                                />
                             </div>
                             <div className="w-100 mt-2 text-center">
                                 <button
-                                    type="submit"
                                     className="btn text-white bg-red"
+                                    onClick={submitCommunity}
                                 >
                                     Create Community
                                 </button>
@@ -53,8 +122,8 @@ const NewCommunityButton = () => {
                     </div>
                 </div>
             ) : (
-                ""
-            )}
+                    ""
+                )}
 
             <div className="ml-auto">
                 <button className="addCommunity" onClick={toggleModal}>
@@ -82,7 +151,7 @@ const NewCommunityButton = () => {
                 .vertical-align{
                     align-items: center!important;
                 }
-                
+
                 .overlay {
                     background: rgba(0, 0, 0, 0.5);
                     position: fixed;
@@ -150,13 +219,13 @@ const NewCommunityButton = () => {
                     outline: none;
                     box-shadow: none;
                 }
-                
+
                 textarea {
                     outline: none;
                     box-shadow: none;
                     border: none;
                 }
-                
+
                 .form-control {
                     outline: none !important;
                     box-shadow: none !important;
@@ -165,22 +234,22 @@ const NewCommunityButton = () => {
                     border: 1px solid rgba(0,0,0,0.3)!important;
                     background: #fff !important;
                 }
-                
+
                 ::-webkit-input-placeholder {
                     color: rgba(0, 0, 0, 0.37) !important;
                     font-family: "Montserrat", sans-serif;
                 }
-                
+
                 ::-moz-placeholder {
                     color: rgba(0, 0, 0, 0.37) !important;
                     font-family: "Montserrat", sans-serif;
                 }
-                
+
                 :-ms-input-placeholder {
                     color: rgba(0, 0, 0, 0.37) !important;
                     font-family: "Montserrat", sans-serif;
                 }
-                
+
                 :-moz-placeholder {
                     color: rgba(0, 0, 0, 0.37) !important;
                     font-family: "Montserrat", sans-serif;
@@ -194,7 +263,7 @@ const NewCommunityButton = () => {
                     box-shadow: none !important;
                     border: none !important;
                 }
-                
+
                 form .btn{
                     background: #D10000!important;
                 }

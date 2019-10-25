@@ -13,7 +13,7 @@ export default (req: Request, res: Response) => {
             break
 
         case 'POST':
-
+            createCommunity(req, res)
             break
 
         default:
@@ -30,5 +30,18 @@ const getCommunities = (req: Request, res: Response) => {
         else {
             res.status(200).json(results.rows)
         }
+    })
+}
+
+const createCommunity = (req: Request, res: Response) => {
+    const { name, description, username } = req.body
+    pool.query(
+        'INSERT INTO communities (name, description, username) \
+        VALUES ($1, $2, $3)', [name, description, username], (error, result) => {
+        if (error) {
+            console.log(error)
+            res.status(500).send(`Cannot create community`)
+        }
+        res.status(201).send(`Community created: ${result}`)
     })
 }

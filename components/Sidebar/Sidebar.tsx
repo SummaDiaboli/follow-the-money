@@ -59,8 +59,9 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
     const [eventsCount, setEventsCount] = useState(0)
 
     const signOut = () => {
-        Cookies.remove('userData')
         Router.reload()
+        sessionStorage.clear()
+        Cookies.remove('userData')
     }
 
     useEffect(() => {

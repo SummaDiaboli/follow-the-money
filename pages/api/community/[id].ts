@@ -35,16 +35,29 @@ const getCommunityPosts = (req: Request, res: Response, id: String) => {
         })
 }
 
+interface Post {
+    community_id: number,
+    post_id: number
+}
+
 const createCommunityPost = (req: Request, res: Response) => {
     const {
-        title,
-        has_photo,
-        has_audio,
-        has_video,
-        content,
-        has_embedded_usernames,
-        username
-    } = req.body
+        community_id,
+        post_id
+    }: Post = req.body
 
-    pool.query()
+    pool.query(
+        'INSERT INTO posts \
+        (community_id, post_id) \
+        VALUES ($1, $2)',
+        [community_id, post_id],
+        (error, result) => {
+            if (error) {
+                throw error
+            }
+            res.status(201).send(`Post created`)
+        }
+    )
+
+
 }

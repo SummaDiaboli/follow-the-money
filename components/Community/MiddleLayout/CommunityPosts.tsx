@@ -1,9 +1,13 @@
 import React from 'react'
 import Post from './Post'
+import UserPost from '../UserPost'
 
 const CommunityPosts = () => {
     return (
         <>
+            <div className="userPost">
+                <UserPost userImage="../static/assets/img/user/user.jpg" userFname="Hamzat"/>
+            </div>
             <div className="posts mt-3">
                 <Post
                     userImage="../static/assets/img/user/hamzat.jpg"
@@ -14,6 +18,7 @@ const CommunityPosts = () => {
                     likes="2.1k"
                     comments="201"
                     shares="1.2k"
+                    pid={0}
                 />
                 <Post
                     userImage="../static/assets/img/user/hamzat.jpg"
@@ -23,6 +28,7 @@ const CommunityPosts = () => {
                     likes="3.1k"
                     comments="208"
                     shares="50"
+                    pid={1}
                 />
             </div>
 

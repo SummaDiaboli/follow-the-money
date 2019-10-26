@@ -632,6 +632,18 @@ form .options a {
     opacity: 0.7;
 }
 
+.nav-tabs{
+    border:none!important;
+}
+
+.nav-tabs li .nav-link{
+    border: none;
+}
+
+.nav-tabs li .nav-link.active{
+    border-bottom: 2px solid #D10000;
+}
+
 .card {
     border-radius: 0.35rem;
     border: none;

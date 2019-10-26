@@ -250,11 +250,6 @@ const NewCommunityButton = () => {
                     font-family: "Montserrat", sans-serif;
                 }
 
-                :-moz-placeholder {
-                    color: rgba(0, 0, 0, 0.37) !important;
-                    font-family: "Montserrat", sans-serif;
-                }
-
                 .btn {
                     padding: 0.8rem 2.3rem;
                     font-size: 0.8rem;

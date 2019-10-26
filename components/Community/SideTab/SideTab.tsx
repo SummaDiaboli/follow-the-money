@@ -28,7 +28,7 @@ const SideTab = () => {
     return (
         <>
             <div className="col-4">
-                <div className="card p-3 mt-4 sidetab">
+                <div className="card p-3 mt-2 sidetab">
                     <span className="heading smaller">COMMUNITY DETAILS</span>
                     <span className="description">
                         Phosfluorescently re-engineer high standards in models and holistic testing procedures.

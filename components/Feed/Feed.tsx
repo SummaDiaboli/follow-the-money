@@ -283,18 +283,7 @@ const Feed = () => {
                 </div>
             </div>
 
-            <style>{`
-                .nav-tabs{
-                    border:none!important;
-                }
-
-                .nav-tabs li .nav-link{
-                    border: none;
-                }
-
-                .nav-tabs li .nav-link.active{
-                    border-bottom: 2px solid #D10000;
-                }
+            <style>{`                
             `}</style>
         </>
     );

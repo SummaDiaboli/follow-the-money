@@ -7,7 +7,7 @@ const Sidetab = () => {
                 <button className="btn uploadButton text-white ml-0 mt-3">
                     Save Settings
                 </button>
-                <div className="navigation pl-3 pt-1 pb-3">
+                <div className="navigation mt-3 pl-3 pt-1 pb-3">
                     <ul className="p-0">
                         <li>
                             <a className="active" href="#account-section">

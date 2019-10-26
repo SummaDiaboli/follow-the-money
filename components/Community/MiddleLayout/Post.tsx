@@ -6,10 +6,10 @@ interface Params {
     username: string;
     timeCreated: Date | string;
     postText?: string;
-    postImage?: string;
-    likes?: number | string;
-    comments?: number | string;
-    shares?: number | string;
+    // postImage?: string;
+    // likes?: number | string;
+    // comments?: number | string;
+    // shares?: number | string;
     pid: number | string;
 }
 
@@ -18,10 +18,10 @@ const Post: React.FC<Params> = ({
     username,
     timeCreated,
     postText,
-    postImage,
-    likes,
-    comments,
-    shares,
+    // postImage,
+    // likes,
+    // comments,
+    // shares,
     pid
 }) => {
     const [isVisible, setIsVisible]: any = useState("hidden");
@@ -113,8 +113,8 @@ const Post: React.FC<Params> = ({
                         </div>
                         <div className="content">
                             <p className="mt-4">{postText}</p>
-                            {postImage && <img src={postImage} alt="" />}
-                            <div className="d-flex flex-row actions mt-3">
+                            {/* {postImage && <img src={postImage} alt="" />} */}
+                            {/* <div className="d-flex flex-row actions mt-3">
                                 <a href="#">
                                     <div className="d-flex flex-row vertical-align">
                                         <i className="far fa-heart"></i>
@@ -133,7 +133,7 @@ const Post: React.FC<Params> = ({
                                         <span className="ml-1">{shares}</span>
                                     </div>
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div></a>
@@ -148,7 +148,7 @@ const Post: React.FC<Params> = ({
                     a{
                         color: #000;
                     }
-                    
+
                     .username:hover{
                         text-decoration: underline;
                     }

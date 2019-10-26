@@ -24,7 +24,7 @@ export default (req: Request, res: Response) => {
  * Get all posts from the database
  */
 const getPosts = (req: Request, res: Response) => {
-    pool.query('SELECT * FROM posts ORDER BY id DESC', (error, results) => {
+    pool.query("SELECT * FROM posts WHERE type = 'user_post' ORDER BY id DESC", (error, results) => {
         if (error) {
             throw error
         }

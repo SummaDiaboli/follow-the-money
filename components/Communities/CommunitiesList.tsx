@@ -7,8 +7,7 @@ interface Params {
 }
 
 const CommunitiesList: React.FC<Params> = (searchValue) => {
-    const cachedCommunities = JSON.parse(sessionStorage.getItem("communities"))
-    const [communities, setCommunities] = useState(cachedCommunities != null ? cachedCommunities : [])
+    const [communities, setCommunities] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -16,7 +15,6 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
         const signal: AbortSignal = abortController.signal
 
         const getCommunities = () => {
-            setIsLoading(false)
             setInterval(() => {
                 fetch('/api/communities', { signal })
                     .then(res => {
@@ -44,6 +42,14 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
         };
 
     }, [communities])
+
+    useEffect(() => {
+        const cachedCommunities = JSON.parse(sessionStorage.getItem("communities"))
+        if (cachedCommunities !== null || cachedCommunities !== undefined) {
+            setCommunities(cachedCommunities)
+            setIsLoading(false)
+        }
+    }, [setCommunities, isLoading])
 
     return (
         <>

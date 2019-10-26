@@ -56,7 +56,7 @@ const SideTab = ({ id }) => {
                                 userStatus ? 'Joined' : 'Join'
                             }
                         </button>
-                        <h6 className="m-0 members ml-3">{communityMembers} Members</h6>
+                        {/* <h6 className="m-0 members ml-3">{communityMembers} Members</h6> */}
                     </div>
                 </div>
             </div>

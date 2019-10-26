@@ -16,7 +16,7 @@ const ImageUploader = () => {
 
         let reader = new FileReader();
         let file = e.target.files[0];
-        
+
         if (file) {
             reader.readAsDataURL(file);
         }
@@ -41,24 +41,25 @@ const ImageUploader = () => {
                                 src="../static/assets/img/upload-icon.jpg"
                             ></img>
                         )}
-                    </div>                    
+                    </div>
                 </div>
                 <input
                     type="file"
                     className="file font-segoe ml-3"
                     id="file"
+                    value=""
                     onChange={e => handleImageChange(e)}
-                ></input>
+                />
 
                 <div></div>
             </div>
 
             <style>{`
                 .profileImg{
-                    overflow: hidden; 
+                    overflow: hidden;
                     width: 150px;
                     height: 150px;
-                    border-radius: 50%;                  
+                    border-radius: 50%;
                 }
 
                 .profileImg img{
@@ -72,7 +73,7 @@ const ImageUploader = () => {
                 }
 
                 .file{
-                    
+
                 }
            `}</style>
         </>

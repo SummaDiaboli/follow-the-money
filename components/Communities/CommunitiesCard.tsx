@@ -23,7 +23,7 @@ const CommunitiesCard: React.FC<Params> = ({ community }) => {
                 <span ref={reference} className="desc pt-3" id="desc">
                     {truncate(community.description)}
                 </span>
-                <span className="pt-3 members">{community.members} Members</span>
+                {/* <span className="pt-3 members">{community.members} Members</span> */}
             </div>
 
             <style jsx>{`

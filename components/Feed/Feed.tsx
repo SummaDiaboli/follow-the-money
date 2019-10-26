@@ -7,10 +7,8 @@ import { SideTab } from "./SideTab";
 import moment from "moment-timezone";
 
 const Feed = () => {
-    const cachedFeedPosts = JSON.parse(sessionStorage.getItem("feedPosts"));
-    const [posts, setPosts] = useState(
-        cachedFeedPosts != null ? cachedFeedPosts : []
-    );
+    const [posts, setPosts] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const abortController: AbortController = new window.AbortController();
@@ -20,6 +18,7 @@ const Feed = () => {
             setInterval(() => {
                 fetch("api/posts", { signal })
                     .then(res => {
+                        setIsLoading(false)
                         res.json().then(posts => {
                             sessionStorage.setItem(
                                 "feedPosts",
@@ -46,6 +45,14 @@ const Feed = () => {
         };
         // console.log("Posts", posts)
     }, [posts]);
+
+    useEffect(() => {
+        const cachedFeedPosts = JSON.parse(sessionStorage.getItem("feedPosts"))
+        if (cachedFeedPosts !== null || cachedFeedPosts !== undefined) {
+            setPosts(cachedFeedPosts)
+            setIsLoading(false)
+        }
+    }, [setPosts, isLoading])
 
     return (
         <>
@@ -118,7 +125,7 @@ const Feed = () => {
                                         aria-labelledby="all-tab"
                                     >
                                         <div className="posts ">
-                                            {posts === [] ? (
+                                            {isLoading ? (
                                                 <div
                                                     className="text-center"
                                                     style={{ marginTop: "5%" }}
@@ -138,24 +145,24 @@ const Feed = () => {
                                             ) : posts.length == 0 ? (
                                                 <></>
                                             ) : (
-                                                posts.map((post, index) => (
-                                                    <Post
-                                                        userName={post.username}
-                                                        key={index}
-                                                        pid={post.id}
-                                                        userPhoto={require("../../static/assets/img/user/user.jpg")}
-                                                        text={post.content.text}
-                                                        name={post.username}
-                                                        time={
-                                                            moment(
-                                                                post.post_date
-                                                            ).format(
-                                                                "MMMM Do YYYY"
-                                                            ) /* + " " + post.post_date + post.post_time */
-                                                        }
-                                                    />
-                                                ))
-                                            )}
+                                                        posts.map((post, index) => (
+                                                            <Post
+                                                                userName={post.username}
+                                                                key={index}
+                                                                pid={post.id}
+                                                                userPhoto={require("../../static/assets/img/user/user.jpg")}
+                                                                text={post.content.text}
+                                                                name={post.username}
+                                                                time={
+                                                                    moment(
+                                                                        post.post_date
+                                                                    ).format(
+                                                                        "MMMM Do YYYY"
+                                                                    ) /* + " " + post.post_date + post.post_time */
+                                                                }
+                                                            />
+                                                        ))
+                                                    )}
                                         </div>
                                     </div>
                                     <div
@@ -187,33 +194,33 @@ const Feed = () => {
                                                     <h2>There are no posts</h2>
                                                 </>
                                             ) : (
-                                                posts.map((post, index) =>
-                                                    post.has_photo === true ? (
-                                                        <Post
-                                                            userName={
-                                                                post.username
-                                                            }
-                                                            key={index}
-                                                            pid={post.id}
-                                                            userPhoto={require("../../static/assets/img/user/user.jpg")}
-                                                            text={
-                                                                post.content
-                                                                    .text
-                                                            }
-                                                            name={post.username}
-                                                            time={
-                                                                moment(
-                                                                    post.post_date
-                                                                ).format(
-                                                                    "MMMM Do YYYY"
-                                                                ) /* + " " + post.post_date + post.post_time */
-                                                            }
-                                                        />
-                                                    ) : (
-                                                        ""
-                                                    )
-                                                )
-                                            )}
+                                                        posts.map((post, index) =>
+                                                            post.has_photo === true ? (
+                                                                <Post
+                                                                    userName={
+                                                                        post.username
+                                                                    }
+                                                                    key={index}
+                                                                    pid={post.id}
+                                                                    userPhoto={require("../../static/assets/img/user/user.jpg")}
+                                                                    text={
+                                                                        post.content
+                                                                            .text
+                                                                    }
+                                                                    name={post.username}
+                                                                    time={
+                                                                        moment(
+                                                                            post.post_date
+                                                                        ).format(
+                                                                            "MMMM Do YYYY"
+                                                                        ) /* + " " + post.post_date + post.post_time */
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                    ""
+                                                                )
+                                                        )
+                                                    )}
                                         </div>
                                     </div>
                                     <div
@@ -245,33 +252,33 @@ const Feed = () => {
                                                     <h2>There are no posts</h2>
                                                 </>
                                             ) : (
-                                                posts.map((post, index) =>
-                                                    post.has_video === true ? (
-                                                        <Post
-                                                            userName={
-                                                                post.username
-                                                            }
-                                                            key={index}
-                                                            pid={post.id}
-                                                            userPhoto={require("../../static/assets/img/user/user.jpg")}
-                                                            text={
-                                                                post.content
-                                                                    .text
-                                                            }
-                                                            name={post.username}
-                                                            time={
-                                                                moment(
-                                                                    post.post_date
-                                                                ).format(
-                                                                    "MMMM Do YYYY"
-                                                                ) /* + " " + post.post_date + post.post_time */
-                                                            }
-                                                        />
-                                                    ) : (
-                                                        ""
-                                                    )
-                                                )
-                                            )}
+                                                        posts.map((post, index) =>
+                                                            post.has_video === true ? (
+                                                                <Post
+                                                                    userName={
+                                                                        post.username
+                                                                    }
+                                                                    key={index}
+                                                                    pid={post.id}
+                                                                    userPhoto={require("../../static/assets/img/user/user.jpg")}
+                                                                    text={
+                                                                        post.content
+                                                                            .text
+                                                                    }
+                                                                    name={post.username}
+                                                                    time={
+                                                                        moment(
+                                                                            post.post_date
+                                                                        ).format(
+                                                                            "MMMM Do YYYY"
+                                                                        ) /* + " " + post.post_date + post.post_time */
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                    ""
+                                                                )
+                                                        )
+                                                    )}
                                         </div>
                                     </div>
                                 </div>
@@ -283,7 +290,7 @@ const Feed = () => {
                 </div>
             </div>
 
-            <style>{`                
+            <style>{`
             `}</style>
         </>
     );

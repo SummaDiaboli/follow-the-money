@@ -49,7 +49,7 @@ const NewCommunityButton = () => {
                 if (res.status === 201) {
                     setCommunityName('')
                     setCommunityDescription('')
-                    Router.push("/communities/[id]", `/communities/${communityName}`)
+                    // Router.push("/communities/[id]", `/communities/${communityName}`)
                     // toggleModal()
                 } else {
                     setCommunityExists(true)

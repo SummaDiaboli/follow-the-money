@@ -27,7 +27,7 @@ export default (req: Request, res: Response) => {
 const getPostById = (req: Request, res: Response, id: string) => {
     pool.query('SELECT * FROM posts WHERE id=$1', [id], (error, result) => {
         if (error) {
-            throw error
+            console.log(error)
         }
         res.status(200).send(result.rows)
     })

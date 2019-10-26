@@ -17,9 +17,9 @@ const Community = () => {
         }
     ) */
 
-    const getCommunityPosts = (id, signal) => {
-        fetch(`/api/communities/${id}`, { signal })
-    }
+    // const getCommunityPosts = (id, signal) => {
+    //     fetch(`/api/communities/${id}`, { signal })
+    // }
 
     return (
         <>
@@ -35,7 +35,7 @@ const Community = () => {
                                     <div className="col-12 pt-3 p-0">
                                         <h6 className="color-grey font-semiBold my-1">Posts</h6>
                                     </div>
-                                    <MiddleLayout />
+                                    <MiddleLayout id={id} />
                                     <SideTab />
                                 </div>
                             </div>

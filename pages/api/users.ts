@@ -3,6 +3,9 @@ import { Request, Response } from "express"
 // import pool from '../../database/queries.js'
 const pool = require('../../database/queries')
 
+const bcrypt = require('bcrypt')
+const salt = "$2b$10$km1k7cENiAiicK9Ml9E4wO"
+
 export default (req: Request, res: Response) => {
     const {
         // query: { username, password },
@@ -45,8 +48,12 @@ export default (req: Request, res: Response) => {
  */
 const getUser = (request: Request, response: Response) => {
     const { username, password } = request.query
+    const hash = bcrypt.hashSync(password, salt)
+    // const salt2 = bcrypt.genSaltSync(10)
+    // console.log(salt2)
+
     pool.query('SELECT * FROM users WHERE username = $1 AND password = $2',
-        [username, password],
+        [username, hash],
         (error, result) => {
             if (error) {
                 response.status(500)
@@ -74,14 +81,17 @@ interface User {
     role: string,
     address: JSON
 }
+
 const createUser = (request: Request, response: Response) => {
     // const { query: { username, email, name, password, role } } = request
     const { username, email, name, password, role, address }: User = request.body
 
+    const hash = bcrypt.hashSync(password, salt)
+
     pool.query(
         'INSERT INTO users (username, email, name, password, role, address, register_date, register_time) \
         VALUES ($1, $2, $3, $4, $5, $6, current_date, current_time)',
-        [username, email, name, password, role, address],
+        [username, email, name, hash, role, address],
         (error, result) => {
             if (error) {
                 // throw error

@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-const SideTab = () => {
-    const [communityName, setCommunityName] = useState('Madlads')
+const SideTab = ({ id }) => {
+    // const [communityName, setCommunityName] = useState('Madlads')
     const [communityMembers, setCommunityMembers] = useState(249)
+    const [communityDescription, setCommunityDescription] = useState('')
     const [userStatus, setUserStatus] = useState(false)
+
+    useEffect(() => {
+        const communitiesList = JSON.parse(sessionStorage.getItem('communities'))
+        communitiesList.map(community => {
+            if (community.name === id) {
+                // return community.id
+                setCommunityDescription(community.description)
+            }
+        })
+    }, [communityDescription])
+
 
     const handleJoin = () => {
         setUserStatus(!userStatus)
@@ -31,9 +43,7 @@ const SideTab = () => {
                 <div className="card p-3 mt-4 sidetab">
                     <span className="heading smaller">COMMUNITY DETAILS</span>
                     <span className="description">
-                        Phosfluorescently re-engineer high standards in models and holistic testing procedures.
-                        Rapidiously build team driven interfaces via future-proof synergy.
-                        Compellingly matrix resource-leveling metrics before alternative.
+                        {communityDescription}
                     </span>
                     <div className="d-flex pt-4 flex-row vertical-align w-100">
                         <button

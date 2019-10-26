@@ -105,12 +105,7 @@ const Communities = () => {
                     font-weight: 500;
                     padding-left: 10px;
                 }
-                .search input:-moz-placeholder {
-                    color: rgba(69, 69, 69, 0.4) !important;
-                    font-size: 0.8rem;
-                    font-weight: 500;
-                    padding-left: 10px;
-                }
+
             `}</style>
         </>
     );

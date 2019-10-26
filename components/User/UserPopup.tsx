@@ -1,6 +1,7 @@
 import React from "react";
 import Cookies from "js-cookie";
 import Router from "next/router";
+import Link from "next/link";
 
 const UserPopup = () => {
     const signOut = () => {
@@ -22,16 +23,21 @@ const UserPopup = () => {
                     </li>
 
                     <li>
-                        <a href="#">
-                            <div className="d-flex flex-row vertical-align">
-                                <i className="fas fa-cog mr-2"></i>
-                                <span>Settings</span>
-                            </div>
-                        </a>
+                        <Link href="/settings">
+                            <a>
+                                <div className="d-flex flex-row vertical-align">
+                                    <i className="fas fa-cog mr-2"></i>
+                                    <span>Settings</span>
+                                </div>
+                            </a>
+                        </Link>
                     </li>
 
                     <li>
-                        <button className="m-0 w-100 text-left" onClick={signOut}>
+                        <button
+                            className="m-0 w-100 text-left"
+                            onClick={signOut}
+                        >
                             <div className="d-flex flex-row vertical-align">
                                 <i className="fas fa-sign-out-alt mr-2"></i>
                                 <span>Signout</span>

@@ -7,8 +7,8 @@ interface Params {
 }
 
 const CommunitiesList: React.FC<Params> = (searchValue) => {
-    const cachedCommunities = JSON.parse(sessionStorage.getItem("communities"))
-    const [communities, setCommunities] = useState(cachedCommunities != null ? cachedCommunities : [])
+    const [communities, setCommunities] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const abortController: AbortController = new window.AbortController()
@@ -18,6 +18,7 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
             setInterval(() => {
                 fetch('/api/communities', { signal })
                     .then(res => {
+                        setIsLoading(false)
                         res.json()
                             .then(communities => {
                                 sessionStorage.setItem("communities", JSON.stringify(communities))
@@ -42,11 +43,19 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
 
     }, [communities])
 
+    useEffect(() => {
+        const cachedCommunities = JSON.parse(sessionStorage.getItem("communities"))
+        if (cachedCommunities !== null || cachedCommunities !== undefined) {
+            setCommunities(cachedCommunities)
+            setIsLoading(false)
+        }
+    }, [setCommunities, isLoading])
+
     return (
         <>
             <div className="communities mt-3">
                 <div className="row m-o w-100">
-                    {communities === []
+                    {isLoading
                         ? <div className="text-center" style={{ marginTop: "5%" }}>
                             <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
                                 <span className="sr-only">Loading...</span>

@@ -50,7 +50,7 @@ const NewCommunityButton = () => {
                     setCommunityName('')
                     setCommunityDescription('')
                     // Router.push("/communities/[id]", `/communities/${communityName}`)
-                    // toggleModal()
+                    toggleModal()
                 } else {
                     setCommunityExists(true)
                     return "Commmunity could not be created"

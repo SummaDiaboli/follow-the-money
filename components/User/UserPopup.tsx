@@ -6,6 +6,7 @@ import Link from "next/link";
 const UserPopup = () => {
     const signOut = () => {
         Cookies.remove("userData");
+        sessionStorage.clear()
         Router.reload();
     };
 

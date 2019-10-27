@@ -548,10 +548,6 @@ textarea {
     font-family: "Montserrat", sans-serif;
 }
 
-:-moz-placeholder {
-    color: rgba(0, 0, 0, 0.37) !important;
-    font-family: "Montserrat", sans-serif;
-}
 
 form .options {
     font-size: 0.7rem;

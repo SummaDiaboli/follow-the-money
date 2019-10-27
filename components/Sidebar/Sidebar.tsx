@@ -31,8 +31,8 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
                 return setNavState('feed')
             case /\/messages/.test(pathname):
                 return setNavState('messages')
-            case /\/friends/.test(pathname):
-                return setNavState('friends')
+            // case /\/friends/.test(pathname):
+            //     return setNavState('friends')
             case /\/communities/.test(pathname):
                 return setNavState('communities')
             case /\/playlists/.test(pathname):
@@ -59,8 +59,9 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
     const [eventsCount, setEventsCount] = useState(0)
 
     const signOut = () => {
-        Cookies.remove('userData')
         Router.reload()
+        sessionStorage.clear()
+        Cookies.remove('userData')
     }
 
     useEffect(() => {
@@ -110,7 +111,7 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
                             </Link>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <Link href="/friends">
                                 <a className={navState == 'friends' ? "active" : ""}>
                                     <i className="fas fa-user mr-2 text-center"></i>
@@ -124,7 +125,7 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
                                     }
                                 </a>
                             </Link>
-                        </li>
+                        </li> */}
 
                         <li>
                             <Link href="/communities">
@@ -175,13 +176,7 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
                                 </a>
                             </Link>
                         </li> */}
-                    </ul>
-                    <a href="#" className="signout" onClick={signOut}>
-                        <div className="d-flex vertical-align flex-row py-2 px-3">
-                            <i className="fas fa-sign-out-alt" />
-                            <span className="ml-2">Signout</span>
-                        </div>
-                    </a>
+                    </ul>                    
                 </div>
             </div>
             {children}

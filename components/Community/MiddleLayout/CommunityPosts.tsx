@@ -1,11 +1,101 @@
-import React from 'react'
-import Post from './Post'
+import React, { useEffect, useState } from 'react'
+import UserPost from '../UserPost'
 
-const CommunityPosts = () => {
+import fetch from 'isomorphic-unfetch'
+import Post from './Post'
+import moment from 'moment-timezone'
+
+const CommunityPosts = ({ id }) => {
+    let community_id
+    const [isLoading, setIsLoading] = useState(true)
+    const [posts, setPosts] = useState([])
+
+    useEffect(() => {
+        const abortController: AbortController = new window.AbortController()
+        const signal: AbortSignal = abortController.signal
+        // console.log(community_id[0])
+        const getPosts = (comm_id) => {
+            setInterval(() => {
+                fetch(`/api/community?community_id=${comm_id}`, { signal })
+                    .then(res => {
+                        setIsLoading(false)
+                        if (res.status === 200) {
+                            res.json()
+                                .then(posts => {
+                                    sessionStorage.setItem(`${comm_id}CommunityPosts`, JSON.stringify(posts))
+                                    setPosts([...posts])
+                                    // console.log(posts)
+                                })
+                        } else {
+                            setPosts([])
+                        }
+                    })
+                    .catch(err => {
+                        if (err.name === 'AbortError') {
+                            return 'Promise Aborted'
+                        } else {
+                            return 'Promise Rejected'
+                        }
+                    })
+            }, 8000);
+        }
+
+
+        let communitiesList = JSON.parse(sessionStorage.getItem('communities'))
+        communitiesList.map(community => {
+            if (community.name === id) {
+                // return community.id
+                community_id = community.id
+                getPosts(community.id)
+            }
+        })
+
+        return () => {
+            abortController.abort()
+        }
+
+    }, [posts])
+
+    useEffect(() => {
+        if (community_id !== undefined) {
+            const cachedCommunityPosts = JSON.parse(sessionStorage.getItem(`${community_id}CommunityPosts`))
+            if (cachedCommunityPosts !== null || cachedCommunityPosts !== undefined) {
+                setPosts(cachedCommunityPosts)
+                setIsLoading(false)
+            }
+        }
+    }, [setPosts, isLoading])
+
     return (
         <>
+            <div className="userPost">
+                <UserPost userImage="../static/assets/img/user/user.jpg" userFname="Hamzat" community_name={id} />
+            </div>
+
             <div className="posts mt-3">
-                <Post
+                {
+                    isLoading === true || posts === null
+                        ? <div className="text-center" style={{ marginTop: "5%" }}>
+                            <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                        : posts.length == 0
+                            ? <>
+                            </>
+                            : posts.map((post, index) => (
+                                <Post
+                                    username={post.username}
+                                    key={index}
+                                    pid={post.id}
+                                    userImage="../../static/assets/img/user/user.jpg"
+                                    postText={post.content.text}
+                                    timeCreated={moment(post.post_date).format('MMMM Do YYYY') /* + " " + post.post_date + post.post_time */}
+                                />
+                            ))
+
+                }
+                {/* <Post
                     userImage="../static/assets/img/user/hamzat.jpg"
                     username="Hamzat Lawal"
                     timeCreated="8:15pm, yesterday"
@@ -14,6 +104,7 @@ const CommunityPosts = () => {
                     likes="2.1k"
                     comments="201"
                     shares="1.2k"
+                    pid={0}
                 />
                 <Post
                     userImage="../static/assets/img/user/hamzat.jpg"
@@ -23,7 +114,8 @@ const CommunityPosts = () => {
                     likes="3.1k"
                     comments="208"
                     shares="50"
-                />
+                    pid={1}
+                /> */}
             </div>
 
             <style jsx>{`

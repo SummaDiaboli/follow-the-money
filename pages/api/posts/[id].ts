@@ -27,7 +27,7 @@ export default (req: Request, res: Response) => {
 const getPostById = (req: Request, res: Response, id: string) => {
     pool.query('SELECT * FROM posts WHERE id=$1', [id], (error, result) => {
         if (error) {
-            throw error
+            console.log(error)
         }
         res.status(200).send(result.rows)
     })
@@ -44,7 +44,15 @@ interface Post {
 }
 
 const updatePost = (req: Request, res: Response, id: string) => {
-    const { title, has_photo, has_audio, has_video, content, has_embedded_usernames, username }: Post = req.body
+    const {
+        title,
+        has_photo,
+        has_audio,
+        has_video,
+        content,
+        has_embedded_usernames,
+        username
+    }: Post = req.body
     // const { id } = req.query
     // const { id } = req.params
 

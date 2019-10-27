@@ -1,130 +1,165 @@
-import React, { useState, createRef } from 'react'
+import React, { useState, createRef } from "react";
+import Link from "next/link";
 
 interface Params {
-    userImage: string,
-    username: string,
-    timeCreated: Date | string,
-    postText?: string,
-    postImage?: string,
-    likes?: number | string,
-    comments?: number | string,
-    shares?: number | string
+    userImage: string;
+    username: string;
+    timeCreated: Date | string;
+    postText?: string;
+    // postImage?: string;
+    // likes?: number | string;
+    // comments?: number | string;
+    // shares?: number | string;
+    pid: number | string;
 }
 
-const Post: React.FC<Params> = ({ userImage, username, timeCreated, postText, postImage, likes, comments, shares }) => {
-    const [isVisible, setIsVisible]: any = useState("hidden")
+const Post: React.FC<Params> = ({
+    userImage,
+    username,
+    timeCreated,
+    postText,
+    // postImage,
+    // likes,
+    // comments,
+    // shares,
+    pid
+}) => {
+    const [isVisible, setIsVisible]: any = useState("hidden");
 
-    const reference: any = createRef()
+    const reference: any = createRef();
 
     const showPostPopup = () => {
         // let popup = el.parentElement.querySelector("#post-popup");
         // let popup = document.getElementById("post-popup")
-        let popup = reference.current
+        let popup = reference.current;
         // console.log(reference.current)
 
         if (isVisible) {
-            popup.animate([
-                { opacity: 1 },
-                { opacity: 0 }
-            ], {
+            popup.animate([{ opacity: 1 }, { opacity: 0 }], {
                 duration: 200,
                 iterations: 1,
-                easing: 'linear',
-                fill: 'forwards'
+                easing: "linear",
+                fill: "forwards"
             });
 
-            setTimeout(function () {
+            setTimeout(function() {
                 popup.style.opacity = 0;
             }, 200);
 
-            setIsVisible("hidden")
+            setIsVisible("hidden");
         } else {
-            popup.animate([
-                { opacity: 0 },
-                { opacity: 1 }
-            ], {
+            popup.animate([{ opacity: 0 }, { opacity: 1 }], {
                 duration: 200,
                 iterations: 1,
-                easing: 'linear',
-                fill: 'forwards'
+                easing: "linear",
+                fill: "forwards"
             });
 
-            setTimeout(function () {
+            setTimeout(function() {
                 popup.style.opacity = 1;
             }, 200);
-            setIsVisible("visible")
+            setIsVisible("visible");
         }
-    }
-
-
+    };
 
     return (
         <>
-            <div className="card p-3 post w-100">
-                <div className="w-100 d-flex flex-column">
-                    <div className="user d-flex vertical-align flex-row">
-                        <img src={userImage} className="rounded-circle mr-3" alt="" />
-                        <div className="d-flex flex-column">
-                            <div className="d-flex flex-row w-100">
-                                <h5>{username}</h5>
-                                <i className="far ml-1 fa-check-circle color-red fa-sm"></i>
+            <Link href="/post/[pid]" as={`/post/${pid}`}>
+                <a>
+                <div className="card p-3 post w-100">
+                    <div className="w-100 d-flex flex-column">
+                        <div className="user d-flex vertical-align flex-row">
+                            <img
+                                src={userImage}
+                                className="rounded-circle mr-3"
+                                alt=""
+                            />
+                            <div className="d-flex flex-column">
+                                <div className="d-flex flex-row w-100">
+                                    <Link
+                                        href="/users/[id]"
+                                        as={`/users/${username}`}
+                                    >
+                                        <a className="username"><h5>{username}</h5></a>
+                                    </Link>
+                                    <i className="far ml-1 fa-check-circle color-red fa-sm"></i>
+                                </div>
+                                <span>{timeCreated}</span>
                             </div>
-                            <span>{timeCreated}</span>
-                        </div>
-                        <button onClick={showPostPopup} className="ml-auto d-flex" id="post-popup-toggler">
-                            <i className="fas fa-ellipsis-h color-grey"></i>
-                        </button>
-                        <div
-                            ref={reference}
-                            className="card p-3 post-popup"
-                            id="post-popup"
-                            style={{ visibility: isVisible }}
-                        >
-                            <button
-                                className=""
-                                style={{ padding: 0, marginLeft: "left", color: "black" }}
+                            {/* <button
+                                onClick={showPostPopup}
+                                className="ml-auto d-flex"
+                                id="post-popup-toggler"
                             >
-                                View More
+                                <i className="fas fa-ellipsis-h color-grey"></i>
                             </button>
+                            <div
+                                ref={reference}
+                                className="card p-3 post-popup"
+                                id="post-popup"
+                                style={{ visibility: isVisible }}
+                            >
+                                <button
+                                    className=""
+                                    style={{
+                                        padding: 0,
+                                        marginLeft: "left",
+                                        color: "black"
+                                    }}
+                                >
+                                    View More
+                                </button>
+                            </div> */}
+                        </div>
+                        <div className="content">
+                            <p className="mt-4">{postText}</p>
+                            {/* {postImage && <img src={postImage} alt="" />} */}
+                            {/* <div className="d-flex flex-row actions mt-3">
+                                <a href="#">
+                                    <div className="d-flex flex-row vertical-align">
+                                        <i className="far fa-heart"></i>
+                                        <span className="ml-1">{likes}</span>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div className="d-flex flex-row vertical-align ml-3">
+                                        <i className="far fa-comment"></i>
+                                        <span className="ml-1">{comments}</span>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div className="d-flex flex-row vertical-align ml-3">
+                                        <i className="fas fa-retweet"></i>
+                                        <span className="ml-1">{shares}</span>
+                                    </div>
+                                </a>
+                            </div> */}
                         </div>
                     </div>
-                    <div className="content">
-                        <p className="mt-4">{postText}</p>
-                        {
-                            postImage && <img src={postImage} alt="" />
-                        }
-                        <div className="d-flex flex-row actions mt-3">
-                            <a href="#">
-                                <div className="d-flex flex-row vertical-align">
-                                    <i className="far fa-heart"></i>
-                                    <span className="ml-1">{likes}</span>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div className="d-flex flex-row vertical-align ml-3">
-                                    <i className="far fa-comment"></i>
-                                    <span className="ml-1">{comments}</span>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div className="d-flex flex-row vertical-align ml-3">
-                                    <i className="fas fa-retweet"></i>
-                                    <span className="ml-1">{shares}</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </div></a>
+            </Link>
 
-            <style jsx>{`
-                .card{
-                    margin-top: 1.5rem;
-                }
-            `}
+            <style jsx>
+                {`
+                    .card {
+                        margin-top: 1.5rem;
+                    }
+
+                    a{
+                        color: #000;
+                    }
+
+                    .username:hover{
+                        text-decoration: underline;
+                    }
+
+                    .content a {
+                        color: #7b7b7c;
+                    }
+                `}
             </style>
         </>
-    )
-}
+    );
+};
 
-export default Post
+export default Post;

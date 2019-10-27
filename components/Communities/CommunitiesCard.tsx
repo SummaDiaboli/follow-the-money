@@ -1,4 +1,4 @@
-import React, { useEffect, createRef } from 'react'
+import React, { useLayoutEffect, createRef } from 'react'
 
 interface Params {
     community: any
@@ -7,17 +7,11 @@ interface Params {
 const CommunitiesCard: React.FC<Params> = ({ community }) => {
     const reference: any = createRef()
 
-    const truncate = (id: string) => {
-        let string = document.getElementById(id).innerHTML;
-        var maxLength = 80;
-        var result = string.substring(0, maxLength) + '...';
-        reference.current.innerHTML = result;
+    const truncate = (input) => {
+        return input.length > 80
+            ? `${input.substring(0, 80)}...`
+            : input
     }
-
-    useEffect(() => {
-        // console.log(reference.current.innerHTML)
-        truncate('desc');
-    })
 
     return (
         <>
@@ -26,8 +20,10 @@ const CommunitiesCard: React.FC<Params> = ({ community }) => {
                     <h5 className="m-0">{community.name}</h5>
 
                 </div>
-                <span ref={reference} className="desc pt-3" id="desc">{community.desc}</span>
-                <span className="pt-3 members">{community.members} Members</span>
+                <span ref={reference} className="desc pt-3" id="desc">
+                    {truncate(community.description)}
+                </span>
+                {/* <span className="pt-3 members">{community.members} Members</span> */}
             </div>
 
             <style jsx>{`
@@ -37,7 +33,7 @@ const CommunitiesCard: React.FC<Params> = ({ community }) => {
                 }
 
                 .card{
-                    border:none;
+                    background: #F6F6F8;
                 }
 
                 .card h5{

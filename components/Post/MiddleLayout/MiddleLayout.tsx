@@ -6,9 +6,13 @@ import moment from 'moment-timezone'
 import NewComment from "./NewComment"
 
 const MiddleLayout = () => {
-    const [postId, setPostId] = useState()
+    const url = window.location.pathname
+    let id = url.split('/')[2]
+
+    // const [postId, setPostId] = useState()
+    let cachedFeedComments = JSON.parse(sessionStorage.getItem(`cachedFeedComments${id}`))
     const [post, setPost]: any = useState([])
-    const [comments, setComments] = useState(null)
+    const [comments, setComments] = useState(cachedFeedComments != null ? cachedFeedComments : [])
 
     const getPost = (pid: string) => {
         if (pid !== undefined) {
@@ -31,7 +35,8 @@ const MiddleLayout = () => {
             }).then(res => {
                 res.status === 200
                     ? res.json().then(data => {
-                        setComments(data)
+                        sessionStorage.setItem(`cachedFeedComments${id}`, JSON.stringify(data))
+                        setComments([...data])
                     })
                     : console.log("Something went wrong fetching comments")
             })
@@ -40,9 +45,6 @@ const MiddleLayout = () => {
 
 
     useEffect(() => {
-        const url = window.location.pathname
-        const id = url.split('/')[2]
-
         getPost(id)
     }, [setPost])
 
@@ -85,7 +87,7 @@ const MiddleLayout = () => {
                                 <div className="pt-4 comments">
                                     <h6 className="mb-4">Comments</h6>
                                     {
-                                        comments === null
+                                        comments === []
                                             ? <div className="text-center" style={{ marginTop: "5%" }}>
                                                 <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
                                                     <span className="sr-only">Loading...</span>

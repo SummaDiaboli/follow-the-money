@@ -75,7 +75,7 @@ const UserProfile = () => {
             .main{
                 /* padding-top: 0px; */
                 overflow-y: auto;
-                background: #F6F6F8;
+                background: #fff;
             }
 
             .profile img{
@@ -221,6 +221,8 @@ const UserProfile = () => {
             .post-popup button{
                 color: #fff;
             }
+
+            
             `}
             </style>
         </>

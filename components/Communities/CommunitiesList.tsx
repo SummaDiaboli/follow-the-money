@@ -7,38 +7,8 @@ interface Params {
 }
 
 const CommunitiesList: React.FC<Params> = (searchValue) => {
-    const [communities, setCommunities] = useState([
-        {
-            name: 'Madlads',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        },
-        {
-            name: 'Askreddit',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        },
-        {
-            name: 'ProgrammerHumor',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        },
-        {
-            name: 'Holup',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        },
-        {
-            name: 'CursedComments',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        },
-        {
-            name: 'BlessedComments',
-            desc: 'Efficiently productize user-centric ROI vis-a-vis focused leadership skills. Interactively disseminate distinctive intellectual capital without.',
-            members: 21636
-        }
-    ])
+    const [communities, setCommunities] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const abortController: AbortController = new window.AbortController()
@@ -48,7 +18,12 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
             setInterval(() => {
                 fetch('/api/communities', { signal })
                     .then(res => {
-                        res.json().then(communities => setCommunities(communities))
+                        setIsLoading(false)
+                        res.json()
+                            .then(communities => {
+                                sessionStorage.setItem("communities", JSON.stringify(communities))
+                                setCommunities([...communities])
+                            })
                     })
                     .catch(err => {
                         if (err.name === 'AbortError') {
@@ -57,7 +32,7 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
                             return "Promise Rejected"
                         }
                     })
-            }, 8000)
+            }, 5000)
         }
 
         getCommunities()
@@ -68,32 +43,45 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
 
     }, [communities])
 
+    useEffect(() => {
+        const cachedCommunities = JSON.parse(sessionStorage.getItem("communities"))
+        if (cachedCommunities !== null) {
+            setCommunities(cachedCommunities)
+            setIsLoading(false)
+        }
+    }, [setCommunities, isLoading])
+
     return (
         <>
             <div className="communities mt-3">
                 <div className="row m-o w-100">
-                    {communities.map((community, index) => (
-                        searchValue.searchValue == '' ?
-                            <div key={index} className="col-3">
-                                <Link href="/communities/[id]" as={`/communities/${community.name}`}>
-                                    <a>
-                                        <CommunitiesCard community={community} />
-                                    </a>
-                                </Link>
-                            </div> :
-                            (
-                                community.name.toLowerCase().includes(searchValue.searchValue.toLowerCase()) ?
-                                    <div key={index} className="col-3">
-                                        <Link href="/communities/[id]" as={`/communities/${community.name}`}>
-                                            <a>
-                                                <CommunitiesCard community={community} />
-                                            </a>
-                                        </Link>
-                                    </div>
-                                    :
-                                    ''
-                            )
-                    ))}
+                    {isLoading
+                        ? <div className="text-center" style={{ marginTop: "0%", marginLeft: "50%" }}>
+                            <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                        : communities.map((community, index) => (
+                            searchValue.searchValue == ''
+                                ? <div key={index} className="col-3">
+                                    <Link href="/communities/[id]" as={`/communities/${community.name}`}>
+                                        <a>
+                                            <CommunitiesCard community={community} />
+                                        </a>
+                                    </Link>
+                                </div>
+                                : (
+                                    community.name.toLowerCase().includes(searchValue.searchValue.toLowerCase())
+                                        ? <div key={index} className="col-3">
+                                            <Link href="/communities/[id]" as={`/communities/${community.name}`}>
+                                                <a>
+                                                    <CommunitiesCard community={community} />
+                                                </a>
+                                            </Link>
+                                        </div>
+                                        : ''
+                                )
+                        ))}
                 </div>
             </div>
 

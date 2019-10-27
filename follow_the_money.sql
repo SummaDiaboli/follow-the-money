@@ -37,6 +37,7 @@ CREATE TABLE "posts" (
 "id" serial2 NOT NULL,
 "post_date" date NOT NULL,
 "post_time" time NOT NULL,
+"type" varchar(255) NOT NULL,
 "title" varchar NOT NULL,
 "has_photo" bool NOT NULL,
 "has_audio" bool NOT NULL,
@@ -48,6 +49,7 @@ PRIMARY KEY ("id")
 )
 WITHOUT OIDS;
 CREATE INDEX "title" ON "posts" USING btree ("title" ASC NULLS LAST);
+COMMENT ON COLUMN "posts"."type" IS 'Stores values like "community" for posts belonging to community.';
 COMMENT ON COLUMN "posts"."content" IS 'Stores text and urls to photos, audio and video attached to posts';
 COMMENT ON COLUMN "posts"."username" IS 'Stores usernames of registered users';
 
@@ -195,6 +197,21 @@ CONSTRAINT "unq_rad_pro_anly_time" UNIQUE ("time")
 WITHOUT OIDS;
 COMMENT ON COLUMN "radio_programs_analytics"."username" IS 'User who listened to the radio program.';
 
+CREATE TABLE "communities" (
+"id" serial2 NOT NULL,
+"name" varchar(255) NOT NULL,
+"description" varchar(255),
+"username" varchar(32),
+PRIMARY KEY ("id") 
+)
+WITHOUT OIDS;
+CREATE TABLE "communities_posts" (
+"id" serial2 NOT NULL,
+"community_id" int2 NOT NULL,
+"post_id" int2 NOT NULL,
+PRIMARY KEY ("id") 
+)
+WITHOUT OIDS;
 
 ALTER TABLE "users_friends" ADD CONSTRAINT "fk_user_id" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE NO ACTION;
 ALTER TABLE "posts" ADD CONSTRAINT "fk_username" FOREIGN KEY ("username") REFERENCES "users" ("username") ON DELETE CASCADE ON UPDATE NO ACTION;
@@ -211,4 +228,74 @@ ALTER TABLE "podcast_analytics" ADD CONSTRAINT "fk_podcast_id" FOREIGN KEY ("pod
 ALTER TABLE "podcast_analytics" ADD CONSTRAINT "fk_username" FOREIGN KEY ("username") REFERENCES "users" ("username") ON DELETE CASCADE ON UPDATE NO ACTION;
 ALTER TABLE "radio_programs_analytics" ADD CONSTRAINT "fk_radio_program_id" FOREIGN KEY ("radio_program_id") REFERENCES "radio_programs" ("id") ON DELETE CASCADE ON UPDATE NO ACTION;
 ALTER TABLE "radio_programs_analytics" ADD CONSTRAINT "fk_username" FOREIGN KEY ("username") REFERENCES "users" ("username") ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE "communities" ADD CONSTRAINT "fk_username" FOREIGN KEY ("username") REFERENCES "users" ("username") ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE "communities_posts" ADD CONSTRAINT "fk_community_id" FOREIGN KEY ("community_id") REFERENCES "communities" ("id") ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE "communities_posts" ADD CONSTRAINT "fk_post_id" FOREIGN KEY ("post_id") REFERENCES "posts" ("id") ON DELETE CASCADE ON UPDATE NO ACTION;
 
+CREATE 
+VIEW "communities_view" AS 
+SELECT
+	posts.post_date AS "post_date",
+	posts.post_time AS "post_time",
+	"communities_posts"."community_id",
+	"communities"."name",
+	"communities"."description",
+	"communities"."username",
+	"communities_posts"."post_id",
+	"posts"."type",
+	"posts"."title",
+	"posts"."has_photo",
+	"posts"."has_audio",
+	"posts"."has_video",
+	"posts"."content",
+	"posts"."has_embedded_usernames" 
+FROM
+	"communities"
+	INNER JOIN "communities_posts" ON "communities_posts"."community_id" = "communities"."id"
+	INNER JOIN "posts" ON "communities_posts"."post_id" = "posts"."id" 
+WHERE
+	"posts"."type" = 'Community' 
+ORDER BY
+	"posts"."post_date" DESC;
+CREATE 
+VIEW "posts_view" AS 
+SELECT
+"posts"."post_date",
+"posts"."post_time",
+"posts"."type",
+"posts"."title",
+"posts"."has_photo",
+"posts"."has_audio",
+"posts"."has_video",
+"posts"."content",
+"posts"."has_embedded_usernames",
+"posts"."username" AS "posted_by",
+"posts_comments"."comment_date",
+"posts_comments"."comment_time",
+"posts_comments"."comment"
+FROM
+"posts"
+INNER JOIN "posts_comments" ON "posts_comments"."post_id" = "posts"."id"
+WHERE
+"posts"."id" = "posts_comments"."post_id"
+ORDER BY
+"posts"."post_date" DESC
+;
+CREATE 
+VIEW "users_friends_view" AS 
+SELECT
+"users"."register_date",
+"users"."register_time",
+"users"."username",
+"users"."role",
+"users"."name",
+"users"."photo",
+"users_friends"."added_date" AS "friend_added_date",
+"users_friends"."added_time" AS "friend_added_time",
+"users_friends"."username" AS "friend_username"
+FROM
+"users"
+INNER JOIN "users_friends" ON "users_friends"."user_id" = "users"."id"
+WHERE
+"users"."id" = "users_friends"."user_id"
+;

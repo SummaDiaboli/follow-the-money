@@ -86,7 +86,7 @@ const Post: React.FC<Params> = ({
                                 </div>
                                 <span>{timeCreated}</span>
                             </div>
-                            <button
+                            {/* <button
                                 onClick={showPostPopup}
                                 className="ml-auto d-flex"
                                 id="post-popup-toggler"
@@ -109,7 +109,7 @@ const Post: React.FC<Params> = ({
                                 >
                                     View More
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="content">
                             <p className="mt-4">{postText}</p>

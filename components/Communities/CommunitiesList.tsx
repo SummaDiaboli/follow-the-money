@@ -45,7 +45,7 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
 
     useEffect(() => {
         const cachedCommunities = JSON.parse(sessionStorage.getItem("communities"))
-        if (cachedCommunities !== null || cachedCommunities !== undefined) {
+        if (cachedCommunities !== null) {
             setCommunities(cachedCommunities)
             setIsLoading(false)
         }
@@ -56,7 +56,7 @@ const CommunitiesList: React.FC<Params> = (searchValue) => {
             <div className="communities mt-3">
                 <div className="row m-o w-100">
                     {isLoading
-                        ? <div className="text-center" style={{ marginTop: "5%" }}>
+                        ? <div className="text-center" style={{ marginTop: "0%", marginLeft: "50%" }}>
                             <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
                                 <span className="sr-only">Loading...</span>
                             </div>

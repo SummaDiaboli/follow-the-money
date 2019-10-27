@@ -20,11 +20,13 @@ const Feed = () => {
                     .then(res => {
                         setIsLoading(false)
                         res.json().then(posts => {
-                            sessionStorage.setItem(
-                                "feedPosts",
-                                JSON.stringify(posts)
-                            );
-                            setPosts([...posts]);
+                            if (posts !== null) {
+                                sessionStorage.setItem(
+                                    "feedPosts",
+                                    JSON.stringify(posts)
+                                );
+                                setPosts([...posts]);
+                            }
                         });
                     })
                     .catch(err => {
@@ -48,7 +50,7 @@ const Feed = () => {
 
     useEffect(() => {
         const cachedFeedPosts = JSON.parse(sessionStorage.getItem("feedPosts"))
-        if (cachedFeedPosts !== null || cachedFeedPosts !== undefined) {
+        if (cachedFeedPosts !== null) {
             setPosts(cachedFeedPosts)
             setIsLoading(false)
         }
@@ -125,26 +127,28 @@ const Feed = () => {
                                         aria-labelledby="all-tab"
                                     >
                                         <div className="posts ">
-                                            {isLoading ? (
-                                                <div
-                                                    className="text-center"
-                                                    style={{ marginTop: "5%" }}
-                                                >
+                                            {posts !== null &&
+                                                isLoading ? (
                                                     <div
-                                                        className="spinner-border"
-                                                        role="status"
-                                                        style={{
-                                                            color: "#D00000"
-                                                        }}
+                                                        className="text-center"
+                                                        style={{ marginTop: "5%" }}
                                                     >
-                                                        <span className="sr-only">
-                                                            Loading...
-                                                        </span>
+                                                        <div
+                                                            className="spinner-border"
+                                                            role="status"
+                                                            style={{
+                                                                color: "#D00000"
+                                                            }}
+                                                        >
+                                                            <span className="sr-only">
+                                                                Loading...
+                                                            </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            ) : posts.length == 0 ? (
-                                                <></>
-                                            ) : (
+                                                ) : posts.length == 0
+                                                    ? (
+                                                        <></>
+                                                    ) : (
                                                         posts.map((post, index) => (
                                                             <Post
                                                                 userName={post.username}

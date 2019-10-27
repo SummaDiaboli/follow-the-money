@@ -195,7 +195,7 @@ const Feed = () => {
                                                 </div>
                                             ) : posts.length == 0 ? (
                                                 <>
-                                                    <h2>There are no posts</h2>
+                                                    {/* <h2>There are no posts</h2> */}
                                                 </>
                                             ) : (
                                                         posts.map((post, index) =>
@@ -253,7 +253,7 @@ const Feed = () => {
                                                 </div>
                                             ) : posts.length == 0 ? (
                                                 <>
-                                                    <h2>There are no posts</h2>
+                                                    {/* <h2>There are no posts</h2> */}
                                                 </>
                                             ) : (
                                                         posts.map((post, index) =>

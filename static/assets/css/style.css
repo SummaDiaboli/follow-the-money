@@ -934,4 +934,30 @@ a.username:hover{
     padding-right: calc(1rem + 3px)!important;
 } */
 
+.mobile{
+    display: none;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 768px) {}
+
+@media only screen and (max-width: 1023px) {
+    .mobile{
+        display: flex;
+        position: absolute;
+        overflow: hidden;
+        background: #3b3b3b;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 100vw;
+        align-items: center;
+        justify-content: center;
+        font-family: "Montserrat", sans-serif;
+        padding: 1.5rem;
+    }
+
+    body{
+        overflow: hidden;
+    }
+}

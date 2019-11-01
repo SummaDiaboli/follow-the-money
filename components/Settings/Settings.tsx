@@ -1,6 +1,6 @@
 import React from "react";
 import { NotificationIcon } from "../User";
-import { ImageUploader, Sidetab, Bio } from "./index";
+import { ImageUploader, Sidetab, Bio, Password } from "./index";
 
 const Settings = () => {
     return (
@@ -30,7 +30,8 @@ const Settings = () => {
                                 Edit your account here including your bio,
                                 profile picture etc.
                             </p>
-                            <ImageUploader />                            
+                            <ImageUploader />
+                            <Password />                          
                             <Bio />
                         </div>
                     </div>

@@ -34,7 +34,7 @@ const SideTab = () => {
             <div className="card sideTab mt-4 p-3" id="sideTab">
                 <div className="mt-3 friend-requests">
                     <div className="d-flex flex-column">
-                        <div className="flex-row d-flex">
+                        {/* <div className="flex-row d-flex">
                             <h6>Friend Requests</h6>
                             <span className="subheading-filter color-red ml-auto">
                                 All
@@ -51,8 +51,8 @@ const SideTab = () => {
                                     userName={request.userName}
                                 />
                             ))}
-                        </div>
-                        <div className="flex-row mt-5 d-flex">
+                        </div> */}
+                        <div className="flex-row d-flex">
                             <h6>Favorite Playlists</h6>
                             <span className="subheading-filter color-red ml-auto">
                                 All

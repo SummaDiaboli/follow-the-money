@@ -11,7 +11,7 @@ const UserProfile = () => {
     return (
         <>
             <main style={{ paddingTop: "0px" }}>
-                <div className="main" id="main" style={{ paddingTop: "0px" }}>
+                <div className="main pt-3" id="main" style={{ paddingTop: "0px" }}>
                     <nav className="pt-3">
                         <ul className="d-flex vertical-align">
                             <NotificationIcon />
@@ -221,8 +221,16 @@ const UserProfile = () => {
             .post-popup button{
                 color: #fff;
             }
-
             
+            nav{
+                display:none!important;
+            }
+
+            @media only screen and (max-width: 1023px) {
+                hr{
+                    display:none;
+                }
+            }
             `}
             </style>
         </>

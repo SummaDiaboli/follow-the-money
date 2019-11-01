@@ -1,15 +1,26 @@
 import React, { useState } from "react";
+import fetch from 'isomorphic-unfetch'
 
 const ImageUploader = () => {
     const [file, setFile] = useState(null);
+    const [fileName, setFileName] = useState(null)
     const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
 
-    const handleSubmit = e => {
+    /* const handleSubmit = e => {
         if (e.target.files && e.target.files[0]) {
             e.preventDefault();
-            console.log("handle uploading---", file);
+            console.log("handle uploading...", file);
         }
-    };
+        const formData = new FormData()
+        console.log(file)
+        console.log(fileName)
+        formData.append("file", file)
+        formData.append("fileName", fileName)
+        fetch('api/upload', {
+            method: "POST",
+            body: formData
+        })
+    }; */
 
     const handleImageChange = (e) => {
         e.preventDefault();
@@ -21,9 +32,9 @@ const ImageUploader = () => {
             reader.readAsDataURL(file);
         }
 
-        let imageUrl = e.target.result;
         reader.onloadend = () => {
             setFile(file);
+            setFileName(file.name)
             setImagePreviewUrl(reader.result)
         };
     };
@@ -36,11 +47,11 @@ const ImageUploader = () => {
                         {imagePreviewUrl != null ? (
                             <img className="" src={imagePreviewUrl}></img>
                         ) : (
-                            <img
-                                className=""
-                                src="../static/assets/img/upload-icon.jpg"
-                            ></img>
-                        )}
+                                <img
+                                    className=""
+                                    src="../static/assets/img/upload-icon.jpg"
+                                ></img>
+                            )}
                     </div>
                 </div>
                 <input
@@ -50,6 +61,10 @@ const ImageUploader = () => {
                     value=""
                     onChange={e => handleImageChange(e)}
                 />
+
+                {/* <button onClick={handleSubmit}>
+                    Submit File
+                </button> */}
 
                 <div></div>
             </div>

@@ -1,26 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import fetch from 'isomorphic-unfetch'
 
-const ImageUploader = () => {
+interface Params {
+    parentCallback: Function;
+}
+
+const ImageUploader: React.FC<Params> = ({parentCallback}) => {
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState(null)
     const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
 
-    /* const handleSubmit = e => {
-        if (e.target.files && e.target.files[0]) {
-            e.preventDefault();
-            console.log("handle uploading...", file);
-        }
-        const formData = new FormData()
-        console.log(file)
-        console.log(fileName)
-        formData.append("file", file)
-        formData.append("fileName", fileName)
-        fetch('api/upload', {
-            method: "POST",
-            body: formData
-        })
-    }; */
+    const sendData = () => {
+        parentCallback(file)
+    }
 
     const handleImageChange = (e) => {
         e.preventDefault();
@@ -36,8 +28,13 @@ const ImageUploader = () => {
             setFile(file);
             setFileName(file.name)
             setImagePreviewUrl(reader.result)
-        };
+
+        };        
     };
+
+    useEffect(() => {
+        sendData()
+    }, [file])
 
     return (
         <>

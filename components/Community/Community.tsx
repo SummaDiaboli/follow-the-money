@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import ImageHeader from './ImageHeader'
-import { MiddleLayout } from './MiddleLayout/MiddleLayout'
-import { SideTab } from './SideTab/SideTab'
-import fetch from 'isomorphic-unfetch'
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import ImageHeader from "./ImageHeader";
+import { MiddleLayout } from "./MiddleLayout/MiddleLayout";
+import { SideTab } from "./SideTab/SideTab";
+import fetch from "isomorphic-unfetch";
 
 const Community = () => {
-    const router = useRouter()
-    const { id } = router.query
+    const router = useRouter();
+    const { id } = router.query;
     /* const [community, setCommunity] = useState(
         {
             name: 'Madlads',
@@ -29,10 +29,17 @@ const Community = () => {
                             <div className="col-12 p-0">
                                 <div className="row m-0 w-100 px-4 py-2">
                                     <div className="col-12 pt-3 p-0">
-                                        <h6 className="color-grey font-semiBold my-1">Posts</h6>
+                                        <h6 className="color-grey d-none d-md-block d-lg-block font-semiBold my-1">
+                                            Posts
+                                        </h6>
+                                    </div>
+                                    <div className="sideTabSmall w-100">
+                                        <SideTab id={id} />
                                     </div>
                                     <MiddleLayout id={id} />
-                                    <SideTab id={id} />
+                                    <div className="sideTabLarge w-100">
+                                        <SideTab id={id} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -40,19 +47,37 @@ const Community = () => {
                 </div>
             </main>
 
-            <style jsx>{`
-                .main{
-                    background: #F6F6F8;
-                }
+            <style jsx>
+                {`
+                    .main {
+                        background: #f6f6f8;
+                    }
 
-                .card{
-                    border: none!important;
-                }
-            `}
+                    .card {
+                        border: none !important;
+                    }
+
+                    .sideTabSmall {
+                        display: none;
+                    }
+
+                    .sideTabLarge {
+                        display: flex;
+                    }
+
+                    @media only screen and (max-width: 1023px) {
+                        .sideTabSmall {
+                            display: none;
+                        }
+
+                        .sideTabLarge {
+                            display: none;
+                        }
+                    }
+                `}
             </style>
         </>
+    );
+};
 
-    )
-}
-
-export default Community
+export default Community;

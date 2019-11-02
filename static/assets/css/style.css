@@ -973,7 +973,7 @@ a.username:hover{
 
 @media only screen and (max-width: 1023px) {
     .mobile{
-        display: flex;
+        display: none;
         position: absolute;
         overflow: hidden;
         background: #3b3b3b;
@@ -1005,7 +1005,7 @@ a.username:hover{
         top: 0px;
         left: 0px;
         background: #F6F6F8;
-        overflow: hidden!important;
+        overflow: auto!important;
         padding: 0.5rem!important;
     }
 

@@ -140,7 +140,7 @@ const UserPost = () => {
                             <div className="d-flex w-100 py-2 flex-row mr-auto">
                                 <input
                                     type="text"
-                                    className="w-50"
+                                    className="w-75"
                                     placeholder="What's on your mind?"
                                     value={postText}
                                     onChange={onChangeText}

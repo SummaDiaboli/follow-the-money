@@ -1,100 +1,118 @@
-import React, { useEffect, useState } from 'react'
-import UserPost from '../UserPost'
+import React, { useEffect, useState } from "react";
+import UserPost from "../UserPost";
 
-import fetch from 'isomorphic-unfetch'
-import Post from './Post'
-import moment from 'moment-timezone'
+import fetch from "isomorphic-unfetch";
+import Post from "./Post";
+import moment from "moment-timezone";
 
 const CommunityPosts = ({ id }) => {
-    let community_id
-    const [isLoading, setIsLoading] = useState(true)
-    const [posts, setPosts] = useState([])
+    let community_id;
+    const [isLoading, setIsLoading] = useState(true);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        const abortController: AbortController = new window.AbortController()
-        const signal: AbortSignal = abortController.signal
+        const abortController: AbortController = new window.AbortController();
+        const signal: AbortSignal = abortController.signal;
         // console.log(community_id[0])
-        const getPosts = (comm_id) => {
+        const getPosts = comm_id => {
             setInterval(() => {
                 fetch(`/api/community?community_id=${comm_id}`, { signal })
                     .then(res => {
-                        setIsLoading(false)
+                        setIsLoading(false);
                         if (res.status === 200) {
-                            res.json()
-                                .then(posts => {
-                                    sessionStorage.setItem(`${comm_id}CommunityPosts`, JSON.stringify(posts))
-                                    setPosts([...posts])
-                                    // console.log(posts)
-                                })
+                            res.json().then(posts => {
+                                sessionStorage.setItem(
+                                    `${comm_id}CommunityPosts`,
+                                    JSON.stringify(posts)
+                                );
+                                setPosts([...posts]);
+                                // console.log(posts)
+                            });
                         } else {
-                            setPosts([])
+                            setPosts([]);
                         }
                     })
                     .catch(err => {
-                        if (err.name === 'AbortError') {
-                            return 'Promise Aborted'
+                        if (err.name === "AbortError") {
+                            return "Promise Aborted";
                         } else {
-                            return 'Promise Rejected'
+                            return "Promise Rejected";
                         }
-                    })
+                    });
             }, 8000);
-        }
+        };
 
-
-        let communitiesList = JSON.parse(sessionStorage.getItem('communities'))
+        let communitiesList = JSON.parse(sessionStorage.getItem("communities"));
         communitiesList.map(community => {
             if (community.name === id) {
                 // return community.id
-                community_id = community.id
-                getPosts(community.id)
+                community_id = community.id;
+                getPosts(community.id);
             }
-        })
+        });
 
         return () => {
-            abortController.abort()
-        }
-
-    }, [posts])
+            abortController.abort();
+        };
+    }, [posts]);
 
     useEffect(() => {
         if (community_id !== undefined) {
-            const cachedCommunityPosts = JSON.parse(sessionStorage.getItem(`${community_id}CommunityPosts`))
-            if (cachedCommunityPosts !== null || cachedCommunityPosts !== undefined) {
-                setPosts(cachedCommunityPosts)
-                setIsLoading(false)
+            const cachedCommunityPosts = JSON.parse(
+                sessionStorage.getItem(`${community_id}CommunityPosts`)
+            );
+            if (
+                cachedCommunityPosts !== null ||
+                cachedCommunityPosts !== undefined
+            ) {
+                setPosts(cachedCommunityPosts);
+                setIsLoading(false);
             }
         }
-    }, [setPosts, isLoading])
+    }, [setPosts, isLoading]);
 
     return (
         <>
             <div className="userPost">
-                <UserPost userImage="../static/assets/img/user/user.jpg" userFname="Hamzat" community_name={id} />
+                <UserPost
+                    userImage="../static/assets/img/user/user.jpg"
+                    userFname="Hamzat"
+                    community_name={id}
+                />
             </div>
 
             <div className="posts mt-3">
-                {
-                    isLoading === true || posts === null
-                        ? <div className="text-center" style={{ marginTop: "5%" }}>
-                            <div className="spinner-border" role="status" style={{ color: "#D00000" }}>
-                                <span className="sr-only">Loading...</span>
-                            </div>
+                <h6 className="color-grey d-block d-md-none d-lg-none font-semiBold my-2">
+                    Posts
+                </h6>
+                {isLoading === true || posts === null ? (
+                    <div className="text-center" style={{ marginTop: "5%" }}>
+                        <div
+                            className="spinner-border"
+                            role="status"
+                            style={{ color: "#D00000" }}
+                        >
+                            <span className="sr-only">Loading...</span>
                         </div>
-                        : posts.length == 0
-                            ? <>
-                            </>
-                            : posts.map((post, index) => (
-                                <Post
-                                    username={post.username}
-                                    key={index}
-                                    pid={post.id}
-                                    userImage="../../static/assets/img/user/user.jpg"
-                                    postText={post.content.text}
-                                    timeCreated={moment(post.post_date).format('MMMM Do YYYY') /* + " " + post.post_date + post.post_time */}
-                                />
-                            ))
-
-                }
+                    </div>
+                ) : posts.length == 0 ? (
+                    <></>
+                ) : (
+                    posts.map((post, index) => (
+                        <Post
+                            username={post.username}
+                            key={index}
+                            pid={post.id}
+                            userImage="../../static/assets/img/user/user.jpg"
+                            postText={post.content.text}
+                            timeCreated={
+                                moment(post.post_date).format(
+                                    "MMMM Do YYYY"
+                                ) /* + " " + post.post_date + post.post_time */
+                            }
+                        />
+                    ))
+                )}
                 {/* <Post
                     userImage="../static/assets/img/user/hamzat.jpg"
                     username="Hamzat Lawal"
@@ -118,18 +136,19 @@ const CommunityPosts = ({ id }) => {
                 /> */}
             </div>
 
-            <style jsx>{`
-                .card .post:nth-child(n+1){
-                    margin-top: 1.5rem;
-                }
+            <style jsx>
+                {`
+                    .card .post:nth-child(n + 1) {
+                        margin-top: 1.5rem;
+                    }
 
-                .card{
-                    border: none!important;
-                }
-            `}
+                    .card {
+                        border: none !important;
+                    }
+                `}
             </style>
         </>
-    )
-}
+    );
+};
 
-export default CommunityPosts
+export default CommunityPosts;

@@ -185,7 +185,7 @@ const UserPost: React.FC<Params> = ({
                             <div className="d-flex w-100 py-2 flex-row mr-auto">
                                 <input
                                     type="text"
-                                    className="w-50"
+                                    className="w-75"
                                     placeholder="Post something to this community"
                                     value={postText}
                                     onChange={onChangeText}

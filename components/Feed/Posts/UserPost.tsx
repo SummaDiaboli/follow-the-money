@@ -140,13 +140,13 @@ const UserPost = () => {
                             <div className="d-flex w-100 py-2 flex-row mr-auto">
                                 <input
                                     type="text"
-                                    className="w-75"
+                                    className="w-100"
                                     placeholder="What's on your mind?"
                                     value={postText}
                                     onChange={onChangeText}
                                 />
                                 <div className="ml-auto">
-                                    <button onClick={submitPost}>
+                                    <button onClick={submitPost} className="pl-2">
                                         <i
                                             className={`fas fa-paper-plane ${
                                                 sendPostActive

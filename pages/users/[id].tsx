@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 const ProfilePage = () => {
     const router = useRouter()
-    const { id } = router.query
+    const id = router.query.id
 
     return (
         <>

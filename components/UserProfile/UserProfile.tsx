@@ -288,13 +288,13 @@ const UserProfile: React.FC<Params> = ({ id }) => {
                 color: #fff;
             }
 
-            nav{
-                display:none!important;
-            }
-
             @media only screen and (max-width: 1023px) {
                 hr{
                     display:none;
+                }
+
+                nav{
+                    display:none!important;
                 }
             }
             `}

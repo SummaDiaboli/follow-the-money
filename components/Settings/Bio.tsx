@@ -24,13 +24,13 @@ const Bio: React.FC<Params> = ({ parentCallback }) => {
         sendData();
 
         if (!initialLoad) {
-            if (bioValue === "") {
+            /* if (bioValue === "") {
                 setBioEmpty(true);
             } else {
                 setBioEmpty(false);
-            }
+            } */
 
-            if (bioValue.length > 120) {
+            if (bioValue.length == 120) {
                 setBioLimit(true);
             } else {
                 setBioLimit(false);
@@ -49,6 +49,7 @@ const Bio: React.FC<Params> = ({ parentCallback }) => {
                     rows={3}
                     onChange={e => handleChange(e)}
                     value={bioValue}
+                    maxLength={120}
                 ></textarea>
                 <small
                     className="text-danger form-text pt-2"
@@ -60,7 +61,7 @@ const Bio: React.FC<Params> = ({ parentCallback }) => {
                     className="text-danger form-text pt-2"
                     hidden={!bioLimit}
                 >
-                    Must have 120 or less characters.
+                    You have reached the character limit.
                 </small>
             </div>
 

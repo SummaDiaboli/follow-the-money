@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import { NotificationIcon } from "../User";
 import { ImageUploader, Sidetab, Bio, Password } from "./index";
+import Cookies from 'js-cookie'
 
 const Settings = () => {
+    const value = Cookies.getJSON('userData')
+    const username = value.username
     const [image, setImage] = useState(null);
     const [imageName, setImageName] = useState("");
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
+    const [confirmNewPassword, setConfirmNewPassword] = useState("")
     const [bio, setBio] = useState("");
 
     const callBackPassword = passwords => {
         setCurrentPassword(passwords.current);
         setNewPassword(passwords.new);
+        setConfirmNewPassword(passwords.confirm)
     };
 
     const callBackImage = image => {
@@ -27,16 +32,45 @@ const Settings = () => {
 
     const handleSubmit = e => {
         console.log("handle uploading...", image);
-        console.log('Bio: '+bio+' New Password: '+ newPassword)
-        const formData = new FormData();
-        // console.log(image)
-        // console.log(image.name)
-        formData.append("file", image);
-        formData.append("fileName", image.name);
-        fetch("api/upload", {
-            method: "POST",
-            body: formData
-        });
+        console.log('Bio: ' + bio + ' New Password: ' + newPassword + 'Con' + confirmNewPassword)
+        if (image !== null && imageName !== null) {
+            const formData = new FormData();
+            // console.log(image)
+            // console.log(image.name)
+            formData.append("file", image);
+            formData.append("fileName", image.name);
+            fetch("api/upload", {
+                method: "POST",
+                body: formData
+            });
+        }
+
+        if (newPassword === confirmNewPassword && newPassword !== '' && currentPassword !== '') {
+            fetch(`api/change_password/${username}`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    newPassword,
+                    currentPassword
+                })
+            }).then(res => {
+                res.status === 200 ? console.log("Working") : console.log("Not working")
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+
+        if (bio !== '') {
+            fetch(`api/change_bio/${username}`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    bio
+                })
+            }).then(res => {
+                // res.status === 200 ? console.log("Working") : console.log("Not working")
+            })/* .catch(err => {
+                console.log(err)
+            }) */
+        }
     };
 
     return (
@@ -73,7 +107,7 @@ const Settings = () => {
                             </p>
                             <ImageUploader parentCallback={callBackImage} />
                             <Password parentCallback={callBackPassword} />
-                            <Bio parentCallback={callBackBio}/>
+                            <Bio parentCallback={callBackBio} />
                         </div>
                     </div>
                     <div className="col-3 py-2 px-0 sidetab">

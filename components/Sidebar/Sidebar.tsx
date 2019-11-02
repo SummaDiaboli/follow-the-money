@@ -58,11 +58,11 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
     const [communitiesCount, setCommunitiesCount] = useState(0)
     const [eventsCount, setEventsCount] = useState(0)
 
-    const signOut = () => {
+    /* const signOut = () => {
         Router.reload()
         sessionStorage.clear()
         Cookies.remove('userData')
-    }
+    } */
 
     useEffect(() => {
         // setValue(localStorage.getItem('userData'))
@@ -176,7 +176,7 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
                                 </a>
                             </Link>
                         </li> */}
-                    </ul>                    
+                    </ul>
                 </div>
             </div>
             {children}

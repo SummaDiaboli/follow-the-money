@@ -2,7 +2,6 @@ import { Request, Response } from "express"
 
 // import pool from '../../database/queries.js'
 const pool = require('../../database/queries')
-
 const bcrypt = require('bcrypt')
 const salt = "$2b$10$km1k7cENiAiicK9Ml9E4wO"
 

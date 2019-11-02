@@ -8,15 +8,29 @@ const Password: React.FC<Params> = ({ parentCallback }) => {
     const [currentPasswordValue, setCurrentPasswordValue] = useState("");
     const [initialLoad, setInitialLoad] = useState(true)
     const [newPasswordValue, setNewPasswordValue] = useState("");
+    const [newPasswordConfirmValue, setNewPasswordConfirmValue] = useState("")
 
     const [currentPasswordEmpty, setCurrentPasswordEmpty] = useState(false);
     const [newPasswordEmpty, setNewPasswordEmpty] = useState(false);
+    const [newPasswordConfirmEmpty, setNewPasswordConfirmEmpty] = useState(false)
     const [newPasswordLimit, setNewPasswordLimit] = useState(false);
+    const [newPasswordConfirmLimit, setNewPasswordConfirmLimit] = useState(false)
+    const [mismatchedPasswords, setMismatchedPasswords] = useState(false)
 
     const handleCurrentPasswordChange = e => {
         setInitialLoad(false)
         setCurrentPasswordValue(e.target.value);
     };
+
+    const handleNewPasswordChange = e => {
+        setInitialLoad(false)
+        setNewPasswordValue(e.target.value);
+    };
+
+    const handleNewPasswordConfirmChange = e => {
+        setInitialLoad(false)
+        setNewPasswordConfirmValue(e.target.value)
+    }
 
     useLayoutEffect(() => {
         if (!initialLoad) {
@@ -44,21 +58,38 @@ const Password: React.FC<Params> = ({ parentCallback }) => {
         }
     }, [newPasswordValue]);
 
-    const handleNewPasswordChange = e => {
-        setInitialLoad(false)
-        setNewPasswordValue(e.target.value);
-    };
+    useLayoutEffect(() => {
+        if (!initialLoad) {
+            if (newPasswordConfirmValue === "") {
+                setNewPasswordConfirmEmpty(true);
+            } else {
+                setNewPasswordConfirmEmpty(false);
+            }
+
+            if (newPasswordConfirmValue.length < 8) {
+                setNewPasswordConfirmLimit(true);
+            } else {
+                setNewPasswordConfirmLimit(false);
+                if (newPasswordConfirmValue !== newPasswordValue) {
+                    setMismatchedPasswords(true)
+                } else {
+                    setMismatchedPasswords(false)
+                }
+            }
+        }
+    }, [newPasswordConfirmValue]);
 
     const sendData = () => {
         parentCallback({
             current: currentPasswordValue,
-            new: newPasswordValue
+            new: newPasswordValue,
+            confirm: newPasswordConfirmValue
         });
     };
 
     useEffect(() => {
         sendData();
-    }, [currentPasswordValue, newPasswordValue]);
+    }, [currentPasswordValue, newPasswordValue, newPasswordConfirmValue]);
 
     return (
         <>
@@ -100,6 +131,36 @@ const Password: React.FC<Params> = ({ parentCallback }) => {
                     hidden={!newPasswordLimit}
                 >
                     Must have 8 or more characters.
+                </small>
+            </div>
+
+            <div className="form-group pt-2">
+                <label htmlFor="bio">Confirm Your New Password</label>
+                <input
+                    className="w-75 form-control"
+                    id="password"
+                    type="password"
+                    placeholder="Account Password"
+                    onChange={e => handleNewPasswordConfirmChange(e)}
+                    value={newPasswordConfirmValue}
+                />
+                <small
+                    className="text-danger form-text pt-2"
+                    hidden={!newPasswordConfirmEmpty}
+                >
+                    This field cannot be empty.
+                </small>
+                <small
+                    className="text-danger form-text pt-2"
+                    hidden={!newPasswordConfirmLimit}
+                >
+                    Must have 8 or more characters.
+                </small>
+                <small
+                    className="text-danger form-text pt-2"
+                    hidden={!mismatchedPasswords}
+                >
+                    This does not match your new password.
                 </small>
             </div>
 

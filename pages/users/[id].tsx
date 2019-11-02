@@ -16,7 +16,7 @@ const ProfilePage = () => {
                 <title>{id}</title>
             </Head>
 
-            <UserProfile />
+            <UserProfile id={id} />
         </>
     )
 }

@@ -32,12 +32,21 @@ export default (req: Request, res: Response) => {
  */
 
 const getUserById = (request: Request, response: Response, id: string) => {
-    pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
+    pool.query(
+        'SELECT \
+            id, \
+            name,\
+            photo, \
+            about \
+        FROM \
+            users \
+        WHERE \
+            username = $1', [id], (error, results) => {
         if (error) {
             throw error
         }
-        console.log(results.rows)
-        response.status(200).json(results.rows)
+        // console.log(results.rows)
+        response.status(200).send(results.rows)
     })
 }
 

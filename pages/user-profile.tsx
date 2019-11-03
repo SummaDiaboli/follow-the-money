@@ -12,7 +12,7 @@ const FriendPage = () => {
                 <title>Profile | Follow the Money</title>
             </Head>
 
-            <UserProfile />
+            <UserProfile id={null} />
         </>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { NotificationIcon } from '../User'
 import AboutProfile from './AboutProfile'
 import { TimelineCarousel } from './TimelineCarousel'
@@ -7,11 +7,60 @@ import ProfilePosts from './ProfilePosts/ProfilePosts'
 import InfoCard from './InfoCard'
 import { SideTab } from './SideTab'
 
-const UserProfile = () => {
+interface Params {
+    id: string | string[]
+}
+
+const UserProfile: React.FC<Params> = ({ id }) => {
+    const [isLoading, setIsLoading] = useState(true)
+    const [userDetails, setUserDetails]: any = useState([])
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [bio, setBio] = useState('')
+
+    const abortController: AbortController = new window.AbortController();
+    const signal: AbortSignal = abortController.signal;
+    if (isLoading === true) {
+        fetch(`/api/users/${id}`, { signal })
+            .then(res => {
+                setIsLoading(false);
+                if (res.status === 200) {
+                    res.json().then(details => {
+                        setUserDetails(details[0])
+                        if (details[0] !== undefined) {
+                            const detailObject = details[0]
+                            const nameObject = detailObject.name
+                            const aboutObject = detailObject.about
+                            const firstName = nameObject.firstName
+                            const lastName = nameObject.lastName
+
+                            setFirstName(firstName)
+                            setLastName(lastName)
+                            if (aboutObject !== null) {
+                                const bio = aboutObject.bio
+                                setBio(bio)
+                            } else {
+                                setBio(null)
+                            }
+                        }
+                    });
+                } else {
+                    setUserDetails([])
+                }
+            })
+            .catch(err => {
+                if (err.name === "AbortError") {
+                    return "Promise Aborted";
+                } else {
+                    return "Promise Rejected";
+                }
+            });
+    }
+
     return (
         <>
             <main style={{ paddingTop: "0px" }}>
-                <div className="main" id="main" style={{ paddingTop: "0px" }}>
+                <div className="main pt-3" id="main" style={{ paddingTop: "0px" }}>
                     <nav className="pt-3">
                         <ul className="d-flex vertical-align">
                             <NotificationIcon />
@@ -19,11 +68,23 @@ const UserProfile = () => {
                         <hr className="w-100" />
                     </nav>
 
-                    <AboutProfile
-                        userImage="../static/assets/img/user/hamzat.jpg"
-                        username="Hamzat Lawal"
-                        description="Activist | Leading a Movement of Grassroots Campaigners in Rural Communities @4lowthemoney |Founder/CEO@Connected_dev | Board Member @AYICC #SDGs"
-                    />
+
+                    {userDetails !== [] && userDetails !== null && userDetails !== undefined
+                        ? < AboutProfile
+                            userImage={userDetails.photo}
+                            username={`${firstName} ${lastName}`}
+                            description={bio}
+                        />
+                        : <div className="text-center" style={{ marginTop: "5%" }}>
+                            <div
+                                className="spinner-border"
+                                role="status"
+                                style={{ color: "#D00000" }}
+                            >
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    }
 
                     <nav className="pt-2">
                         <ul className="d-flex py-2 vertical-align">
@@ -41,24 +102,29 @@ const UserProfile = () => {
                         <div className="row h-100 px-0 py-1 m-0 w-100">
                             <div className="col-12">
                                 <div className="main-layout">
-                                    <TimelineCarousel />
+                                    {/**TODO: Get Carousel Working with actual media */}
+                                    {/* <TimelineCarousel /> */}
 
                                     <div className="row m-0 mt-4 w-100 friends">
                                         <div className="col-8 pl-0 h-100">
                                             <div className="middle-layout">
-                                                <DirectMessage userImage="../static/assets/img/user/user.jpg" userFname="Hamzat" />
-                                                <ProfilePosts />
+                                                {/* <DirectMessage userImage="../static/assets/img/user/user.jpg" userFname="Hamzat" /> */}
+
+                                                {/**TODO: */}
+                                                {/* <ProfilePosts /> */}
                                             </div>
                                         </div>
                                         <div className="col-4 pr-1">
-                                            <InfoCard
+                                            {/**TODO: */}
+                                            {/* <InfoCard
                                                 likes="739k"
                                                 followers="254k"
                                                 friends="193"
                                                 posts="203"
-                                            />
+                                            /> */}
 
-                                            <SideTab />
+                                            {/**TODO: */}
+                                            {/* <SideTab /> */}
                                         </div>
                                     </div>
                                 </div>
@@ -222,7 +288,15 @@ const UserProfile = () => {
                 color: #fff;
             }
 
-            
+            @media only screen and (max-width: 1023px) {
+                hr{
+                    display:none;
+                }
+
+                nav{
+                    display:none!important;
+                }
+            }
             `}
             </style>
         </>

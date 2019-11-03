@@ -39,7 +39,7 @@ const SideTab = ({ id }) => {
 
     return (
         <>
-            <div className="col-4">
+            <div className="col-lg-4 col-md-4 px-0 px-md-2">
                 <div className="card p-3 mt-2 sidetab">
                     <span className="heading smaller">COMMUNITY DETAILS</span>
                     <span className="description">

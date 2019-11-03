@@ -107,12 +107,12 @@ const Feed = () => {
 
                         <NotificationIcon />
                     </ul>
-                    <hr className="w-100" />
+                    <hr className="w-100 mb-0 mb-md-3 mb-lg-3" />
                 </nav>
 
                 <div className="container-fluid h-100 p-0">
                     <div className="row px-0 py-1 h-100 m-0 w-100">
-                        <div className="col-8 h-100">
+                        <div className="col-md-8 middle-layout-container col-lg-8">
                             <div
                                 className="middle-layout"
                                 style={{ height: "90%" }}

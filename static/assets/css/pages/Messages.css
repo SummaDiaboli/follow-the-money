@@ -102,7 +102,8 @@
     position: relative;
     list-style-type: none;
     cursor: pointer;
-    margin: 1.5rem 0rem;
+    margin: 0.7rem 0rem;
+    width: 100%;
 }
 
 .sideTab .message:nth-child(1){
@@ -111,12 +112,14 @@
 
 .sideTab .message .message-content{
     font-size: 0.7rem;
-    font-weight: 500;
+    font-weight: 400;
+    color: #000;
 }
 
 .sideTab .message .time{
     font-size: 0.7rem;
     font-weight: 600;
+    color: #000;
 }
 
 .sideTab .message .amount{

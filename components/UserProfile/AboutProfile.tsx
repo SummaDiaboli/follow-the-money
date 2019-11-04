@@ -15,7 +15,7 @@ const AboutProfile: React.FC<Params> = ({
         <>
             <div className="w-100 d-flex px-0 px-md-3 px-lg-3 pb-2 vertical-align profile d-flex flex-row">
                 <img src={userImage === null ? "../static/assets/img/user/user.jpg" : userImage} className="bigImg" alt="" />
-                <div className="flex-column d-flex pt-1">
+                <div className="flex-column d-flex pt-1 w-100">
                     <div className="d-flex flex-row ml-3 vertical-align">
                         <img src={userImage === null ? "../static/assets/img/user/hamzat.jpg" : userImage} className="smallImg mr-2" alt="" />
                         <h6 className="name m-0">{username}</h6>

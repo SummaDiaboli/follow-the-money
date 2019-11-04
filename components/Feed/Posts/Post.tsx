@@ -3,16 +3,17 @@ import UserComment from "./UserComment";
 import Link from "next/link";
 
 interface Params {
-    userPhoto: string,
-    pid: number,
-    userName: string,
-    name: string,
-    time: Date,
-    text?: string,
-    image?: string,
-    likes?: number,
-    comments?: number,
-    shares?: number
+    userPhoto: string;
+    pid: number;
+    userName: string;
+    name: string;
+    time: Date;
+    text?: string;
+    image?: string;
+    video?: string;
+    likes?: number;
+    comments?: number;
+    shares?: number;
 }
 
 const Post: React.FC<Params> = ({
@@ -23,6 +24,7 @@ const Post: React.FC<Params> = ({
     time,
     text,
     image,
+    video,
     likes,
     comments,
     shares
@@ -32,7 +34,7 @@ const Post: React.FC<Params> = ({
             <a>
                 <div className="card p-3 mt-3 post w-100">
                     <div className="w-100 d-flex flex-column">
-                        <div className="user d-flex flex-row mb-4">
+                        <div className="user d-flex flex-row mb-2">
                             <img
                                 src={userPhoto}
                                 className="rounded-circle mr-3"
@@ -67,7 +69,22 @@ const Post: React.FC<Params> = ({
                         <div className="content">
                             {text && <p className="mt-3">{text}</p>}
 
-                            {image && <img src={image} alt="" />}
+                            {image && (
+                                <img
+                                    className="w-100 mt-2"
+                                    src={image}
+                                    alt=""
+                                />
+                            )}
+
+                            {video && (
+                                <video
+                                    className="w-100 mt-2"
+                                    src={video}
+                                    autoPlay
+                                    controls
+                                ></video>
+                            )}
 
                             <div className="d-flex flex-row actions mt-3">
                                 <button className="m-0">

@@ -1,29 +1,29 @@
-import React from 'react'
+import React from "react";
 
 interface Params {
-    conversation?: JSON
+    // conversation?: JSON
+    message: string;
+    active?: boolean;
+    username: string;
 }
 
-const MessageDisplay: React.FC<Params> = ({ conversation }) => {
+const MessageDisplay: React.FC<Params> = ({ message, active, username }) => {
     return (
         <>
             {
-                conversation
-                    ? <div className="col-8">
-                        <div>
-                            {conversation}
-                        </div>
-                    </div>
-                    : <div className="col-8">
-                        <div className="middle-layout vertical-align" /* style={{ height: "50%" }} */>
-
-                            <span className="no-selected">Please select a chat to start messaging</span>
-
-                        </div>
-                    </div>
+                <div
+                    className={`tab-pane h-100 fade show ${
+                        active ? "active" : ""
+                    }`}
+                    id={`${username}`}
+                    role="tabpanel"
+                    aria-labelledby={`${username}-tab`}
+                >
+                    <span className="no-selected">{message}</span>
+                </div>
             }
         </>
-    )
-}
+    );
+};
 
-export default MessageDisplay
+export default MessageDisplay;

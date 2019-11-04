@@ -39,8 +39,8 @@ const SideTab = ({ id }) => {
 
     return (
         <>
-            <div className="col-lg-4 col-md-4 px-0 px-md-2">
-                <div className="card p-3 mt-2 sidetab">
+            <div className="col-lg-4 col-md-4 pl-0 pr-0 pl-md-3 pl-lg-3 order-2 order-md-3 order-lg-3 ">
+                <div className="card p-3 mt-3 sidetab">
                     <span className="heading smaller">COMMUNITY DETAILS</span>
                     <span className="description">
                         {communityDescription}
@@ -97,6 +97,13 @@ const SideTab = ({ id }) => {
                     padding-top: 1rem;
                     font-weight: 500;
                     color: #454545;
+                }
+
+                @media only screen and (max-width: 1023px) {
+                    .sidetab{
+                        position: relative;
+                        top: 0rem;
+                    }
                 }
             `}
             </style>

@@ -39,8 +39,8 @@ const Settings = () => {
             // console.log(image.name)
             formData.append("file", image);
             formData.append("fileName", image.name);
-            fetch("api/upload", {
-                method: "POST",
+            fetch(`api/change_photo/${username}`, {
+                method: "PUT",
                 body: formData
             });
         }

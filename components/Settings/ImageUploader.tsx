@@ -56,7 +56,7 @@ const ImageUploader: React.FC<Params> = ({parentCallback}) => {
                     className="file font-segoe ml-3"
                     id="file"
                     value=""
-                    accept="image/*"
+                    accept="image/jpg, image/jpeg, image/png"
                     onChange={e => handleImageChange(e)}
                 />
 

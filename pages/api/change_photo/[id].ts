@@ -8,7 +8,6 @@ export default (req: Request, res: Response) => {
         query: { id },
         method
     } = req
-    console.log(id)
 
     switch (method) {
         case 'PUT':
@@ -32,7 +31,6 @@ const uploadFileForUser = (req: Request, res: Response, id: string) => {
             } else {
                 file.path = 'uploads/' + id + '/' + file.name
             }
-            console.log(file.path)
         })
         form.on('file', (name, file) => {
             // console.log('Uploaded', file.name)
@@ -45,13 +43,11 @@ const uploadFileForUser = (req: Request, res: Response, id: string) => {
                     if (error) {
                         throw error
                     }
-                    console.log(result)
                     res.status(200).send('File uploaded')
                 }
             )
         })
     } catch (error) {
-        console.log(error)
         res.status(401).send('File could not be uploaded')
     }
 }

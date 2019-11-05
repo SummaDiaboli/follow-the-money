@@ -1,3 +1,4 @@
 import Messages from './Messages'
+import UserPost from './UserPost'
 
-export { Messages }
+export { Messages, UserPost }

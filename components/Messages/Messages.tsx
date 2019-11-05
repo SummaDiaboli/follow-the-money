@@ -56,10 +56,10 @@ const Messages = () => {
                     <hr className="w-100" />
                 </nav>
                 <div className="container-fluid p-0 content">
-                    <div className="row px-0 py-1 m-0 w-100 h-100">
-                        <div className="col-8">
+                    <div className="row px-0 m-0 w-100 h-100">
+                        <div className="col-9 px-0 message-container">
                             <div
-                                className="middle-layout vertical-align" /* style={{ height: "50%" }} */
+                                className="middle-layout" /* style={{ height: "50%" }} */
                             >
                                 <div className="tab-content" id="tabContent">
                                     {messages.map((message, index) =>
@@ -82,7 +82,7 @@ const Messages = () => {
                             </div>
                         </div>
 
-                        <div className="col-4 pr-0" style={{ height: "100%" }}>
+                        <div className="col-3 px-0" style={{ height: "100%" }}>
                             <div className="card sideTab p-3">
                                 <div className="d-flex w-100 search pb-3 px-1 flex-row vertical-align">
                                     <i className="fas fa-search"></i>
@@ -261,6 +261,10 @@ const Messages = () => {
                     overflow-y: hidden;
                 }
 
+                .main{
+                    padding: 1rem 0rem!important;
+                }
+
                 a {
                     text-decoration: none !important;
                 }
@@ -336,6 +340,7 @@ const Messages = () => {
                 }
 
                 .sideTab {
+                    border: none;
                     border-left: 2px solid #ebebeb;
                     height: 95%;
                 }
@@ -449,8 +454,16 @@ const Messages = () => {
 
                 .content {
                     position: relative;
-                    top: calc(-2rem + 2px);
+                    top: calc(-2rem - 2px);
                     height: 100%;
+                }
+                
+                .message-container{
+                    background: #eaeaea6b;
+                    background-size: cover;
+                    height: 97%;
+                    overflow: auto;
+                    position: relative;
                 }
             `}</style>
         </main>

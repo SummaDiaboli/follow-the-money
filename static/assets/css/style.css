@@ -619,6 +619,7 @@ form .options a {
 
 .main nav ul .user {
     width: 36px;
+    height: 36px;
     border-radius: 50%;
 }
 
@@ -721,6 +722,7 @@ form .options a {
 
 .post .user img {
     width: 48px;
+    height: 48px;
 }
 
 .post .user h5 {
@@ -739,7 +741,7 @@ form .options a {
 }
 
 .post .content img {
-    height: 150px;
+    height: auto;
 }
 
 .post .actions button {
@@ -1017,7 +1019,7 @@ a.username:hover{
         width: 100%;
         justify-content: center;
     }
-    
+
     .main nav ul li a {
     }
 

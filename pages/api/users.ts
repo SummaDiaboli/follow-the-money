@@ -51,7 +51,7 @@ const getUser = (request: Request, response: Response) => {
     // const salt2 = bcrypt.genSaltSync(10)
     // console.log(salt2)
 
-    pool.query('SELECT * FROM users WHERE username = $1 AND password = $2',
+    pool.query('SELECT id, name, photo, username FROM users WHERE username = $1 AND password = $2',
         [username, hash],
         (error, result) => {
             if (error) {

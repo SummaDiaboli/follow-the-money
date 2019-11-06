@@ -5,7 +5,7 @@ interface Params {
     parentCallback: Function;
 }
 
-const ImageUploader: React.FC<Params> = ({parentCallback}) => {
+const ImageUploader: React.FC<Params> = ({ parentCallback }) => {
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState(null)
     const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
@@ -18,7 +18,7 @@ const ImageUploader: React.FC<Params> = ({parentCallback}) => {
         e.preventDefault();
 
         let reader = new FileReader();
-        let file = e.target.files[0];
+        let file: File = e.target.files[0];
 
         if (file) {
             reader.readAsDataURL(file);
@@ -28,8 +28,7 @@ const ImageUploader: React.FC<Params> = ({parentCallback}) => {
             setFile(file);
             setFileName(file.name)
             setImagePreviewUrl(reader.result)
-
-        };        
+        };
     };
 
     useEffect(() => {

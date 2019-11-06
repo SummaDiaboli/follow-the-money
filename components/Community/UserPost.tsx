@@ -1,7 +1,8 @@
-import React, { useState, useLayoutEffect } from "react";
-import fetch from "isomorphic-unfetch";
-import Cookies from "js-cookie";
-import { Picker } from "emoji-mart";
+import React, { useState, useLayoutEffect, useMemo } from "react"
+import fetch from "isomorphic-unfetch"
+import Cookies from "js-cookie"
+import { Picker } from "emoji-mart"
+import { loadFB } from '../../utils/firebase'
 
 interface Params {
     userImage: string;
@@ -16,9 +17,7 @@ const UserPost: React.FC<Params> = ({
 }) => {
     const user = Cookies.getJSON("userData");
     const username = user.username;
-    const [userPhoto, setuserPhoto] = useState(
-        require("../../static/assets/img/user/user.jpg")
-    );
+    const [userPhoto, setuserPhoto] = useState('');
 
     const [postText, setPostText] = useState("");
     const [hasPhoto, setHasPhoto] = useState(false);
@@ -35,7 +34,7 @@ const UserPost: React.FC<Params> = ({
     const [sendPostActive, setSendPostActive] = useState(false);
 
     useLayoutEffect(() => {
-        if (postText != "") {
+        if (postText !== "" && ((image !== null || video !== null) || (image === null || video === null))) {
             setSendPostActive(true);
         } else {
             setSendPostActive(false);
@@ -63,11 +62,13 @@ const UserPost: React.FC<Params> = ({
         }
 
         setVideo(null);
-        console.log(video);
+        // console.log(video);
 
         reader.onloadend = () => {
-            setImage(file);
-            setImagePreview(reader.result);
+            setImage(file)
+            setHasPhoto(true)
+            setHasVideo(false)
+            setImagePreview(reader.result)
         };
     };
 
@@ -87,10 +88,12 @@ const UserPost: React.FC<Params> = ({
         }
 
         setImage(null);
-        console.log(image);
+        // console.log(image);
 
         reader.onloadend = () => {
             setVideo(file);
+            setHasVideo(true)
+            setHasPhoto(false)
             setVideoPreview(reader.result);
         };
     };
@@ -107,7 +110,69 @@ const UserPost: React.FC<Params> = ({
         let communitiesList = JSON.parse(sessionStorage.getItem("communities"));
         communitiesList.map(community => {
             if (community.name === community_name) {
-                if (postText != "") {
+                if (((image !== null && hasPhoto !== false) || (video !== null && hasVideo !== false)) && postText !== "") {
+                    const firebase = loadFB()
+                    const storageRef = firebase.storage().ref()
+                    const fileName = hasPhoto === true ? image.name : video.name
+                    const storageLocation = hasPhoto === true
+                        ? storageRef.child(`photos/${username}${fileName}`)
+                        : storageRef.child(`videos/${username}${fileName}`)
+                    storageLocation.put(hasPhoto === true ? image : video)
+                        .then(snapshot => {
+                            snapshot.ref.getDownloadURL()
+                                .then(
+                                    url => {
+                                        fetch("/api/posts", {
+                                            method: "POST",
+                                            headers: {
+                                                Accept: "application/json, text/plain, */*",
+                                                "Content-Type": "application/json"
+                                            },
+                                            body: JSON.stringify({
+                                                title: postTitle,
+                                                username: username,
+                                                has_photo: hasPhoto,
+                                                has_audio: hasAudio,
+                                                has_video: hasVideo,
+                                                type: "communities",
+                                                has_embedded_usernames: hasEmbeddedUsernames,
+                                                content: {
+                                                    text: postText,
+                                                    image: hasPhoto === true ? url : null,
+                                                    video: hasVideo === true ? url : null
+                                                }
+                                            })
+                                        }).then(res => {
+                                            if (res.status === 201) {
+                                                /**
+                                                 * Post created successfully
+                                                 */
+                                                res.json().then(result => {
+                                                    addToCommunityPostTable(
+                                                        result.id,
+                                                        community.id
+                                                    );
+                                                });
+                                            } else {
+                                                /**
+                                                 * Post could not be created
+                                                 */
+                                            }
+                                            setPostText("")
+                                            setImage(null)
+                                            setVideo(null)
+                                            setHasPhoto(false)
+                                            setHasVideo(false)
+                                        })
+                                            .catch(error => {
+                                                console.log("Error occurred", error);
+                                            })
+                                    }
+                                )
+                        })
+                }
+
+                if (postText !== "" && hasPhoto === false && hasVideo === false) {
                     fetch("/api/posts", {
                         method: "POST",
                         headers: {
@@ -123,7 +188,9 @@ const UserPost: React.FC<Params> = ({
                             type: "communities",
                             has_embedded_usernames: hasEmbeddedUsernames,
                             content: {
-                                text: postText
+                                text: postText,
+                                image: null,
+                                video: null
                             }
                         })
                     })
@@ -171,6 +238,14 @@ const UserPost: React.FC<Params> = ({
         });
     };
 
+    useMemo(() => fetch(`/api/change_photo/${username}`)
+        .then(res => {
+            res.status === 201 && res.json().then(data => {
+                // console.log(data[0].photo)
+                setuserPhoto(data[0].photo)
+            })
+        }), [userPhoto])
+
     return (
         <>
             <div>
@@ -178,7 +253,8 @@ const UserPost: React.FC<Params> = ({
                     <div className="w-100 d-flex flex-row">
                         <img
                             className="rounded-circle mr-3"
-                            src={userPhoto}
+                            src={userPhoto !== null ? userPhoto :  "../../static/assets/img/user/user.jpg"}
+                            // src={userPhoto}
                             alt=""
                         />
                         <div className="w-100 d-flex flex-column">
@@ -197,7 +273,7 @@ const UserPost: React.FC<Params> = ({
                                                 sendPostActive
                                                     ? "color-red"
                                                     : "color-grey"
-                                            }`}
+                                                }`}
                                         />
                                     </button>
                                 </div>
@@ -206,22 +282,22 @@ const UserPost: React.FC<Params> = ({
                                 {image === null ? (
                                     ""
                                 ) : (
-                                    <img
-                                        className="w-100 imagePreview"
-                                        src={imagePreview}
-                                    ></img>
-                                )}
+                                        <img
+                                            className="w-100 imagePreview"
+                                            src={imagePreview}
+                                        ></img>
+                                    )}
 
                                 {video === null ? (
                                     ""
                                 ) : (
-                                    <video
-                                        className="w-100 videoPreview"
-                                        src={videoPreview}
-                                        autoPlay
-                                        controls
-                                    ></video>
-                                )}
+                                        <video
+                                            className="w-100 videoPreview"
+                                            src={videoPreview}
+                                            autoPlay
+                                            controls
+                                        ></video>
+                                    )}
                             </div>
                             <div
                                 className="h-100 vertical-align types mr-auto mt-3 d-flex flex-row"
@@ -246,7 +322,7 @@ const UserPost: React.FC<Params> = ({
                                     <i
                                         className={`far fa-image ${
                                             image === null ? "" : "opaque"
-                                        }`}
+                                            }`}
                                         onClick={selectImage}
                                     ></i>
                                 </button>
@@ -254,7 +330,7 @@ const UserPost: React.FC<Params> = ({
                                     <i
                                         className={`fas fa-video ml-4 ${
                                             video === null ? "" : "opaque"
-                                        }`}
+                                            }`}
                                         onClick={selectVideo}
                                     ></i>
                                 </button>
@@ -262,7 +338,7 @@ const UserPost: React.FC<Params> = ({
                                     <i
                                         className={`far fa-smile ml-4 ${
                                             emojiPickerOpen ? "opaque" : ""
-                                        }`}
+                                            }`}
                                         onClick={triggerPicker}
                                     ></i>
                                 </button>

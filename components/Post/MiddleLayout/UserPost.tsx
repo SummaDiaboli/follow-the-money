@@ -8,6 +8,7 @@ interface Params {
     timeCreated: Date,
     postText?: string,
     postImage?: string,
+    postVideo?: string
     likes?: number,
     comments?: number,
     shares?: number
@@ -19,6 +20,7 @@ const UserPost: React.FC<Params> = ({
     timeCreated,
     postText,
     postImage,
+    postVideo,
     likes,
     comments,
     shares
@@ -106,7 +108,11 @@ const UserPost: React.FC<Params> = ({
                         {
                             postImage && <img src={postImage} className="mt-2" alt="" />
                         }
-                        <div className="d-flex flex-row actions mt-3">
+
+                        {
+                            postVideo && <video className="w-100 mt-2" src={postVideo} autoPlay controls />
+                        }
+                        {/* <div className="d-flex flex-row actions mt-3">
                             <button className="m-0">
                                 <div className="d-flex flex-row vertical-align">
                                     <i className="far fa-heart"></i>
@@ -127,7 +133,7 @@ const UserPost: React.FC<Params> = ({
                                     <span className="pl-1">Comments</span>
                                 </div>
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

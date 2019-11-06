@@ -722,6 +722,7 @@ form .options a {
 
 .post .user img {
     width: 48px;
+    height: 48px;
 }
 
 .post .user h5 {
@@ -740,7 +741,7 @@ form .options a {
 }
 
 .post .content img {
-    height: 150px;
+    height: auto;
 }
 
 .post .actions button {

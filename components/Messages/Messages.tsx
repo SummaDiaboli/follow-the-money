@@ -57,7 +57,7 @@ const Messages = () => {
                 </nav>
                 <div className="container-fluid p-0 content">
                     <div className="row px-0 m-0 w-100 h-100">
-                        <div className="col-9 px-0 message-container">
+                        <div className="col-9 px-0 messages-container">
                             <div
                                 className="middle-layout" /* style={{ height: "50%" }} */
                             >
@@ -458,10 +458,10 @@ const Messages = () => {
                     height: 100%;
                 }
                 
-                .message-container{
-                    background: #eaeaea6b;
+                .messages-container{
+                    background: #bfbfbf6b;
                     background-size: cover;
-                    height: 97%;
+                    height: 85%;
                     overflow: auto;
                     position: relative;
                 }

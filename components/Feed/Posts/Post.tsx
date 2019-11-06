@@ -86,7 +86,7 @@ const Post: React.FC<Params> = ({
                                 ></video>
                             )}
 
-                            <div className="d-flex flex-row actions mt-3">
+                            {/* <div className="d-flex flex-row actions mt-3">
                                 <button className="m-0">
                                     <div className="d-flex flex-row vertical-align">
                                         <i className="far fa-heart"></i>
@@ -105,7 +105,7 @@ const Post: React.FC<Params> = ({
                                         <span className="ml-1">{shares}</span>
                                     </div>
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* <UserComment /> */}

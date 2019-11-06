@@ -76,6 +76,7 @@ const MiddleLayout = () => {
                                     timeCreated={moment(post.post_date).format('MMMM Do YYYY')}
                                     postText={post.content.text}
                                     postImage={post.content.image}
+
                                 // likes={user.likes}
                                 // comments={user.comments}
                                 // shares={user.shares}

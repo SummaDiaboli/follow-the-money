@@ -156,6 +156,8 @@ const Feed = () => {
                                                                 pid={post.id}
                                                                 userPhoto={require("../../static/assets/img/user/user.jpg")}
                                                                 text={post.content.text}
+                                                                image={post.content.image}
+                                                                video={post.content.video}
                                                                 name={post.username}
                                                                 time={
                                                                     moment(
@@ -211,6 +213,7 @@ const Feed = () => {
                                                                         post.content
                                                                             .text
                                                                     }
+                                                                    image={post.content.image}
                                                                     name={post.username}
                                                                     time={
                                                                         moment(
@@ -265,10 +268,8 @@ const Feed = () => {
                                                                     key={index}
                                                                     pid={post.id}
                                                                     userPhoto={require("../../static/assets/img/user/user.jpg")}
-                                                                    text={
-                                                                        post.content
-                                                                            .text
-                                                                    }
+                                                                    text={post.content.text}
+                                                                    video={post.content.video}
                                                                     name={post.username}
                                                                     time={
                                                                         moment(

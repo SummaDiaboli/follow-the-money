@@ -2,6 +2,7 @@ import React, { useState, useLayoutEffect } from "react";
 import fetch from "isomorphic-unfetch";
 import Cookies from "js-cookie";
 import { Picker } from "emoji-mart";
+import { loadFB } from '../../../utils/firebase'
 // import './UserPost.css'
 
 const UserPost = () => {
@@ -26,7 +27,7 @@ const UserPost = () => {
     const [sendPostActive, setSendPostActive] = useState(false);
 
     useLayoutEffect(() => {
-        if (postText != "") {
+        if (postText !== "" && ((image !== null || video !== null) || (image === null || video === null))) {
             setSendPostActive(true);
         } else {
             setSendPostActive(false);
@@ -53,11 +54,13 @@ const UserPost = () => {
         }
 
         setVideo(null);
-        console.log(video);
+        // console.log(file.name);
 
         reader.onloadend = () => {
-            setImage(file);
-            setImagePreview(reader.result);
+            setImage(file)
+            setHasPhoto(true)
+            setHasVideo(false)
+            setImagePreview(reader.result)
         };
     };
 
@@ -77,11 +80,13 @@ const UserPost = () => {
         }
 
         setImage(null);
-        console.log(image);
+        // console.log(file);
 
         reader.onloadend = () => {
-            setVideo(file);
-            setVideoPreview(reader.result);
+            setVideo(file)
+            setHasVideo(true)
+            setHasPhoto(false)
+            setVideoPreview(reader.result)
         };
     };
 
@@ -94,7 +99,55 @@ const UserPost = () => {
     }
 
     const submitPost = () => {
-        if (postText != "") {
+        if (((image !== null && hasPhoto !== false) || (video !== null && hasVideo !== false)) && postText !== "") {
+            const firebase = loadFB()
+            const storageRef = firebase.storage().ref()
+            const fileName = hasPhoto === true ? image.name : video.name
+            const storageLocation = hasPhoto === true
+                ? storageRef.child(`photos/${username}${fileName}`)
+                : storageRef.child(`videos/${username}${fileName}`)
+            storageLocation.put(hasPhoto === true ? image : video)
+                .then(snapshot => {
+                    snapshot.ref.getDownloadURL()
+                        .then(url => {
+                            console.log(hasPhoto)
+                            console.log(hasVideo)
+                            fetch("api/posts", {
+                                method: "post",
+                                headers: {
+                                    Accept: "application/json, text/plain, */*",
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    title: postTitle,
+                                    username: username,
+                                    has_photo: hasPhoto,
+                                    has_audio: hasAudio,
+                                    has_video: hasVideo,
+                                    type: "user_post",
+                                    has_embedded_usernames: hasEmbeddedUsernames,
+                                    content: {
+                                        text: postText,
+                                        image: hasPhoto === true ? url : null,
+                                        video: hasVideo === true ? url : null
+                                    }
+                                })
+                            }).then(res => {
+                                if (res.status === 201) {
+                                    console.log("is working")
+                                    setPostText("")
+                                    setImage(null)
+                                    setVideo(null)
+                                    setHasPhoto(false)
+                                    setHasVideo(false)
+                                }
+                            })
+                        })
+                })
+            // // console.log(imageName)
+        }
+
+        if (postText !== "" && hasPhoto === false && hasVideo === false) {
             fetch("api/posts", {
                 method: "post",
                 headers: {
@@ -110,7 +163,9 @@ const UserPost = () => {
                     type: "user_post",
                     has_embedded_usernames: hasEmbeddedUsernames,
                     content: {
-                        text: postText
+                        text: postText,
+                        image: null,
+                        video: null
                     }
                 })
             })
@@ -152,7 +207,7 @@ const UserPost = () => {
                                                 sendPostActive
                                                     ? "color-red"
                                                     : "color-grey"
-                                            }`}
+                                                }`}
                                         />
                                     </button>
                                 </div>
@@ -161,22 +216,22 @@ const UserPost = () => {
                                 {image === null ? (
                                     ""
                                 ) : (
-                                    <img
-                                        className="w-100 imagePreview"
-                                        src={imagePreview}
-                                    ></img>
-                                )}
+                                        <img
+                                            className="w-100 imagePreview"
+                                            src={imagePreview}
+                                        ></img>
+                                    )}
 
                                 {video === null ? (
                                     ""
                                 ) : (
-                                    <video
-                                        className="w-100 videoPreview"
-                                        src={videoPreview}
-                                        autoPlay
-                                        controls
-                                    ></video>
-                                )}
+                                        <video
+                                            className="w-100 videoPreview"
+                                            src={videoPreview}
+                                            autoPlay
+                                            controls
+                                        ></video>
+                                    )}
                             </div>
                             <div
                                 className="h-100 vertical-align types mr-auto mt-3 d-flex flex-row"
@@ -201,7 +256,7 @@ const UserPost = () => {
                                     <i
                                         className={`far fa-image ${
                                             image === null ? "" : "opaque"
-                                        }`}
+                                            }`}
                                         onClick={selectImage}
                                     ></i>
                                 </button>
@@ -209,7 +264,7 @@ const UserPost = () => {
                                     <i
                                         className={`fas fa-video ml-4 ${
                                             video === null ? "" : "opaque"
-                                        }`}
+                                            }`}
                                         onClick={selectVideo}
                                     ></i>
                                 </button>
@@ -219,20 +274,20 @@ const UserPost = () => {
                                         onClick={triggerPicker}
                                     ></i>
                                 </button>
-                                    <Picker
-                                        style={{
-                                            position: "absolute",
-                                            top: "2rem",
-                                            left: "0rem",
-                                            zIndex: 2,
-                                            display: emojiPickerOpen ? 'inline-block' : 'none'
-                                        }}
+                                <Picker
+                                    style={{
+                                        position: "absolute",
+                                        top: "2rem",
+                                        left: "0rem",
+                                        zIndex: 2,
+                                        display: emojiPickerOpen ? 'inline-block' : 'none'
+                                    }}
 
-                                        onSelect={(emoji) => {
-                                            addEmoji(emoji)
-                                        }}
-                                    />
-                                
+                                    onSelect={(emoji) => {
+                                        addEmoji(emoji)
+                                    }}
+                                />
+
                             </div>
                         </div>
                     </div>

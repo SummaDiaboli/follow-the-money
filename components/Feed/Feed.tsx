@@ -154,7 +154,7 @@ const Feed = () => {
                                                                 userName={post.username}
                                                                 key={index}
                                                                 pid={post.id}
-                                                                userPhoto={require("../../static/assets/img/user/user.jpg")}
+                                                                // userPhoto={require("../../static/assets/img/user/user.jpg")}
                                                                 text={post.content.text}
                                                                 image={post.content.image}
                                                                 video={post.content.video}
@@ -208,7 +208,7 @@ const Feed = () => {
                                                                     }
                                                                     key={index}
                                                                     pid={post.id}
-                                                                    userPhoto={require("../../static/assets/img/user/user.jpg")}
+                                                                    // userPhoto={require("../../static/assets/img/user/user.jpg")}
                                                                     text={
                                                                         post.content
                                                                             .text
@@ -267,7 +267,7 @@ const Feed = () => {
                                                                     }
                                                                     key={index}
                                                                     pid={post.id}
-                                                                    userPhoto={require("../../static/assets/img/user/user.jpg")}
+                                                                    // userPhoto={require("../../static/assets/img/user/user.jpg")}
                                                                     text={post.content.text}
                                                                     video={post.content.video}
                                                                     name={post.username}

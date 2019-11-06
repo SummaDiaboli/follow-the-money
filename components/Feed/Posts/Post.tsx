@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import UserComment from "./UserComment";
 import Link from "next/link";
 
 interface Params {
-    userPhoto: string;
+    // userPhoto: string;
     pid: number;
     userName: string;
     name: string;
@@ -17,7 +17,7 @@ interface Params {
 }
 
 const Post: React.FC<Params> = ({
-    userPhoto,
+    // userPhoto,
     pid,
     userName,
     name,
@@ -29,6 +29,16 @@ const Post: React.FC<Params> = ({
     comments,
     shares
 }) => {
+    const [photo, setPhoto] = useState('')
+
+    useMemo(() => fetch(`/api/change_photo/${userName}`)
+        .then(res => {
+            res.status === 201 && res.json().then(data => {
+                // console.log(data[0].photo)
+                setPhoto(data[0].photo)
+            })
+        }), [photo])
+
     return (
         <Link href="/post/[pid]" as={`/post/${pid}`}>
             <a>
@@ -36,7 +46,7 @@ const Post: React.FC<Params> = ({
                     <div className="w-100 d-flex flex-column">
                         <div className="user d-flex flex-row mb-2">
                             <img
-                                src={userPhoto}
+                                src={photo !== null ? photo : "../../static/assets/img/user/user.jpg"}
                                 className="rounded-circle mr-3"
                                 alt=""
                             />

@@ -45,7 +45,7 @@ const SideTab = ({ id }) => {
                     <span className="description">
                         {communityDescription}
                     </span>
-                    <div className="d-flex pt-4 flex-row vertical-align w-100">
+                    {/* <div className="d-flex pt-4 flex-row vertical-align w-100">
                         <button
                             className={"d-flex " + (userStatus ? 'joined' : '')}
                             onMouseOver={hoverChange}
@@ -55,9 +55,9 @@ const SideTab = ({ id }) => {
                             {
                                 userStatus ? 'Joined' : 'Join'
                             }
-                        </button>
-                        {/* <h6 className="m-0 members ml-3">{communityMembers} Members</h6> */}
-                    </div>
+                        </button> */}
+                    {/* <h6 className="m-0 members ml-3">{communityMembers} Members</h6> */}
+                    {/* </div> */}
                 </div>
             </div>
 

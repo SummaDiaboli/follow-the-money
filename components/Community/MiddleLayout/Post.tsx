@@ -1,8 +1,9 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef, useMemo } from "react";
 import Link from "next/link";
+import fetch from 'isomorphic-unfetch'
 
 interface Params {
-    userImage: string;
+    // userImage: string;
     username: string;
     timeCreated: Date | string;
     postText?: string;
@@ -15,7 +16,7 @@ interface Params {
 }
 
 const Post: React.FC<Params> = ({
-    userImage,
+    // userImage,
     username,
     timeCreated,
     postText,
@@ -27,7 +28,7 @@ const Post: React.FC<Params> = ({
     pid
 }) => {
     const [isVisible, setIsVisible]: any = useState("hidden");
-
+    const [photo, setPhoto] = useState('')
     const reference: any = createRef();
 
     const showPostPopup = () => {
@@ -44,7 +45,7 @@ const Post: React.FC<Params> = ({
                 fill: "forwards"
             });
 
-            setTimeout(function() {
+            setTimeout(function () {
                 popup.style.opacity = 0;
             }, 200);
 
@@ -57,12 +58,20 @@ const Post: React.FC<Params> = ({
                 fill: "forwards"
             });
 
-            setTimeout(function() {
+            setTimeout(function () {
                 popup.style.opacity = 1;
             }, 200);
             setIsVisible("visible");
         }
     };
+
+    useMemo(() => fetch(`/api/change_photo/${username}`)
+        .then(res => {
+            res.status === 201 && res.json().then(data => {
+                // console.log(data[0].photo)
+                setPhoto(data[0].photo)
+            })
+        }), [photo])
 
     return (
         <>
@@ -72,7 +81,7 @@ const Post: React.FC<Params> = ({
                         <div className="w-100 d-flex flex-column">
                             <div className="user d-flex vertical-align mb-2 flex-row">
                                 <img
-                                    src={userImage}
+                                    src={photo !== null ? photo : "../../static/assets/img/user/user.jpg"}
                                     className="rounded-circle mr-3"
                                     alt=""
                                 />
@@ -132,8 +141,8 @@ const Post: React.FC<Params> = ({
                                         controls
                                     ></video>
                                 )}
-                                {
-                                    <div className="d-flex flex-row actions mt-3">
+
+                                {/* <div className="d-flex flex-row actions mt-3">
                                         <a href="#">
                                             <div className="d-flex flex-row vertical-align">
                                                 <i className="far fa-heart"></i>
@@ -158,8 +167,8 @@ const Post: React.FC<Params> = ({
                                                 </span>
                                             </div>
                                         </a>
-                                    </div>
-                                }
+                                    </div> */}
+
                             </div>
                         </div>
                     </div>

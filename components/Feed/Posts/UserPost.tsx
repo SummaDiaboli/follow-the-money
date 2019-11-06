@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useMemo } from "react";
 import fetch from "isomorphic-unfetch";
 import Cookies from "js-cookie";
 import { Picker } from "emoji-mart";
@@ -110,8 +110,8 @@ const UserPost = () => {
                 .then(snapshot => {
                     snapshot.ref.getDownloadURL()
                         .then(url => {
-                            console.log(hasPhoto)
-                            console.log(hasVideo)
+                            // console.log(hasPhoto)
+                            // console.log(hasVideo)
                             fetch("api/posts", {
                                 method: "post",
                                 headers: {
@@ -134,7 +134,7 @@ const UserPost = () => {
                                 })
                             }).then(res => {
                                 if (res.status === 201) {
-                                    console.log("is working")
+                                    // console.log("is working")
                                     setPostText("")
                                     setImage(null)
                                     setVideo(null)
@@ -179,7 +179,15 @@ const UserPost = () => {
                     console.log("Error occurred", error);
                 });
         }
-    };
+    }
+
+    useMemo(() => fetch(`/api/change_photo/${username}`)
+        .then(res => {
+            res.status === 201 && res.json().then(data => {
+                // console.log(data[0].photo)
+                setuserPhoto(data[0].photo)
+            })
+        }), [userPhoto])
 
     return (
         <>
@@ -188,7 +196,7 @@ const UserPost = () => {
                     <div className="w-100 d-flex flex-row">
                         <img
                             className="rounded-circle mr-3"
-                            src={userPhoto}
+                            src={userPhoto !== null ? userPhoto :  "../../static/assets/img/user/user.jpg"}
                             alt=""
                         />
                         <div className="w-100 d-flex flex-column">

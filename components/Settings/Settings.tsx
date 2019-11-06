@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { NotificationIcon } from "../User";
 import { ImageUploader, Sidetab, Bio, Password } from "./index";
 import Cookies from 'js-cookie'
+import Router from 'next/router'
+import { loadFB } from '../../utils/firebase'
+
 
 const Settings = () => {
     const value = Cookies.getJSON('userData')
@@ -31,18 +34,55 @@ const Settings = () => {
     };
 
     const handleSubmit = e => {
-        console.log("handle uploading...", image);
-        console.log('Bio: ' + bio + ' New Password: ' + newPassword + 'Con' + confirmNewPassword)
         if (image !== null && imageName !== null) {
-            const formData = new FormData();
+            const fb = loadFB()
+            const storageRef = fb.storage().ref()
+            storageRef.child(`${username}/${imageName}`).put(image)
+                .then(snapshot => {
+                    snapshot.ref.getDownloadURL()
+                        .then(url => {
+                            fetch(`api/change_photo/${username}`, {
+                                method: "PUT",
+                                body: JSON.stringify({
+                                    url
+                                })
+                            }).then(res => {
+                                if (res.status === 200) {
+                                    fetch(`api/change_photo/${username}`)
+                                        .then(res => {
+                                            if (res.status === 201) {
+                                                res.json()
+                                                    .then(data => {
+                                                        // console.log(data[0])
+                                                        const newData = JSON.parse(Cookies.get('userData'))
+                                                        newData.photo = data[0].photo
+                                                        Cookies.set('userData', newData, { expires: 7 })
+                                                        Router.push('/feed')
+                                                    })
+                                            } else {
+                                                console.log("Not getting photo")
+                                            }
+
+                                        })
+                                } else {
+                                    console.log("Not working")
+                                }
+                            })
+                        })
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            // const formData = new FormData()
+            // // console.log(image)
+            // // console.log(image.name)
             // console.log(image)
-            // console.log(image.name)
-            formData.append("file", image);
-            formData.append("fileName", image.name);
-            fetch(`api/change_photo/${username}`, {
-                method: "PUT",
-                body: formData
-            });
+            // formData.append("file", image)
+            // formData.append("fileName", image.name)
+            // fetch(`api/change_photo/${username}`, {
+            //     method: "PUT",
+            //     body: formData
+            // });
         }
 
         if (newPassword === confirmNewPassword && newPassword !== '' && currentPassword !== '') {
@@ -53,7 +93,9 @@ const Settings = () => {
                     currentPassword
                 })
             }).then(res => {
-                res.status === 200 ? console.log("Working") : console.log("Not working")
+                res.status === 200
+                    ? console.log("Working")
+                    : console.log("Not working")
             }).catch(err => {
                 console.log(err)
             })
@@ -71,6 +113,17 @@ const Settings = () => {
                 console.log(err)
             }) */
         }
+
+        fetch(`api/users/${username}`, {
+            method: "GET"
+        }).then(res => {
+            res.status === 200
+                ? res.json().then(data => {
+                    // Cookies.remove('userData')
+                    Cookies.set('userData', data[0], { expires: 7 })
+                })
+                : "Something went wrong"
+        })
     };
 
     return (

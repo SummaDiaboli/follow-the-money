@@ -33,12 +33,12 @@ const SideTab = () => {
 
     return (
         <div className="col-4 h-100 pr-0">
-            <div className="card sideTab p-3" style={{ height: "92%" }}>
+            <div className="card sideTab p-3" style={{ height: "30%" }}>
                 <LiveRadio audioSource="https://backlinq.ng/ftm/ideas-radio-show.ogg"/>
 
                 {/* <UpcomingEvents /> */}
 
-                <div className="mt-3 friend-requests">
+                {/* <div className="mt-3 friend-requests">
                     <div className="d-flex flex-column">
                         <div className="flex-row d-flex">
 
@@ -61,7 +61,7 @@ const SideTab = () => {
                             }
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )

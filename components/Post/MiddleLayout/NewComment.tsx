@@ -101,7 +101,44 @@ const NewComment: React.FC<Params> = ({ postId }) => {
 
 
     const sendComment = () => {
-        if (postText != "") {
+        if (((image !== null && hasPhoto !== false) || (video !== null && hasVideo !== false)) && postText !== "") {
+            const firebase = loadFB()
+            const storageRef = firebase.storage().ref()
+            const fileName = hasPhoto === true ? image.name : video.name
+            const storageLocation = hasPhoto === true
+                ? storageRef.child(`photos/${username}${fileName}`)
+                : storageRef.child(`videos/${username}${fileName}`)
+            storageLocation.put(hasPhoto === true ? image : video)
+                .then(snapshot => {
+                    snapshot.ref.getDownloadURL()
+                        .then(url => {
+                            fetch("/api/comments", {
+                                method: "POST",
+                                headers: {
+                                    Accept: "application/json, text/plain, */*",
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    post_id: postId,
+                                    comment: postText,
+                                    username: username,
+                                    commentPhoto: hasPhoto === true ? url : null,
+                                    commentVideo: hasVideo === true ? url : null
+                                })
+                            }).then(res => {
+                                if (res.status === 201) {
+                                    setPostText("")
+                                    setImage(null)
+                                    setVideo(null)
+                                    setHasPhoto(false)
+                                    setHasVideo(false)
+                                }
+                            });
+                        })
+                })
+        }
+
+        if (postText != "" && hasPhoto === false && hasVideo === false) {
             fetch("/api/comments", {
                 method: "POST",
                 headers: {
@@ -111,7 +148,9 @@ const NewComment: React.FC<Params> = ({ postId }) => {
                 body: JSON.stringify({
                     post_id: postId,
                     comment: postText,
-                    username: username
+                    username: username,
+                    commentPhoto: null,
+                    commentVideo: null
                 })
             }).then(res => {
                 res.status === 201
@@ -120,14 +159,15 @@ const NewComment: React.FC<Params> = ({ postId }) => {
             });
         }
 
-        useMemo(() => fetch(`/api/change_photo/${username}`)
+    };
+
+    useMemo(() => fetch(`/api/change_photo/${username}`)
         .then(res => {
             res.status === 201 && res.json().then(data => {
                 // console.log(data[0].photo)
                 setuserPhoto(data[0].photo)
             })
         }), [userPhoto])
-    };
 
     return (
         <>
@@ -162,7 +202,7 @@ const NewComment: React.FC<Params> = ({ postId }) => {
                                                 sendPostActive
                                                     ? "color-red"
                                                     : "color-grey"
-                                            }`}
+                                                }`}
                                         />
                                     </button>
                                 </div>
@@ -171,22 +211,22 @@ const NewComment: React.FC<Params> = ({ postId }) => {
                                 {image === null ? (
                                     ""
                                 ) : (
-                                    <img
-                                        className="w-100 imagePreview"
-                                        src={imagePreview}
-                                    ></img>
-                                )}
+                                        <img
+                                            className="w-100 imagePreview"
+                                            src={imagePreview}
+                                        ></img>
+                                    )}
 
                                 {video === null ? (
                                     ""
                                 ) : (
-                                    <video
-                                        className="w-100 videoPreview"
-                                        src={videoPreview}
-                                        autoPlay
-                                        controls
-                                    ></video>
-                                )}
+                                        <video
+                                            className="w-100 videoPreview"
+                                            src={videoPreview}
+                                            autoPlay
+                                            controls
+                                        ></video>
+                                    )}
                             </div>
                             <div
                                 className="h-100 vertical-align types mr-auto mt-3 d-flex flex-row"
@@ -211,7 +251,7 @@ const NewComment: React.FC<Params> = ({ postId }) => {
                                     <i
                                         className={`far fa-image ${
                                             image === null ? "" : "opaque"
-                                        }`}
+                                            }`}
                                         onClick={selectImage}
                                     ></i>
                                 </button>
@@ -219,7 +259,7 @@ const NewComment: React.FC<Params> = ({ postId }) => {
                                     <i
                                         className={`fas fa-video ml-4 ${
                                             video === null ? "" : "opaque"
-                                        }`}
+                                            }`}
                                         onClick={selectVideo}
                                     ></i>
                                 </button>
@@ -227,7 +267,7 @@ const NewComment: React.FC<Params> = ({ postId }) => {
                                     <i
                                         className={`far fa-smile ml-4 ${
                                             emojiPickerOpen ? "opaque" : ""
-                                        }`}
+                                            }`}
                                         onClick={triggerPicker}
                                     ></i>
                                 </button>

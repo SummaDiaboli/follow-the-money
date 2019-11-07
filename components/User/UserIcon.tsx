@@ -38,7 +38,7 @@ const UserIcon = () => {
 
     useLayoutEffect(() => {
         // setInterval(() => {
-        setPhoto(data != null || data != undefined ? data.photo : '')
+        setPhoto(data !== null || data !== undefined ? data.photo : '')
         // }, 500)
     }, [photo])
 
@@ -47,7 +47,7 @@ const UserIcon = () => {
             <button className="m-0" onClick={fadeUserPopup}>
                 <img
                     className="user"
-                    src={photo !== '' ? photo : "../../static/assets/img/user/user.jpg"}
+                    src={photo !== null ? photo : "../../static/assets/img/user/user.jpg"}
                     // src={"../../static/assets/img/user/user.jpg"}
                     alt=""
                 />

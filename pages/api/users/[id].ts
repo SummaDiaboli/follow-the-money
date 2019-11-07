@@ -37,7 +37,8 @@ const getUserById = (request: Request, response: Response, id: string) => {
             id, \
             name,\
             photo, \
-            username \
+            username, \
+            about \
         FROM \
             users \
         WHERE \

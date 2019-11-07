@@ -16,6 +16,8 @@ const Settings = () => {
     const [confirmNewPassword, setConfirmNewPassword] = useState("")
     const [bio, setBio] = useState("");
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const callBackPassword = passwords => {
         setCurrentPassword(passwords.current);
         setNewPassword(passwords.new);
@@ -35,6 +37,7 @@ const Settings = () => {
 
     const handleSubmit = e => {
         if (image !== null && imageName !== null) {
+            setIsLoading(true)
             const fb = loadFB()
             const storageRef = fb.storage().ref()
             storageRef.child(`${username}/${imageName}`).put(image)
@@ -54,12 +57,14 @@ const Settings = () => {
                                                 res.json()
                                                     .then(data => {
                                                         // console.log(data[0])
+                                                        setIsLoading(false)
                                                         const newData = JSON.parse(Cookies.get('userData'))
                                                         newData.photo = data[0].photo
                                                         Cookies.set('userData', newData, { expires: 7 })
                                                         Router.push('/feed')
                                                     })
                                             } else {
+                                                setIsLoading(false)
                                                 console.log("Not getting photo")
                                             }
 
@@ -71,6 +76,7 @@ const Settings = () => {
                         })
                 })
                 .catch(err => {
+                    setIsLoading(false)
                     console.log(err)
                 })
             // const formData = new FormData()
@@ -86,6 +92,7 @@ const Settings = () => {
         }
 
         if (newPassword === confirmNewPassword && newPassword !== '' && currentPassword !== '') {
+            setIsLoading(true)
             fetch(`api/change_password/${username}`, {
                 method: "PUT",
                 body: JSON.stringify({
@@ -93,15 +100,19 @@ const Settings = () => {
                     currentPassword
                 })
             }).then(res => {
-                res.status === 200
-                    ? console.log("Working")
-                    : console.log("Not working")
+                // res.status === 200
+                //     ? console.log("Working")
+                //     : console.log("Not working")
+
+                // setIsLoading(false)
             }).catch(err => {
-                console.log(err)
+                // setIsLoading(false)
+                // console.log(err)
             })
         }
 
         if (bio !== '') {
+            setIsLoading(true)
             fetch(`api/change_bio/${username}`, {
                 method: "PUT",
                 body: JSON.stringify({
@@ -121,6 +132,7 @@ const Settings = () => {
                 ? res.json().then(data => {
                     // Cookies.remove('userData')
                     Cookies.set('userData', data[0], { expires: 7 })
+                    setIsLoading(false)
                 })
                 : "Something went wrong"
         })
@@ -168,7 +180,20 @@ const Settings = () => {
                             className="btn uploadButton text-white ml-0 mt-3"
                             onClick={handleSubmit}
                         >
-                            Save Settings
+                            {
+                                isLoading === true
+                                    ? <div className="text-center" style={{ marginTop: "5%" }}>
+                                        <div
+                                            className="spinner-border"
+                                            role="status"
+                                            style={{ color: "#D00000" }}
+                                        >
+                                            <span className="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+
+                                    : <>Save Settings</>
+                            }
                         </button>
                         <Sidetab />
                     </div>

@@ -103,8 +103,10 @@ const CommunityPosts = ({ id }) => {
                             username={post.username}
                             key={index}
                             pid={post.id}
-                            userImage="../../static/assets/img/user/user.jpg"
+                            // userImage="../../static/assets/img/user/user.jpg"
                             postText={post.content.text}
+                            postImage={post.content.image}
+                            postVideo={post.content.video}
                             timeCreated={
                                 moment(post.post_date).format(
                                     "MMMM Do YYYY"

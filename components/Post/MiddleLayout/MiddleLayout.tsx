@@ -71,11 +71,12 @@ const MiddleLayout = () => {
                             : <div className="card p-3">
                                 <UserPost
                                     // userImage={user.userImage}
-                                    userImage="../static/assets/img/user/user.jpg"
+                                    // userImage="../static/assets/img/user/user.jpg"
                                     userName={post.username}
                                     timeCreated={moment(post.post_date).format('MMMM Do YYYY')}
                                     postText={post.content.text}
                                     postImage={post.content.image}
+
                                 // likes={user.likes}
                                 // comments={user.comments}
                                 // shares={user.shares}
@@ -105,6 +106,8 @@ const MiddleLayout = () => {
                                                         userName={comment.username}
                                                         timeCreated={moment(comment.comment_date).format('MMMM Do YYYY')}
                                                         postText={comment.comment}
+                                                        postImage={comment.comment_photo}
+                                                        postVideo={comment.comment_video}
                                                         // likes={commentPost.likes}
                                                         // comments={commentPost.comments}
                                                         // shares={commentPost.shares}

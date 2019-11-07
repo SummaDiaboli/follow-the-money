@@ -1,29 +1,34 @@
-import React /* { useState, createRef } */ from 'react'
+import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
 
 interface Params {
-    userImage: string,
+    // userImage: string,
     userName: string,
     name?: string,
     timeCreated: Date,
     postText?: string,
     postImage?: string,
+    postVideo?: string
     likes?: number,
     comments?: number,
     shares?: number
 }
 const UserPost: React.FC<Params> = ({
-    userImage,
+    // userImage,
     userName,
     name,
     timeCreated,
     postText,
     postImage,
+    postVideo,
     likes,
     comments,
     shares
 }) => {
+    const [userPhoto, setuserPhoto] = useState('')
+
     /*  const [isVisible, setIsVisible] = useState(false)
+
 
      const reference = createRef()
 
@@ -66,13 +71,28 @@ const UserPost: React.FC<Params> = ({
              setIsVisible(true)
          }
      } */
+    useMemo(() => fetch(`/api/change_photo/${userName}`)
+        .then(res => {
+            res.status === 201 && res.json().then(data => {
+                // console.log(data[0].photo)
+                setuserPhoto(data[0].photo)
+            })
+        }), [userPhoto])
 
     return (
         <>
             <div className="post w-100 mt-3">
                 <div className="w-100 d-flex flex-column">
                     <div className="user d-flex vertical-align flex-row">
-                        <img src={userImage} className="rounded-circle mr-3" alt="" />
+                        <img
+                            src={
+                                userPhoto !== null
+                                    ? userPhoto
+                                    : "../../static/assets/img/user/user.jpg"
+                            }
+                            className="rounded-circle mr-3"
+                            alt=""
+                        />
                         <div className="d-flex flex-column">
                             <div className="d-flex flex-row w-100">
                                 <Link href="/users/[id]" as={`/users/${userName}`}>
@@ -106,7 +126,11 @@ const UserPost: React.FC<Params> = ({
                         {
                             postImage && <img src={postImage} className="mt-2" alt="" />
                         }
-                        <div className="d-flex flex-row actions mt-3">
+
+                        {
+                            postVideo && <video className="w-100 mt-2" src={postVideo} autoPlay controls />
+                        }
+                        {/* <div className="d-flex flex-row actions mt-3">
                             <button className="m-0">
                                 <div className="d-flex flex-row vertical-align">
                                     <i className="far fa-heart"></i>
@@ -127,7 +151,7 @@ const UserPost: React.FC<Params> = ({
                                     <span className="pl-1">Comments</span>
                                 </div>
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

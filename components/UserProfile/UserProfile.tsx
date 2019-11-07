@@ -36,7 +36,7 @@ const UserProfile: React.FC<Params> = ({ id }) => {
 
                             setFirstName(firstName)
                             setLastName(lastName)
-                            if (aboutObject !== null) {
+                            if (aboutObject !== null && aboutObject !== undefined) {
                                 const bio = aboutObject.bio
                                 setBio(bio)
                             } else {

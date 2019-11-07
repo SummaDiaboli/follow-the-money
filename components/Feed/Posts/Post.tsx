@@ -1,40 +1,52 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import UserComment from "./UserComment";
 import Link from "next/link";
 
 interface Params {
-    userPhoto: string,
-    pid: number,
-    userName: string,
-    name: string,
-    time: Date,
-    text?: string,
-    image?: string,
-    likes?: number,
-    comments?: number,
-    shares?: number
+    // userPhoto: string;
+    pid: number;
+    userName: string;
+    name: string;
+    time: Date;
+    text?: string;
+    image?: string;
+    video?: string;
+    likes?: number;
+    comments?: number;
+    shares?: number;
 }
 
 const Post: React.FC<Params> = ({
-    userPhoto,
+    // userPhoto,
     pid,
     userName,
     name,
     time,
     text,
     image,
+    video,
     likes,
     comments,
     shares
 }) => {
+    const [photo, setPhoto] = useState('')
+
+    useMemo(() => fetch(`/api/change_photo/${userName}`)
+        .then(res => {
+            res.status === 201 && res.json().then(data => {
+                // console.log(data[0].photo)
+                setPhoto(data[0].photo)
+            })
+        }), [photo])
+
     return (
         <Link href="/post/[pid]" as={`/post/${pid}`}>
             <a>
                 <div className="card p-3 mt-3 post w-100">
                     <div className="w-100 d-flex flex-column">
-                        <div className="user d-flex flex-row mb-4">
+                        <div className="user d-flex flex-row mb-2">
                             <img
-                                src={userPhoto}
+                                src={photo !== null ? photo : "../../static/assets/img/user/user.jpg"}
                                 className="rounded-circle mr-3"
                                 alt=""
                             />
@@ -67,9 +79,24 @@ const Post: React.FC<Params> = ({
                         <div className="content">
                             {text && <p className="mt-3">{text}</p>}
 
-                            {image && <img src={image} alt="" />}
+                            {image && (
+                                <img
+                                    className="w-100 mt-2"
+                                    src={image}
+                                    alt=""
+                                />
+                            )}
 
-                            <div className="d-flex flex-row actions mt-3">
+                            {video && (
+                                <video
+                                    className="w-100 mt-2"
+                                    src={video}
+                                    autoPlay
+                                    controls
+                                ></video>
+                            )}
+
+                            {/* <div className="d-flex flex-row actions mt-3">
                                 <button className="m-0">
                                     <div className="d-flex flex-row vertical-align">
                                         <i className="far fa-heart"></i>
@@ -88,7 +115,7 @@ const Post: React.FC<Params> = ({
                                         <span className="ml-1">{shares}</span>
                                     </div>
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* <UserComment /> */}

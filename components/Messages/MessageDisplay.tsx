@@ -1,29 +1,38 @@
-import React from 'react'
+import React from "react";
+import { UserPost, Message } from './index'
 
 interface Params {
-    conversation?: JSON
+    // conversation?: JSON
+    message: string;
+    active?: boolean;
+    username: string;
 }
 
-const MessageDisplay: React.FC<Params> = ({ conversation }) => {
+const MessageDisplay: React.FC<Params> = ({ message, active, username }) => {
     return (
         <>
             {
-                conversation
-                    ? <div className="col-8">
-                        <div>
-                            {conversation}
-                        </div>
-                    </div>
-                    : <div className="col-8">
-                        <div className="middle-layout vertical-align" /* style={{ height: "50%" }} */>
+                <div
+                    className={`tab-pane h-100 fade show ${
+                        active ? "active" : ""
+                    }`}
+                    id={`${username}`}
+                    role="tabpanel"
+                    aria-labelledby={`${username}-tab`}
+                >
+                    <div className="d-flex flex-column h-100 p-3">                        
+                        <Message message={message}/>
 
-                            <span className="no-selected">Please select a chat to start messaging</span>
-
-                        </div>
                     </div>
+                    <UserPost /> 
+                </div>
             }
-        </>
-    )
-}
 
-export default MessageDisplay
+            <style>{`
+            
+            `}</style>
+        </>
+    );
+};
+
+export default MessageDisplay;

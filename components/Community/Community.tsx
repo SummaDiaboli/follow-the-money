@@ -27,19 +27,14 @@ const Community = () => {
                                 <ImageHeader communityId={id} />
                             </div>
                             <div className="col-12 p-0">
-                                <div className="row m-0 w-100 px-4 py-2">
-                                    <div className="col-12 pt-3 p-0">
+                                <div className="row d-flex m-0 w-100 px-4 py-2">
+                                    <div className="col-12 pt-3 p-0 order-1">
                                         <h6 className="color-grey d-none d-md-block d-lg-block font-semiBold my-1">
                                             Posts
                                         </h6>
                                     </div>
-                                    <div className="sideTabSmall w-100">
-                                        <SideTab id={id} />
-                                    </div>
                                     <MiddleLayout id={id} />
-                                    <div className="sideTabLarge w-100">
-                                        <SideTab id={id} />
-                                    </div>
+                                    <SideTab id={id} />
                                 </div>
                             </div>
                         </div>

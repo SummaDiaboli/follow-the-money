@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import UserPopup from "./UserPopup";
+import Cookies from 'js-cookie'
 
 const UserIcon = () => {
     const [userPopup, setUserPopup] = useState(false);
+    const [data, setData] = useState(Cookies.getJSON('userData'))
+    const [photo, setPhoto] = useState('')
 
     const fadeUserPopup = () => {
         if (userPopup === false) {
@@ -15,7 +18,7 @@ const UserIcon = () => {
                     iterations: 1,
                     easing: "linear",
                     fill: "forwards"
-                });            
+                });
         } else {
             document
                 .getElementById("user-popup")
@@ -25,7 +28,7 @@ const UserIcon = () => {
                     easing: "linear",
                     fill: "forwards"
                 });
-            setTimeout(function() {
+            setTimeout(function () {
                 document.getElementById("user-popup").style.display =
                     "none";
             }, 200);
@@ -33,12 +36,19 @@ const UserIcon = () => {
         setUserPopup(!userPopup);
     };
 
+    useLayoutEffect(() => {
+        // setInterval(() => {
+        setPhoto(data != null || data != undefined ? data.photo : '')
+        // }, 500)
+    }, [photo])
+
     return (
         <>
             <button className="m-0" onClick={fadeUserPopup}>
                 <img
                     className="user"
-                    src={require("../../static/assets/img/user/user.jpg")}
+                    src={photo !== '' ? photo : "../../static/assets/img/user/user.jpg"}
+                    // src={"../../static/assets/img/user/user.jpg"}
                     alt=""
                 />
             </button>

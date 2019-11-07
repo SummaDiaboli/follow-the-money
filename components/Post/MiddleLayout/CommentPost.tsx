@@ -1,4 +1,4 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef, useMemo } from "react";
 import Link from "next/link";
 
 interface Params {
@@ -8,6 +8,7 @@ interface Params {
     timeCreated: Date,
     postText?: JSON,
     postImage?: string,
+    postVideo?: string,
     likes?: number,
     comments?: number,
     shares?: number,
@@ -21,12 +22,14 @@ const CommentPost: React.FC<Params> = ({
     timeCreated,
     postText,
     postImage,
+    postVideo,
     likes,
     comments,
     shares,
     pid
 }) => {
     const [isVisible, setIsVisible] = useState(false);
+    const [userPhoto, setuserPhoto] = useState('')
 
     const reference = createRef();
 
@@ -64,6 +67,14 @@ const CommentPost: React.FC<Params> = ({
         }
     };
 
+    useMemo(() => fetch(`/api/change_photo/${userName}`)
+        .then(res => {
+            res.status === 201 && res.json().then(data => {
+                // console.log(data[0].photo)
+                setuserPhoto(data[0].photo)
+            })
+        }), [userPhoto])
+
     return (
         <>
             {/* <Link href="/post/[pid]" as={`/post/${pid}`}> */}
@@ -72,7 +83,11 @@ const CommentPost: React.FC<Params> = ({
                 <div className="w-100 d-flex flex-column">
                     <div className="user d-flex vertical-align flex-row">
                         <img
-                            src={userImage}
+                            src={
+                                userPhoto !== null
+                                    ? userPhoto
+                                    : "../../static/assets/img/user/user.jpg"
+                            }
                             className="rounded-circle mr-3"
                             alt=""
                         />
@@ -117,8 +132,16 @@ const CommentPost: React.FC<Params> = ({
                     </div>
                     <div className="content">
                         <p className="mt-4">{postText}</p>
-                        {postImage && <img src={postImage} alt="" />}
-                        <div className="d-flex flex-row actions mt-3">
+                        {postImage && <img className="w-100 mt-2" src={postImage} alt="" />}
+                        {postVideo && (
+                            <video
+                                className="w-100 mt-2"
+                                src={postVideo}
+                                autoPlay
+                                controls
+                            ></video>
+                        )}
+                        {/* <div className="d-flex flex-row actions mt-3">
                             <button className="m-0">
                                 <div className="d-flex flex-row vertical-align">
                                     <i className="far fa-heart"></i>
@@ -143,7 +166,7 @@ const CommentPost: React.FC<Params> = ({
                                     </span>
                                 </div>
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -188,7 +188,7 @@ const NewComment: React.FC<Params> = ({ postId }) => {
                                 <input
                                     type="text"
                                     className="w-100"
-                                    placeholder="What's on your mind?"
+                                    placeholder="Add a Comment"
                                     value={postText}
                                     onChange={onChangeText}
                                 />

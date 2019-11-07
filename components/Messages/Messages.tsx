@@ -9,8 +9,7 @@ type Message = ({
     userPhoto: string;
     name: string;
     userName: string;
-    message: string;
-    timeSent: string;
+    convo: Array<any>;
     unreadCount?: string;
 })[];
 
@@ -20,17 +19,46 @@ const Messages = () => {
             userPhoto: "static/assets/img/user/nasir.jpg",
             name: "Nasir Bukar Ibrahim",
             userName: "nasir",
-            message:
-                "Doyin, are you here? Our partners from CODE are waiting for your presentation on the quantum spectrumetron in the space time of a quantum tunnel",
-            timeSent: "19:21",
+            convo: [
+                {
+                    sender: 'me',
+                    message: 'What"s up Doyin?',
+                    timestamp: "19: 06"
+                },
+                {
+                    sender: 'Doyin',
+                    message: 'Moyi, are you here? Our partners from CODE are waiting for your presentation on the quantum spectrumetron in the space time of a quantum tunnel',
+                    timestamp: "19: 21"
+                },
+                {
+                    sender: 'me',
+                    message: 'Doyin, chill. I"m on my way',
+                    timestamp: "19: 23"
+                },
+            ],
             unreadCount: "8"
         },
         {
             userPhoto: "static/assets/img/user/nwabuisi.jpg",
             name: "Nwabuisi Gospel",
             userName: "nwabuisi",
-            message: "Hey! What you think bout our presentation?",
-            timeSent: "08:11"
+            convo: [
+                {
+                    sender: 'nwabuisi',
+                    message: 'Moyi yo',
+                    timestamp: "19: 06"
+                },
+                {
+                    sender: 'nwabuisi',
+                    message: 'Hey! What you think bout our presentation?',
+                    timestamp: "19: 21"
+                },
+                {
+                    sender: 'me',
+                    message: 'Nwabuisi, I"d get on that soon',
+                    timestamp: "19: 23"
+                },
+            ]
         }
     ];
 
@@ -66,14 +94,14 @@ const Messages = () => {
                                         index == 0 ? (
                                             <MessageDisplay
                                                 key={index}
-                                                message={message.message}
+                                                convo={message.convo}
                                                 username={message.userName}
                                                 active={true}
                                             />
                                         ) : (
                                             <MessageDisplay
                                                 key={index}
-                                                message={message.message}
+                                                convo={message.convo}
                                                 username={message.userName}
                                             />
                                         )
@@ -166,7 +194,7 @@ const Messages = () => {
                                                             message.userName
                                                         }
                                                         message={
-                                                            message.message
+                                                            message.convo[message.convo.length -1].message
                                                         }
                                                         timeSent={
                                                             message.timeSent
@@ -187,7 +215,7 @@ const Messages = () => {
                                                             message.userName
                                                         }
                                                         message={
-                                                            message.message
+                                                            message.convo[message.convo.length -1].message
                                                         }
                                                         timeSent={
                                                             message.timeSent

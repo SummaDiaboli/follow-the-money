@@ -1,24 +1,41 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 
-const UserPost = () => {
+interface Params {
+    parentCallback: Function;
+}
+
+const UserPost: React.FC<Params> = ({ parentCallback }) => {
     const [userPhoto, setuserPhoto] = useState(
         require("../../static/assets/img/user/user.jpg")
     );
 
-    const [postText, setPostText] = useState("");
-    const [sendPostActive, setSendPostActive] = useState(false);
+    const [messageText, setMessageText] = useState("");
+    const [sendMessageActive, setSendMessageActive] = useState(false);
 
     useLayoutEffect(() => {
-        if (postText != "") {
-            setSendPostActive(true);
+        if (messageText != "") {
+            setSendMessageActive(true);
         } else {
-            setSendPostActive(false);
+            setSendMessageActive(false);
         }
         // console.log(community_id[0])
-    }, [postText]);
+    }, [messageText]);
 
     const onChangeText = e => {
-        setPostText(e.target.value);
+        setMessageText(e.target.value);
+    };
+
+    const currentTime = () => {
+        let date = new Date(),
+            h = date.getHours(),
+            m = date.getMinutes();
+
+        return h + ":" + m;
+    };
+
+    const sendMessage = () => {
+        parentCallback(messageText, new Date().getHours() + ':' + new Date().getMinutes());
+        setMessageText('')
     };
 
     return (
@@ -32,14 +49,14 @@ const UserPost = () => {
                 <input
                     type="text"
                     placeholder="Write a message..."
-                    value={postText}
+                    value={messageText}
                     onChange={onChangeText}
                 ></input>
                 <div className="ml-auto">
-                    <button className="pr-2">
+                    <button className="pr-2" onClick={sendMessage}>
                         <i
                             className={`fas fa-paper-plane ${
-                                sendPostActive ? "color-red" : "color-grey"
+                                sendMessageActive ? "color-red" : "color-grey"
                             }`}
                         />
                     </button>
@@ -51,7 +68,7 @@ const UserPost = () => {
                     background: #fff;
                     position: fixed;
                     width: 60%;
-                    bottom: 10%;                
+                    bottom: 10%;
                 }
 
                 .user-post input {

@@ -38,7 +38,7 @@ const SideTab = () => {
 
                 {/* <UpcomingEvents /> */}
 
-                <div className="mt-3 friend-requests">
+                {/* <div className="mt-3 friend-requests">
                     <div className="d-flex flex-column">
                         <div className="flex-row d-flex">
 
@@ -61,7 +61,7 @@ const SideTab = () => {
                             }
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )

@@ -78,7 +78,7 @@ const MessageDisplay: React.FC<Params> = ({ active, username }) => {
                     role="tabpanel"
                     aria-labelledby={`${username}-tab`}
                 >
-                    <div className="d-flex flex-column h-100 p-3">
+                    <div className="d-flex flex-column h-100 p-3 overflow">
                         <Message convo={conversation} />
                     </div>
                     <UserPost username={username} parentCallback={refreshMessages} />
@@ -86,7 +86,10 @@ const MessageDisplay: React.FC<Params> = ({ active, username }) => {
             }
 
             <style>{`
-
+                .overflow{
+                    height: 85%;
+                    overflow-y: auto;
+                }
             `}</style>
         </>
     );

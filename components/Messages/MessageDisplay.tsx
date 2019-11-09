@@ -23,7 +23,7 @@ const MessageDisplay: React.FC<Params> = ({ active, username }) => {
 
         const getConversation = () => {
             setInterval(() => {
-                fetch(`https://follow-the-money-2019.herokuapp.com/index.php/messages/${Username}/${username}`,
+                fetch(`api/messages/${Username}/${username}`,
                     {
                         signal,
                         // mode: "no-cors"

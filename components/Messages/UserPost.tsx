@@ -35,7 +35,7 @@ const UserPost: React.FC<Params> = ({ parentCallback, username }) => {
             //const storageRef = firebase.storage().ref()
 
             fetch(
-                "https://follow-the-money-2019.herokuapp.com/index.php/messages/",
+                "api/messages",
                 {
                     method: "POST",
                     // mode: "no-cors",
@@ -50,13 +50,10 @@ const UserPost: React.FC<Params> = ({ parentCallback, username }) => {
                     })
                 }
             ).then(res => {
-                console.log(res)
                 if (res.status === 201) {
                     setMessageText("");
                 }
-            }).catch(err => {
-                console.log("Shit happened:", err)
-            });
+            })
         }
         parentCallback();
         setMessageText("");

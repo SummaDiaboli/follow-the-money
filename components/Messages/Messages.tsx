@@ -196,7 +196,7 @@ const Messages = () => {
                                                         index == 0 ? (
                                                             <MessageTile
                                                                 key={index}
-                                                                name={`${user.name.firstName} ${user.name.lastName}`}
+                                                                name={`${user.username}`}
                                                                 userName={
                                                                     user.username
                                                                 }
@@ -205,7 +205,7 @@ const Messages = () => {
                                                         ) : (
                                                             <MessageTile
                                                                 key={index}
-                                                                name={`${user.name.firstName} ${user.name.lastName}`}
+                                                                name={`${user.username}`}
                                                                 userName={
                                                                     user.username
                                                                 }

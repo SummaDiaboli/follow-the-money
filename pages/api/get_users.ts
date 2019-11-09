@@ -18,7 +18,7 @@ export default (req: Request, res: Response) => {
 }
 
 const getAllUsers = (req: Request, res: Response) => {
-    pool.query('SELECT * FROM users', (error, results) => {
+    pool.query('SELECT * FROM users ORDER BY username ASC', (error, results) => {
         if (error) {
             response.status(500)
         }

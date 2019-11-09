@@ -43,9 +43,9 @@ const Message: React.FC<Params> = ({ convo }) => {
                                     className="triangle"
                                     src="../../static/assets/img/triangle.png"
                                 ></img>
-                                <span className="timestamp">
+                                {/* <span className="timestamp">
                                     {convertTimestamp(message.time)}
-                                </span>
+                                </span> */}
                             </div>
                         </div>
                     ) : (

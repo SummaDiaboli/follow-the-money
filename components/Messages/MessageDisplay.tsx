@@ -1,14 +1,26 @@
-import React from "react";
-import { UserPost, Message } from './index'
+import React, { useState, useEffect } from "react";
+import { UserPost, Message } from "./index";
 
 interface Params {
     // conversation?: JSON
-    message: string;
+    convo: Array<any>;
     active?: boolean;
     username: string;
 }
 
-const MessageDisplay: React.FC<Params> = ({ message, active, username }) => {
+const MessageDisplay: React.FC<Params> = ({ convo, active, username }) => {
+    const [conversation, setConversation] = useState(convo);
+
+    const sendMessage = (message, time) => {
+        let localConvo = conversation;
+        localConvo.push({
+            sender: "me",
+            message: message,
+            timestamp: time
+        });
+        setConversation([...localConvo]);
+    };
+
     return (
         <>
             {
@@ -20,11 +32,10 @@ const MessageDisplay: React.FC<Params> = ({ message, active, username }) => {
                     role="tabpanel"
                     aria-labelledby={`${username}-tab`}
                 >
-                    <div className="d-flex flex-column h-100 p-3">                        
-                        <Message message={message}/>
-
+                    <div className="d-flex flex-column h-100 p-3">
+                        <Message convo={conversation} />
                     </div>
-                    <UserPost /> 
+                    <UserPost parentCallback={sendMessage} />
                 </div>
             }
 

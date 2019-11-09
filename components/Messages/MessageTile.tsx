@@ -39,8 +39,8 @@ const MessageTile: React.FC<Params> = ({
                 aria-controls={`${userName}`}
                 aria-selected="true"
             >
-                <div className="d-flex flex-row">
-                    <img src={userPhoto} alt="" />
+                <div className="d-flex vertical-align flex-row">
+                    <img src={userPhoto !== null ? userPhoto : "../../static/assets/img/user/user.jpg"} alt="" />
                     <div className="d-flex flex-column ml-2">
                         <Link href="/users/[id]" as={`/users/${userName}`}>
                             <a className="username" href="">

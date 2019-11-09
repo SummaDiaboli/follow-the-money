@@ -23,14 +23,13 @@ const Messages = () => {
         const abortController: AbortController = new window.AbortController();
         const signal: AbortSignal = abortController.signal;
 
-        const getMessages = () => {
+        const getUsers = () => {
             // setInterval(() => {
             fetch(`api/get_users`, { signal })
                 .then(res => {
                     res.json().then(users => {
                         sessionStorage.setItem("users", JSON.stringify(users));
                         setUsers([...users]);
-                        console.log(users);
                     });
                 })
                 .catch(err => {
@@ -43,12 +42,12 @@ const Messages = () => {
             // }, 5000);
         };
 
-        getMessages();
+        getUsers();
 
         return () => {
             abortController.abort();
         };
-    }, [users]);
+    });
 
     useEffect(() => {
         // if (messages !== null) {
@@ -91,23 +90,25 @@ const Messages = () => {
                                     className="middle-layout" /* style={{ height: "50%" }} */
                                 >
                                     <div
-                                        className="tab-content"
+                                        className="tab-content h-100"
                                         id="tabContent"
                                     >
-                                        {messages.map((message, index) =>
-                                            index == 0 ? (
-                                                <MessageDisplay
-                                                    key={index}
-                                                    convo={message.convo}
-                                                    username={message.userName}
-                                                    active={true}
-                                                />
+                                        {users.map((user, index) =>
+                                            user.username !== username ? (
+                                                index == 0 ? (
+                                                    <MessageDisplay
+                                                        key={index}
+                                                        username={user.username}
+                                                        active={true}
+                                                    />
+                                                ) : (
+                                                    <MessageDisplay
+                                                        key={index}
+                                                        username={user.username}
+                                                    />
+                                                )
                                             ) : (
-                                                <MessageDisplay
-                                                    key={index}
-                                                    convo={message.convo}
-                                                    username={message.userName}
-                                                />
+                                                ""
                                             )
                                         )}
                                     </div>
@@ -190,23 +191,28 @@ const Messages = () => {
                                                 role="tablist"
                                             >
                                                 {users.map((user, index) =>
-                                                    index == 0 ? (
-                                                        <MessageTile
-                                                            key={index}
-                                                            name={`${user.name.firstName} ${user.name.lastName}`}
-                                                            userName={
-                                                                user.username
-                                                            }
-                                                            active={true}
-                                                        />
+                                                    user.username !==
+                                                    username ? (
+                                                        index == 0 ? (
+                                                            <MessageTile
+                                                                key={index}
+                                                                name={`${user.name.firstName} ${user.name.lastName}`}
+                                                                userName={
+                                                                    user.username
+                                                                }
+                                                                active={true}
+                                                            />
+                                                        ) : (
+                                                            <MessageTile
+                                                                key={index}
+                                                                name={`${user.name.firstName} ${user.name.lastName}`}
+                                                                userName={
+                                                                    user.username
+                                                                }
+                                                            />
+                                                        )
                                                     ) : (
-                                                        <MessageTile
-                                                            key={index}
-                                                            name={`${user.name.firstName} ${user.name.lastName}`}
-                                                            userName={
-                                                                user.username
-                                                            }
-                                                        />
+                                                        ""
                                                     )
                                                 )}
                                             </ul>
@@ -309,7 +315,7 @@ const Messages = () => {
                 }
 
                 .middle-layout {
-                    height: 95%;
+                    height: 100%;
                     overflow: auto;
                 }
 
@@ -355,7 +361,7 @@ const Messages = () => {
                 .sideTab .nav-link.active {
                     background: white;
                     color: #000;
-                    border-bottom: 2px solid #5085e8;
+                    border-bottom: 2px solid #d10000;
                     padding-bottom: 0.5rem;
                     position: relative;
                     z-index: 2;
@@ -377,7 +383,7 @@ const Messages = () => {
 
                 .sideTab .search input::-webkit-input-placeholder {
                     color: #454545 !important;
-                    font-size: 0.9rem;
+                    font-size: 0.8rem;
                     font-weight: 500;
                 }
                 .sideTab .search input::-moz-placeholder {
@@ -386,11 +392,6 @@ const Messages = () => {
                     font-weight: 500;
                 }
                 .sideTab .search input:-ms-input-placeholder {
-                    color: #454545 !important;
-                    font-size: 0.8rem;
-                    font-weight: 500;
-                }
-                .sideTab .search input:-moz-placeholder {
                     color: #454545 !important;
                     font-size: 0.8rem;
                     font-weight: 500;

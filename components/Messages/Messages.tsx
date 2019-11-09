@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NotificationIcon } from "../User";
+import Cookies from "js-cookie";
 import MessageTile from "./MessageTile";
 import MessageDisplay from "./MessageDisplay";
 
@@ -14,64 +15,57 @@ type Message = ({
 })[];
 
 const Messages = () => {
-    const permanentMessages: Message = [
-        {
-            userPhoto: "static/assets/img/user/nasir.jpg",
-            name: "Nasir Bukar Ibrahim",
-            userName: "nasir",
-            convo: [
-                {
-                    sender: 'me',
-                    message: 'What"s up Doyin?',
-                    timestamp: "19: 06"
-                },
-                {
-                    sender: 'Doyin',
-                    message: 'Moyi, are you here? Our partners from CODE are waiting for your presentation on the quantum spectrumetron in the space time of a quantum tunnel',
-                    timestamp: "19: 21"
-                },
-                {
-                    sender: 'me',
-                    message: 'Doyin, chill. I"m on my way',
-                    timestamp: "19: 23"
-                },
-            ],
-            unreadCount: "8"
-        },
-        {
-            userPhoto: "static/assets/img/user/nwabuisi.jpg",
-            name: "Nwabuisi Gospel",
-            userName: "nwabuisi",
-            convo: [
-                {
-                    sender: 'nwabuisi',
-                    message: 'Moyi yo',
-                    timestamp: "19: 06"
-                },
-                {
-                    sender: 'nwabuisi',
-                    message: 'Hey! What you think bout our presentation?',
-                    timestamp: "19: 21"
-                },
-                {
-                    sender: 'me',
-                    message: 'Nwabuisi, I"d get on that soon',
-                    timestamp: "19: 23"
-                },
-            ]
-        }
-    ];
-
-    const [messages, setMessages]: any = useState(permanentMessages);
+    const user = Cookies.getJSON("userData");
+    const username = user.username;
+    const [messages, setMessages]: any = useState(null);
 
     useEffect(() => {
-        const truncate = id => {
-            let string = document.getElementById(id).innerHTML;
-            var maxLength = 80;
-            var result = string.substring(0, maxLength) + "...";
-            document.getElementById(id).innerHTML = result;
+        const abortController: AbortController = new window.AbortController();
+        const signal: AbortSignal = abortController.signal;
+
+        const getMessages = () => {
+            setInterval(() => {
+                fetch(
+                    `api/get_users`,
+                    { signal }
+                )
+                    .then(res => {
+                        res.json().then(users => {
+                            sessionStorage.setItem(
+                                "users",
+                                JSON.stringify(users)
+                            );
+                            setMessages([...users]);
+                            console.log(users);
+                        });
+                    })
+                    .catch(err => {
+                        if (err.name === "AbortError") {
+                            return "Promise Aborted";
+                        } else {
+                            return "Promise Rejected";
+                        }
+                    });
+            }, 5000);
         };
-        truncate("truncate-text");
+
+        getMessages();
+
+        return () => {
+            abortController.abort();
+        };
+    }, [messages]);
+
+    useEffect(() => {
+        if (messages !== null) {
+            // const truncate = id => {
+            //     let string = document.getElementById(id).innerHTML;
+            //     var maxLength = 80;
+            //     var result = string.substring(0, maxLength) + "...";
+            //     document.getElementById(id).innerHTML = result;
+            // };
+            // truncate("truncate-text");
+        }
     });
 
     return (
@@ -84,200 +78,240 @@ const Messages = () => {
                     <hr className="w-100" />
                 </nav>
                 <div className="container-fluid p-0 content">
-                    <div className="row px-0 m-0 w-100 h-100">
-                        <div className="col-9 px-0 messages-container">
+                    {messages === null ? (
+                        <div className="d-flex vertical-align loading w-100 h-100">
                             <div
-                                className="middle-layout" /* style={{ height: "50%" }} */
+                                className="spinner-border"
+                                role="status"
+                                style={{
+                                    color: "#D00000"
+                                }}
                             >
-                                <div className="tab-content" id="tabContent">
-                                    {messages.map((message, index) =>
-                                        index == 0 ? (
-                                            <MessageDisplay
-                                                key={index}
-                                                convo={message.convo}
-                                                username={message.userName}
-                                                active={true}
-                                            />
-                                        ) : (
-                                            <MessageDisplay
-                                                key={index}
-                                                convo={message.convo}
-                                                username={message.userName}
-                                            />
-                                        )
-                                    )}
-                                </div>
+                                <span className="sr-only">Loading...</span>
                             </div>
                         </div>
-
-                        <div className="col-3 px-0" style={{ height: "100%" }}>
-                            <div className="card sideTab p-3">
-                                <div className="d-flex w-100 search pb-3 px-1 flex-row vertical-align">
-                                    <i className="fas fa-search"></i>
-                                    <input
-                                        type="text"
-                                        placeholder="Search in all messages"
-                                        className="ml-3 w-100"
-                                    />
-                                </div>
-
-                                <ul
-                                    className="nav nav-pills mb-3 py-1"
-                                    id="pills-tab"
-                                    role="tablist"
-                                >
-                                    <li className="nav-item">
-                                        <a
-                                            className="nav-link active"
-                                            id="pills-all-tab"
-                                            data-toggle="pill"
-                                            href="#pills-all"
-                                            role="tab"
-                                            aria-controls="pills-all"
-                                            aria-selected="true"
-                                        >
-                                            All
-                                        </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a
-                                            className="nav-link"
-                                            id="pills-unread-tab"
-                                            data-toggle="pill"
-                                            href="#pills-unread"
-                                            role="tab"
-                                            aria-controls="pills-unread"
-                                            aria-selected="false"
-                                        >
-                                            Unread
-                                        </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a
-                                            className="nav-link"
-                                            id="pills-important-tab"
-                                            data-toggle="pill"
-                                            href="#pills-important"
-                                            role="tab"
-                                            aria-controls="pills-important"
-                                            aria-selected="false"
-                                        >
-                                            Important
-                                        </a>
-                                    </li>
-                                </ul>
-
+                    ) : (
+                        <div className="row px-0 m-0 w-100 h-100">
+                            <div className="col-9 px-0 messages-container">
                                 <div
-                                    className="tab-content"
-                                    id="pills-tabContent"
+                                    className="middle-layout" /* style={{ height: "50%" }} */
                                 >
                                     <div
-                                        className="tab-pane fade show active"
-                                        id="pills-all"
-                                        role="tabpanel"
-                                        aria-labelledby="pills-all-tab"
+                                        className="tab-content"
+                                        id="tabContent"
                                     >
-                                        <ul
-                                            className="p-0 nav nav-tabs"
-                                            id="tab"
-                                            role="tablist"
+                                        {messages.map((message, index) =>
+                                            index == 0 ? (
+                                                <MessageDisplay
+                                                    key={index}
+                                                    convo={message.convo}
+                                                    username={message.userName}
+                                                    active={true}
+                                                />
+                                            ) : (
+                                                <MessageDisplay
+                                                    key={index}
+                                                    convo={message.convo}
+                                                    username={message.userName}
+                                                />
+                                            )
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                className="col-3 px-0"
+                                style={{ height: "100%" }}
+                            >
+                                <div className="card sideTab p-3">
+                                    <div className="d-flex w-100 search pb-3 px-1 flex-row vertical-align">
+                                        <i className="fas fa-search"></i>
+                                        <input
+                                            type="text"
+                                            placeholder="Search in all messages"
+                                            className="ml-3 w-100"
+                                        />
+                                    </div>
+
+                                    <ul
+                                        className="nav nav-pills mb-3 py-1"
+                                        id="pills-tab"
+                                        role="tablist"
+                                    >
+                                        <li className="nav-item">
+                                            <a
+                                                className="nav-link active"
+                                                id="pills-all-tab"
+                                                data-toggle="pill"
+                                                href="#pills-all"
+                                                role="tab"
+                                                aria-controls="pills-all"
+                                                aria-selected="true"
+                                            >
+                                                All
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a
+                                                className="nav-link"
+                                                id="pills-unread-tab"
+                                                data-toggle="pill"
+                                                href="#pills-unread"
+                                                role="tab"
+                                                aria-controls="pills-unread"
+                                                aria-selected="false"
+                                            >
+                                                Unread
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a
+                                                className="nav-link"
+                                                id="pills-important-tab"
+                                                data-toggle="pill"
+                                                href="#pills-important"
+                                                role="tab"
+                                                aria-controls="pills-important"
+                                                aria-selected="false"
+                                            >
+                                                Important
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div
+                                        className="tab-content"
+                                        id="pills-tabContent"
+                                    >
+                                        <div
+                                            className="tab-pane fade show active"
+                                            id="pills-all"
+                                            role="tabpanel"
+                                            aria-labelledby="pills-all-tab"
                                         >
-                                            {messages.map((message, index) =>
-                                                index == 0 ? (
-                                                    <MessageTile
-                                                        key={index}
-                                                        userPhoto={
-                                                            message.userPhoto
-                                                        }
-                                                        name={message.name}
-                                                        userName={
-                                                            message.userName
-                                                        }
-                                                        message={
-                                                            message.convo[message.convo.length -1].message
-                                                        }
-                                                        timeSent={
-                                                            message.timeSent
-                                                        }
-                                                        unreadCount={
-                                                            message.unreadCount
-                                                        }
-                                                        active={true}
-                                                    />
-                                                ) : (
-                                                    <MessageTile
-                                                        key={index}
-                                                        userPhoto={
-                                                            message.userPhoto
-                                                        }
-                                                        name={message.name}
-                                                        userName={
-                                                            message.userName
-                                                        }
-                                                        message={
-                                                            message.convo[message.convo.length -1].message
-                                                        }
-                                                        timeSent={
-                                                            message.timeSent
-                                                        }
-                                                        unreadCount={
-                                                            message.unreadCount
-                                                        }
-                                                    />
-                                                )
-                                            )}
-                                        </ul>
-                                    </div>
+                                            <ul
+                                                className="p-0 nav nav-tabs"
+                                                id="tab"
+                                                role="tablist"
+                                            >
+                                                {messages.map(
+                                                    (message, index) =>
+                                                        index == 0 ? (
+                                                            <MessageTile
+                                                                key={index}
+                                                                userPhoto={
+                                                                    message.userPhoto
+                                                                }
+                                                                name={
+                                                                    message.name
+                                                                }
+                                                                userName={
+                                                                    message.userName
+                                                                }
+                                                                message={
+                                                                    message
+                                                                        .convo[
+                                                                        message
+                                                                            .convo
+                                                                            .length -
+                                                                            1
+                                                                    ].message
+                                                                }
+                                                                timeSent={
+                                                                    message.timeSent
+                                                                }
+                                                                unreadCount={
+                                                                    message.unreadCount
+                                                                }
+                                                                active={true}
+                                                            />
+                                                        ) : (
+                                                            <MessageTile
+                                                                key={index}
+                                                                userPhoto={
+                                                                    message.userPhoto
+                                                                }
+                                                                name={
+                                                                    message.name
+                                                                }
+                                                                userName={
+                                                                    message.userName
+                                                                }
+                                                                message={
+                                                                    message
+                                                                        .convo[
+                                                                        message
+                                                                            .convo
+                                                                            .length -
+                                                                            1
+                                                                    ].message
+                                                                }
+                                                                timeSent={
+                                                                    message.timeSent
+                                                                }
+                                                                unreadCount={
+                                                                    message.unreadCount
+                                                                }
+                                                            />
+                                                        )
+                                                )}
+                                            </ul>
+                                        </div>
 
-                                    <div
-                                        className="tab-pane fade"
-                                        id="pills-unread"
-                                        role="tabpanel"
-                                        aria-labelledby="pills-unread-tab"
-                                    >
-                                        <ul className="p-0">
-                                            {messages.map((message, index) =>
-                                                message.unreadCount ? (
-                                                    <MessageTile
-                                                        key={index}
-                                                        userPhoto={
-                                                            message.userPhoto
-                                                        }
-                                                        name={message.name}
-                                                        userName={
-                                                            message.userName
-                                                        }
-                                                        message={
-                                                            message.message
-                                                        }
-                                                        timeSent={
-                                                            message.timeSent
-                                                        }
-                                                        unreadCount={
-                                                            message.unreadCount
-                                                        }
-                                                    />
-                                                ) : (
-                                                    ""
-                                                )
-                                            )}
-                                        </ul>
-                                    </div>
+                                        <div
+                                            className="tab-pane fade"
+                                            id="pills-unread"
+                                            role="tabpanel"
+                                            aria-labelledby="pills-unread-tab"
+                                        >
+                                            <ul className="p-0">
+                                                {messages.map(
+                                                    (message, index) =>
+                                                        message.unreadCount ? (
+                                                            <MessageTile
+                                                                key={index}
+                                                                userPhoto={
+                                                                    message.userPhoto
+                                                                }
+                                                                name={
+                                                                    message.name
+                                                                }
+                                                                userName={
+                                                                    message.userName
+                                                                }
+                                                                message={
+                                                                    message.message
+                                                                }
+                                                                timeSent={
+                                                                    message.timeSent
+                                                                }
+                                                                unreadCount={
+                                                                    message.unreadCount
+                                                                }
+                                                            />
+                                                        ) : (
+                                                            ""
+                                                        )
+                                                )}
+                                            </ul>
+                                        </div>
 
-                                    <div
-                                        className="tab-pane fade"
-                                        id="pills-important"
-                                        role="tabpanel"
-                                        aria-labelledby="pills-important-tab"
-                                    >
-                                        <h6 className="color-grey">
-                                            No important messages here.
-                                        </h6>
+                                        <div
+                                            className="tab-pane fade"
+                                            id="pills-important"
+                                            role="tabpanel"
+                                            aria-labelledby="pills-important-tab"
+                                        >
+                                            <h6 className="color-grey">
+                                                No important messages here.
+                                            </h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
 
@@ -289,8 +323,8 @@ const Messages = () => {
                     overflow-y: hidden;
                 }
 
-                .main{
-                    padding: 1rem 0rem!important;
+                .main {
+                    padding: 1rem 0rem !important;
                 }
 
                 a {
@@ -483,15 +517,19 @@ const Messages = () => {
                 .content {
                     position: relative;
                     top: calc(-2rem - 2px);
-                    height: 100%;
+                    height: 95%;
                 }
-                
-                .messages-container{
+
+                .messages-container {
                     background: #bfbfbf6b;
                     background-size: cover;
-                    height: 85%;
+                    height: 100%;
                     overflow: auto;
                     position: relative;
+                }
+
+                .loading {
+                    justify-content: center;
                 }
             `}</style>
         </main>

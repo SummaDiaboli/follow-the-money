@@ -7,16 +7,16 @@ import MessageDisplay from "./MessageDisplay";
 require("../../static/assets/css/pages/Messages.css");
 
 type Message = ({
-    userPhoto: string;
+    userPhoto: any;
     name: string;
     userName: string;
-    convo: Array<any>;
     unreadCount?: string;
 })[];
 
 const Messages = () => {
     const user = Cookies.getJSON("userData");
     const username = user.username;
+    const [users, setUsers] = useState([]);
     const [messages, setMessages]: any = useState(null);
 
     useEffect(() => {
@@ -24,29 +24,23 @@ const Messages = () => {
         const signal: AbortSignal = abortController.signal;
 
         const getMessages = () => {
-            setInterval(() => {
-                fetch(
-                    `api/get_users`,
-                    { signal }
-                )
-                    .then(res => {
-                        res.json().then(users => {
-                            sessionStorage.setItem(
-                                "users",
-                                JSON.stringify(users)
-                            );
-                            setMessages([...users]);
-                            console.log(users);
-                        });
-                    })
-                    .catch(err => {
-                        if (err.name === "AbortError") {
-                            return "Promise Aborted";
-                        } else {
-                            return "Promise Rejected";
-                        }
+            // setInterval(() => {
+            fetch(`api/get_users`, { signal })
+                .then(res => {
+                    res.json().then(users => {
+                        sessionStorage.setItem("users", JSON.stringify(users));
+                        setUsers([...users]);
+                        console.log(users);
                     });
-            }, 5000);
+                })
+                .catch(err => {
+                    if (err.name === "AbortError") {
+                        return "Promise Aborted";
+                    } else {
+                        return "Promise Rejected";
+                    }
+                });
+            // }, 5000);
         };
 
         getMessages();
@@ -54,18 +48,18 @@ const Messages = () => {
         return () => {
             abortController.abort();
         };
-    }, [messages]);
+    }, [users]);
 
     useEffect(() => {
-        if (messages !== null) {
-            // const truncate = id => {
-            //     let string = document.getElementById(id).innerHTML;
-            //     var maxLength = 80;
-            //     var result = string.substring(0, maxLength) + "...";
-            //     document.getElementById(id).innerHTML = result;
-            // };
-            // truncate("truncate-text");
-        }
+        // if (messages !== null) {
+        //     // const truncate = id => {
+        //     //     let string = document.getElementById(id).innerHTML;
+        //     //     var maxLength = 80;
+        //     //     var result = string.substring(0, maxLength) + "...";
+        //     //     document.getElementById(id).innerHTML = result;
+        //     // };
+        //     // truncate("truncate-text");
+        // }
     });
 
     return (
@@ -78,7 +72,7 @@ const Messages = () => {
                     <hr className="w-100" />
                 </nav>
                 <div className="container-fluid p-0 content">
-                    {messages === null ? (
+                    {users === null ? (
                         <div className="d-flex vertical-align loading w-100 h-100">
                             <div
                                 className="spinner-border"
@@ -195,66 +189,25 @@ const Messages = () => {
                                                 id="tab"
                                                 role="tablist"
                                             >
-                                                {messages.map(
-                                                    (message, index) =>
-                                                        index == 0 ? (
-                                                            <MessageTile
-                                                                key={index}
-                                                                userPhoto={
-                                                                    message.userPhoto
-                                                                }
-                                                                name={
-                                                                    message.name
-                                                                }
-                                                                userName={
-                                                                    message.userName
-                                                                }
-                                                                message={
-                                                                    message
-                                                                        .convo[
-                                                                        message
-                                                                            .convo
-                                                                            .length -
-                                                                            1
-                                                                    ].message
-                                                                }
-                                                                timeSent={
-                                                                    message.timeSent
-                                                                }
-                                                                unreadCount={
-                                                                    message.unreadCount
-                                                                }
-                                                                active={true}
-                                                            />
-                                                        ) : (
-                                                            <MessageTile
-                                                                key={index}
-                                                                userPhoto={
-                                                                    message.userPhoto
-                                                                }
-                                                                name={
-                                                                    message.name
-                                                                }
-                                                                userName={
-                                                                    message.userName
-                                                                }
-                                                                message={
-                                                                    message
-                                                                        .convo[
-                                                                        message
-                                                                            .convo
-                                                                            .length -
-                                                                            1
-                                                                    ].message
-                                                                }
-                                                                timeSent={
-                                                                    message.timeSent
-                                                                }
-                                                                unreadCount={
-                                                                    message.unreadCount
-                                                                }
-                                                            />
-                                                        )
+                                                {users.map((user, index) =>
+                                                    index == 0 ? (
+                                                        <MessageTile
+                                                            key={index}
+                                                            name={`${user.name.firstName} ${user.name.lastName}`}
+                                                            userName={
+                                                                user.username
+                                                            }
+                                                            active={true}
+                                                        />
+                                                    ) : (
+                                                        <MessageTile
+                                                            key={index}
+                                                            name={`${user.name.firstName} ${user.name.lastName}`}
+                                                            userName={
+                                                                user.username
+                                                            }
+                                                        />
+                                                    )
                                                 )}
                                             </ul>
                                         </div>
@@ -265,35 +218,8 @@ const Messages = () => {
                                             role="tabpanel"
                                             aria-labelledby="pills-unread-tab"
                                         >
-                                            <ul className="p-0">
-                                                {messages.map(
-                                                    (message, index) =>
-                                                        message.unreadCount ? (
-                                                            <MessageTile
-                                                                key={index}
-                                                                userPhoto={
-                                                                    message.userPhoto
-                                                                }
-                                                                name={
-                                                                    message.name
-                                                                }
-                                                                userName={
-                                                                    message.userName
-                                                                }
-                                                                message={
-                                                                    message.message
-                                                                }
-                                                                timeSent={
-                                                                    message.timeSent
-                                                                }
-                                                                unreadCount={
-                                                                    message.unreadCount
-                                                                }
-                                                            />
-                                                        ) : (
-                                                            ""
-                                                        )
-                                                )}
+                                            <ul className="p-0 color-grey">
+                                                <li>No unread count.</li>
                                             </ul>
                                         </div>
 

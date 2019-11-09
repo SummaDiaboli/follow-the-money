@@ -23,20 +23,40 @@ const MessageDisplay: React.FC<Params> = ({ active, username }) => {
 
         const getConversation = () => {
             setInterval(() => {
-            fetch(`https://follow-the-money-2019.herokuapp.com/index.php/messages/${Username}/${username}`, { signal })
-                .then(res => {
-                    res.json().then(conversation => {
-                        // console.log(conversation)
-                        setConversation([...conversation]);
+                fetch(`https://follow-the-money-2019.herokuapp.com/index.php/messages/${Username}/${username}`,
+                    {
+                        signal,
+                        // mode: "no-cors"
+                    })
+                    .then(res => {
+                        return res.json()
+                        // console.log(res.body)
+                        // console.log(res.statusText)
+                        // console.log(await res.status)
+                        // res.json().then(
+                        //     conversation => {
+                        //         console.log(conversation)
+                        //         setConversation([...conversation]);
+                        //     });
+
+                        // if (res.body !== null) {
+                        //     res.json().then(conversation => {
+                        //         // console.log(conversation)
+                        //         setConversation([...conversation]);
+                        //     });
+                        // }
+                    })
+                    .then(data => {
+                        // console.log(data)
+                        setConversation([...data])
+                    })
+                    .catch(err => {
+                        if (err.name === "AbortError") {
+                            return "Promise Aborted";
+                        } else {
+                            return "Promise Rejected";
+                        }
                     });
-                })
-                .catch(err => {
-                    if (err.name === "AbortError") {
-                        return "Promise Aborted";
-                    } else {
-                        return "Promise Rejected";
-                    }
-                });
             }, 5000);
         };
 
@@ -53,7 +73,7 @@ const MessageDisplay: React.FC<Params> = ({ active, username }) => {
                 <div
                     className={`tab-pane h-100 fade show ${
                         active ? "active" : ""
-                    }`}
+                        }`}
                     id={`${username}`}
                     role="tabpanel"
                     aria-labelledby={`${username}-tab`}
@@ -66,7 +86,7 @@ const MessageDisplay: React.FC<Params> = ({ active, username }) => {
             }
 
             <style>{`
-            
+
             `}</style>
         </>
     );

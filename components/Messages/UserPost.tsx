@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
+import fetch from 'isomorphic-unfetch'
 import Cookies from "js-cookie";
 
 interface Params {
@@ -34,9 +35,10 @@ const UserPost: React.FC<Params> = ({ parentCallback, username }) => {
             //const storageRef = firebase.storage().ref()
 
             fetch(
-                `https://follow-the-money-2019.herokuapp.com/index.php/messages`,
+                "https://follow-the-money-2019.herokuapp.com/index.php/messages/",
                 {
-                    method: "post",
+                    method: "POST",
+                    // mode: "no-cors",
                     headers: {
                         Accept: "application/json, text/plain, */*",
                         "Content-Type": "application/json"
@@ -48,9 +50,12 @@ const UserPost: React.FC<Params> = ({ parentCallback, username }) => {
                     })
                 }
             ).then(res => {
+                console.log(res)
                 if (res.status === 201) {
                     setMessageText("");
                 }
+            }).catch(err => {
+                console.log("Shit happened:", err)
             });
         }
         parentCallback();
@@ -76,7 +81,7 @@ const UserPost: React.FC<Params> = ({ parentCallback, username }) => {
                         <i
                             className={`fas fa-paper-plane ${
                                 sendMessageActive ? "color-red" : "color-grey"
-                            }`}
+                                }`}
                         />
                     </button>
                 </div>

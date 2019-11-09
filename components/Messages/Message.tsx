@@ -44,7 +44,7 @@ const Message: React.FC<Params> = ({ convo }) => {
                                     src="../../static/assets/img/triangle.png"
                                 ></img>
                                 <span className="timestamp">
-                                    {convertTimestamp(message.time)}
+                                    {(message.time)}
                                 </span>
                             </div>
                         </div>
@@ -57,7 +57,7 @@ const Message: React.FC<Params> = ({ convo }) => {
                                     src="../../static/assets/img/triangle.png"
                                 ></img>
                                 <span className="timestamp">
-                                    {convertTimestamp(message.time)}
+                                    {(message.time)}
                                 </span>
                             </div>
                         </div>
@@ -84,6 +84,7 @@ const Message: React.FC<Params> = ({ convo }) => {
                     font-family: "Montserrat", sans-serif;
                     color: #000;
                     font-weight: 500;
+                    word-break: break-word;
                 }
 
                 .message-container.left .timestamp {

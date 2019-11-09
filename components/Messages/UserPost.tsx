@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import fetch from 'isomorphic-unfetch'
+import fetch from "isomorphic-unfetch";
 import Cookies from "js-cookie";
 
 interface Params {
@@ -29,16 +29,14 @@ const UserPost: React.FC<Params> = ({ parentCallback, username }) => {
         setMessageText(e.target.value);
     };
 
-    const sendMessage = () => {
-        if (messageText !== "") {
-            //const firebase = loadFB()
-            //const storageRef = firebase.storage().ref()
-
-            fetch(
-                "api/messages",
-                {
+    const checkEnter = e => {
+        const key = e.keyCode ? e.keyCode : e.which;
+        if (key == 13) {
+            console.log('enter');
+            if (messageText !== "") {
+                
+                fetch("api/messages", {
                     method: "POST",
-                    // mode: "no-cors",
                     headers: {
                         Accept: "application/json, text/plain, */*",
                         "Content-Type": "application/json"
@@ -48,12 +46,39 @@ const UserPost: React.FC<Params> = ({ parentCallback, username }) => {
                         receiver: username,
                         message: messageText
                     })
-                }
-            ).then(res => {
+                }).then(res => {
+                    if (res.status === 201) {
+                        setMessageText("");
+                    }
+                });
+            }
+            parentCallback();
+            setMessageText("");
+        }
+    };
+
+    const sendMessage = () => {
+        if (messageText !== "") {
+            //const firebase = loadFB()
+            //const storageRef = firebase.storage().ref()
+
+            fetch("api/messages", {
+                method: "POST",
+                // mode: "no-cors",
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    sender: Username,
+                    receiver: username,
+                    message: messageText
+                })
+            }).then(res => {
                 if (res.status === 201) {
                     setMessageText("");
                 }
-            })
+            });
         }
         parentCallback();
         setMessageText("");
@@ -72,13 +97,16 @@ const UserPost: React.FC<Params> = ({ parentCallback, username }) => {
                     placeholder="Write a message..."
                     value={messageText}
                     onChange={onChangeText}
+                    onKeyPress={e => {
+                        checkEnter(e);
+                    }}
                 ></input>
                 <div className="ml-auto">
                     <button className="pr-2" onClick={sendMessage}>
                         <i
                             className={`fas fa-paper-plane ${
                                 sendMessageActive ? "color-red" : "color-grey"
-                                }`}
+                            }`}
                         />
                     </button>
                 </div>

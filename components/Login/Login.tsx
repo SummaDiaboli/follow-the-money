@@ -125,7 +125,7 @@ const Login = () => {
                 })
             }).then(res => {
                 if (res.status === 201) {
-                    Cookies.set('userData', { username }, { expires: 7 })
+                    Cookies.set('userData', { username, photo: null }, { expires: 7 })
                     Router.reload()
                     Router.push('/')
                 } else {

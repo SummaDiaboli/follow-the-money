@@ -47,7 +47,7 @@ const UserIcon = () => {
             <button className="m-0" onClick={fadeUserPopup}>
                 <img
                     className="user"
-                    src={photo !== null ? photo : "../../static/assets/img/user/user.jpg"}
+                    src={photo !== null && photo !== undefined ? photo : "../../static/assets/img/user/user.jpg"}
                     // src={"../../static/assets/img/user/user.jpg"}
                     alt=""
                 />

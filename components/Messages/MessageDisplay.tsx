@@ -1,25 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { UserPost, Message } from "./index";
+import Cookies from "js-cookie";
 
 interface Params {
     // conversation?: JSON
-    convo: Array<any>;
     active?: boolean;
     username: string;
 }
 
-const MessageDisplay: React.FC<Params> = ({ convo, active, username }) => {
-    const [conversation, setConversation] = useState(convo);
+const MessageDisplay: React.FC<Params> = ({ active, username }) => {
+    const [conversation, setConversation] = useState([]);
+    const user = Cookies.getJSON("userData");
+    const Username = user.username;
 
-    const sendMessage = (message, time) => {
-        let localConvo = conversation;
-        localConvo.push({
-            sender: "me",
-            message: message,
-            timestamp: time
-        });
-        setConversation([...localConvo]);
+    const refreshMessages = () => {
+        //getConversation()
     };
+
+    useEffect(() => {
+        const abortController: AbortController = new window.AbortController();
+        const signal: AbortSignal = abortController.signal;
+
+        const getConversation = () => {
+            setInterval(() => {
+            fetch(`https://follow-the-money-2019.herokuapp.com/index.php/messages/${Username}/${username}`, { signal })
+                .then(res => {
+                    res.json().then(conversation => {
+                        // console.log(conversation)
+                        setConversation([...conversation]);
+                    });
+                })
+                .catch(err => {
+                    if (err.name === "AbortError") {
+                        return "Promise Aborted";
+                    } else {
+                        return "Promise Rejected";
+                    }
+                });
+            }, 5000);
+        };
+
+        getConversation();
+
+        return () => {
+            abortController.abort();
+        };
+    }, [conversation]);
 
     return (
         <>
@@ -35,7 +61,7 @@ const MessageDisplay: React.FC<Params> = ({ convo, active, username }) => {
                     <div className="d-flex flex-column h-100 p-3">
                         <Message convo={conversation} />
                     </div>
-                    <UserPost parentCallback={sendMessage} />
+                    <UserPost username={username} parentCallback={refreshMessages} />
                 </div>
             }
 

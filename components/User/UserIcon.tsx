@@ -38,7 +38,7 @@ const UserIcon = () => {
 
     useLayoutEffect(() => {
         // setInterval(() => {
-        setPhoto(data !== null || data !== undefined ? data.photo : '')
+        setPhoto(data !== null && data !== undefined ? data.photo : null)
         // }, 500)
     }, [photo])
 

@@ -1,25 +1,33 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import Link from "next/link";
 
 interface Params {
-    userPhoto: string;
     userName: string;
     name: string;
-    message: string;
-    timeSent: Date;
-    unreadCount: number;
+    // message: string;
+    //timeSent: Date;
+    //unreadCount: number;
     active?: boolean;
 }
 
 const MessageTile: React.FC<Params> = ({
-    userPhoto,
     userName,
     name,
-    message,
-    timeSent,
-    unreadCount,
+    // message,
+    //timeSent,
+    //unreadCount,
     active
 }) => {
+    const [userPhoto, setUserPhoto] = useState(null)
+
+    useMemo(() => fetch(`/api/change_photo/${userName}`)
+        .then(res => {
+            res.status === 201 && res.json().then(data => {
+                setUserPhoto(data[0].photo)
+            })
+        }), [userPhoto])
+
+
     return (
         <li className="message">
             <a
@@ -31,8 +39,8 @@ const MessageTile: React.FC<Params> = ({
                 aria-controls={`${userName}`}
                 aria-selected="true"
             >
-                <div className="d-flex flex-row">
-                    <img src={userPhoto} alt="" />
+                <div className="d-flex vertical-align flex-row">
+                    <img src={userPhoto !== null ? userPhoto : "../../static/assets/img/user/user.jpg"} alt="" />
                     <div className="d-flex flex-column ml-2">
                         <Link href="/users/[id]" as={`/users/${userName}`}>
                             <a className="username" href="">
@@ -41,21 +49,21 @@ const MessageTile: React.FC<Params> = ({
                                 </h5>
                             </a>
                         </Link>
-                        <span
+                        {/* <span
                             className="pt-1 message-content"
                             id="truncate-text"
                         >
                             {message}
-                        </span>
+                        </span> */}
                     </div>
-                    <div className="d-flex flex-column ml-auto">
+                    {/* <div className="d-flex flex-column ml-auto">
                         <span className="time">{timeSent}</span>
                         {unreadCount && (
                             <div className="amount text-center ml-auto mt-2">
                                 {unreadCount}
                             </div>
                         )}
-                    </div>
+                    </div> */}
                 </div>
             </a>
         </li>

@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
+import Cookies from "js-cookie";
 
 interface Params {
     parentCallback: Function;
+    username: string;
 }
 
-const UserPost: React.FC<Params> = ({ parentCallback }) => {
+const UserPost: React.FC<Params> = ({ parentCallback, username }) => {
     const [userPhoto, setuserPhoto] = useState(
         require("../../static/assets/img/user/user.jpg")
     );
-
+    const user = Cookies.getJSON("userData");
+    const Username = user.username;
     const [messageText, setMessageText] = useState("");
     const [sendMessageActive, setSendMessageActive] = useState(false);
 
@@ -25,17 +28,33 @@ const UserPost: React.FC<Params> = ({ parentCallback }) => {
         setMessageText(e.target.value);
     };
 
-    const currentTime = () => {
-        let date = new Date(),
-            h = date.getHours(),
-            m = date.getMinutes();
-
-        return h + ":" + m;
-    };
-
     const sendMessage = () => {
-        parentCallback(messageText, new Date().getHours() + ':' + new Date().getMinutes());
-        setMessageText('')
+        if (messageText !== "") {
+            //const firebase = loadFB()
+            //const storageRef = firebase.storage().ref()
+
+            fetch(
+                `https://follow-the-money-2019.herokuapp.com/index.php/messages`,
+                {
+                    method: "post",
+                    headers: {
+                        Accept: "application/json, text/plain, */*",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        sender: Username,
+                        receiver: username,
+                        message: messageText
+                    })
+                }
+            ).then(res => {
+                if (res.status === 201) {
+                    setMessageText("");
+                }
+            });
+        }
+        parentCallback();
+        setMessageText("");
     };
 
     return (

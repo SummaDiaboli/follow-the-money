@@ -1,49 +1,67 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment-timezone";
+import Cookies from "js-cookie";
 
 interface Params {
     convo: Array<any>;
 }
 
 const Message: React.FC<Params> = ({ convo }) => {
-    const [userPhoto, setuserPhoto] = useState(
-        require("../../static/assets/img/user/user.jpg")
-    );
-    const [conversation, setConversation] = useState(convo)
+    const user = Cookies.getJSON("userData");
+    const Username = user.username;
+    // const [userPhoto, setuserPhoto] = useState(
+    //     require("../../static/assets/img/user/user.jpg")
+    // );
+    const [conversation, setConversation] = useState(convo);
 
     useEffect(() => {
-        setConversation(convo)
+        setConversation(convo);
         // console.log(conversation)
-    }, [convo])
+    }, [convo]);
+
+    const convertTimestamp = (time) => {
+        let str = time.replace(/[^a-zA-Z0-9]/g, "")
+        str = str/1000
+        return moment.unix(str).format('LT')
+    }
 
     return (
         <>
-            {conversation.map(message =>
-                message.sender === "me" ? (
-                    <div className="message-container right w-100 d-flex flex-row">
-                        <div className="message">
-                            <span className="">{message.message}</span>
-                            <img
-                                className="triangle"
-                                src="../../static/assets/img/triangle.png"
-                            ></img>
-                            <span className="timestamp">
-                                {message.timestamp}
-                            </span>
+            {conversation.length < 1 ? (
+                <div className="w-100 h-100 d-flex vertical-align no-messages">
+                    <span className="font-montserrat color-grey font-medium ">
+                        You haven't sent any messages to this user
+                    </span>
+                </div>
+            ) : (
+                conversation.map(message =>
+                    message.sender === Username ? (
+                        <div className="message-container right w-100 d-flex flex-row">
+                            <div className="message">
+                                <span className="">{message.message}</span>
+                                <img
+                                    className="triangle"
+                                    src="../../static/assets/img/triangle.png"
+                                ></img>
+                                <span className="timestamp">
+                                    {convertTimestamp(message.time)}
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                ) : (
-                    <div className="message-container left w-100 d-flex flex-row">
-                        <div className="message">
-                            <span className="">{message.message}</span>
-                            <img
-                                className="triangle"
-                                src="../../static/assets/img/triangle.png"
-                            ></img>
-                            <span className="timestamp">
-                                {message.timestamp}
-                            </span>
+                    ) : (
+                        <div className="message-container left w-100 d-flex flex-row">
+                            <div className="message">
+                                <span className="">{message.message}</span>
+                                <img
+                                    className="triangle"
+                                    src="../../static/assets/img/triangle.png"
+                                ></img>
+                                <span className="timestamp">
+                                    {convertTimestamp(message.time)}
+                                </span>
+                            </div>
                         </div>
-                    </div>
+                    )
                 )
             )}
 
@@ -104,6 +122,16 @@ const Message: React.FC<Params> = ({ convo }) => {
 
                 .message-container {
                     margin: 1.3rem 0rem;
+                }
+
+                .no-messages {
+                    justify-content: center;
+                }
+
+                .no-messages span {
+                    color: #9c9c9c;
+                    position: relative;
+                    top: -50px;
                 }
             `}</style>
         </>

@@ -57,7 +57,7 @@ class MyApp extends App {
                     <meta charSet="utf-8" />
                     <meta
                         name="description"
-                        content="Backlinq enterprises | Creating innovative solutions, the only way we know how to think"
+                        content="Follow the Money | Online sharing platform"
                     />
                     <meta
                         name="viewport"

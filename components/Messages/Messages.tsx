@@ -137,8 +137,66 @@ const Messages = () => {
                                             value={searchText}
                                         />
                                     </div>
-
                                     <ul
+                                        className="p-0 nav nav-tabs"
+                                        id="tab"
+                                        role="tablist"
+                                    >
+                                        {users.map((user, index) =>
+                                            user.username !== username ? (
+                                                searchText === "" ? (
+                                                    index === 0 ? (
+                                                        <MessageTile
+                                                            key={index}
+                                                            name={`${user.username}`}
+                                                            userName={
+                                                                user.username
+                                                            }
+                                                            active={true}
+                                                        />
+                                                    ) : (
+                                                        <MessageTile
+                                                            key={index}
+                                                            name={`${user.username}`}
+                                                            userName={
+                                                                user.username
+                                                            }
+                                                            active={false}
+                                                        />
+                                                    )
+                                                ) : user.username
+                                                      .toLowerCase()
+                                                      .includes(
+                                                          searchText.toLowerCase()
+                                                      ) ? (
+                                                    index === 0 ? (
+                                                        <MessageTile
+                                                            key={index}
+                                                            name={`${user.username}`}
+                                                            userName={
+                                                                user.username
+                                                            }
+                                                            active={true}
+                                                        />
+                                                    ) : (
+                                                        <MessageTile
+                                                            key={index}
+                                                            name={`${user.username}`}
+                                                            userName={
+                                                                user.username
+                                                            }
+                                                            active={false}
+                                                        />
+                                                    )
+                                                ) : (
+                                                    ""
+                                                )
+                                            ) : (
+                                                ""
+                                            )
+                                        )}
+                                    </ul>
+                                    {/* <ul
                                         className="nav nav-pills px-3 mb-0 py-1"
                                         id="pills-tab"
                                         role="tablist"
@@ -182,9 +240,9 @@ const Messages = () => {
                                                 Important
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul> */}
 
-                                    <div
+                                    {/* <div
                                         className="tab-content"
                                         id="pills-tabContent"
                                     >
@@ -194,70 +252,7 @@ const Messages = () => {
                                             role="tabpanel"
                                             aria-labelledby="pills-all-tab"
                                         >
-                                            <ul
-                                                className="p-0 nav nav-tabs"
-                                                id="tab"
-                                                role="tablist"
-                                            >
-                                                {users.map((user, index) =>
-                                                    user.username !==
-                                                    username ? (
-                                                        searchText === "" ? (
-                                                            index === 0 ? (
-                                                                <MessageTile
-                                                                    key={index}
-                                                                    name={`${user.username}`}
-                                                                    userName={
-                                                                        user.username
-                                                                    }
-                                                                    active={
-                                                                        true
-                                                                    }
-                                                                />
-                                                            ) : (
-                                                                <MessageTile
-                                                                    key={index}
-                                                                    name={`${user.username}`}
-                                                                    userName={
-                                                                        user.username
-                                                                    }
-                                                                    active={false}
-                                                                />
-                                                            )
-                                                        ) : user.username
-                                                              .toLowerCase()
-                                                              .includes(
-                                                                  searchText.toLowerCase()
-                                                              ) ? (
-                                                            index === 0 ? (
-                                                                <MessageTile
-                                                                    key={index}
-                                                                    name={`${user.username}`}
-                                                                    userName={
-                                                                        user.username
-                                                                    }
-                                                                    active={
-                                                                        true
-                                                                    }
-                                                                />
-                                                            ) : (
-                                                                <MessageTile
-                                                                    key={index}
-                                                                    name={`${user.username}`}
-                                                                    userName={
-                                                                        user.username
-                                                                    }
-                                                                    active={false}
-                                                                />
-                                                            )
-                                                        ) : (
-                                                            ""
-                                                        )
-                                                    ) : (
-                                                        ""
-                                                    )
-                                                )}
-                                            </ul>
+                                            
                                         </div>
 
                                         <div
@@ -281,7 +276,7 @@ const Messages = () => {
                                                 No important messages here.
                                             </h6>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

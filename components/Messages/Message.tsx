@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment-timezone";
 import Cookies from "js-cookie";
+import pg from "pg";
 
 interface Params {
     convo: Array<any>;
@@ -19,11 +20,10 @@ const Message: React.FC<Params> = ({ convo }) => {
         // console.log(conversation)
     }, [convo]);
 
-    const convertTimestamp = (time) => {
-        let str = time.replace(/[^a-zA-Z0-9]/g, "")
-        str = str/1000
-        return moment.unix(str).format('LT')
-    }
+    const convertTimestamp = time => {
+        let str = time.toString();
+        return str.substring(0, 5);
+    };
 
     return (
         <>
@@ -44,7 +44,7 @@ const Message: React.FC<Params> = ({ convo }) => {
                                     src="../../static/assets/img/triangle.png"
                                 ></img>
                                 <span className="timestamp">
-                                    {(message.time)}
+                                    {convertTimestamp(message.time)}
                                 </span>
                             </div>
                         </div>
@@ -57,7 +57,7 @@ const Message: React.FC<Params> = ({ convo }) => {
                                     src="../../static/assets/img/triangle.png"
                                 ></img>
                                 <span className="timestamp">
-                                    {(message.time)}
+                                    {convertTimestamp(message.time)}
                                 </span>
                             </div>
                         </div>

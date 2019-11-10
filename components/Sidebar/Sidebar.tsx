@@ -53,7 +53,7 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
      * Number of notifications
      */
     const [username, setUsername] = useState(authUser ? authUser.username : "")
-    const [messagesCount, setMessagesCount] = useState(9)
+    const [messagesCount, setMessagesCount] = useState(0)
     const [friendsCount, setFriendsCount] = useState(0)
     const [communitiesCount, setCommunitiesCount] = useState(0)
     const [eventsCount, setEventsCount] = useState(0)

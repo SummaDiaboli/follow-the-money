@@ -90,8 +90,7 @@ const Post: React.FC<Params> = ({
                             {video && (
                                 <video
                                     className="w-100 mt-2"
-                                    src={video}
-                                    autoPlay
+                                    src={video}                                    
                                     controls
                                 ></video>
                             )}

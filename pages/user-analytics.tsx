@@ -6,7 +6,7 @@ const UserAnalyticsPage = () => {
     return (
         <div>
             <Head>
-                <meta name="description" content="Backlinq enterprises | Creating innovative solutions, the only way we know how to think" />
+                <meta name="description" content="Follow the Money | Online sharing platform" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css" />

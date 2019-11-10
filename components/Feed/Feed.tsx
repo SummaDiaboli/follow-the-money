@@ -75,7 +75,7 @@ const Feed = () => {
                                 aria-controls="all"
                                 aria-selected="true"
                             >
-                                Posts
+                                All
                             </a>
                         </li>
                         <li className="nav-item">

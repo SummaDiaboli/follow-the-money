@@ -18,6 +18,7 @@ const Messages = () => {
     const username = user.username;
     const [users, setUsers] = useState([]);
     const [messages, setMessages]: any = useState(null);
+    const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         const abortController: AbortController = new window.AbortController();
@@ -48,6 +49,10 @@ const Messages = () => {
             abortController.abort();
         };
     });
+
+    const changeSearch = e => {
+        setSearchText(e.target.value);
+    };
 
     useEffect(() => {
         // if (messages !== null) {
@@ -119,18 +124,22 @@ const Messages = () => {
                                 className="col-3 px-0"
                                 style={{ height: "100%" }}
                             >
-                                <div className="card sideTab p-3">
-                                    <div className="d-flex w-100 search pb-3 px-1 flex-row vertical-align">
+                                <div className="card sideTab">
+                                    <div className="d-flex w-100 search p-3 flex-row vertical-align">
                                         <i className="fas fa-search"></i>
                                         <input
                                             type="text"
                                             placeholder="Search in all messages"
                                             className="ml-3 w-100"
+                                            onChange={e => {
+                                                changeSearch(e);
+                                            }}
+                                            value={searchText}
                                         />
                                     </div>
 
                                     <ul
-                                        className="nav nav-pills mb-3 py-1"
+                                        className="nav nav-pills px-3 mb-0 py-1"
                                         id="pills-tab"
                                         role="tablist"
                                     >
@@ -193,23 +202,56 @@ const Messages = () => {
                                                 {users.map((user, index) =>
                                                     user.username !==
                                                     username ? (
-                                                        index == 0 ? (
-                                                            <MessageTile
-                                                                key={index}
-                                                                name={`${user.username}`}
-                                                                userName={
-                                                                    user.username
-                                                                }
-                                                                active={true}
-                                                            />
+                                                        searchText === "" ? (
+                                                            index === 0 ? (
+                                                                <MessageTile
+                                                                    key={index}
+                                                                    name={`${user.username}`}
+                                                                    userName={
+                                                                        user.username
+                                                                    }
+                                                                    active={
+                                                                        true
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                <MessageTile
+                                                                    key={index}
+                                                                    name={`${user.username}`}
+                                                                    userName={
+                                                                        user.username
+                                                                    }
+                                                                    active={false}
+                                                                />
+                                                            )
+                                                        ) : user.username
+                                                              .toLowerCase()
+                                                              .includes(
+                                                                  searchText.toLowerCase()
+                                                              ) ? (
+                                                            index === 0 ? (
+                                                                <MessageTile
+                                                                    key={index}
+                                                                    name={`${user.username}`}
+                                                                    userName={
+                                                                        user.username
+                                                                    }
+                                                                    active={
+                                                                        true
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                <MessageTile
+                                                                    key={index}
+                                                                    name={`${user.username}`}
+                                                                    userName={
+                                                                        user.username
+                                                                    }
+                                                                    active={false}
+                                                                />
+                                                            )
                                                         ) : (
-                                                            <MessageTile
-                                                                key={index}
-                                                                name={`${user.username}`}
-                                                                userName={
-                                                                    user.username
-                                                                }
-                                                            />
+                                                            ""
                                                         )
                                                     ) : (
                                                         ""
@@ -401,8 +443,8 @@ const Messages = () => {
                     position: relative;
                     list-style-type: none;
                     cursor: pointer;
-                    margin: 0.7rem 0rem;
                     width: 100%;
+                    margin: 0rem;
                 }
 
                 .sideTab .message:nth-child(1) {

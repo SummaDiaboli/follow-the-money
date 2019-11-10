@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment-timezone";
 import Cookies from "js-cookie";
+import pg from "pg";
 
 interface Params {
     convo: Array<any>;
@@ -19,11 +20,10 @@ const Message: React.FC<Params> = ({ convo }) => {
         // console.log(conversation)
     }, [convo]);
 
-    const convertTimestamp = (time) => {
-        let str = time.replace(/[^a-zA-Z0-9]/g, "")
-        str = str/1000
-        return moment.unix(str).format('LT')
-    }
+    const convertTimestamp = time => {
+        let str = time.toString();
+        return str.substring(0, 5);
+    };
 
     return (
         <>
@@ -43,9 +43,9 @@ const Message: React.FC<Params> = ({ convo }) => {
                                     className="triangle"
                                     src="../../static/assets/img/triangle.png"
                                 ></img>
-                                {/* <span className="timestamp">
+                                <span className="timestamp">
                                     {convertTimestamp(message.time)}
-                                </span> */}
+                                </span>
                             </div>
                         </div>
                     ) : (
@@ -56,9 +56,9 @@ const Message: React.FC<Params> = ({ convo }) => {
                                     className="triangle"
                                     src="../../static/assets/img/triangle.png"
                                 ></img>
-                                {/* <span className="timestamp">
+                                <span className="timestamp">
                                     {convertTimestamp(message.time)}
-                                </span> */}
+                                </span>
                             </div>
                         </div>
                     )
@@ -84,6 +84,7 @@ const Message: React.FC<Params> = ({ convo }) => {
                     font-family: "Montserrat", sans-serif;
                     color: #000;
                     font-weight: 500;
+                    word-break: break-word;
                 }
 
                 .message-container.left .timestamp {

@@ -35,8 +35,8 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
             //     return setNavState('friends')
             case /\/communities/.test(pathname):
                 return setNavState('communities')
-            case /\/playlists/.test(pathname):
-                return setNavState('playlists')
+            // case /\/playlists/.test(pathname):
+            //     return setNavState('playlists')
             // case /\/events/.test(pathname):
             //     return setNavState('events')
             case /\/settings/.test(pathname):
@@ -143,14 +143,14 @@ const Sidebar: React.FC<Params> = ({ children, authUser }) => {
                             </Link>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <Link href="/playlists">
                                 <a className={navState == 'playlists' ? "active" : ""}>
                                     <i className="fas fa-list-alt mr-2 text-center"></i>
                                     <span>Playlists</span>
                                 </a>
                             </Link>
-                        </li>
+                        </li> */}
 
                         {/* <li>
                             <Link href="/events">
